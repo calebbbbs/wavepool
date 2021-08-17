@@ -16,31 +16,27 @@ export const config: Configuration = {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-              '@babel/preset-typescript',
-            ],
-          },
+          loader: 'ts-loader',
         },
       },
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.json', '.jsx'],
   },
   output: {
     path: path.resolve(__dirname, 'client/dist/'),
     filename: 'bundle.js',
   },
   devServer: {
-    contentBase: path.join(__dirname, 'build'),
+    contentBase: path.join(__dirname, '/client/dist'),
     compress: true,
     port: 3000,
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: 'client/src/index.html',
+  })],
 };
 
 export default config;
