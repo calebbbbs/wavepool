@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon server/index.ts",
-    "dev": "webpack --watch serve"
+    "dev": "webpack serve"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
