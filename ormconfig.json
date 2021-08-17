@@ -1,0 +1,13 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "omerta89",
+  "database": "wavepool",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+     "server/entities/**/*.ts"
+  ]
+}

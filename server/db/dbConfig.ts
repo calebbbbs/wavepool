@@ -5,7 +5,7 @@ const typeOrmConfig: PostgresConnectionOptions = {
   host: 'localhost',
   port: 5432,
   username: 'postgres',
-  password: 'password',
+  password: 'Omerta89',
   database: 'wavepool',
   synchronize: true,
   logging: false,
@@ -13,4 +13,4 @@ const typeOrmConfig: PostgresConnectionOptions = {
   ],
 };
 
-export { typeOrmConfig };
+export default { typeOrmConfig };
