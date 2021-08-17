@@ -2,19 +2,13 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export default class track {
+export default class recommendedTrack {
   @PrimaryGeneratedColumn()
+  user_id: number;
+
+  @Column()
   track_id: number;
 
   @Column()
-  spotify_uri: string;
-
-  @Column()
-  artist_id: number;
-
-  @Column()
-  album_id: number;
-
-  @Column()
-  album_uri: string;
+  friend_id: number;
 }
