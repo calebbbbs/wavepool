@@ -1,15 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS wavepool;
 
-CREATE  TABLE wavepool.artist ( 
-	artist_id            integer  NOT NULL ,
-	artist_name          varchar  NOT NULL ,
-	artist_uri           varchar  NOT NULL ,
-	artists_popularity   integer  NOT NULL ,
-	artists_followers    integer  NOT NULL ,
-	artists_genres       varchar[]  NOT NULL ,
-	CONSTRAINT pk_artist_artist_id PRIMARY KEY ( artist_id )
- );
-
 CREATE  TABLE wavepool.friend_status ( 
 	user_id              integer  NOT NULL ,
 	"friend _id"         integer  NOT NULL ,
@@ -23,12 +13,6 @@ CREATE  TABLE wavepool.tracks (
 	album_name           varchar(100)   ,
 	album_uri            varchar   ,
 	CONSTRAINT unq_tracks_track_id UNIQUE ( track_id ) 
- );
-
-CREATE  TABLE wavepool.users ( 
-	user_id              integer  NOT NULL GENERATED ALWAYS AS IDENTITY,
-	name                 varchar(128)   ,
-	CONSTRAINT pk_users_user_id PRIMARY KEY ( user_id )
  );
 
 CREATE  TABLE wavepool.histories ( 

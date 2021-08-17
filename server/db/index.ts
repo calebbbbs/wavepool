@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 
 import { createConnection } from 'typeorm';
-import typeOrmConfig from "./dbConfig"
+import typeOrmConfig from './dbConfig';
 
 (async () => {
   const conn = await createConnection(typeOrmConfig);
