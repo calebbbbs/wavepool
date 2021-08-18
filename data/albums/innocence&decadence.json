@@ -1,0 +1,428 @@
+{
+  "href": "https://api.spotify.com/v1/albums/0YNsAZX48uDKWz4vr7sJJ9/tracks?offset=0&limit=50&market=US",
+  "items": [
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 182346,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/41MOR6ufTTE5ox9dnNEols"
+      },
+      "href": "https://api.spotify.com/v1/tracks/41MOR6ufTTE5ox9dnNEols",
+      "id": "41MOR6ufTTE5ox9dnNEols",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/42ysMzWwYumTCoqJ52Rrg7"
+        },
+        "href": "https://api.spotify.com/v1/tracks/42ysMzWwYumTCoqJ52Rrg7",
+        "id": "42ysMzWwYumTCoqJ52Rrg7",
+        "type": "track",
+        "uri": "spotify:track:42ysMzWwYumTCoqJ52Rrg7"
+      },
+      "name": "Magnetic Shunk",
+      "preview_url": "https://p.scdn.co/mp3-preview/5a753b56e032f958e550947811b3a649bb851bf4?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 1,
+      "type": "track",
+      "uri": "spotify:track:41MOR6ufTTE5ox9dnNEols"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 184960,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/6hv2pNDYJyjBbaxs1T7n6c"
+      },
+      "href": "https://api.spotify.com/v1/tracks/6hv2pNDYJyjBbaxs1T7n6c",
+      "id": "6hv2pNDYJyjBbaxs1T7n6c",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/2PBnT0mcj3TKUkgjbapyYd"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2PBnT0mcj3TKUkgjbapyYd",
+        "id": "2PBnT0mcj3TKUkgjbapyYd",
+        "type": "track",
+        "uri": "spotify:track:2PBnT0mcj3TKUkgjbapyYd"
+      },
+      "name": "The Apple & the Tree",
+      "preview_url": "https://p.scdn.co/mp3-preview/953aff56f09b85609ed7e36d6ce330226d6815d0?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 2,
+      "type": "track",
+      "uri": "spotify:track:6hv2pNDYJyjBbaxs1T7n6c"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 230786,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/5LVEjLo2UUNYHnMxVZpY21"
+      },
+      "href": "https://api.spotify.com/v1/tracks/5LVEjLo2UUNYHnMxVZpY21",
+      "id": "5LVEjLo2UUNYHnMxVZpY21",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5CQ7T9zi0ACQYOLBxJqX2L"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5CQ7T9zi0ACQYOLBxJqX2L",
+        "id": "5CQ7T9zi0ACQYOLBxJqX2L",
+        "type": "track",
+        "uri": "spotify:track:5CQ7T9zi0ACQYOLBxJqX2L"
+      },
+      "name": "Exit 97",
+      "preview_url": "https://p.scdn.co/mp3-preview/f9ca46a567e1ea1c5420fab7acaeb1ea7ed8f69a?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 3,
+      "type": "track",
+      "uri": "spotify:track:5LVEjLo2UUNYHnMxVZpY21"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 135706,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/6mHKrYHK38I3SE6L29Wwsf"
+      },
+      "href": "https://api.spotify.com/v1/tracks/6mHKrYHK38I3SE6L29Wwsf",
+      "id": "6mHKrYHK38I3SE6L29Wwsf",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/3zKllXzJ1ZZoMkGsbx8nC3"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3zKllXzJ1ZZoMkGsbx8nC3",
+        "id": "3zKllXzJ1ZZoMkGsbx8nC3",
+        "type": "track",
+        "uri": "spotify:track:3zKllXzJ1ZZoMkGsbx8nC3"
+      },
+      "name": "Never Theirs to Sell",
+      "preview_url": "https://p.scdn.co/mp3-preview/a0cd393bc701a7e25297e2a1341c7bb462bb1846?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 4,
+      "type": "track",
+      "uri": "spotify:track:6mHKrYHK38I3SE6L29Wwsf"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 343853,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/6MImnzkO9WvEGRjzE7gqrd"
+      },
+      "href": "https://api.spotify.com/v1/tracks/6MImnzkO9WvEGRjzE7gqrd",
+      "id": "6MImnzkO9WvEGRjzE7gqrd",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/6jFIhFfSmoGB9cEkel4Isb"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6jFIhFfSmoGB9cEkel4Isb",
+        "id": "6jFIhFfSmoGB9cEkel4Isb",
+        "type": "track",
+        "uri": "spotify:track:6jFIhFfSmoGB9cEkel4Isb"
+      },
+      "name": "Can't Walk Out",
+      "preview_url": "https://p.scdn.co/mp3-preview/603321b197f423a4199dd692598d2fb8cc3db96c?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 5,
+      "type": "track",
+      "uri": "spotify:track:6MImnzkO9WvEGRjzE7gqrd"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 277706,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/3QfYOSuN8Az2gW1BrSKvF5"
+      },
+      "href": "https://api.spotify.com/v1/tracks/3QfYOSuN8Az2gW1BrSKvF5",
+      "id": "3QfYOSuN8Az2gW1BrSKvF5",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/3nYKcPddA63C8TNr2x0JZS"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3nYKcPddA63C8TNr2x0JZS",
+        "id": "3nYKcPddA63C8TNr2x0JZS",
+        "type": "track",
+        "uri": "spotify:track:3nYKcPddA63C8TNr2x0JZS"
+      },
+      "name": "Too Much Is Not Enough",
+      "preview_url": "https://p.scdn.co/mp3-preview/d36b6eb48c5954540d914a6600f9029332082d8a?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 6,
+      "type": "track",
+      "uri": "spotify:track:3QfYOSuN8Az2gW1BrSKvF5"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 227906,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/0dXLn9ZFrD5Tc44pDAYojq"
+      },
+      "href": "https://api.spotify.com/v1/tracks/0dXLn9ZFrD5Tc44pDAYojq",
+      "id": "0dXLn9ZFrD5Tc44pDAYojq",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/4dR097pQkX85i9IS7JPyOz"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4dR097pQkX85i9IS7JPyOz",
+        "id": "4dR097pQkX85i9IS7JPyOz",
+        "type": "track",
+        "uri": "spotify:track:4dR097pQkX85i9IS7JPyOz"
+      },
+      "name": "From a Hole in the Wall",
+      "preview_url": "https://p.scdn.co/mp3-preview/f0fa2bb4e719a23adc02a99edddf5819501b84ef?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 7,
+      "type": "track",
+      "uri": "spotify:track:0dXLn9ZFrD5Tc44pDAYojq"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 227653,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/2RriSzmpzglLaYWx59bw5Y"
+      },
+      "href": "https://api.spotify.com/v1/tracks/2RriSzmpzglLaYWx59bw5Y",
+      "id": "2RriSzmpzglLaYWx59bw5Y",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/39CRuIOjXi2C64CcSAd5mR"
+        },
+        "href": "https://api.spotify.com/v1/tracks/39CRuIOjXi2C64CcSAd5mR",
+        "id": "39CRuIOjXi2C64CcSAd5mR",
+        "type": "track",
+        "uri": "spotify:track:39CRuIOjXi2C64CcSAd5mR"
+      },
+      "name": "Cause & Defect",
+      "preview_url": "https://p.scdn.co/mp3-preview/0bc18509c2a312d73f01f5961e2bae5cb4b64c78?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 8,
+      "type": "track",
+      "uri": "spotify:track:2RriSzmpzglLaYWx59bw5Y"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 192440,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/2YmBdAEbP8YQ8DXWPiO7Yl"
+      },
+      "href": "https://api.spotify.com/v1/tracks/2YmBdAEbP8YQ8DXWPiO7Yl",
+      "id": "2YmBdAEbP8YQ8DXWPiO7Yl",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5YSRRk4W5KabDi4FlQEsM4"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5YSRRk4W5KabDi4FlQEsM4",
+        "id": "5YSRRk4W5KabDi4FlQEsM4",
+        "type": "track",
+        "uri": "spotify:track:5YSRRk4W5KabDi4FlQEsM4"
+      },
+      "name": "Hard-Headed",
+      "preview_url": "https://p.scdn.co/mp3-preview/3440f477ee7d368f855d54d74d8b2fe4ee5d3ca2?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 9,
+      "type": "track",
+      "uri": "spotify:track:2YmBdAEbP8YQ8DXWPiO7Yl"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 283200,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/5QvYTIrIZYAxrvZUT0y80B"
+      },
+      "href": "https://api.spotify.com/v1/tracks/5QvYTIrIZYAxrvZUT0y80B",
+      "id": "5QvYTIrIZYAxrvZUT0y80B",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/1AYpU0RanfaGkWPm7piANc"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1AYpU0RanfaGkWPm7piANc",
+        "id": "1AYpU0RanfaGkWPm7piANc",
+        "type": "track",
+        "uri": "spotify:track:1AYpU0RanfaGkWPm7piANc"
+      },
+      "name": "Far Too Close",
+      "preview_url": "https://p.scdn.co/mp3-preview/f67b034017b57b7090df07dbd5b182fdb11751ba?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 10,
+      "type": "track",
+      "uri": "spotify:track:5QvYTIrIZYAxrvZUT0y80B"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 278253,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/0ZQOyD0CKOmptY4TaJiiHY"
+      },
+      "href": "https://api.spotify.com/v1/tracks/0ZQOyD0CKOmptY4TaJiiHY",
+      "id": "0ZQOyD0CKOmptY4TaJiiHY",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/6mozQrC9clyx7HeSPCoV95"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6mozQrC9clyx7HeSPCoV95",
+        "id": "6mozQrC9clyx7HeSPCoV95",
+        "type": "track",
+        "uri": "spotify:track:6mozQrC9clyx7HeSPCoV95"
+      },
+      "name": "Stay for a Song",
+      "preview_url": "https://p.scdn.co/mp3-preview/ce1a918a2b3bb50203eb27bc17e41bdbd3170763?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 11,
+      "type": "track",
+      "uri": "spotify:track:0ZQOyD0CKOmptY4TaJiiHY"
+    }
+  ],
+  "limit": 50,
+  "next": null,
+  "offset": 0,
+  "previous": null,
+  "total": 11
+}

@@ -1,0 +1,271 @@
+{
+  "href": "https://api.spotify.com/v1/albums/0odHePIb1VkSSZPiJFJfSk/tracks?offset=0&limit=50&market=US",
+  "items": [
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 242053,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/2DfJI7MlUihlTJ5L8xOJo4"
+      },
+      "href": "https://api.spotify.com/v1/tracks/2DfJI7MlUihlTJ5L8xOJo4",
+      "id": "2DfJI7MlUihlTJ5L8xOJo4",
+      "is_local": false,
+      "is_playable": true,
+      "name": "An Industry of Murder",
+      "preview_url": "https://p.scdn.co/mp3-preview/67e8e0c99cc7ccf70e8f5104f49f93592ddcd564?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 1,
+      "type": "track",
+      "uri": "spotify:track:2DfJI7MlUihlTJ5L8xOJo4"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 335213,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/10nMjaw6GFqwQ8D2mDbr16"
+      },
+      "href": "https://api.spotify.com/v1/tracks/10nMjaw6GFqwQ8D2mDbr16",
+      "id": "10nMjaw6GFqwQ8D2mDbr16",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Slow Motion Countdown",
+      "preview_url": "https://p.scdn.co/mp3-preview/0b15b18698f0dfb782b45391c0ed333da431f834?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 2,
+      "type": "track",
+      "uri": "spotify:track:10nMjaw6GFqwQ8D2mDbr16"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 152933,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/1e1gk8aHYIJ6UOocOCs3iM"
+      },
+      "href": "https://api.spotify.com/v1/tracks/1e1gk8aHYIJ6UOocOCs3iM",
+      "id": "1e1gk8aHYIJ6UOocOCs3iM",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Seven Seven",
+      "preview_url": "https://p.scdn.co/mp3-preview/a2586cd7ca92e49b02da7690812efecf3b4bb1e1?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 3,
+      "type": "track",
+      "uri": "spotify:track:1e1gk8aHYIJ6UOocOCs3iM"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 290506,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/3MeaI7rAdvEbCL4o9P6WOD"
+      },
+      "href": "https://api.spotify.com/v1/tracks/3MeaI7rAdvEbCL4o9P6WOD",
+      "id": "3MeaI7rAdvEbCL4o9P6WOD",
+      "is_local": false,
+      "is_playable": true,
+      "name": "The Suits, the Law & the Uniforms",
+      "preview_url": "https://p.scdn.co/mp3-preview/802559a9055d842621f9af80a8aa51fc9efe2b3c?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 4,
+      "type": "track",
+      "uri": "spotify:track:3MeaI7rAdvEbCL4o9P6WOD"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 166093,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/2lVsj6uAruC3nHnWZsAoSN"
+      },
+      "href": "https://api.spotify.com/v1/tracks/2lVsj6uAruC3nHnWZsAoSN",
+      "id": "2lVsj6uAruC3nHnWZsAoSN",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Endless Night",
+      "preview_url": "https://p.scdn.co/mp3-preview/252cf330af92c666b8816901ea18d8bdcbefe382?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 5,
+      "type": "track",
+      "uri": "spotify:track:2lVsj6uAruC3nHnWZsAoSN"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 267253,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/6zC2zrkO2LLAk7U74hRS2h"
+      },
+      "href": "https://api.spotify.com/v1/tracks/6zC2zrkO2LLAk7U74hRS2h",
+      "id": "6zC2zrkO2LLAk7U74hRS2h",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Hard Times Lovin'",
+      "preview_url": "https://p.scdn.co/mp3-preview/5b9316882d57bf61b06d8d30605197f0d063eab5?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 6,
+      "type": "track",
+      "uri": "spotify:track:6zC2zrkO2LLAk7U74hRS2h"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 169573,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/2NGuA5PY8i31tC48Epetkc"
+      },
+      "href": "https://api.spotify.com/v1/tracks/2NGuA5PY8i31tC48Epetkc",
+      "id": "2NGuA5PY8i31tC48Epetkc",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Goliath",
+      "preview_url": "https://p.scdn.co/mp3-preview/07f04c835368c27f2f9416fcbe814175e1c3edab?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 7,
+      "type": "track",
+      "uri": "spotify:track:2NGuA5PY8i31tC48Epetkc"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 211880,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/5rvVBo3EDwAwNEGOYdlm76"
+      },
+      "href": "https://api.spotify.com/v1/tracks/5rvVBo3EDwAwNEGOYdlm76",
+      "id": "5rvVBo3EDwAwNEGOYdlm76",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Fool in the End",
+      "preview_url": "https://p.scdn.co/mp3-preview/84a1937998b5d71b51a5f657ead5d7099c4efac6?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 8,
+      "type": "track",
+      "uri": "spotify:track:5rvVBo3EDwAwNEGOYdlm76"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 300320,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/4ccKf4cDToUg5Xikmt8KQA"
+      },
+      "href": "https://api.spotify.com/v1/tracks/4ccKf4cDToUg5Xikmt8KQA",
+      "id": "4ccKf4cDToUg5Xikmt8KQA",
+      "is_local": false,
+      "is_playable": true,
+      "name": "20/20 (Tunnel Vision)",
+      "preview_url": "https://p.scdn.co/mp3-preview/89cfedc73baad2a5202768451d8065bb0e356116?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 9,
+      "type": "track",
+      "uri": "spotify:track:4ccKf4cDToUg5Xikmt8KQA"
+    }
+  ],
+  "limit": 50,
+  "next": null,
+  "offset": 0,
+  "previous": null,
+  "total": 9
+}
