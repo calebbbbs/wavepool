@@ -1,14 +1,14 @@
 /* eslint-disable camelcase */
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { track } from './track';
+import { Track } from './Track';
 
 @Entity()
 export default class history {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   user_id: number;
 
   @ManyToOne(() => Track, track => track.history)
-  Track: track;
+  track: Track;
 
   @Column()
   created_at: Date;

@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export default class artist {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   artist_id: number;
 
   @Column()

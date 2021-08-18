@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export default class likedTrack {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   user_id: number;
 
   @Column()

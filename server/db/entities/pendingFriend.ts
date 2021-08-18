@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export default class pendingFriend {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   user_id: number;
 
   @Column()
