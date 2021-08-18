@@ -2,6 +2,8 @@ import "reflect-metadata";
 import cors from 'cors';
 const { ApolloServer, gql } = require('apollo-server-express');
 const express = require('express');
+import { createConnection } from 'typeorm';
+import typeOrmConfig from '../server/db/dbConfig';
 import path from 'path';
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
 const allowedOrigins = ['http://localhost:4000', 'https://studio.apollographql.com'];
@@ -28,6 +30,10 @@ async function startApolloServer() {
       hello: () => 'Hello world!',
     },
   };
+
+  await createConnection(typeOrmConfig).catch(err => console.log(err));
+  
+
 
   const server = new ApolloServer({ typeDefs, resolvers });
   await server.start();
