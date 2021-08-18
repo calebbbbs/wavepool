@@ -34,7 +34,7 @@ export const config: Configuration = {
   devServer: {
     contentBase: distDir,
     compress: true,
-    port: 3000,
+    port: 4000,
   },
   plugins: [
     new HtmlWebpackPlugin({ template: path.join(__dirname, 'client/src', 'index.html') }),
