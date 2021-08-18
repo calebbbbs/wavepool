@@ -10,7 +10,7 @@ export default class History extends BaseEntity {
   @JoinColumn()
   user: User;
 
-  @ManyToOne(() => Track, track => track.history)
+  @ManyToOne(() => Track, track => track.history, {cascade:true})
   track: Track;
 
   @Column()

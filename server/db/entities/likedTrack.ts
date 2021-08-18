@@ -10,6 +10,6 @@ export default class LikedTrack extends BaseEntity {
   @JoinColumn()
   user: User;
 
-  @ManyToOne(() => Track, track => track.liked)
+  @ManyToOne(() => Track, track => track.liked, {cascade:true})
   track: Track;
 }

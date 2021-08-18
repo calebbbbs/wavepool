@@ -1,32 +1,52 @@
 import "reflect-metadata";
 import cors from 'cors';
-import { ApolloServer } from "apollo-server-express";
-import { buildSchema } from "type-graphql";
-import { HelloWorldResolver } from "./graphql/resolvers/HelloWorldResolver";
-// const CLIENT_PATH = __dirname + '/client/dist';
-import express from 'express';
-import { RequestHandler } from "express-serve-static-core";
-const app = express();
-
-const allowedOrigins = ['http://localhost:3000', 'https://studio.apollographql.com'];
+const { ApolloServer, gql } = require('apollo-server-express');
+const express = require('express');
+import path from 'path';
+const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
+const allowedOrigins = ['http://localhost:4000', 'https://studio.apollographql.com'];
 
 const options: cors.CorsOptions = {
-  origin: allowedOrigins
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: 'Content-Type, Authorization',
 };
-app.options('*', cors() as RequestHandler);
-app.use('', cors(options) as RequestHandler);
 
-(async (app) => {
-  const apolloServer = new ApolloServer({
-    schema: await buildSchema({
-      resolvers: [HelloWorldResolver]
-    }),
-    context: ({ req, res }) => ({ req, res })
-  });
-  await apolloServer.start();
-  apolloServer.applyMiddleware({ app, cors: false });
 
-  app.listen(3001, () => {
-    console.log("graphql server started");
-  });
-})(app);
+async function startApolloServer() {
+
+  // Construct a schema, using GraphQL schema language
+  const typeDefs = gql`
+    type Query {
+      hello: String
+    }
+  `;
+
+  // Provide resolver functions for your schema fields
+  const resolvers = {
+    Query: {
+      hello: () => 'Hello world!',
+    },
+  };
+
+  const server = new ApolloServer({ typeDefs, resolvers });
+  await server.start();
+
+  const app = express();
+
+
+  app.options('*', cors());
+app.use('*', cors(options));
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(CLIENT_PATH));
+
+
+  server.applyMiddleware({ app });
+
+  await new Promise(resolve => app.listen({ port: 4000 }, resolve));
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+  return { server, app };
+}
+startApolloServer();

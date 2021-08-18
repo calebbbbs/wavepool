@@ -9,7 +9,7 @@ export default class Track extends BaseEntity {
  @Column()
   spotify_uri: string;
 
-  @ManyToOne(() => Artist, artist => artist.tack)
+  @ManyToOne(() => Artist, artist => artist.tack, {cascade:true})
   artist: Artist;
 
   @Column()
