@@ -1,23 +1,20 @@
 import "reflect-metadata";
 import cors from 'cors';
 const { ApolloServer, gql } = require('apollo-server-express');
-// const CLIENT_PATH = __dirname + '/client/dist';
-import express, {json} from 'express';
+const express = require('express');
 import path from 'path';
-import { RequestHandler } from "express-serve-static-core";
-const app = express();
-
-// const allowedOrigins = ['http://localhost:3000', 'https://studio.apollographql.com'];
+const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
+const allowedOrigins = ['http://localhost:4000', 'https://studio.apollographql.com'];
 
 const options: cors.CorsOptions = {
-  origin: '*',
+  origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: 'Content-Type, Authorization',
 };
-app.options('*', cors() as RequestHandler);
-app.use('', cors(options) as RequestHandler);
-app.use(json);
+
+
 async function startApolloServer() {
+
   // Construct a schema, using GraphQL schema language
   const typeDefs = gql`
     type Query {
@@ -36,10 +33,17 @@ async function startApolloServer() {
   await server.start();
 
   const app = express();
+
+
+  app.options('*', cors());
+app.use('*', cors(options));
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(CLIENT_PATH));
+
+
   server.applyMiddleware({ app });
-  app.get('*', (req, res) => {
-    res.sendFile('client/dist/index.html', { root: path.join(__dirname, '../') });
-});
 
   await new Promise(resolve => app.listen({ port: 4000 }, resolve));
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
