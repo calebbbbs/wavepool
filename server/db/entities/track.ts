@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { Base } from "./Base";
+import { BaseEntity, Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 export default class Track extends BaseEntity {
