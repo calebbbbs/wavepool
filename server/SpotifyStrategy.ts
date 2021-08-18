@@ -1,7 +1,7 @@
-// import session from "express-session";
-// import passport from "passport";
-// import { Strategy } from "passport-spotify";
-// const SpotifyStrategy = Strategy;
+// // import session from "express-session";
+// // import passport from "passport";
+// // import { Strategy } from "passport-spotify";
+// // const SpotifyStrategy = Strategy;
 // require('dotenv').config();
 // const express = require('express');
 // const session = require('express-session');
@@ -26,18 +26,18 @@
 //     {
 //       clientID: process.env.CLIENT_ID,
 //       clientSecret: process.env.CLIENT_SECRET,
-//       callbackURL: 'http://localhost:${port},
+//       callbackURL: 'http://localhost:${port}',
 //       passReqToCallback: true
 //     },
-//     function (accessToken, refreshToken, expires_in, profile, done) {
+//     (accessToken, refreshToken, expires_in, profile, done) =>{
 
-//       process.nextTick(() ) {
+//       process.nextTick(() => {
 //         // To keep the example simple, the user's spotify profile is returned to
 //         // represent the logged-in user. In a typical application, you would want
 //         // to associate the spotify account with a user record in your database,
 //         // and return that user instead.
-//         done(null, profile);
-        // done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in, profile, done}));
+//         // done(null, profile);
+//         done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in, profile, done}));
 //       });
 //     }
 //   )
@@ -45,8 +45,8 @@
 
 // const app = express();
 // // configure Express
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'html');
+// // app.set('views', __dirname + '/views');
+// // app.set('view engine', 'html');
 
 // app.use(
 //   session({secret: 'keyboard cat', resave: true, saveUninitialized: true})
