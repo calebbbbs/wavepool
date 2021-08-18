@@ -4,14 +4,13 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const express = require('express');
 import path from 'path';
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
-const allowedOrigins = ['http://localhost:4000', 'https://studio.apollographql.com'];
+const allowedOrigins = ['http://localhost:4000/', 'https://studio.apollographql.com'];
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: 'Content-Type, Authorization',
+  // methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  // allowedHeaders: 'Content-Type, Authorization',
 };
-
 
 async function startApolloServer() {
 
@@ -29,7 +28,8 @@ async function startApolloServer() {
     },
   };
 
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({ typeDefs, resolvers,
+  cors: options });
   await server.start();
 
   const app = express();
