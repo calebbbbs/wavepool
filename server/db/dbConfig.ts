@@ -1,5 +1,7 @@
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const { CLIENT_URL, DB_USERNAME, DB_PASSWORD } = process.env;
 
 const typeOrmConfig: PostgresConnectionOptions = {
@@ -12,6 +14,7 @@ const typeOrmConfig: PostgresConnectionOptions = {
   synchronize: true,
   logging: false,
   entities: [
+    'server/db/entities/*.ts',
     'server/db/entities/**/*.ts',
   ],
 };

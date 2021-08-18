@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, BaseEntity } from 'typeorm';
+import User from './User';
 
 @Entity()
-export default class recommendedTrack {
+export default class RecommendedTrack extends BaseEntity {
   @PrimaryColumn()
   user_id: number;
 

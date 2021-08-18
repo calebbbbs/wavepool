@@ -1,16 +1,17 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Base } from "./Base";
 
 @Entity()
-export default class track {
+export default class Track extends BaseEntity {
   @PrimaryColumn()
   track_id: number;
 
-  @Column()
+ @Column()
   spotify_uri: string;
 
   @ManyToOne(() => Artist, artist => artist.tack)
-  Artist: artist;
+  artist: Artist;
 
   @Column()
   album_id: number;

@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, BaseEntity } from 'typeorm';
 
 @Entity()
-export default class artist {
+export default class Artist extends BaseEntity {
   @PrimaryColumn()
   artist_id: number;
 
@@ -18,6 +18,6 @@ export default class artist {
   @Column()
   artists_followers: string;
 
-  @Column()
-  artists_genres: array;
+  @Column("text", { array: true })
+  artists_genres: string[];
 }

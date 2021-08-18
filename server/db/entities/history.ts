@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne, BaseEntity } from 'typeorm';
 import { Track } from './Track';
 
 @Entity()
-export default class history {
+export default class History extends BaseEntity {
   @PrimaryColumn()
   user_id: number;
 

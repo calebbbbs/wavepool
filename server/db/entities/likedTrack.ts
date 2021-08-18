@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, BaseEntity } from 'typeorm';
 
 @Entity()
-export default class likedTrack {
+export default class LikedTrack extends BaseEntity {
   @PrimaryColumn()
   user_id: number;
 
