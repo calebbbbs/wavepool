@@ -1,12 +1,15 @@
 import "reflect-metadata";
 import cors from 'cors';
 require('dotenv').config();
+
 const session = require('express-session');
 const passport = require('passport');
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const { ApolloServer, gql } = require('apollo-server-express');
 const express = require('express');
 import path from 'path';
+
+
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
 const allowedOrigins = ['http://localhost:4000', 'https://studio.apollographql.com'];
 
