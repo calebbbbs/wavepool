@@ -1,15 +1,77 @@
 import "reflect-metadata";
 import cors from 'cors';
-// import session from "express-session";
-// import passport from "passport";
-// import { Strategy } from "passport-spotify";
-// const SpotifyStrategy = Strategy;
+require('dotenv').config();
+// const session = require('express-session');
+// const passport = require('passport');
+// const SpotifyStrategy = require('passport-spotify').Strategy;
 const { ApolloServer, gql } = require('apollo-server-express');
 // const CLIENT_PATH = __dirname + '/client/dist';
 import express, {json} from 'express';
 import path from 'path';
 import { RequestHandler } from "express-serve-static-core";
+
+// const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
+
+
+// const authCallbackPath = '/auth/spotify/callback';
+
+// passport.serializeUser(function (user, done) {
+//   done(null, user);
+// });
+
+// passport.deserializeUser(function (obj, done) {
+//   done(null, obj);
+// });
+
+// passport.use(
+//   new SpotifyStrategy(
+//     {
+//       clientID: CLIENT_ID,
+//       clientSecret: CLIENT_SECRET,
+//       callbackURL: `http://localhost:4000${authCallbackPath}`,
+//       passReqToCallback: true
+//     },
+//     (accessToken, refreshToken, expires_in, profile, done) =>{
+
+//       process.nextTick(() => {
+//         // To keep the example simple, the user's spotify profile is returned to
+//         // represent the logged-in user. In a typical application, you would want
+//         // to associate the spotify account with a user record in your database,
+//         // and return that user instead.
+//         // done(null, profile);
+//         done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in, profile, done}));
+//       });
+//     }
+//   )
+// );
+
+
 const app = express();
+
+// app.use(
+//   session({secret: SESSION_SECRET, resave: true, saveUninitialized: true})
+// );
+
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+// app.use(express.static(__dirname + '/public'));
+
+// app.get(
+//   '/auth/spotify',
+//   passport.authenticate('spotify', {
+//     scope: ['user-read-email', 'user-read-private'],
+//     showDialog: true,
+//   })
+// );
+
+// app.get(
+//   authCallbackPath,
+//   passport.authenticate('spotify', {failureRedirect: '/login'}),
+//   function (req, res) {
+//     res.redirect('/');
+//   }
+// );
 
 const allowedOrigins = ['http://localhost:3000', 'https://studio.apollographql.com'];
 
@@ -50,3 +112,10 @@ async function startApolloServer() {
   return { server, app };
 }
 startApolloServer();
+
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
+//   res.redirect('/login');
+// }
