@@ -8,10 +8,10 @@ export default class RecommendedTrack extends BaseEntity {
   @PrimaryColumn()
   @OneToOne(() => User)
   @JoinColumn()
-  user: User;
+  user_id: number;
 
-  @ManyToOne(() => Track, track => track.liked, {cascade:true})
-  track: Track;
+  @ManyToOne(() => Track, track => track, {cascade:true})
+  track_id: Track;
 
   @Column()
   friend_id: number;

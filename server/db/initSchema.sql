@@ -1,3 +1,5 @@
+-- FOR REFERENCE ONLY
+
 CREATE SCHEMA IF NOT EXISTS wavepool;
 
 CREATE  TABLE wavepool.friend_status ( 

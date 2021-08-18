@@ -9,11 +9,11 @@ export default class User extends BaseEntity {
   @Column()
   user_name: string;
 
-  @ManyToMany(() => User, user => user.friends, {cascade:true})
+  @ManyToMany(() => User, user => user.friends)
   @JoinTable()
   friends: User[];
 
-  @ManyToMany(() => User, user => user.pending_friends, {cascade:true})
+  @ManyToMany(() => User, user => user.pending_friends)
   @JoinTable()
   pending_friends: User[];
 }

@@ -8,10 +8,10 @@ export default class History extends BaseEntity {
   @PrimaryColumn()
   @OneToOne(() => User)
   @JoinColumn()
-  user: User;
+  user_id: number;
 
-  @ManyToOne(() => Track, track => track.history, {cascade:true})
-  track: Track;
+  @ManyToOne(() => Track, (track: Track)=> track, {cascade:true})
+  tracks: Promise<Track[]>;
 
   @Column()
   created_at: Date;

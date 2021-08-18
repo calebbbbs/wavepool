@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import { BaseEntity, Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
+import Artist from './Artist';
 
 @Entity()
 export default class Track extends BaseEntity {
@@ -9,7 +10,7 @@ export default class Track extends BaseEntity {
  @Column()
   spotify_uri: string;
 
-  @ManyToOne(() => Artist, artist => artist.tack, {cascade:true})
+  @ManyToOne(() => Artist, artist => artist, {cascade:true})
   artist: Artist;
 
   @Column()

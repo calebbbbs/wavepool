@@ -8,8 +8,8 @@ export default class LikedTrack extends BaseEntity {
   @PrimaryColumn()
   @OneToOne(() => User)
   @JoinColumn()
-  user: User;
+  user_id: number;
 
-  @ManyToOne(() => Track, track => track.liked, {cascade:true})
-  track: Track;
+  @ManyToOne(() => Track, track => track, {cascade:true})
+  tracks: Track;
 }
