@@ -14,8 +14,8 @@ const typeOrmConfig: PostgresConnectionOptions = {
   synchronize: true,
   logging: false,
   entities: [
-    'server/db/entities/*.ts',
-    'server/db/entities/**/*.ts',
+    __dirname + 'server/db/entities/*.ts',
+    __dirname + 'server/db/entities/**/*.ts',
   ],
 };
 
