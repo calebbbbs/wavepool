@@ -1,0 +1,494 @@
+{
+  "artists": {
+    "href": "https://api.spotify.com/v1/search?query=graveyard&type=artist&offset=0&limit=15",
+    "items": [
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+        },
+        "followers": {
+          "href": null,
+          "total": 166837
+        },
+        "genres": [
+          "modern blues rock",
+          "psychedelic doom",
+          "retro metal",
+          "space rock",
+          "stoner metal",
+          "stoner rock",
+          "swedish stoner rock"
+        ],
+        "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+        "id": "0hU5urLse5h1Z0b4zQkovL",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebffffefd4ca3481fdcc8d7c63",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174ffffefd4ca3481fdcc8d7c63",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178ffffefd4ca3481fdcc8d7c63",
+            "width": 160
+          }
+        ],
+        "name": "Graveyard",
+        "popularity": 49,
+        "type": "artist",
+        "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/4TzljaoVuVfN0TQpPluB7T"
+        },
+        "followers": {
+          "href": null,
+          "total": 7037
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/4TzljaoVuVfN0TQpPluB7T",
+        "id": "4TzljaoVuVfN0TQpPluB7T",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb5299fab89b90755594facd9b",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab676161000051745299fab89b90755594facd9b",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f1785299fab89b90755594facd9b",
+            "width": 160
+          }
+        ],
+        "name": "Graveyardguy",
+        "popularity": 41,
+        "type": "artist",
+        "uri": "spotify:artist:4TzljaoVuVfN0TQpPluB7T"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/2w0koiB4q8chqL0Pl5ngzH"
+        },
+        "followers": {
+          "href": null,
+          "total": 7250
+        },
+        "genres": [
+          "minneapolis indie"
+        ],
+        "href": "https://api.spotify.com/v1/artists/2w0koiB4q8chqL0Pl5ngzH",
+        "id": "2w0koiB4q8chqL0Pl5ngzH",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebb73f252bdccece7ceaa73588",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174b73f252bdccece7ceaa73588",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178b73f252bdccece7ceaa73588",
+            "width": 160
+          }
+        ],
+        "name": "Graveyard Club",
+        "popularity": 35,
+        "type": "artist",
+        "uri": "spotify:artist:2w0koiB4q8chqL0Pl5ngzH"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/32B30Yw8mJRpIzTifV2pcc"
+        },
+        "followers": {
+          "href": null,
+          "total": 2030
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/32B30Yw8mJRpIzTifV2pcc",
+        "id": "32B30Yw8mJRpIzTifV2pcc",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb507f4b4c0ebe1b0b5a3f8d53",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174507f4b4c0ebe1b0b5a3f8d53",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178507f4b4c0ebe1b0b5a3f8d53",
+            "width": 160
+          }
+        ],
+        "name": "Graveyard",
+        "popularity": 27,
+        "type": "artist",
+        "uri": "spotify:artist:32B30Yw8mJRpIzTifV2pcc"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/5mKNKcQD06qvY7WFVmNY2E"
+        },
+        "followers": {
+          "href": null,
+          "total": 8652
+        },
+        "genres": [
+          "dark trap"
+        ],
+        "href": "https://api.spotify.com/v1/artists/5mKNKcQD06qvY7WFVmNY2E",
+        "id": "5mKNKcQD06qvY7WFVmNY2E",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb8afb9bf3a7a911cc87844d09",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab676161000051748afb9bf3a7a911cc87844d09",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f1788afb9bf3a7a911cc87844d09",
+            "width": 160
+          }
+        ],
+        "name": "Torchfvce",
+        "popularity": 35,
+        "type": "artist",
+        "uri": "spotify:artist:5mKNKcQD06qvY7WFVmNY2E"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/2RzRCUVzVGeNogy1s5AHOf"
+        },
+        "followers": {
+          "href": null,
+          "total": 7725
+        },
+        "genres": [
+          "gothic americana"
+        ],
+        "href": "https://api.spotify.com/v1/artists/2RzRCUVzVGeNogy1s5AHOf",
+        "id": "2RzRCUVzVGeNogy1s5AHOf",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b273cd08b0181398edc40877073a",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e02cd08b0181398edc40877073a",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d00004851cd08b0181398edc40877073a",
+            "width": 64
+          }
+        ],
+        "name": "Graveyard Train",
+        "popularity": 26,
+        "type": "artist",
+        "uri": "spotify:artist:2RzRCUVzVGeNogy1s5AHOf"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/3yZGxic0kOZYvVfQto4lmP"
+        },
+        "followers": {
+          "href": null,
+          "total": 3174
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/3yZGxic0kOZYvVfQto4lmP",
+        "id": "3yZGxic0kOZYvVfQto4lmP",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb7f82dca8f79a8aed6989100b",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab676161000051747f82dca8f79a8aed6989100b",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f1787f82dca8f79a8aed6989100b",
+            "width": 160
+          }
+        ],
+        "name": "Graveyard BBQ",
+        "popularity": 27,
+        "type": "artist",
+        "uri": "spotify:artist:3yZGxic0kOZYvVfQto4lmP"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/68tVZSdJynEqSFbc49Ab3f"
+        },
+        "followers": {
+          "href": null,
+          "total": 7
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/68tVZSdJynEqSFbc49Ab3f",
+        "id": "68tVZSdJynEqSFbc49Ab3f",
+        "images": [],
+        "name": "Graveyard",
+        "popularity": 14,
+        "type": "artist",
+        "uri": "spotify:artist:68tVZSdJynEqSFbc49Ab3f"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1EM7XPBRpj2YuJcWbzs9XI"
+        },
+        "followers": {
+          "href": null,
+          "total": 239
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/1EM7XPBRpj2YuJcWbzs9XI",
+        "id": "1EM7XPBRpj2YuJcWbzs9XI",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb9305c956579b4c5f43c8e100",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab676161000051749305c956579b4c5f43c8e100",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f1789305c956579b4c5f43c8e100",
+            "width": 160
+          }
+        ],
+        "name": "Graveyards to Gardens",
+        "popularity": 21,
+        "type": "artist",
+        "uri": "spotify:artist:1EM7XPBRpj2YuJcWbzs9XI"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/2VGcttV4CpAW5jBAoTnd0d"
+        },
+        "followers": {
+          "href": null,
+          "total": 1530
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/2VGcttV4CpAW5jBAoTnd0d",
+        "id": "2VGcttV4CpAW5jBAoTnd0d",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eba9e3ebc56b6b0c1c47f623b3",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174a9e3ebc56b6b0c1c47f623b3",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178a9e3ebc56b6b0c1c47f623b3",
+            "width": 160
+          }
+        ],
+        "name": "Captain Graveyard",
+        "popularity": 25,
+        "type": "artist",
+        "uri": "spotify:artist:2VGcttV4CpAW5jBAoTnd0d"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/3QYJ1aqNzVva2Yf3gdambS"
+        },
+        "followers": {
+          "href": null,
+          "total": 887
+        },
+        "genres": [
+          "cavernous death metal"
+        ],
+        "href": "https://api.spotify.com/v1/artists/3QYJ1aqNzVva2Yf3gdambS",
+        "id": "3QYJ1aqNzVva2Yf3gdambS",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab67616d0000b2736234321b7ecbc338588fcbc9",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://i.scdn.co/image/ab67616d00001e026234321b7ecbc338588fcbc9",
+            "width": 300
+          },
+          {
+            "height": 64,
+            "url": "https://i.scdn.co/image/ab67616d000048516234321b7ecbc338588fcbc9",
+            "width": 64
+          }
+        ],
+        "name": "Graveyard",
+        "popularity": 5,
+        "type": "artist",
+        "uri": "spotify:artist:3QYJ1aqNzVva2Yf3gdambS"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/68m4duH7rXYs4iN1N9Sas1"
+        },
+        "followers": {
+          "href": null,
+          "total": 3167
+        },
+        "genres": [
+          "deep psychobilly",
+          "psychobilly"
+        ],
+        "href": "https://api.spotify.com/v1/artists/68m4duH7rXYs4iN1N9Sas1",
+        "id": "68m4duH7rXYs4iN1N9Sas1",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb921d1776f4ca070f132ad56e",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174921d1776f4ca070f132ad56e",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178921d1776f4ca070f132ad56e",
+            "width": 160
+          }
+        ],
+        "name": "Graveyard Johnnys",
+        "popularity": 21,
+        "type": "artist",
+        "uri": "spotify:artist:68m4duH7rXYs4iN1N9Sas1"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/4Xw7E5gxbZ7cyV01j03QLB"
+        },
+        "followers": {
+          "href": null,
+          "total": 355
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/4Xw7E5gxbZ7cyV01j03QLB",
+        "id": "4Xw7E5gxbZ7cyV01j03QLB",
+        "images": [],
+        "name": "Graveyard",
+        "popularity": 1,
+        "type": "artist",
+        "uri": "spotify:artist:4Xw7E5gxbZ7cyV01j03QLB"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/770WukK2o5vaVqRudfscbk"
+        },
+        "followers": {
+          "href": null,
+          "total": 4
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/770WukK2o5vaVqRudfscbk",
+        "id": "770WukK2o5vaVqRudfscbk",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebbbbdb17fd8db03ae8a8dfe71",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174bbbdb17fd8db03ae8a8dfe71",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178bbbdb17fd8db03ae8a8dfe71",
+            "width": 160
+          }
+        ],
+        "name": "Graveyard",
+        "popularity": 0,
+        "type": "artist",
+        "uri": "spotify:artist:770WukK2o5vaVqRudfscbk"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/2MlhxG8DbT9bum0lBIk4Hv"
+        },
+        "followers": {
+          "href": null,
+          "total": 1396
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/2MlhxG8DbT9bum0lBIk4Hv",
+        "id": "2MlhxG8DbT9bum0lBIk4Hv",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebb2c1f7b93a074f5704e06524",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174b2c1f7b93a074f5704e06524",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178b2c1f7b93a074f5704e06524",
+            "width": 160
+          }
+        ],
+        "name": "Graveyard Lovers",
+        "popularity": 16,
+        "type": "artist",
+        "uri": "spotify:artist:2MlhxG8DbT9bum0lBIk4Hv"
+      }
+    ],
+    "limit": 15,
+    "next": "https://api.spotify.com/v1/search?query=graveyard&type=artist&offset=15&limit=15",
+    "offset": 0,
+    "previous": null,
+    "total": 176
+  }
+}

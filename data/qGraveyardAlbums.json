@@ -1,0 +1,934 @@
+{
+  "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL/albums?offset=0&limit=50&include_groups=album,single,compilation,appears_on&market=US",
+  "items": [
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/6ckBDXaPD72dVSEgtog3sN"
+      },
+      "href": "https://api.spotify.com/v1/albums/6ckBDXaPD72dVSEgtog3sN",
+      "id": "6ckBDXaPD72dVSEgtog3sN",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27344136e623b7c53875f75c951",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0244136e623b7c53875f75c951",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485144136e623b7c53875f75c951",
+          "width": 64
+        }
+      ],
+      "name": "Peace",
+      "release_date": "2018-05-25",
+      "release_date_precision": "day",
+      "total_tracks": 10,
+      "type": "album",
+      "uri": "spotify:album:6ckBDXaPD72dVSEgtog3sN"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/3xcnM2zA3T1M50sJMxHKN2"
+      },
+      "href": "https://api.spotify.com/v1/albums/3xcnM2zA3T1M50sJMxHKN2",
+      "id": "3xcnM2zA3T1M50sJMxHKN2",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273800fa0e96c9a5e00f727fc45",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02800fa0e96c9a5e00f727fc45",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851800fa0e96c9a5e00f727fc45",
+          "width": 64
+        }
+      ],
+      "name": "Peace",
+      "release_date": "2018-05-25",
+      "release_date_precision": "day",
+      "total_tracks": 10,
+      "type": "album",
+      "uri": "spotify:album:3xcnM2zA3T1M50sJMxHKN2"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/0YNsAZX48uDKWz4vr7sJJ9"
+      },
+      "href": "https://api.spotify.com/v1/albums/0YNsAZX48uDKWz4vr7sJJ9",
+      "id": "0YNsAZX48uDKWz4vr7sJJ9",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27391860cc429b9bea1bca69bb5",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0291860cc429b9bea1bca69bb5",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485191860cc429b9bea1bca69bb5",
+          "width": 64
+        }
+      ],
+      "name": "Innocence & Decadence",
+      "release_date": "2015-09-25",
+      "release_date_precision": "day",
+      "total_tracks": 11,
+      "type": "album",
+      "uri": "spotify:album:0YNsAZX48uDKWz4vr7sJJ9"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/7jOQz3ZPcMHq2DT8jV0JVk"
+      },
+      "href": "https://api.spotify.com/v1/albums/7jOQz3ZPcMHq2DT8jV0JVk",
+      "id": "7jOQz3ZPcMHq2DT8jV0JVk",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273325a004c4c5e174d08563e6c",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02325a004c4c5e174d08563e6c",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851325a004c4c5e174d08563e6c",
+          "width": 64
+        }
+      ],
+      "name": "Innocence & Decadence",
+      "release_date": "2015-09-25",
+      "release_date_precision": "day",
+      "total_tracks": 11,
+      "type": "album",
+      "uri": "spotify:album:7jOQz3ZPcMHq2DT8jV0JVk"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/0odHePIb1VkSSZPiJFJfSk"
+      },
+      "href": "https://api.spotify.com/v1/albums/0odHePIb1VkSSZPiJFJfSk",
+      "id": "0odHePIb1VkSSZPiJFJfSk",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273686576aa9117db7f1ffb1a94",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02686576aa9117db7f1ffb1a94",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851686576aa9117db7f1ffb1a94",
+          "width": 64
+        }
+      ],
+      "name": "Lights Out",
+      "release_date": "2012-10-26",
+      "release_date_precision": "day",
+      "total_tracks": 9,
+      "type": "album",
+      "uri": "spotify:album:0odHePIb1VkSSZPiJFJfSk"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/3tQmgAoqM9VdhXXLheBuDI"
+      },
+      "href": "https://api.spotify.com/v1/albums/3tQmgAoqM9VdhXXLheBuDI",
+      "id": "3tQmgAoqM9VdhXXLheBuDI",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2734ffbe9f365d0c52eb61ad081",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e024ffbe9f365d0c52eb61ad081",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048514ffbe9f365d0c52eb61ad081",
+          "width": 64
+        }
+      ],
+      "name": "Lights Out",
+      "release_date": "2012-01-01",
+      "release_date_precision": "day",
+      "total_tracks": 9,
+      "type": "album",
+      "uri": "spotify:album:3tQmgAoqM9VdhXXLheBuDI"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/5Ed3KGkv7cVE4mCzR9iDVn"
+      },
+      "href": "https://api.spotify.com/v1/albums/5Ed3KGkv7cVE4mCzR9iDVn",
+      "id": "5Ed3KGkv7cVE4mCzR9iDVn",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273639d2557a13534d59ac6f246",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02639d2557a13534d59ac6f246",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851639d2557a13534d59ac6f246",
+          "width": 64
+        }
+      ],
+      "name": "Graveyard",
+      "release_date": "2011-08-19",
+      "release_date_precision": "day",
+      "total_tracks": 9,
+      "type": "album",
+      "uri": "spotify:album:5Ed3KGkv7cVE4mCzR9iDVn"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/6mRafvUDkcPpM8vV8CXAyo"
+      },
+      "href": "https://api.spotify.com/v1/albums/6mRafvUDkcPpM8vV8CXAyo",
+      "id": "6mRafvUDkcPpM8vV8CXAyo",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27333d17eec13d138398aa2caf3",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0233d17eec13d138398aa2caf3",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485133d17eec13d138398aa2caf3",
+          "width": 64
+        }
+      ],
+      "name": "Hisingen Blues",
+      "release_date": "2011-03-25",
+      "release_date_precision": "day",
+      "total_tracks": 10,
+      "type": "album",
+      "uri": "spotify:album:6mRafvUDkcPpM8vV8CXAyo"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/7bS3MdGsupyp9ZM8W08sZ9"
+      },
+      "href": "https://api.spotify.com/v1/albums/7bS3MdGsupyp9ZM8W08sZ9",
+      "id": "7bS3MdGsupyp9ZM8W08sZ9",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2739eae80eea06df64fff1e5fdf",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e029eae80eea06df64fff1e5fdf",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048519eae80eea06df64fff1e5fdf",
+          "width": 64
+        }
+      ],
+      "name": "Hisingen Blues",
+      "release_date": "2011-01-01",
+      "release_date_precision": "day",
+      "total_tracks": 9,
+      "type": "album",
+      "uri": "spotify:album:7bS3MdGsupyp9ZM8W08sZ9"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/6kP4qxIirFasV4dqO1EaUk"
+      },
+      "href": "https://api.spotify.com/v1/albums/6kP4qxIirFasV4dqO1EaUk",
+      "id": "6kP4qxIirFasV4dqO1EaUk",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273817832b8c85a37f2f5c657fd",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02817832b8c85a37f2f5c657fd",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851817832b8c85a37f2f5c657fd",
+          "width": 64
+        }
+      ],
+      "name": "Graveyard",
+      "release_date": "2007-09-10",
+      "release_date_precision": "day",
+      "total_tracks": 9,
+      "type": "album",
+      "uri": "spotify:album:6kP4qxIirFasV4dqO1EaUk"
+    },
+    {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/39foWBsGpL7071sQbBwtQv"
+      },
+      "href": "https://api.spotify.com/v1/albums/39foWBsGpL7071sQbBwtQv",
+      "id": "39foWBsGpL7071sQbBwtQv",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2739cd2747b1686b3835ba35834",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e029cd2747b1686b3835ba35834",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048519cd2747b1686b3835ba35834",
+          "width": 64
+        }
+      ],
+      "name": "Graveyard",
+      "release_date": "2007-09-10",
+      "release_date_precision": "day",
+      "total_tracks": 9,
+      "type": "album",
+      "uri": "spotify:album:39foWBsGpL7071sQbBwtQv"
+    },
+    {
+      "album_group": "single",
+      "album_type": "single",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/7cp4TYYMsiPr1cG3tL2YWi"
+      },
+      "href": "https://api.spotify.com/v1/albums/7cp4TYYMsiPr1cG3tL2YWi",
+      "id": "7cp4TYYMsiPr1cG3tL2YWi",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27308c27c8e6cda42c7a05be1cf",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0208c27c8e6cda42c7a05be1cf",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485108c27c8e6cda42c7a05be1cf",
+          "width": 64
+        }
+      ],
+      "name": "Live At Pustervik Gothenburg 14 & 15 December 2018",
+      "release_date": "2019-04-26",
+      "release_date_precision": "day",
+      "total_tracks": 5,
+      "type": "album",
+      "uri": "spotify:album:7cp4TYYMsiPr1cG3tL2YWi"
+    },
+    {
+      "album_group": "single",
+      "album_type": "single",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/3OMwY635tQzzHqfQzm86ZJ"
+      },
+      "href": "https://api.spotify.com/v1/albums/3OMwY635tQzzHqfQzm86ZJ",
+      "id": "3OMwY635tQzzHqfQzm86ZJ",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27360f9e2ce35fb2f8a733363b4",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0260f9e2ce35fb2f8a733363b4",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485160f9e2ce35fb2f8a733363b4",
+          "width": 64
+        }
+      ],
+      "name": "Live at Pustervik",
+      "release_date": "2019-04-19",
+      "release_date_precision": "day",
+      "total_tracks": 5,
+      "type": "album",
+      "uri": "spotify:album:3OMwY635tQzzHqfQzm86ZJ"
+    },
+    {
+      "album_group": "single",
+      "album_type": "single",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/3B9kewuBis0fM555Sh3YvH"
+      },
+      "href": "https://api.spotify.com/v1/albums/3B9kewuBis0fM555Sh3YvH",
+      "id": "3B9kewuBis0fM555Sh3YvH",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273f49fc35627485bcb6c79a62c",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02f49fc35627485bcb6c79a62c",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851f49fc35627485bcb6c79a62c",
+          "width": 64
+        }
+      ],
+      "name": "Goliath",
+      "release_date": "2012-09-21",
+      "release_date_precision": "day",
+      "total_tracks": 2,
+      "type": "album",
+      "uri": "spotify:album:3B9kewuBis0fM555Sh3YvH"
+    },
+    {
+      "album_group": "single",
+      "album_type": "single",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/77VeFrwpmaEFgr3nBeoJT9"
+      },
+      "href": "https://api.spotify.com/v1/albums/77VeFrwpmaEFgr3nBeoJT9",
+      "id": "77VeFrwpmaEFgr3nBeoJT9",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273a0c3515ba3cf60e595eb4bf3",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02a0c3515ba3cf60e595eb4bf3",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851a0c3515ba3cf60e595eb4bf3",
+          "width": 64
+        }
+      ],
+      "name": "Goliath",
+      "release_date": "2012-01-01",
+      "release_date_precision": "day",
+      "total_tracks": 2,
+      "type": "album",
+      "uri": "spotify:album:77VeFrwpmaEFgr3nBeoJT9"
+    },
+    {
+      "album_group": "single",
+      "album_type": "single",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/4B9RkIXdPpoQ1d1RAYQNri"
+      },
+      "href": "https://api.spotify.com/v1/albums/4B9RkIXdPpoQ1d1RAYQNri",
+      "id": "4B9RkIXdPpoQ1d1RAYQNri",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273ded48034d40f2d025df72731",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02ded48034d40f2d025df72731",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851ded48034d40f2d025df72731",
+          "width": 64
+        }
+      ],
+      "name": "Hisingen Blues",
+      "release_date": "2011-02-18",
+      "release_date_precision": "day",
+      "total_tracks": 2,
+      "type": "album",
+      "uri": "spotify:album:4B9RkIXdPpoQ1d1RAYQNri"
+    },
+    {
+      "album_group": "single",
+      "album_type": "single",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/1KONkBWbTkLJJRLPzXR27d"
+      },
+      "href": "https://api.spotify.com/v1/albums/1KONkBWbTkLJJRLPzXR27d",
+      "id": "1KONkBWbTkLJJRLPzXR27d",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27309696bc1575ff5d7e99fdfa0",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0209696bc1575ff5d7e99fdfa0",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485109696bc1575ff5d7e99fdfa0",
+          "width": 64
+        }
+      ],
+      "name": "Hisingen Blues",
+      "release_date": "2011-01-01",
+      "release_date_precision": "day",
+      "total_tracks": 2,
+      "type": "album",
+      "uri": "spotify:album:1KONkBWbTkLJJRLPzXR27d"
+    },
+    {
+      "album_group": "appears_on",
+      "album_type": "compilation",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+          },
+          "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+          "id": "0LyfQWJT6nXafLPZqxe9Of",
+          "name": "Various Artists",
+          "type": "artist",
+          "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/2FJDLStImtckw8F6clshCa"
+      },
+      "href": "https://api.spotify.com/v1/albums/2FJDLStImtckw8F6clshCa",
+      "id": "2FJDLStImtckw8F6clshCa",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273d47dd0b1fc2c095157212d9c",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02d47dd0b1fc2c095157212d9c",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851d47dd0b1fc2c095157212d9c",
+          "width": 64
+        }
+      ],
+      "name": "Bound for Glory",
+      "release_date": "2013-05-31",
+      "release_date_precision": "day",
+      "total_tracks": 12,
+      "type": "album",
+      "uri": "spotify:album:2FJDLStImtckw8F6clshCa"
+    },
+    {
+      "album_group": "appears_on",
+      "album_type": "compilation",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+          },
+          "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+          "id": "0LyfQWJT6nXafLPZqxe9Of",
+          "name": "Various Artists",
+          "type": "artist",
+          "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/2p42rkZADTjrHsaXAyCHMk"
+      },
+      "href": "https://api.spotify.com/v1/albums/2p42rkZADTjrHsaXAyCHMk",
+      "id": "2p42rkZADTjrHsaXAyCHMk",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273dadb91ae4f21d19601852810",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02dadb91ae4f21d19601852810",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851dadb91ae4f21d19601852810",
+          "width": 64
+        }
+      ],
+      "name": "Built to Blast, Vol. 1",
+      "release_date": "2013-03-01",
+      "release_date_precision": "day",
+      "total_tracks": 15,
+      "type": "album",
+      "uri": "spotify:album:2p42rkZADTjrHsaXAyCHMk"
+    },
+    {
+      "album_group": "appears_on",
+      "album_type": "compilation",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+          },
+          "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+          "id": "0LyfQWJT6nXafLPZqxe9Of",
+          "name": "Various Artists",
+          "type": "artist",
+          "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/4OXqYomrJuiUHh2LtTlD2M"
+      },
+      "href": "https://api.spotify.com/v1/albums/4OXqYomrJuiUHh2LtTlD2M",
+      "id": "4OXqYomrJuiUHh2LtTlD2M",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273f453b47c243adc0855d0fbd5",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02f453b47c243adc0855d0fbd5",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851f453b47c243adc0855d0fbd5",
+          "width": 64
+        }
+      ],
+      "name": "Summer Breeze 2011",
+      "release_date": "2011-07-22",
+      "release_date_precision": "day",
+      "total_tracks": 13,
+      "type": "album",
+      "uri": "spotify:album:4OXqYomrJuiUHh2LtTlD2M"
+    },
+    {
+      "album_group": "appears_on",
+      "album_type": "compilation",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of"
+          },
+          "href": "https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of",
+          "id": "0LyfQWJT6nXafLPZqxe9Of",
+          "name": "Various Artists",
+          "type": "artist",
+          "uri": "spotify:artist:0LyfQWJT6nXafLPZqxe9Of"
+        }
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/1pRROXM9lBsXxiSYyO8par"
+      },
+      "href": "https://api.spotify.com/v1/albums/1pRROXM9lBsXxiSYyO8par",
+      "id": "1pRROXM9lBsXxiSYyO8par",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27332e70d1a210fb322e6ab0c94",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0232e70d1a210fb322e6ab0c94",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485132e70d1a210fb322e6ab0c94",
+          "width": 64
+        }
+      ],
+      "name": "The Music Hotel - Vol. 1",
+      "release_date": "2011-01-01",
+      "release_date_precision": "day",
+      "total_tracks": 14,
+      "type": "album",
+      "uri": "spotify:album:1pRROXM9lBsXxiSYyO8par"
+    }
+  ],
+  "limit": 50,
+  "next": null,
+  "offset": 0,
+  "previous": null,
+  "total": 21
+}

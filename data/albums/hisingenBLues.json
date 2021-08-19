@@ -1,0 +1,300 @@
+{
+  "href": "https://api.spotify.com/v1/albums/6mRafvUDkcPpM8vV8CXAyo/tracks?offset=0&limit=50&market=US",
+  "items": [
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 185666,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/4t3TLk7Pz1PimtTat87NIh"
+      },
+      "href": "https://api.spotify.com/v1/tracks/4t3TLk7Pz1PimtTat87NIh",
+      "id": "4t3TLk7Pz1PimtTat87NIh",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Ain't Fit to Live Here",
+      "preview_url": "https://p.scdn.co/mp3-preview/a607cdd4065fe696359c04a1461c1a5e825bb064?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 1,
+      "type": "track",
+      "uri": "spotify:track:4t3TLk7Pz1PimtTat87NIh"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 286746,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/35waiNinc9vz4P2joMyfkQ"
+      },
+      "href": "https://api.spotify.com/v1/tracks/35waiNinc9vz4P2joMyfkQ",
+      "id": "35waiNinc9vz4P2joMyfkQ",
+      "is_local": false,
+      "is_playable": true,
+      "name": "No Good, Mr. Holden",
+      "preview_url": "https://p.scdn.co/mp3-preview/e2d58ec6a63c5af32cf7f5c67c4e23332226a31b?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 2,
+      "type": "track",
+      "uri": "spotify:track:35waiNinc9vz4P2joMyfkQ"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 253066,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/7FLaAGmHHEiBmvmmuwMDwF"
+      },
+      "href": "https://api.spotify.com/v1/tracks/7FLaAGmHHEiBmvmmuwMDwF",
+      "id": "7FLaAGmHHEiBmvmmuwMDwF",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Hisingen Blues",
+      "preview_url": "https://p.scdn.co/mp3-preview/7074a55bb97a7fd7c7ef5015c7165feffb110a18?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 3,
+      "type": "track",
+      "uri": "spotify:track:7FLaAGmHHEiBmvmmuwMDwF"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 371160,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/7fkrL92gTwmgy0urZ4NIxR"
+      },
+      "href": "https://api.spotify.com/v1/tracks/7fkrL92gTwmgy0urZ4NIxR",
+      "id": "7fkrL92gTwmgy0urZ4NIxR",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Uncomfortably Numb",
+      "preview_url": "https://p.scdn.co/mp3-preview/bcec0830dccdc20b19479831a71a9ede5073fdf8?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 4,
+      "type": "track",
+      "uri": "spotify:track:7fkrL92gTwmgy0urZ4NIxR"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 207000,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/1F3AL15TUlMKktvyERiyUk"
+      },
+      "href": "https://api.spotify.com/v1/tracks/1F3AL15TUlMKktvyERiyUk",
+      "id": "1F3AL15TUlMKktvyERiyUk",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Buying Truth (Tack & Förlåt)",
+      "preview_url": "https://p.scdn.co/mp3-preview/c3f25c530e77ec2ce66480cd49818c5df5cfe4a5?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 5,
+      "type": "track",
+      "uri": "spotify:track:1F3AL15TUlMKktvyERiyUk"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 289320,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/0ZZIUZZ7gsM9KD1IyqKBuD"
+      },
+      "href": "https://api.spotify.com/v1/tracks/0ZZIUZZ7gsM9KD1IyqKBuD",
+      "id": "0ZZIUZZ7gsM9KD1IyqKBuD",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Longing",
+      "preview_url": "https://p.scdn.co/mp3-preview/8bbfce24e64ced82d43fac82c9e819e114f011cb?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 6,
+      "type": "track",
+      "uri": "spotify:track:0ZZIUZZ7gsM9KD1IyqKBuD"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 189946,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/1z8H51b7Smv1VVoFJi1cUt"
+      },
+      "href": "https://api.spotify.com/v1/tracks/1z8H51b7Smv1VVoFJi1cUt",
+      "id": "1z8H51b7Smv1VVoFJi1cUt",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Ungrateful Are the Dead",
+      "preview_url": "https://p.scdn.co/mp3-preview/b54510aa366331e7fa309f2302a325d477fcb789?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 7,
+      "type": "track",
+      "uri": "spotify:track:1z8H51b7Smv1VVoFJi1cUt"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 228813,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/40eF2Acc8Spb1cqdND42kJ"
+      },
+      "href": "https://api.spotify.com/v1/tracks/40eF2Acc8Spb1cqdND42kJ",
+      "id": "40eF2Acc8Spb1cqdND42kJ",
+      "is_local": false,
+      "is_playable": true,
+      "name": "RSS",
+      "preview_url": "https://p.scdn.co/mp3-preview/68a5b7b19f92b47cfc4793fb6d61aeea48bc4081?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 8,
+      "type": "track",
+      "uri": "spotify:track:40eF2Acc8Spb1cqdND42kJ"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 360586,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/6w6ztw7uViCx89B81b3yMj"
+      },
+      "href": "https://api.spotify.com/v1/tracks/6w6ztw7uViCx89B81b3yMj",
+      "id": "6w6ztw7uViCx89B81b3yMj",
+      "is_local": false,
+      "is_playable": true,
+      "name": "The Siren",
+      "preview_url": "https://p.scdn.co/mp3-preview/f0e0cccf91ec56b7d79623caff52763c274caf1b?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 9,
+      "type": "track",
+      "uri": "spotify:track:6w6ztw7uViCx89B81b3yMj"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 245786,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/6Ya2GbWWUpWC8nEP02RrpP"
+      },
+      "href": "https://api.spotify.com/v1/tracks/6Ya2GbWWUpWC8nEP02RrpP",
+      "id": "6Ya2GbWWUpWC8nEP02RrpP",
+      "is_local": false,
+      "is_playable": true,
+      "name": "Cooking Brew",
+      "preview_url": "https://p.scdn.co/mp3-preview/768735698337bcca360144a1a4ff7e0984c9d8c9?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 10,
+      "type": "track",
+      "uri": "spotify:track:6Ya2GbWWUpWC8nEP02RrpP"
+    }
+  ],
+  "limit": 50,
+  "next": null,
+  "offset": 0,
+  "previous": null,
+  "total": 10
+}

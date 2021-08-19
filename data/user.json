@@ -1,0 +1,28 @@
+{
+  "country": "US",
+  "display_name": "Gregory Louis Ybos",
+  "email": "gregybos@gmail.com",
+  "explicit_content": {
+    "filter_enabled": false,
+    "filter_locked": false
+  },
+  "external_urls": {
+    "spotify": "https://open.spotify.com/user/124641024"
+  },
+  "followers": {
+    "href": null,
+    "total": 21
+  },
+  "href": "https://api.spotify.com/v1/users/124641024",
+  "id": "124641024",
+  "images": [
+    {
+      "height": null,
+      "url": "https://scontent-ort2-1.xx.fbcdn.net/v/t1.6435-1/p320x320/174021550_10158131990771104_8597352412754217515_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=0c64ff&_nc_ohc=HTbqNWvCi1EAX_RRcsj&_nc_oc=AQlbxYDXHPwZ7DG6E9Ha7nkeaMiPGNFoHoVUWQ1h70fASCAUrjgpEwzSMLL0om8aDHs&_nc_ht=scontent-ort2-1.xx&edm=AP4hL3IEAAAA&oh=47f9bd1f4139c14f133d2c0e7f4ad433&oe=61442312",
+      "width": null
+    }
+  ],
+  "product": "premium",
+  "type": "user",
+  "uri": "spotify:user:124641024"
+}

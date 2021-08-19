@@ -1,0 +1,352 @@
+{
+  "href": "https://api.spotify.com/v1/albums/5Ed3KGkv7cVE4mCzR9iDVn/tracks?offset=0&limit=50&market=US",
+  "items": [
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 207693,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/6HnPU7qHN7dhRBBNSOj0Lt"
+      },
+      "href": "https://api.spotify.com/v1/tracks/6HnPU7qHN7dhRBBNSOj0Lt",
+      "id": "6HnPU7qHN7dhRBBNSOj0Lt",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/1f977FlJPK38AtcUAh08jr"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1f977FlJPK38AtcUAh08jr",
+        "id": "1f977FlJPK38AtcUAh08jr",
+        "type": "track",
+        "uri": "spotify:track:1f977FlJPK38AtcUAh08jr"
+      },
+      "name": "Evil Ways",
+      "preview_url": "https://p.scdn.co/mp3-preview/a7bba3973e7b2275a9457904d870ac973ba1e6be?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 1,
+      "type": "track",
+      "uri": "spotify:track:6HnPU7qHN7dhRBBNSOj0Lt"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 324106,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/6siMFxAzsFegAOZCEOhXpO"
+      },
+      "href": "https://api.spotify.com/v1/tracks/6siMFxAzsFegAOZCEOhXpO",
+      "id": "6siMFxAzsFegAOZCEOhXpO",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5ZojDzrwWN68q5Hy11e5rx"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5ZojDzrwWN68q5Hy11e5rx",
+        "id": "5ZojDzrwWN68q5Hy11e5rx",
+        "type": "track",
+        "uri": "spotify:track:5ZojDzrwWN68q5Hy11e5rx"
+      },
+      "name": "Thin Line",
+      "preview_url": "https://p.scdn.co/mp3-preview/6075aeb12e1ce33055987d06084785b97d35382a?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 2,
+      "type": "track",
+      "uri": "spotify:track:6siMFxAzsFegAOZCEOhXpO"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 203266,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/5JYsvMUCaKZlgkKkG7r1oa"
+      },
+      "href": "https://api.spotify.com/v1/tracks/5JYsvMUCaKZlgkKkG7r1oa",
+      "id": "5JYsvMUCaKZlgkKkG7r1oa",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/4OtGeu6ZQOVJ7Wfk7kSYu6"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4OtGeu6ZQOVJ7Wfk7kSYu6",
+        "id": "4OtGeu6ZQOVJ7Wfk7kSYu6",
+        "type": "track",
+        "uri": "spotify:track:4OtGeu6ZQOVJ7Wfk7kSYu6"
+      },
+      "name": "Lost in Confusion",
+      "preview_url": "https://p.scdn.co/mp3-preview/9963e5390fd0e29658ba10177b5bfcc50cebaf15?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 3,
+      "type": "track",
+      "uri": "spotify:track:5JYsvMUCaKZlgkKkG7r1oa"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 241800,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/2ZkAAXJrodlDoTaa443ej3"
+      },
+      "href": "https://api.spotify.com/v1/tracks/2ZkAAXJrodlDoTaa443ej3",
+      "id": "2ZkAAXJrodlDoTaa443ej3",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/4aNx3nEhwxgiygG8bErXAv"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4aNx3nEhwxgiygG8bErXAv",
+        "id": "4aNx3nEhwxgiygG8bErXAv",
+        "type": "track",
+        "uri": "spotify:track:4aNx3nEhwxgiygG8bErXAv"
+      },
+      "name": "Don't Take Us for Fools",
+      "preview_url": "https://p.scdn.co/mp3-preview/d700c2115664b5136189f6ae736d3f6f8bbb3978?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 4,
+      "type": "track",
+      "uri": "spotify:track:2ZkAAXJrodlDoTaa443ej3"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 376960,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/1jCJi5ilCq5ylBmaSGTszk"
+      },
+      "href": "https://api.spotify.com/v1/tracks/1jCJi5ilCq5ylBmaSGTszk",
+      "id": "1jCJi5ilCq5ylBmaSGTszk",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/4wCbXPACKScY2rL5tjOJ4y"
+        },
+        "href": "https://api.spotify.com/v1/tracks/4wCbXPACKScY2rL5tjOJ4y",
+        "id": "4wCbXPACKScY2rL5tjOJ4y",
+        "type": "track",
+        "uri": "spotify:track:4wCbXPACKScY2rL5tjOJ4y"
+      },
+      "name": "Blue Soul",
+      "preview_url": "https://p.scdn.co/mp3-preview/3ae3d7a9cce236b25ace35204ac619e582e8acbd?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 5,
+      "type": "track",
+      "uri": "spotify:track:1jCJi5ilCq5ylBmaSGTszk"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 144533,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/1wMYPrz2QWFLl6OPA5lfVn"
+      },
+      "href": "https://api.spotify.com/v1/tracks/1wMYPrz2QWFLl6OPA5lfVn",
+      "id": "1wMYPrz2QWFLl6OPA5lfVn",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/6rbgma7FMNRGge4qBGRl56"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6rbgma7FMNRGge4qBGRl56",
+        "id": "6rbgma7FMNRGge4qBGRl56",
+        "type": "track",
+        "uri": "spotify:track:6rbgma7FMNRGge4qBGRl56"
+      },
+      "name": "Submarine Blues",
+      "preview_url": "https://p.scdn.co/mp3-preview/62fb86da3d7f6703effa979a8de381f98ff8658b?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 6,
+      "type": "track",
+      "uri": "spotify:track:1wMYPrz2QWFLl6OPA5lfVn"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 280640,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/5WaRO6oNKSVC5UmNgW75nE"
+      },
+      "href": "https://api.spotify.com/v1/tracks/5WaRO6oNKSVC5UmNgW75nE",
+      "id": "5WaRO6oNKSVC5UmNgW75nE",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/7oZPyPprEy5mmeKUvvMuEK"
+        },
+        "href": "https://api.spotify.com/v1/tracks/7oZPyPprEy5mmeKUvvMuEK",
+        "id": "7oZPyPprEy5mmeKUvvMuEK",
+        "type": "track",
+        "uri": "spotify:track:7oZPyPprEy5mmeKUvvMuEK"
+      },
+      "name": "As the Years Pass By, the Hours Bend",
+      "preview_url": "https://p.scdn.co/mp3-preview/73707dacb9a20b5274fc8fe57c32cba35af8e7c6?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 7,
+      "type": "track",
+      "uri": "spotify:track:5WaRO6oNKSVC5UmNgW75nE"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 266760,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/7kbWFsNRn2HgZNrF5uhTTJ"
+      },
+      "href": "https://api.spotify.com/v1/tracks/7kbWFsNRn2HgZNrF5uhTTJ",
+      "id": "7kbWFsNRn2HgZNrF5uhTTJ",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/400uGQtraDXhM0HbVXagEN"
+        },
+        "href": "https://api.spotify.com/v1/tracks/400uGQtraDXhM0HbVXagEN",
+        "id": "400uGQtraDXhM0HbVXagEN",
+        "type": "track",
+        "uri": "spotify:track:400uGQtraDXhM0HbVXagEN"
+      },
+      "name": "Right Is Wrong",
+      "preview_url": "https://p.scdn.co/mp3-preview/2179f235da5eee839a1b8d0204295b1e3e1e8a21?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 8,
+      "type": "track",
+      "uri": "spotify:track:7kbWFsNRn2HgZNrF5uhTTJ"
+    },
+    {
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0hU5urLse5h1Z0b4zQkovL"
+          },
+          "href": "https://api.spotify.com/v1/artists/0hU5urLse5h1Z0b4zQkovL",
+          "id": "0hU5urLse5h1Z0b4zQkovL",
+          "name": "Graveyard",
+          "type": "artist",
+          "uri": "spotify:artist:0hU5urLse5h1Z0b4zQkovL"
+        }
+      ],
+      "disc_number": 1,
+      "duration_ms": 332200,
+      "explicit": false,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/track/7BHMJLSfNPqMxwiBMBoVTG"
+      },
+      "href": "https://api.spotify.com/v1/tracks/7BHMJLSfNPqMxwiBMBoVTG",
+      "id": "7BHMJLSfNPqMxwiBMBoVTG",
+      "is_local": false,
+      "is_playable": true,
+      "linked_from": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/track/5TB6T884SG5OaqmKxK2AVl"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5TB6T884SG5OaqmKxK2AVl",
+        "id": "5TB6T884SG5OaqmKxK2AVl",
+        "type": "track",
+        "uri": "spotify:track:5TB6T884SG5OaqmKxK2AVl"
+      },
+      "name": "Satan's Finest",
+      "preview_url": "https://p.scdn.co/mp3-preview/c53538c42bd271c0256ac843910b2da61aa667e2?cid=774b29d4f13844c495f206cafdad9c86",
+      "track_number": 9,
+      "type": "track",
+      "uri": "spotify:track:7BHMJLSfNPqMxwiBMBoVTG"
+    }
+  ],
+  "limit": 50,
+  "next": null,
+  "offset": 0,
+  "previous": null,
+  "total": 9
+}
