@@ -14,20 +14,13 @@ export default class User extends BaseEntity {
   @Column()
   user_name: string;
 
-  @Field(() => User)
+  @Field(() =>[User], {nullable: true})
   @ManyToMany(() => User, user => user.friends)
   @JoinTable()
   friends: User[];
 
-  @Field(() => User)
-  @ManyToMany(() => User, user => user.pending_friends)
-  @JoinTable()
-  pending_friends: User[];
-
-  public static createUser(user_id: string, user_name: string) {
-    const userRepo = getRepository(User);
-    userRepo.save(userRepo.create({
-      user_id, user_name
-    }))
-  }
+  // @Field(() => [User], {nullable: true})
+  // @ManyToMany(() => User, user => user.pending_friends)
+  // @JoinTable()
+  // pending_friends: User[];
 }

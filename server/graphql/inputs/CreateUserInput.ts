@@ -7,10 +7,4 @@ export class CreateUserInput {
 
   @Field()
   user_name: string;
-
-  // @Field()
-  // friends: User[];
-
-  // @Field()
-  // pending_friends: User[]
 }

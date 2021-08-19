@@ -1,7 +1,7 @@
 // import { userInfo } from "os";
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
-import {CreateUserInput}from './CreateUserInput'
-import User from "../db/entities/User";
+import {CreateUserInput}from '../inputs/CreateUserInput'
+import User from "../../db/entities/User";
 @Resolver()
 export class UserResolver {
   @Query(() => [User])

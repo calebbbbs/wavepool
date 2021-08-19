@@ -19,12 +19,10 @@ const express = require('express');
 import { Request, Response } from 'express-serve-static-core';
 import { Profile, VerifyCallback } from "passport-spotify";
 
-
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
 const allowedOrigins = ['http://localhost:4000/', 'https://studio.apollographql.com'];
 
-import {UserResolver} from "./graphql/UserResolver";
-// import  typeDefs  from "./graphql/typeDefs";
+import {UserResolver} from "./graphql/resolvers";
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
