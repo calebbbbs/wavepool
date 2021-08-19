@@ -1,58 +1,46 @@
 import "reflect-metadata";
 import cors from 'cors';
+import { buildSchema } from "type-graphql";
+import { createConnection } from 'typeorm';
+import typeOrmConfig from '../server/db/dbConfig';
+import path from 'path';
+
+
+
 require('dotenv').config();
 
 // import User from "./db/entities/user";
 const session = require('express-session');
 const passport = require('passport');
 const SpotifyStrategy = require('passport-spotify').Strategy;
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 // import * as express from 'express';
 import { Request, Response } from 'express-serve-static-core';
-import path from 'path';
 import { Profile, VerifyCallback } from "passport-spotify";
 
 
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
-const allowedOrigins = ['http://localhost:4000', 'https://studio.apollographql.com'];
+const allowedOrigins = ['http://localhost:4000/', 'https://studio.apollographql.com'];
+
+import {UserResolver} from "./graphql/UserResolver";
+// import  typeDefs  from "./graphql/typeDefs";
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: 'Content-Type, Authorization',
 };
-
-const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
-const authCallbackPath = '/auth/spotify/callback';
 
 async function startApolloServer() {
 
-  // interface User{
-  //   user_id: number
-  // }
-  // Construct a schema, using GraphQL schema language
-  const typeDefs = gql`
-    type User {
-      user_id: User,
-      user_name: String,
-    }
+  await createConnection(typeOrmConfig).catch(err => console.log(err));
+  const schema = await buildSchema({
+    resolvers: [UserResolver]
+  }
+  );
+  const server = new ApolloServer({ schema });
+const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
+const authCallbackPath = '/auth/spotify/callback';
 
-
-
-    type Query {
-      hello: String
-    }
-  `;
-
-  // Provide resolver functions for your schema fields
-  const resolvers = {
-    Query: {
-      hello: () => 'Hello world!',
-    },
-  };
-
-  const server = new ApolloServer({ typeDefs, resolvers });
   await server.start();
 
   const app = express();
@@ -115,7 +103,7 @@ async function startApolloServer() {
   });
 
   app.options('*', cors());
-app.use('*', cors(options));
+  app.use('*', cors(options));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
