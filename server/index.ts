@@ -5,8 +5,21 @@ import { createConnection } from 'typeorm';
 import typeOrmConfig from '../server/db/dbConfig';
 import path from 'path';
 
-const { ApolloServer} = require('apollo-server-express');
+
+
+require('dotenv').config();
+
+// import User from "./db/entities/user";
+const session = require('express-session');
+const passport = require('passport');
+const SpotifyStrategy = require('passport-spotify').Strategy;
+const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
+// import * as express from 'express';
+import { Request, Response } from 'express-serve-static-core';
+import { Profile, VerifyCallback } from "passport-spotify";
+
+
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
 const allowedOrigins = ['http://localhost:4000/', 'https://studio.apollographql.com'];
 
@@ -25,16 +38,76 @@ async function startApolloServer() {
   }
   );
   const server = new ApolloServer({ schema });
+const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
+const authCallbackPath = '/auth/spotify/callback';
+
   await server.start();
 
   const app = express();
 
+  passport.serializeUser(function (user: object, done: VerifyCallback) {
+    done(null, user);
+  });
+
+  passport.deserializeUser(function (obj: object, done: VerifyCallback) {
+    done(null, obj);
+  })
+
+  passport.use(
+    new SpotifyStrategy(
+      {
+        clientID: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        callbackURL: `http://localhost:4000${authCallbackPath}`,
+        passReqToCallback: true
+      },
+      (accessToken: string, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) =>{
+
+        process.nextTick(() => {
+          done(null, profile);
+          // done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in, profile, done}));
+        });
+      }
+    )
+  );
+
+
+
+  app.use(
+    session({secret: SESSION_SECRET, resave: true, saveUninitialized: true})
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  app.get(
+    '/auth/spotify',
+    await passport.authenticate('spotify', {
+      scope: ['user-read-email', 'user-read-private'],
+      showDialog: true,
+    }), (req: Request, res: Response) =>{
+      res.status(200).send(req.user);
+    }
+  );
+
+  app.get(
+    authCallbackPath,
+    await passport.authenticate('spotify', {failureRedirect: '/login'}),
+    (req: Request, res: Response) => {
+      res.redirect('/');
+    }
+  );
+
+  app.get('/getUser', (req: Request, res: Response) =>{
+    res.send(req.user);
+  });
+
   app.options('*', cors());
   app.use('*', cors(options));
 
-  app.use(express.json())
-  app.use(express.urlencoded({ extended: true }))
-  app.use(express.static(CLIENT_PATH));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(CLIENT_PATH));
 
 
   server.applyMiddleware({ app });
@@ -44,3 +117,4 @@ async function startApolloServer() {
   return { server, app };
 }
 startApolloServer();
+
