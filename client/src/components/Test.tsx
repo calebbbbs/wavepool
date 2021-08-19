@@ -6,6 +6,6 @@ function Test() {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :</p>;
-    return (<div>{JSON.stringify(data.hello)}</div>)};
+    return (<div>{JSON.stringify(data.hello)} - user data</div>)};
 
 export default Test;

@@ -1,9 +1,11 @@
 import React, {ReactElement} from 'react';
-import Test from './components/test';
+import Test from './components/Test';
+import Login from './components/Login'
 const App = (): ReactElement => (
   <>
-  <Test></Test>
   <h1>Wavepool</h1>
+  <Test></Test>
+<Login></Login>
   </>
 );
 

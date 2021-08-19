@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import {ChakraProvider} from '@chakra-ui/react'
 import App from './App'
 
 import {
@@ -15,8 +15,10 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
+  <ChakraProvider>
   <ApolloProvider client={client}>
   <App/>
-  </ApolloProvider>,
+  </ApolloProvider>
+  </ChakraProvider>,
   document.getElementById('root'),
 );

@@ -1,8 +1,10 @@
 /* eslint-disable camelcase */
 import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable, BaseEntity } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
-@ObjectType()
+
+
 @Entity()
+@ObjectType()
 export default class User extends BaseEntity {
   @Field(() => ID)
   @PrimaryColumn()
@@ -21,4 +23,4 @@ export default class User extends BaseEntity {
   @ManyToMany(() => User, user => user.pending_friends)
   @JoinTable()
   pending_friends: User[];
-};
+}
