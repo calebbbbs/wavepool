@@ -2,6 +2,7 @@ import "reflect-metadata";
 import cors from 'cors';
 require('dotenv').config();
 
+// import User from "./db/entities/user";
 const session = require('express-session');
 const passport = require('passport');
 const SpotifyStrategy = require('passport-spotify').Strategy;
@@ -26,6 +27,13 @@ async function startApolloServer() {
 
   // Construct a schema, using GraphQL schema language
   const typeDefs = gql`
+    type User {
+      user_id: User,
+      user_name: String,
+    }
+
+
+
     type Query {
       hello: String
     }
@@ -62,16 +70,14 @@ async function startApolloServer() {
       (accessToken, refreshToken, expires_in, profile, done) =>{
 
         process.nextTick(() => {
-          // To keep the example simple, the user's spotify profile is returned to
-          // represent the logged-in user. In a typical application, you would want
-          // to associate the spotify account with a user record in your database,
-          // and return that user instead.
           // done(null, profile);
           done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in, profile, done}));
         });
       }
     )
   );
+
+
 
   app.use(
     session({secret: SESSION_SECRET, resave: true, saveUninitialized: true})
@@ -80,17 +86,17 @@ async function startApolloServer() {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.get('/', function (req, res) {
-    res.render('index.html', {user: req.user});
-  });
+  // app.get('/', function (req, res) {
+  //   res.redirect('index.html', {user: req.user});
+  // });
 
-  app.get('/account', ensureAuthenticated, function (req, res) {
-    res.render('account.html', {user: req.user});
-  });
+  // app.get('/account', ensureAuthenticated, function (req, res) {
+  //   res.render('account.html', {user: req.user});
+  // });
 
-  app.get('/login', function (req, res) {
-    res.render('login.html', {user: req.user});
-  });
+  // app.get('/login', function (req, res) {
+  //   res.render('login.html', {user: req.user});
+  // });
 
 
   app.get(
@@ -124,12 +130,12 @@ app.use(express.static(CLIENT_PATH));
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
   return { server, app };
 
-  function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-    res.redirect('/login');
-  }
+  // function ensureAuthenticated(req, res, next) {
+  //   if (req.isAuthenticated()) {
+  //     return next();
+  //   }
+  //   res.redirect('/login');
+  // }
 }
 startApolloServer();
 
