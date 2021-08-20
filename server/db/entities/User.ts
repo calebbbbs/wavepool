@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable, BaseEntity } from 'typeorm';
+import { Entity, PrimaryColumn, Column, OneToMany, JoinTable, BaseEntity } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
 
 
@@ -29,12 +29,6 @@ export default class User extends BaseEntity {
   // @Field(() => String, {nullable: true})
   // @Column()
   // photo: string;
-
-
-  @Field(() =>[User], {nullable: true})
-  @ManyToMany(() => User, user => user.friends)
-  @JoinTable()
-  friends: User[];
 
   // @Field(() => [User], {nullable: true})
   // @ManyToMany(() => User, user => user.pending_friends)
