@@ -1,9 +1,13 @@
-import React from "react"
-import {Button} from "@chakra-ui/react"
+import React from 'react';
+import { Button, Link } from '@chakra-ui/react';
 const Login = () => {
-return (<Button
-colorScheme="green"
->Auth with Spotify</Button>)
-}
+  return (
+    <Link href='auth/spotify'>
+      <Button colorScheme='green'>Auth with Spotify</Button>
+    </Link>
+  );
+};
 
-export default Login
+export default Login;
+
+

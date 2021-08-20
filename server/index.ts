@@ -64,6 +64,7 @@ const authCallbackPath = '/auth/spotify/callback';
       (accessToken: string, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) =>{
 
         process.nextTick(() => {
+          // console.log(profile);
           done(null, profile);
           // done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in, profile, done}));
         });
@@ -110,7 +111,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(CLIENT_PATH));
 
 
-  server.applyMiddleware({ app });
+server.applyMiddleware({ app });
+
+app.get('*', (req: Request, res: Response) => {
+  res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));
+});
+
 
   await new Promise(resolve => app.listen({ port: 4000 }, resolve));
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
