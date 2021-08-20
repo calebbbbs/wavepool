@@ -64,7 +64,7 @@ const authCallbackPath = '/auth/spotify/callback';
       (accessToken: string, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) =>{
 
         process.nextTick(() => {
-          // console.log(profile);
+          console.log(expires_in);
           done(null, profile);
           // done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in, profile, done}));
         });

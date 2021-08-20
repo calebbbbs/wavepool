@@ -7,7 +7,7 @@ import { UserContext } from './contexts/UserContext';
 
 const App = (): ReactElement => {
   const { userObj }: any = useContext(UserContext);
-  // console.log(userObj);
+  console.log(userObj);
 return (
   <>
     <h1>Wavepool</h1>
