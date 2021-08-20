@@ -9,11 +9,11 @@ export class FriendResolver {
   }
 
   @Mutation(() => User)
-  async createfriend(@Arg("data") data: CreateFriendInput) {
+  async createFriend(@Arg("data") data: CreateFriendInput) {
     const {user_id, friend_id } = data;
 
 
-    
+
     // const user = new User();
     // user.user_id = data.user_id;
     // user.user_name = data.user_name;
