@@ -8,6 +8,7 @@ export class UserResolver {
   getUsers(): Promise<User[]> {
     return User.find();
   }
+  
   @Mutation(() => User)
   async createUser(@Arg("data") data: CreateUserInput) {
     const user = new User();
