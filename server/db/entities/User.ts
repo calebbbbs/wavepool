@@ -14,9 +14,9 @@ export default class User extends BaseEntity {
   @Column()
   user_name: string;
 
-  // @Field(() => String)
-  // @Column()
-  // user_photo: string;
+  @Field(() => String)
+  @Column()
+  user_email: string;
 
   @Field(() => String)
   @Column()
