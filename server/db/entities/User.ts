@@ -14,12 +14,12 @@ export default class User extends BaseEntity {
   @Column()
   user_name: string;
 
-  @Field(() => User)
+  @Field(() => [User], {nullable: true})
   @ManyToMany(() => User, user => user.friends)
   @JoinTable()
   friends: User[];
 
-  @Field(() => User)
+  @Field(() => [User], {nullable: true})
   @ManyToMany(() => User, user => user.pending_friends)
   @JoinTable()
   pending_friends: User[];

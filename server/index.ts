@@ -17,7 +17,7 @@ const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 // import * as express from 'express';
 import { Request, Response } from 'express-serve-static-core';
-import { Profile, VerifyCallback } from "passport-spotify";
+import { Profile, VerifyCallback} from "passport-spotify";
 
 
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
@@ -61,11 +61,16 @@ const authCallbackPath = '/auth/spotify/callback';
         callbackURL: `http://localhost:4000${authCallbackPath}`,
         passReqToCallback: true
       },
-      (accessToken: string, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) =>{
+      (req: any, accessToken: any, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) => {
 
         process.nextTick(() => {
+          console.log('req.url ----->', req.url);
+          console.log('accessToken ------>:', accessToken);
+          console.log('refreshToken ------>', refreshToken);
+          console.log('expires_in ------>', expires_in);
+          console.log('profile.id------>', profile.id);
           done(null, profile);
-          // done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in, profile, done}));
+          // done(null,{ accessToken, refreshToken, expires_in, profile});
         });
       }
     )
@@ -110,7 +115,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(CLIENT_PATH));
 
 
-  server.applyMiddleware({ app });
+server.applyMiddleware({ app });
+
+app.get('*', (req: Request, res: Response) => {
+  res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));
+});
+
 
   await new Promise(resolve => app.listen({ port: 4000 }, resolve));
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);

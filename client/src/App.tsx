@@ -1,12 +1,21 @@
-import React, {ReactElement} from 'react';
-import Test from './components/Test';
-import Login from './components/Login'
-const App = (): ReactElement => (
+import React, { ReactElement, useContext } from 'react';
+import Main from './components/Main';
+import { Switch, Route } from 'react-router-dom';
+
+import { UserContext } from './contexts/UserContext';
+
+const App = (): ReactElement => {
+  const { userObj }: any = useContext(UserContext);
+  console.log(userObj);
+return (
   <>
-  <h1>Wavepool</h1>
-  <Test></Test>
-<Login></Login>
+    <h1>Wavepool</h1>
+    <Switch>
+      <Route exact path='/'>
+        <Main user={...userObj}/>
+      </Route>
+    </Switch>
   </>
 );
-
+}
 export default App;
