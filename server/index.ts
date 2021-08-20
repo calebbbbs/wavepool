@@ -2,9 +2,10 @@ import "reflect-metadata";
 import cors from 'cors';
 import { buildSchema } from "type-graphql";
 import { createConnection } from 'typeorm';
-import typeOrmConfig from '../server/db/dbConfig';
 import path from 'path';
-import fetch from 'node-fetch';
+import typeOrmConfig from '../server/db/dbConfig';
+import User from './db/entities/User'
+
 
 
 
@@ -17,7 +18,7 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 // import * as express from 'express';
-import { Request, Response, NextFunction } from 'express-serve-static-core';
+import { Request, Response } from 'express-serve-static-core';
 import { Profile, VerifyCallback } from "passport-spotify";
 
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
@@ -52,48 +53,6 @@ const authCallbackPath = '/auth/spotify/callback';
     done(null, obj);
   })
 
-  const getAccessToken = (req: Request, res: Response, next: NextFunction) => {
-    const { code } = req.query;
-    console.log(req.query);
-  
-    if (code) {
-      const url = 'https://accounts.spotify.com/api/token';
-  
-      const data: any = {
-        grant_type: 'authorization_code',
-        code,
-        redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
-        client_id: process.env.CLIENT_ID,
-        client_secret: process.env.CLIENT_SECRET,
-      };
-  
-      const headers = {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      };
-  
-      const searchParams = new URLSearchParams();
-  
-      Object.keys(data).forEach(prop => {
-        searchParams.set(prop, data[prop]);
-      });
-  
-      fetch(url, {
-        method: 'POST',
-        headers,
-        body: searchParams,
-      })
-        .then(res => res.json())
-        .then(crendentials => {
-          console.log("credentials", crendentials);
-          // req.credentials = credentials;
-          // req.credentials.timestamp = Date.now();
-          //next();
-        })
-        .catch(next);
-    }
-  };
-
-
   passport.use(
     new SpotifyStrategy(
       {
@@ -101,16 +60,22 @@ const authCallbackPath = '/auth/spotify/callback';
         clientSecret: CLIENT_SECRET,
         callbackURL: `http://localhost:4000${authCallbackPath}`,
         passReqToCallback: true
-      }, getAccessToken,
-      (accessToken: string, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) => {
-        console.log(profile);
-
-        done(null, profile);
-        // process.nextTick(() => {
-        //   done(null, profile);
-          
-        //   // done(null, Object.assign({}, profile, { accessToken, refreshToken, expires_in, profile, done}));
-        // });
+      },
+      async (req: any, accessToken: any, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) => {
+        const user = new User();
+        user.user_id = parseInt(profile.id);
+        user.user_name = profile.displayName;
+        console.log('im trying to add a user right now');
+        await user.save();
+        process.nextTick(() => {
+          console.log('req.url ----->', req.url);
+          console.log('accessToken ------>:', accessToken);
+          console.log('refreshToken ------>', refreshToken);
+          console.log('expires_in ------>', expires_in);
+          console.log('profile.id------>', profile.id);
+          done(null, profile);
+          // done(null,{ accessToken, refreshToken, expires_in, profile});
+        });
       }
     )
   );
@@ -154,7 +119,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(CLIENT_PATH));
 
 
-  server.applyMiddleware({ app });
+server.applyMiddleware({ app });
+
+app.get('*', (req: Request, res: Response) => {
+  res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));
+});
+
 
   await new Promise(resolve => app.listen({ port: 4000 }, resolve));
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
