@@ -6,7 +6,7 @@ const { CLIENT_URL, DB_USERNAME, DB_PASSWORD } = process.env;
 
 const typeOrmConfig: PostgresConnectionOptions = {
   type: 'postgres',
-  logging: true,
+  logging: false,
   host: CLIENT_URL,
   port: 5432,
   username: DB_USERNAME,
