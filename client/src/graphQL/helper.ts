@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 
-const getUsersCurrentPlayback = ({ access_token }) => {
+const getUsersCurrentPlayback = ({ access_token }: any) => {
 const getCurrentPlayback: any = {
   method: 'get',
   url: 'https://api.spotify.com/v1/me/player',
@@ -23,7 +23,7 @@ axios(getCurrentPlayback)
 };
 
 
-const startOrResumePlayback = ({access_token, track_uri}) => {
+const startOrResumePlayback = ({access_token, track_uri}: any) => {
 
   const data = JSON.stringify({
     "context_uri": `${track_uri}`,
@@ -72,6 +72,10 @@ axios(toQueue)
   console.log(error);
 });
 };
+
+startOrResumePlayback('BQDTV2GN02ZUtQsNteMUIN7PRtYkTEFed0JHJdZCs_kUnmdZ9ADyIr2kpsgfGlBzcqXfC15be0ODNHVGoIgfMWhyf1W813pJtc9eSSjssnOeVzWXkQwWFT2E_dtlkpiStERFVPuVTjnq2cxc3tEmSIB0f2KdIbPKLJmovSs');
+
+
 
 module.exports.getUsersCurrentPlayback = getUsersCurrentPlayback;
 module.exports.startOrResumePlayback = startOrResumePlayback;
