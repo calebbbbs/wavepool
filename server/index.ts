@@ -61,10 +61,10 @@ const authCallbackPath = '/auth/spotify/callback';
         callbackURL: `http://localhost:4000${authCallbackPath}`,
         passReqToCallback: true
       },
-      (req: any, accessToken: any, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) => {
+      (req: any, accessToken: string, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) => {
 
         process.nextTick(() => {
-          console.log('req.url ----->', req.url);
+          console.log('req.session ----->', req.session);
           console.log('accessToken ------>:', accessToken);
           console.log('refreshToken ------>', refreshToken);
           console.log('expires_in ------>', expires_in);
