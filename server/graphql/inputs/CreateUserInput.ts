@@ -7,4 +7,10 @@ export class CreateUserInput {
 
   @Field()
   user_name: string;
+
+  @Field()
+  access_token: string;
+
+  @Field()
+  refresh_token: string;
 }

@@ -18,9 +18,18 @@ export default class User extends BaseEntity {
   // @Column()
   // user_photo: string;
 
-  // @Field(() => String)
+  @Field(() => String)
+  @Column()
+  access_token: string;
+
+  @Field(() => String)
+  @Column()
+  refresh_token: string;
+
+  // @Field(() => String, {nullable: true})
   // @Column()
-  // access_token: string;
+  // photo: string;
+
 
   @Field(() =>[User], {nullable: true})
   @ManyToMany(() => User, user => user.friends)
