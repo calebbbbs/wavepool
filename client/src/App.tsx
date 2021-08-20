@@ -1,6 +1,5 @@
 import React, { ReactElement, useContext } from 'react';
-import Test from './components/Test';
-import Login from './components/Login';
+import Main from './components/Main';
 import { Switch, Route } from 'react-router-dom';
 
 import { UserContext } from './contexts/UserContext';
@@ -11,11 +10,9 @@ const App = (): ReactElement => {
 return (
   <>
     <h1>Wavepool</h1>
-    <Test {...userObj}></Test>
     <Switch>
-      <Route exact path='/'></Route>
-      <Route path='/userLogin'>
-        <Login></Login>
+      <Route exact path='/'>
+        <Main user={...userObj}/>
       </Route>
     </Switch>
   </>
