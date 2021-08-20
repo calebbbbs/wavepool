@@ -9,6 +9,9 @@ export class CreateUserInput {
   user_name: string;
 
   @Field()
+  email: string;
+
+  @Field()
   access_token: string;
 
   @Field()

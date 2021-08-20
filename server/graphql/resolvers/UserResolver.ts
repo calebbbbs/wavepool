@@ -19,6 +19,7 @@ export class UserResolver {
     const user = new User();
     user.user_id = data.user_id;
     user.user_name = data.user_name;
+    user.user_email = data.email;
     user.access_token = data.access_token;
     user.refresh_token = data.refresh_token;
     await user.save()

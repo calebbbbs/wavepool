@@ -65,6 +65,7 @@ const authCallbackPath = '/auth/spotify/callback';
         const user = new User();
         user.user_id = profile.id;
         user.user_name = profile.displayName;
+        user.user_email = profile._json.email;
         user.access_token = accessToken;
         user.refresh_token = refreshToken;
         //user.photo = profile.photos[0].value || null;
