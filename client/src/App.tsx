@@ -1,5 +1,6 @@
 import React, { ReactElement, useContext } from 'react';
-import Main from './components/Main';
+import Main from './components/Main/Main';
+import {chakra} from '@chakra-ui/react'
 import { Switch, Route } from 'react-router-dom';
 
 import { UserContext } from './contexts/UserContext';
@@ -9,7 +10,9 @@ const App = (): ReactElement => {
   console.log(userObj);
 return (
   <>
-    <h1>Wavepool</h1>
+    <chakra.h1
+    fontSize="4xl"
+    >Wavepool</chakra.h1>
     <Switch>
       <Route exact path='/'>
         <Main user={...userObj}/>

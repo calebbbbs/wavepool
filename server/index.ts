@@ -63,16 +63,15 @@ const authCallbackPath = '/auth/spotify/callback';
       },
       async (req: any, accessToken: any, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) => {
         const user = new User();
-        user.user_id = parseInt(profile.id);
+        user.user_id = profile.id;
         user.user_name = profile.displayName;
         user.access_token = accessToken;
         user.refresh_token = refreshToken;
         //user.photo = profile.photos[0].value || null;
         await user.save();
         process.nextTick(() => {
-          console.log('accessToken ------>', accessToken);
-          console.log('profile.id------>', profile);
-          done(null, profile);
+          console.log(user);
+          done(null, user);
           // done(null,{ accessToken, refreshToken, expires_in, profile});
         });
       }
@@ -126,7 +125,9 @@ app.get('*', (req: Request, res: Response) => {
 
 
   await new Promise(resolve => app.listen({ port: 4000 }, resolve));
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+  console.log(`🌊 Ride the Wave 🌊 \n
+  http://localhost:4000${server.graphqlPath}\n
+  http://localhost:4000\n`);
   return { server, app };
 }
 startApolloServer();

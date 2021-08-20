@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
-import {UserContext} from '../contexts/UserContext'
+import {UserContext} from '../../contexts/UserContext'
 import { Button, Link } from '@chakra-ui/react';
-const Login = (props: any) => {
+const LoginButton = (props: any) => {
 
 const {getUser} = useContext(UserContext);
 
@@ -14,6 +14,6 @@ const {getUser} = useContext(UserContext);
   );
 };
 
-export default Login;
+export default LoginButton;
 
 
