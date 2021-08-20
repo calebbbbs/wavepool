@@ -63,7 +63,8 @@ const authCallbackPath = '/auth/spotify/callback';
       },
       async (req: any, accessToken: any, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) => {
         const user = new User();
-        user.user_id = parseInt(profile.id);
+        console.log(profile.id);
+        user.user_id = profile.id;
         user.user_name = profile.displayName;
         user.access_token = accessToken;
         user.refresh_token = refreshToken;
@@ -72,7 +73,7 @@ const authCallbackPath = '/auth/spotify/callback';
         process.nextTick(() => {
           console.log('accessToken ------>', accessToken);
           console.log('profile.id------>', profile);
-          done(null, profile);
+          done(null, user);
           // done(null,{ accessToken, refreshToken, expires_in, profile});
         });
       }
