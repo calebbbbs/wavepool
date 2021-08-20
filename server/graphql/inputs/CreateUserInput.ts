@@ -3,14 +3,17 @@ import { InputType, Field } from "type-graphql";
 @InputType()
 export class CreateUserInput {
   @Field()
-  user_id: number;
+  user_id: string;
 
   @Field()
   user_name: string;
 
-  // @Field()
-  // friends: User[];
+  @Field()
+  email: string;
 
-  // @Field()
-  // pending_friends: User[]
+  @Field()
+  access_token: string;
+
+  @Field()
+  refresh_token: string;
 }
