@@ -14,13 +14,30 @@ export default class User extends BaseEntity {
   @Column()
   user_name: string;
 
-  @Field(() => [User], {nullable: true})
+  // @Field(() => String)
+  // @Column()
+  // user_photo: string;
+
+  @Field(() => String)
+  @Column()
+  access_token: string;
+
+  @Field(() => String)
+  @Column()
+  refresh_token: string;
+
+  // @Field(() => String, {nullable: true})
+  // @Column()
+  // photo: string;
+
+
+  @Field(() =>[User], {nullable: true})
   @ManyToMany(() => User, user => user.friends)
   @JoinTable()
   friends: User[];
 
-  @Field(() => [User], {nullable: true})
-  @ManyToMany(() => User, user => user.pending_friends)
-  @JoinTable()
-  pending_friends: User[];
+  // @Field(() => [User], {nullable: true})
+  // @ManyToMany(() => User, user => user.pending_friends)
+  // @JoinTable()
+  // pending_friends: User[];
 }

@@ -8,9 +8,9 @@ export class CreateUserInput {
   @Field()
   user_name: string;
 
-  // @Field()
-  // friends: User[];
+  @Field()
+  access_token: string;
 
-  // @Field()
-  // pending_friends: User[]
+  @Field()
+  refresh_token: string;
 }
