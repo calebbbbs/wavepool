@@ -12,7 +12,6 @@ const client = new ApolloClient({
 });
 
 
-
 ReactDOM.render(
   <ChakraProvider>
     <ApolloProvider client={client}>
