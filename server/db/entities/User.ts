@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryColumn, Column, OneToMany, JoinTable, BaseEntity } from 'typeorm';
+import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
+import Friend from './Friend';
 
 
 @Entity()
@@ -26,12 +27,7 @@ export default class User extends BaseEntity {
   @Column()
   refresh_token: string;
 
-  // @Field(() => String, {nullable: true})
-  // @Column()
-  // photo: string;
-
-  // @Field(() => [User], {nullable: true})
-  // @ManyToMany(() => User, user => user.pending_friends)
-  // @JoinTable()
-  // pending_friends: User[];
+  @Field(() => [Friend], {nullable: true})
+  @OneToMany(() => Friend, (friend: Friend) => friend.user)
+  friends: Promise<Friend[]>;
 }

@@ -1,3 +1,4 @@
 import { UserResolver } from './UserResolver';
+import { FriendResolver } from './FriendResolver';
 
-export { UserResolver };
+export { UserResolver, FriendResolver };

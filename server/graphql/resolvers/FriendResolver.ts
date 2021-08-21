@@ -1,24 +1,33 @@
-import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import { Resolver, Mutation, Arg } from "type-graphql";
+import { getConnection } from "typeorm";
 import {CreateFriendInput}from '../inputs/CreateFriendInput'
-import User from "../../db/entities/User";
+import Friend from "../../db/entities/Friend";
+import User from '../../db/entities/User';
 @Resolver()
 export class FriendResolver {
-  @Query(() => [User])
-  getFriends(): Promise<User[]> {
-    return User.find();
-  }
+  // @Query(() => [User])
+  // getFriends(): Promise<User[]> {
+  //   return User.find();
+  // }
 
-  @Mutation(() => User)
-  async createFriend(@Arg("data") data: CreateFriendInput) {
-    const {user_id, friend_id } = data;
+  @Mutation(() => Friend)
+  async createFriend(@Arg("data") data: CreateFriendInput): Promise<Friend> {
+  
+    const {user_id, friend_id, friend_status } = data;
+    
+    const newFriend = new Friend();
+    newFriend.user_id = user_id;
+    newFriend.friend_id = friend_id;
+    newFriend.friend_status = friend_status;
+    await newFriend.save();
+    
+    await getConnection()
+      .createQueryBuilder()
+      .relation(User, "friends")
+      .of(friend_id)
+      .add(newFriend.user_id);
 
-
-
-    // const user = new User();
-    // user.user_id = data.user_id;
-    // user.user_name = data.user_name;
-    // console.log('im trying to add a user right now');
-    // await user.save()
-    // return user;
+    
+    return newFriend;
   }
 }
