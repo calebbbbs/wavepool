@@ -24,7 +24,7 @@ import { Profile, VerifyCallback } from "passport-spotify";
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
 const allowedOrigins = ['http://localhost:4000/', 'https://studio.apollographql.com'];
 
-import {UserResolver} from "./graphql/resolvers";
+import { UserResolver, FriendResolver } from "./graphql/resolvers";
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
@@ -34,7 +34,7 @@ async function startApolloServer() {
 
   await createConnection(typeOrmConfig).catch(err => console.log(err));
   const schema = await buildSchema({
-    resolvers: [UserResolver]
+    resolvers: [UserResolver, FriendResolver]
   }
   );
 const server = new ApolloServer({ schema });
