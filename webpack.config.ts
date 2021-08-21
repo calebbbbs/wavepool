@@ -2,8 +2,11 @@ import path from 'path';
 import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+const webpack = require('webpack')
+const dotenv = require('dotenv')
 
 const distDir = path.resolve(__dirname, 'client/dist');
+
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
@@ -40,10 +43,13 @@ export const config: Configuration = {
   devServer: {
     contentBase: distDir,
     compress: true,
-    port: 4000,
+    port: 3000,
   },
   plugins: [
     new HtmlWebpackPlugin({ template: path.join(__dirname, 'client/src', 'index.html') }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed) // it will automatically pick up key values from .env file
+   })
   ],
 };
 

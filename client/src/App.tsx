@@ -6,7 +6,7 @@ import { UserContext } from './contexts/UserContext';
 
 const App = (): ReactElement => {
   const { userObj }: any = useContext(UserContext);
-  console.log(userObj);
+
 return (
     <Switch>
       <Route exact path='/'>

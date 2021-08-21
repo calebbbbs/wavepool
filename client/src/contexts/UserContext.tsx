@@ -13,9 +13,17 @@ import SpotifyWebApi from 'spotify-web-api-node';
 const UserContext = React.createContext(undefined as any);
 // eslint-disable-next-line react/prop-types
 const UserContextProvider: React.FC = ({ children }) => {
+
+  const spotifyApi = new SpotifyWebApi({
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    redirectUri: 'http://localhost:4000/auth/spotify/callback'
+  });
+
   const [userObj, setUserObj] = useState<any>();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [currPlayback, setCurrPlayback] = useState<any>();
+  // const [spotifyApi, setSpotifyApi] = useState<SpotifyWebApi>()
   const getUser = () => {
     axios.get<any>('http://localhost:4000/getUser').then((res) => {
       if (res.data) {
@@ -23,18 +31,8 @@ const UserContextProvider: React.FC = ({ children }) => {
         setIsLoggedIn(true);
         if(userObj){
         getUsersCurrentPlayback(userObj.access_token);
-        const spotifyApi = new SpotifyWebApi({
-          clientId: 'process.env.CLIENT_ID',
-          clientSecret: 'process.env.CLIENT_SECRET',
-          redirectUri: 'http://localhost:4000/auth/spotify/callback'
-        });
+        console.log(`this is the fuckin api`, spotifyApi)
         spotifyApi.setAccessToken(userObj.access_token);
-        spotifyApi.searchTracks('artist:Love')
-  .then(function(data: any) {
-    console.log('Search tracks by "Love" in the artist name', data.body);
-  }, function(err: any) {
-    console.log('Something went wrong!', err);
-  });
         }
       }
     });
@@ -71,6 +69,7 @@ const UserContextProvider: React.FC = ({ children }) => {
     getUsersCurrentPlayback,
     currPlayback,
     setCurrPlayback,
+    spotifyApi
   };
 
   return (
