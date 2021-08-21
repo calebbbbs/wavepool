@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import axios, { AxiosError } from 'axios';
+import SpotifyWebApi from 'spotify-web-api-node';
+
 // import getUsersCurrentPlayback from '../graphQL/helper';
 
 // import { response } from 'express';
@@ -14,17 +16,31 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [userObj, setUserObj] = useState<any>();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [currPlayback, setCurrPlayback] = useState<any>();
-
   const getUser = () => {
     axios.get<any>('http://localhost:4000/getUser').then((res) => {
       if (res.data) {
         setUserObj(res.data);
         setIsLoggedIn(true);
+        if(userObj){
+        getUsersCurrentPlayback(userObj.access_token);
+        const spotifyApi = new SpotifyWebApi({
+          clientId: 'process.env.CLIENT_ID',
+          clientSecret: 'process.env.CLIENT_SECRET',
+          redirectUri: 'http://localhost:4000/auth/spotify/callback'
+        });
+        spotifyApi.setAccessToken(userObj.access_token);
+        spotifyApi.searchTracks('artist:Love')
+  .then(function(data: any) {
+    console.log('Search tracks by "Love" in the artist name', data.body);
+  }, function(err: any) {
+    console.log('Something went wrong!', err);
+  });
+        }
       }
     });
   };
 
-  const getUsersCurrentPlayback = (access_token: string) => {
+  const getUsersCurrentPlayback = async (access_token: string) => {
     const getCurrentPlayback: any = {
       method: 'get',
       url: 'https://api.spotify.com/v1/me/player',
@@ -35,7 +51,7 @@ const UserContextProvider: React.FC = ({ children }) => {
       },
     };
 
-    return axios(getCurrentPlayback)
+    await axios(getCurrentPlayback)
       .then((response) => {
         console.log(response.data);
         setCurrPlayback(response.data);
