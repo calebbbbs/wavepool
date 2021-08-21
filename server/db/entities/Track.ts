@@ -7,7 +7,7 @@ import { ObjectType, Field, ID, Int } from "type-graphql";
 export default class Track extends BaseEntity {
  @Field(() => ID)
   @PrimaryColumn()
-  track_id: number;
+  track_id: string;
 
   @Field(() => String)
  @Column()
@@ -19,7 +19,7 @@ export default class Track extends BaseEntity {
 
   @Field(() => Int)
   @Column()
-  album_id: number;
+  album_id: string;
 
   @Field(() => String)
   @Column()
