@@ -71,7 +71,7 @@ const authCallbackPath = '/auth/spotify/callback';
         //user.photo = profile.photos[0].value || null;
         await user.save();
         process.nextTick(() => {
-          // console.log(user);
+          console.log(user);
           done(null, user);
         });
       }
@@ -90,7 +90,7 @@ const authCallbackPath = '/auth/spotify/callback';
   app.get(
     '/auth/spotify',
     await passport.authenticate('spotify', {
-      scope: ['user-read-email', 'user-read-private'],
+      scope: ['user-read-email', 'user-read-private', 'user-read-playback-state', 'user-modify-playback-state', 'user-read-currently-playing', 'playlist-modify-public'],
       showDialog: true,
     }), (req: Request, res: Response) =>{
       res.status(200).send(req.user);

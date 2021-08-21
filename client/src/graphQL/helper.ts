@@ -1,85 +1,87 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 
 
-const getUsersCurrentPlayback = ({ access_token }: any) => {
-const getCurrentPlayback: any = {
-  method: 'get',
-  url: 'https://api.spotify.com/v1/me/player',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${access_token}`
-  }
-};
+// const getUsersCurrentPlayback = (access_token: string) => {
+// const getCurrentPlayback: any = {
+//   method: 'get',
+//   url: 'https://api.spotify.com/v1/me/player',
+//   headers: {
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json',
+//     'Authorization': `Bearer ${access_token}`
+//   }
+// };
 
-axios(getCurrentPlayback)
-.then((response) =>{
-  console.log(JSON.stringify(response.data));
-})
-.catch((error) =>{
-  console.log(error);
-});
-};
-
-
-const startOrResumePlayback = ({access_token, track_uri}: any) => {
-
-  const data = JSON.stringify({
-    "context_uri": `${track_uri}`,
-    "offset": {
-      "position": 5
-    },
-    "position_ms": 0
-  });
-
-const startOrResume: any = {
-  method: 'put',
-  url: 'https://api.spotify.com/v1/me/player/play',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${access_token}`
-  },
-  data : data
-};
-
-axios(startOrResume)
-.then((response) =>{
-  console.log(JSON.stringify(response.data));
-})
-.catch((error) =>{
-  console.log(error);
-});
-};
-
-const addToQueue = ({access_token, track_uri}) => {
-const toQueue: any = {
-  method: 'post',
-  url: `https://api.spotify.com/v1/me/player/queue?${track_uri}`,
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${access_token}`
-  }
-};
-
-axios(toQueue)
-.then((response) =>{
-  console.log(JSON.stringify(response.data));
-})
-.catch((error) =>{
-  console.log(error);
-});
-};
-
-startOrResumePlayback('BQDTV2GN02ZUtQsNteMUIN7PRtYkTEFed0JHJdZCs_kUnmdZ9ADyIr2kpsgfGlBzcqXfC15be0ODNHVGoIgfMWhyf1W813pJtc9eSSjssnOeVzWXkQwWFT2E_dtlkpiStERFVPuVTjnq2cxc3tEmSIB0f2KdIbPKLJmovSs');
+// axios(getCurrentPlayback)
+// .then((response) =>{
+//   console.log(JSON.stringify(response.data));
+// })
+// .catch((error) =>{
+//   console.log(error);
+// });
+// };
 
 
+// const startOrResumePlayback = ({access_token, track_uri}: any) => {
 
-module.exports.getUsersCurrentPlayback = getUsersCurrentPlayback;
-module.exports.startOrResumePlayback = startOrResumePlayback;
-module.exports.addToQueue = addToQueue;
+//   const data = JSON.stringify({
+//     "context_uri": `${track_uri}`,
+//     "offset": {
+//       "position": 5
+//     },
+//     "position_ms": 0
+//   });
+
+// const startOrResume: any = {
+//   method: 'put',
+//   url: 'https://api.spotify.com/v1/me/player/play',
+//   headers: {
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json',
+//     'Authorization': `Bearer ${access_token}`
+//   },
+//   data : data
+// };
+
+// axios(startOrResume)
+// .then((response) =>{
+//   console.log(JSON.stringify(response.data));
+// })
+// .catch((error) =>{
+//   console.log(error);
+// });
+// };
+
+// const addToQueue = ({access_token, track_uri}: any) => {
+// const toQueue: any = {
+//   method: 'post',
+//   url: `https://api.spotify.com/v1/me/player/queue?${track_uri}`,
+//   headers: {
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json',
+//     'Authorization': `Bearer ${access_token}`
+//   }
+// };
+
+// axios(toQueue)
+// .then((response) =>{
+//   console.log(JSON.stringify(response.data));
+// })
+// .catch((error) =>{
+//   console.log(error);
+// });
+// };
+
+// startOrResumePlayback('');
+
+
+
+// export default {
+// getUsersCurrentPlayback,
+// // startOrResumePlayback,
+// // addToQueue,
+// }
 
 
 
