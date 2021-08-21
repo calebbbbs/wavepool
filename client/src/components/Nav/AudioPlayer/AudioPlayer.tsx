@@ -50,22 +50,22 @@ export const AudioPlayer = () => {
                   />
                 </Center>
                 <Stack>
-                  <Text fontSize="xs">Track: {currPlayback.item.name}</Text>
-                  <Text fontSize="xs">
+                  <Text >Track: {currPlayback.item.name}</Text>
+                  <Text >
                     Album: {currPlayback.item.album.name}
                   </Text>
-                  <chakra.div fontSize="xs">
+                  <chakra.div >
                     Artist:{" "}
                     {currPlayback.item.artists.map((artist: any, i: number) => {
                       if (i === currPlayback.item.artists.length - 1) {
                         return (
-                          <chakra.span fontSize="xs" key={i}>
+                          <chakra.span  key={i}>
                             {artist.name}
                           </chakra.span>
                         );
                       }
                       return (
-                        <chakra.span fontSize="xs" key={i}>
+                        <chakra.span  key={i}>
                           {artist.name},{" "}
                         </chakra.span>
                       );

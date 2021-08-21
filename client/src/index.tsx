@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript, ThemeProvider } from '@chakra-ui/react';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
@@ -18,7 +18,9 @@ ReactDOM.render(
       <UserContextProvider>
       <Router>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <ThemeProvider theme={theme}>
         <App />
+        </ThemeProvider>
       </Router>
       </UserContextProvider>
     </ApolloProvider>

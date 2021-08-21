@@ -30,6 +30,10 @@ export const config: Configuration = {
         enforce: 'pre',
         use: ['source-map-loader'],
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   resolve: {

@@ -1,15 +1,21 @@
 import React, {useContext} from 'react'
-import { chakra, Center, Image, Stack, Flex, Button, Spacer } from '@chakra-ui/react';
+import { chakra, Center, Text, Image, Stack, Button, Spacer, useColorModeValue } from '@chakra-ui/react';
 import { UserContext } from '../../../contexts/UserContext';
 import axios from 'axios'
 const SearchTrackListItem = (props: any) => {
 const {name, artists, album} = props.track;
 const {userObj} = useContext(UserContext);
+const bg = useColorModeValue("gray.200", "gray.900")
 
-
-    return (<chakra.div>
+    return (<chakra.div
+    bg={bg}
+    h="auto"
+    borderRadius="2vh"
+    m={2}>
         <hr></hr>
-            <Flex>
+            <Stack
+            mx={5}
+            p={4}>
         <Center>
             <Image
             aspect-ratio={1}
@@ -22,14 +28,14 @@ const {userObj} = useContext(UserContext);
         <Center>
 <Stack ml={2}
 mr='auto'>
-        <span>{name}</span>
-        <span>{artists.map((artist: any, i:number) => {
+        <Text fontSize="md">{name}</Text>
+        <Text fontSize="md">{artists.map((artist: any, i:number) => {
         if(i === artists.length - 1){
-            return <span key={i}>{artist.name}</span>
+            return <Text key={i} fontSize="md">{artist.name}</Text>
         }
-            return <span key={i} >{artist.name}, </span>
-        })}</span>
-        <span>{album.name}</span>
+            return <Text key={i} fontSize="md" >{artist.name}, </Text>
+        })}</Text>
+        <Text fontSize="md">{album.name}</Text>
         <hr></hr>
         </Stack>
         </Center>
@@ -49,7 +55,7 @@ mr='auto'>
         }}>
             Queue
         </Button>
-        </Flex>
+        </Stack>
         </chakra.div>)
 }
 
