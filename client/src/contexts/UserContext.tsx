@@ -23,6 +23,7 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [userObj, setUserObj] = useState<any>();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [currPlayback, setCurrPlayback] = useState<any>();
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   // const [spotifyApi, setSpotifyApi] = useState<SpotifyWebApi>()
   const getUser = () => {
     axios.get<any>('http://localhost:4000/getUser').then((res) => {
@@ -51,17 +52,22 @@ const UserContextProvider: React.FC = ({ children }) => {
 
     await axios(getCurrentPlayback)
       .then((response) => {
-        console.log(response.data);
         setCurrPlayback(response.data);
+        console.log(response.data);
+        setIsPlaying(response.data.is_playing)
       })
       .catch((error: AxiosError) => {
         console.log(error);
       });
   };
 
+
   React.useEffect(() => {
     getUser();
   }, [JSON.stringify(userObj)]);
+
+
+
   const userProps = {
     userObj,
     isLoggedIn,
@@ -69,7 +75,9 @@ const UserContextProvider: React.FC = ({ children }) => {
     getUsersCurrentPlayback,
     currPlayback,
     setCurrPlayback,
-    spotifyApi
+    spotifyApi,
+    isPlaying,
+    setIsPlaying
   };
 
   return (

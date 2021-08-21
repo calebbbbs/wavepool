@@ -1,11 +1,11 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext} from 'react'
 
 import { UserContext } from '../../../contexts/UserContext';
 import { Flex, Button, ButtonGroup } from '@chakra-ui/react';
 
 export const TransportControls = () => {
-    const { currPlayback, spotifyApi, userObj, getUsersCurrentPlayback } = useContext(UserContext);
-    const [isPlaying, setIsPlaying] = useState<boolean>(currPlayback.is_playing);
+    const { isPlaying, setIsPlaying, spotifyApi, userObj, getUsersCurrentPlayback } = useContext(UserContext);
+    
 
     return (
         <Flex>

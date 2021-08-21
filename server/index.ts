@@ -6,8 +6,7 @@ import path from 'path';
 import typeOrmConfig from '../server/db/dbConfig';
 import User from './db/entities/User'
 
-
-
+import axios, {AxiosError} from 'axios';
 
 require('dotenv').config();
 
@@ -22,7 +21,7 @@ import { Request, Response } from 'express-serve-static-core';
 import { Profile, VerifyCallback } from "passport-spotify";
 
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
-const allowedOrigins = ['http://localhost:4000/', 'https://studio.apollographql.com'];
+const allowedOrigins = ['http://localhost:4000/', 'https://studio.apollographql.com', 'https://api.spotify.com/'];
 
 import {UserResolver} from "./graphql/resolvers";
 
@@ -44,6 +43,7 @@ const authCallbackPath = '/auth/spotify/callback';
   await server.start();
 
   const app = express();
+  app.use(cors());
 
   passport.serializeUser(function (user: object, done: VerifyCallback) {
     done(null, user);
@@ -71,13 +71,37 @@ const authCallbackPath = '/auth/spotify/callback';
         //user.photo = profile.photos[0].value || null;
         await user.save();
         process.nextTick(() => {
-          console.log(user);
           done(null, user);
         });
       }
     )
   );
 
+
+  const addToQueue = async (access_token: String, uri: String) => {
+    const toQueue: any = {
+      method: 'POST',
+      url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${access_token}`
+      }
+    };
+   await axios(toQueue)
+    .then((response) =>{
+      // console.log(JSON.stringify(response.data));
+    })
+    .catch((error) =>{
+      console.log(error);
+    });
+    };
+
+    app.get('/addToQueue/:access_token/:uri', (req: Request, res: Response) =>{
+
+      const {access_token, uri} = req.params;
+      addToQueue(access_token, uri).then((data) => res.status(201).send(data)).catch((error: AxiosError) => console.log(error));
+    })
 
 
   app.use(

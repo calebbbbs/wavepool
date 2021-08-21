@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { chakra, Center, Image, Stack, Flex, Button, Spacer } from '@chakra-ui/react';
+import { UserContext } from '../../../contexts/UserContext';
+import axios from 'axios'
 const SearchTrackListItem = (props: any) => {
 const {name, artists, album} = props.track;
+const {userObj} = useContext(UserContext);
+
 
     return (<chakra.div>
         <hr></hr>
@@ -30,10 +34,20 @@ mr='auto'>
         </Stack>
         </Center>
         <Spacer />
-        <Button 
+        <Button
         colorScheme="green"
         float="right"
         placeholder="send to friends">Send
+        </Button>
+        <Button onClick={() => {
+            const params = {
+                access_token: userObj.access_token,
+                uri: props.track.uri
+            }
+            axios(`http://localhost:4000/addToQueue/${userObj.access_token}/${props.track.uri}`, {params}).then((data) => 
+            console.log(data)).catch((err) => console.error(err));
+        }}>
+            Queue
         </Button>
         </Flex>
         </chakra.div>)
