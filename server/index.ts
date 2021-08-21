@@ -2,8 +2,10 @@ import "reflect-metadata";
 import cors from 'cors';
 import { buildSchema } from "type-graphql";
 import { createConnection } from 'typeorm';
-import typeOrmConfig from '../server/db/dbConfig';
 import path from 'path';
+import typeOrmConfig from '../server/db/dbConfig';
+import User from './db/entities/User'
+
 
 
 
@@ -17,14 +19,12 @@ const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 // import * as express from 'express';
 import { Request, Response } from 'express-serve-static-core';
-import { Profile, VerifyCallback} from "passport-spotify";
-
+import { Profile, VerifyCallback } from "passport-spotify";
 
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
 const allowedOrigins = ['http://localhost:4000/', 'https://studio.apollographql.com'];
 
-import {UserResolver} from "./graphql/UserResolver";
-// import  typeDefs  from "./graphql/typeDefs";
+import {UserResolver} from "./graphql/resolvers";
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
@@ -37,7 +37,7 @@ async function startApolloServer() {
     resolvers: [UserResolver]
   }
   );
-  const server = new ApolloServer({ schema });
+const server = new ApolloServer({ schema });
 const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
 const authCallbackPath = '/auth/spotify/callback';
 
@@ -61,16 +61,18 @@ const authCallbackPath = '/auth/spotify/callback';
         callbackURL: `http://localhost:4000${authCallbackPath}`,
         passReqToCallback: true
       },
-      (req: any, accessToken: any, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) => {
-
+      async (req: any, accessToken: any, refreshToken: string, expires_in: number, profile: Profile, done: VerifyCallback) => {
+        const user = new User();
+        user.user_id = profile.id;
+        user.user_name = profile.displayName;
+        user.user_email = profile._json.email;
+        user.access_token = accessToken;
+        user.refresh_token = refreshToken;
+        //user.photo = profile.photos[0].value || null;
+        await user.save();
         process.nextTick(() => {
-          console.log('req.url ----->', req.url);
-          console.log('accessToken ------>:', accessToken);
-          console.log('refreshToken ------>', refreshToken);
-          console.log('expires_in ------>', expires_in);
-          console.log('profile.id------>', profile.id);
-          done(null, profile);
-          // done(null,{ accessToken, refreshToken, expires_in, profile});
+          console.log(user);
+          done(null, user);
         });
       }
     )
@@ -88,7 +90,7 @@ const authCallbackPath = '/auth/spotify/callback';
   app.get(
     '/auth/spotify',
     await passport.authenticate('spotify', {
-      scope: ['user-read-email', 'user-read-private'],
+      scope: ['user-read-email', 'user-read-private', 'user-read-playback-state', 'user-modify-playback-state', 'user-read-currently-playing', 'playlist-modify-public'],
       showDialog: true,
     }), (req: Request, res: Response) =>{
       res.status(200).send(req.user);
@@ -123,7 +125,9 @@ app.get('*', (req: Request, res: Response) => {
 
 
   await new Promise(resolve => app.listen({ port: 4000 }, resolve));
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+  console.log(`🌊 Ride the Wave 🌊 \n
+  http://localhost:4000${server.graphqlPath}\n
+  http://localhost:4000\n`);
   return { server, app };
 }
 startApolloServer();

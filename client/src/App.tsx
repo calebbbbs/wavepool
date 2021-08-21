@@ -1,5 +1,5 @@
 import React, { ReactElement, useContext } from 'react';
-import Main from './components/Main';
+import Nav from './components/Nav/Nav';
 import { Switch, Route } from 'react-router-dom';
 
 import { UserContext } from './contexts/UserContext';
@@ -8,14 +8,11 @@ const App = (): ReactElement => {
   const { userObj }: any = useContext(UserContext);
   console.log(userObj);
 return (
-  <>
-    <h1>Wavepool</h1>
     <Switch>
       <Route exact path='/'>
-        <Main user={...userObj}/>
+        <Nav user={...userObj}/>
       </Route>
     </Switch>
-  </>
 );
 }
 export default App;
