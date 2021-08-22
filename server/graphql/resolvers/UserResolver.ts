@@ -1,4 +1,3 @@
-// import { userInfo } from "os";
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import { CreateUserInput }from '../inputs'
 import User from "../../db/entities/User";

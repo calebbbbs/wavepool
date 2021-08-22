@@ -27,7 +27,7 @@ const allowedOrigins = [
   "https://api.spotify.com/",
 ];
 
-import { UserResolver } from "./graphql/resolvers";
+import { UserResolver, FriendResolver } from "./graphql/resolvers";
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
@@ -36,11 +36,12 @@ const options: cors.CorsOptions = {
 async function startApolloServer() {
   await createConnection(typeOrmConfig).catch((err) => console.log(err));
   const schema = await buildSchema({
-    resolvers: [UserResolver],
-  });
-  const server = new ApolloServer({ schema });
-  const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
-  const authCallbackPath = "/auth/spotify/callback";
+    resolvers: [UserResolver, FriendResolver]
+  }
+  );
+const server = new ApolloServer({ schema });
+const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
+const authCallbackPath = '/auth/spotify/callback';
 
   await server.start();
 

@@ -1,6 +1,8 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable, BaseEntity } from 'typeorm';
+import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
+import Friend from './Friend';
+import RecommendedTrack from './RecommendedTrack';
 
 
 @Entity()
@@ -26,18 +28,11 @@ export default class User extends BaseEntity {
   @Column()
   refresh_token: string;
 
-  // @Field(() => String, {nullable: true})
-  // @Column()
-  // photo: string;
+  @Field(() => [Friend], {nullable: true})
+  @OneToMany(() => Friend, (friend: Friend) => friend.user)
+  friends!: Promise<Friend[]>;
 
-
-  @Field(() =>[User], {nullable: true})
-  @ManyToMany(() => User, user => user.friends)
-  @JoinTable()
-  friends: User[];
-
-  // @Field(() => [User], {nullable: true})
-  // @ManyToMany(() => User, user => user.pending_friends)
-  // @JoinTable()
-  // pending_friends: User[];
+  @Field(() => [RecommendedTrack], {nullable: true})
+  @OneToMany(() => RecommendedTrack, (recommendedTrack: RecommendedTrack) => recommendedTrack.user)
+  recommendedTracks!: Promise<RecommendedTrack[]>;
 }
