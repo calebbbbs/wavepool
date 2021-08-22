@@ -71,7 +71,6 @@ const authCallbackPath = '/auth/spotify/callback';
         //user.photo = profile.photos[0].value || null;
         await user.save();
         process.nextTick(() => {
-          console.log(user);
           done(null, user);
         });
       }

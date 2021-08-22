@@ -1,12 +1,13 @@
 import { InputType, Field } from "type-graphql";
+
 @InputType()
-export class CreateFriendInput {
+export class CreateRecommendedInput {
   @Field()
   user_id: string;
 
   @Field()
-  friend_email: string;
+  track_id: string;
 
   @Field()
-  friend_status: boolean;
+  friend_id: string;
 }
