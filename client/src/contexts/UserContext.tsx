@@ -25,6 +25,7 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [currPlayback, setCurrPlayback] = useState<any>();
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [recentPlays, setRecentPlays] = useState<any>();
+  const [userPlaylists, setUserPlaylists] = useState<any>();
 
   const getRecentlyPlayed = (access_token: string) => {
     spotifyApi.setAccessToken(access_token);
@@ -75,11 +76,26 @@ const UserContextProvider: React.FC = ({ children }) => {
       });
   };
 
+  const getUsersPlaylists = (access_token: string) =>{
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.getUserPlaylists()
+  .then((response) =>{
+    // const res: any[] = [];
+    // response.body.items.forEach((item: any) => res.push(item));
+    setUserPlaylists(response.body.items);
+    console.log((response.body.items));
+    // return res;
+  })
+  .catch((error) =>{
+    console.log(error);
+  });
+}
 
   React.useEffect(() => {
     getUser();
     if(userObj){
     getRecentlyPlayed(userObj.access_token);
+    getUsersPlaylists(userObj.access_token);
     }
   }, [JSON.stringify(userObj)]);
 
@@ -97,7 +113,10 @@ const UserContextProvider: React.FC = ({ children }) => {
     setIsPlaying,
     recentPlays,
     setRecentPlays,
-    getRecentlyPlayed
+    getRecentlyPlayed,
+    getUsersPlaylists,
+    userPlaylists,
+    setUserPlaylists
   };
 
   return (

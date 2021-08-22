@@ -4,7 +4,7 @@ import { UserContext } from '../../../contexts/UserContext';
 import axios from 'axios'
 const SearchTrackListItem = (props: any) => {
 const {name, artists, album} = props.track;
-const {userObj} = useContext(UserContext);
+const {userObj, getUsersPlaylists, spotifyApi} = useContext(UserContext);
 const bg = useColorModeValue("gray.200", "gray.900")
 
     return (<chakra.div
@@ -54,6 +54,15 @@ mr='auto'>
             console.log(data)).catch((err) => console.error(err));
         }}>
             Queue
+        </Button>
+        <Button onClick={() => {
+            spotifyApi.setAccessToken(userObj.access_token);
+            getUsersPlaylists(userObj.access_token);
+
+        }}
+        colorScheme="teal"
+        float="right"
+        placeholder="add to playlist">Add
         </Button>
         </Stack>
         </chakra.div>)
