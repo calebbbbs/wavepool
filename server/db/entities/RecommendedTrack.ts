@@ -1,23 +1,48 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryColumn, Column, BaseEntity, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
 import User from './User';
-import Track from './Track';
 
 @Entity()
 @ObjectType()
 export default class RecommendedTrack extends BaseEntity {
-  @PrimaryColumn()
-  @Field(() => ID)
-  @OneToOne(() => User)
-  @JoinColumn()
-  user_id: number;
+  @Field(() => String)
+  @PrimaryGeneratedColumn()
+  id: string;
 
-  @Field(() => Track)
-  @ManyToOne(() => Track, track => track, {cascade:true})
-  track_id: Track;
-
-  @Field(() => Number)
   @Column()
-  friend_id: number;
+  @Field(() => ID)
+  user_id: String;
+
+  @Field(() => String)
+  @Column()
+  friend_id: string;
+
+  @Field(() => String)
+  @Column()
+  friend_name: string;
+
+  @Field(() => String)
+  @Column()
+  track_title: string;
+
+  @Field(() => String)
+  @Column()
+  spotify_uri: string;
+ 
+  @Field(() => [String])
+  @Column("text", { array: true })
+  artists: string[];
+ 
+  @Field(() => String)
+  @Column()
+  album_title: string;
+
+  @Field(() => String)
+  @Column()
+  album_art: string;
+
+  @Field(() => User)
+  @ManyToOne(() => User, (user: User) => user.recommendedTracks, {cascade:true})
+  user!: Promise<User | undefined>;
 }

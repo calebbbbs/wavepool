@@ -24,7 +24,7 @@ import { Profile, VerifyCallback } from "passport-spotify";
 const CLIENT_PATH = path.resolve(__dirname, '..', 'client/dist');
 const allowedOrigins = ['http://localhost:4000/', 'https://studio.apollographql.com'];
 
-import { UserResolver, FriendResolver } from "./graphql/resolvers";
+import { UserResolver, FriendResolver, RecommendedResolver } from "./graphql/resolvers";
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
@@ -34,7 +34,7 @@ async function startApolloServer() {
 
   await createConnection(typeOrmConfig).catch(err => console.log(err));
   const schema = await buildSchema({
-    resolvers: [UserResolver, FriendResolver]
+    resolvers: [ UserResolver, FriendResolver, RecommendedResolver ]
   }
   );
 const server = new ApolloServer({ schema });
@@ -71,7 +71,6 @@ const authCallbackPath = '/auth/spotify/callback';
         //user.photo = profile.photos[0].value || null;
         await user.save();
         process.nextTick(() => {
-          console.log(user);
           done(null, user);
         });
       }
