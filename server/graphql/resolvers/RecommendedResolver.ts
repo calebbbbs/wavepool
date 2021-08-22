@@ -14,20 +14,25 @@ export class RecommendedResolver {
 
   @Mutation(() => RecommendedTrack)
   async createRecommended(@Arg("data") data: CreateRecommendedInput) {
+    const { user_id, friend_id, track_title, spotify_uri, artists, album_title, album_art } = data;
+    const friend = await User.findOne({where: { user_id: user_id}});
     const track = new RecommendedTrack();
-    track.user_id = data.user_id;
-    track.friend_id = data.friend_id;
-    track.track_title = data.track_title;
-    track.spotify_uri = data.spotify_uri;
-    track.artists = data.artists;
-    track.album_title = data.album_title;
-    track.album_art = data.album_art;
-    await track.save()
-
+    if(friend) {
+      track.user_id = user_id;
+      track.friend_id = friend_id;
+      track.friend_name = friend.user_name;
+      track.track_title = track_title;
+      track.spotify_uri = spotify_uri;
+      track.artists = artists;
+      track.album_title = album_title;
+      track.album_art = album_art;
+      await track.save()
+    }
+    
     await getConnection()
     .createQueryBuilder()
     .relation(User, "recommendedTracks")
-    .of(data.user_id)
+    .of(friend_id)
     .add(track);
   return track;
   }
