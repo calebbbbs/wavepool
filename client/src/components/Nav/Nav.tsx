@@ -20,21 +20,20 @@ function Nav(props: any) {
   return (
     <Flex>
       <chakra.h1 fontSize="4xl" m={4}>
-        Wavepool 🌊{" "}
+        Wavepool 🌊
       </chakra.h1>
       <Spacer />
-      {currPlayback && <AudioPlayer />}
-      <Spacer />
-      {!isLoggedIn ? (
-        <LoginButton />
-      ) : (
-        <chakra.div>
-          <Search />
-        </chakra.div>
-      )}
       <Button m={4} variant="ghost" onClick={toggleColorMode}>
         {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
       </Button>
+      {!isLoggedIn ? (
+        <LoginButton />
+        ) : (
+          <chakra.div>
+          <Search />
+        </chakra.div>
+      )}
+      {currPlayback && <AudioPlayer />}
     </Flex>
   );
 }
