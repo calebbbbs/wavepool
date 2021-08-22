@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import { getConnection } from "typeorm";
-import { CreateRecommendedInput } from '../inputs'
+import { CreateRecommendedInput, DeleteRecommendedInput } from '../inputs'
 import RecommendedTrack from "../../db/entities/RecommendedTrack";
 import User from '../../db/entities/User';
 
@@ -30,5 +30,18 @@ export class RecommendedResolver {
     .of(data.user_id)
     .add(track);
   return track;
+  }
+
+  @Mutation(() => RecommendedTrack)
+  async deleteRecommended(@Arg("data") data: DeleteRecommendedInput) {
+    const { user_id, track_title } = data;
+ 
+    await getConnection()
+    .createQueryBuilder()
+    .delete()
+    .from(RecommendedTrack)
+    .where("user_id = :user_id, track_title = :track_title", {user_id: user_id, track_title: track_title})
+    .execute();
+  return "track deleted";
   }
 }
