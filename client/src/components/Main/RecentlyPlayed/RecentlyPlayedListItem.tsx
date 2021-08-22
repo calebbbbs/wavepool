@@ -9,6 +9,14 @@ import {
   Button,
   Spacer,
   useColorModeValue,
+  Popover,
+  PopoverTrigger,
+  Input,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverArrow,
+  PopoverCloseButton,
 } from "@chakra-ui/react";
 import { UserContext } from "../../../contexts/UserContext";
 import axios from "axios";
@@ -58,13 +66,18 @@ const RecentlyPlayedListItem = (props: any) => {
         <Spacer />
         <Stack m={4}>
           <Center>
-            <Button
-              colorScheme="green"
-              float="right"
-              placeholder="send to friends"
-            >
-              Send
-            </Button>
+          <Popover>
+  <PopoverTrigger>
+    <Button>Send</Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverArrow />
+    <PopoverCloseButton />
+    <PopoverHeader>Recipients Email</PopoverHeader>
+    <PopoverBody><Input/>
+    <Button>Send</Button></PopoverBody>
+  </PopoverContent>
+</Popover>
             </Center>
             <Center>
             <Button
