@@ -32,16 +32,12 @@ export class RecommendedResolver {
   return track;
   }
 
-  @Mutation(() => RecommendedTrack)
+  @Mutation(() => Boolean)
   async deleteRecommended(@Arg("data") data: DeleteRecommendedInput) {
     const { user_id, track_title } = data;
- 
-    await getConnection()
-    .createQueryBuilder()
-    .delete()
-    .from(RecommendedTrack)
-    .where("user_id = :user_id, track_title = :track_title", {user_id: user_id, track_title: track_title})
-    .execute();
-  return "track deleted";
+    const recommended = await RecommendedTrack.findOne({where: {user_id: user_id, track_title: track_title}});
+    if(!recommended) { return false }
+    await recommended.remove();
+    return true;
   }
 }
