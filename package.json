@@ -6,8 +6,9 @@
   "author": "wavepool",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon server -f ./.env",
-    "dev": "webpack --env ./.env"
+    "start": "nodemon server/index.ts -f ./.env",
+    "dev": "webpack --mode development && node server/index.js"
+
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",

@@ -15,6 +15,7 @@ import Search from "./Search/Search";
 function Nav(props: any) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isLoggedIn, currPlayback }: any = useContext(UserContext);
+  console.log(isLoggedIn);
 
   return (
     <Flex>

@@ -3,7 +3,7 @@ import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 const webpack = require('webpack')
-const dotenv = require('dotenv')
+// const dotenv = require('dotenv')
 
 const distDir = path.resolve(__dirname, 'client/dist');
 
@@ -48,7 +48,11 @@ export const config: Configuration = {
   plugins: [
     new HtmlWebpackPlugin({ template: path.join(__dirname, 'client/src', 'index.html') }),
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(dotenv.config().parsed) // it will automatically pick up key values from .env file
+      'process.env': {
+        'CLIENT_ID':JSON.stringify('process.env.CLIENT_ID'),
+        'CLIENT_SECRET': JSON.stringify('process.env.CLIENT_SECRET')
+      }
+       // it will automatically pick up key values from .env file
    })
   ],
 };

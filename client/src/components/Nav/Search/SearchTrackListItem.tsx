@@ -30,11 +30,16 @@ mr='auto'>
         </Stack>
         </Center>
         <Spacer />
-        <Button 
+        <Button
         colorScheme="green"
         float="right"
         placeholder="send to friends">Send
         </Button>
+        {/* <Button
+        colorScheme="teal"
+        float="right"
+        placeholder="send to friends">Add
+        </Button> */}
         </Flex>
         </chakra.div>)
 }
