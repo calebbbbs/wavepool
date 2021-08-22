@@ -1,5 +1,5 @@
 import { UserResolver } from './UserResolver';
 import { FriendResolver } from './FriendResolver';
-import { TrackResolver } from './TrackResolver';
+import { RecommendedResolver } from './RecommendedResolver';
 
-export { UserResolver, FriendResolver, TrackResolver };
+export { UserResolver, FriendResolver, RecommendedResolver };

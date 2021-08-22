@@ -7,7 +7,6 @@ import User from '../../db/entities/User';
 export class FriendResolver {
   @Mutation(() => Friend)
   async createFriend(@Arg("data") data: CreateFriendInput): Promise<Friend> {
-  
     const { user_id, friend_email, friend_status } = data;
     const friendData: any = await User.findOne({where: {user_email: friend_email}});
     const userData: any = await User.findOne({where: {user_id: user_id}});
