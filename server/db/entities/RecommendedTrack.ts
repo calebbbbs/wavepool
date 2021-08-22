@@ -22,9 +22,9 @@ export default class RecommendedTrack extends BaseEntity {
   @Column()
    spotify_uri: string;
  
-  @Field(() => [])
-  @Column()
-  artists: [];
+  @Field(() => [String])
+  @Column("text", { array: true })
+  artists: string[];
  
   @Field(() => String)
   @Column()
