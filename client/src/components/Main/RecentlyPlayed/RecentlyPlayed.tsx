@@ -48,7 +48,7 @@ return (
           </Link>
 
           {recentPlays && <div>
-          {seeMore ? <RecentlyPlayedList recentPlays={recentPlays}/> :
+          {seeMore ? <RecentlyPlayedList recentPlays={recentPlays.slice(0,5)}/> :
           <RecentlyPlayedList recentPlays={recentPlays.slice(0,2)}/>}</div>}
         </Box>
 

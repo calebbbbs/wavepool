@@ -1,12 +1,16 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryColumn, Column, BaseEntity, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
 import User from './User';
 
 @Entity()
 @ObjectType()
 export default class RecommendedTrack extends BaseEntity {
-  @PrimaryColumn()
+  @Field(() => String)
+  @PrimaryGeneratedColumn()
+  id: string;
+
+  @Column()
   @Field(() => ID)
   user_id: String;
 
