@@ -27,7 +27,7 @@ const allowedOrigins = [
   "https://api.spotify.com/",
 ];
 
-import { UserResolver, FriendResolver } from "./graphql/resolvers";
+import { UserResolver, FriendResolver, RecommendedResolver } from "./graphql/resolvers";
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
@@ -36,7 +36,7 @@ const options: cors.CorsOptions = {
 async function startApolloServer() {
   await createConnection(typeOrmConfig).catch((err) => console.log(err));
   const schema = await buildSchema({
-    resolvers: [UserResolver, FriendResolver]
+    resolvers: [ UserResolver, FriendResolver, RecommendedResolver ]
   }
   );
 const server = new ApolloServer({ schema });

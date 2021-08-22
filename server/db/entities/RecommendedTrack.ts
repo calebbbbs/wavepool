@@ -8,11 +8,7 @@ import User from './User';
 export default class RecommendedTrack extends BaseEntity {
   @PrimaryColumn()
   @Field(() => ID)
-  user_id: number;
-
-  @Field(() => String)
-  @Column()
-  track_id: string;
+  user_id: String;
 
   @Field(() => String)
   @Column()
@@ -20,7 +16,11 @@ export default class RecommendedTrack extends BaseEntity {
 
   @Field(() => String)
   @Column()
-   spotify_uri: string;
+  track_title: string;
+
+  @Field(() => String)
+  @Column()
+  spotify_uri: string;
  
   @Field(() => [String])
   @Column("text", { array: true })
@@ -28,11 +28,11 @@ export default class RecommendedTrack extends BaseEntity {
  
   @Field(() => String)
   @Column()
-  album_id: string;
- 
+  album_title: string;
+
   @Field(() => String)
   @Column()
-  album_uri: string;
+  album_art: string;
 
   @Field(() => User)
   @ManyToOne(() => User, (user: User) => user.recommendedTracks, {cascade:true})
