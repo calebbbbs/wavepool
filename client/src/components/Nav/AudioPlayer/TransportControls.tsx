@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
-
+import { FaPlay, FaPause } from 'react-icons/fa';
+import { CgPlayTrackPrev, CgPlayTrackNext } from 'react-icons/cg';
 import { UserContext } from '../../../contexts/UserContext';
 import { Flex, Button, ButtonGroup } from '@chakra-ui/react';
 
@@ -19,7 +20,7 @@ export const TransportControls = () => {
 
           }}
         >
-          Prev
+          <CgPlayTrackPrev/>
         </Button>
 
         {isPlaying ? (
@@ -32,7 +33,7 @@ export const TransportControls = () => {
                 getUsersCurrentPlayback(userObj.access_token)
               }}
             >
-              Pause
+                 <FaPause />
             </Button>
           </div>
         ) : (
@@ -45,7 +46,7 @@ export const TransportControls = () => {
                 getUsersCurrentPlayback(userObj.access_token)
               }}
             >
-              Play
+              <FaPlay />
             </Button>
           </div>
         )}
@@ -57,7 +58,7 @@ export const TransportControls = () => {
             setTimeout(() => {getUsersCurrentPlayback(userObj.access_token)}, 1000)
           }}
         >
-          Next
+          <CgPlayTrackNext/>
         </Button>
         </ButtonGroup>
       </Flex>

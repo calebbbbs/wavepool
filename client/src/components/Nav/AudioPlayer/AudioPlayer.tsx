@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { BsMusicNoteBeamed } from 'react-icons/bs'
 import { UserContext } from "../../../contexts/UserContext";
 import {
   chakra,
@@ -31,7 +31,7 @@ export const AudioPlayer = () => {
   return (
     <>
       <Button m={4} variant="ghost" colorScheme="teal" onClick={onOpen}>
-        <HamburgerIcon />
+        <BsMusicNoteBeamed />
       </Button>
       <Drawer isOpen={isOpen} placement="top" onClose={onClose}>
         <DrawerOverlay />

@@ -13,7 +13,7 @@ const client = new ApolloClient({
 
 
 ReactDOM.render(
-  <ChakraProvider>
+  <ChakraProvider theme={theme}>
     <ApolloProvider client={client}>
       <UserContextProvider>
       <Router>

@@ -24,7 +24,23 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [currPlayback, setCurrPlayback] = useState<any>();
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  // const [spotifyApi, setSpotifyApi] = useState<SpotifyWebApi>()
+  const [recentPlays, setRecentPlays] = useState<any>();
+
+  const getRecentlyPlayed = (access_token: string) => {
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.getMyRecentlyPlayedTracks({
+      limit : 10
+    }).then(function(data) {
+        // Output items
+        const res: any[] = [];
+        data.body.items.forEach(item => res.push(item.track));
+        setRecentPlays(res);
+        return res;
+      }, function(err) {
+        console.log('Something went wrong!', err);
+      });
+  }
+
   const getUser = () => {
     axios.get<any>('http://localhost:4000/getUser').then((res) => {
       if (res.data) {
@@ -32,7 +48,6 @@ const UserContextProvider: React.FC = ({ children }) => {
         setIsLoggedIn(true);
         if(userObj){
         getUsersCurrentPlayback(userObj.access_token);
-        console.log(`this is the fuckin api`, spotifyApi)
         spotifyApi.setAccessToken(userObj.access_token);
         }
       }
@@ -53,7 +68,6 @@ const UserContextProvider: React.FC = ({ children }) => {
     await axios(getCurrentPlayback)
       .then((response) => {
         setCurrPlayback(response.data);
-        console.log(response.data);
         setIsPlaying(response.data.is_playing)
       })
       .catch((error: AxiosError) => {
@@ -64,6 +78,9 @@ const UserContextProvider: React.FC = ({ children }) => {
 
   React.useEffect(() => {
     getUser();
+    if(userObj){
+    getRecentlyPlayed(userObj.access_token);
+    }
   }, [JSON.stringify(userObj)]);
 
 
@@ -77,7 +94,10 @@ const UserContextProvider: React.FC = ({ children }) => {
     setCurrPlayback,
     spotifyApi,
     isPlaying,
-    setIsPlaying
+    setIsPlaying,
+    recentPlays,
+    setRecentPlays,
+    getRecentlyPlayed
   };
 
   return (

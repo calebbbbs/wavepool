@@ -2,6 +2,7 @@ import React from 'react'
 import SearchTrackListItem from './SearchTrackListItem'
 // import { chakra } from '@chakra-ui/system'
 import Carousel from "react-multi-carousel";
+
 import "react-multi-carousel/lib/styles.css";
 const SearchTrackList = (props: any) => {
   const responsive = {
@@ -27,7 +28,7 @@ const SearchTrackList = (props: any) => {
       return  <SearchTrackListItem track={e} key={i}/>
     })
 
-    return (<Carousel 
+    return (<Carousel
       swipeable={false}
       draggable={false}
       showDots={true}
