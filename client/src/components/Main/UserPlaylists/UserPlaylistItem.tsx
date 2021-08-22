@@ -59,11 +59,11 @@ const UserPlaylistItem = (props: any) => {
         <Stack m={4}>
           <Center>
             <Button
-              colorScheme="green"
+              colorScheme="teal"
               float="right"
               placeholder="send to friends"
             >
-              Send
+              Add
             </Button>
             </Center>
             <Center>

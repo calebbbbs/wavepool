@@ -1,15 +1,14 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
 import {
     Flex,
     Box,
-    Text,
     useColorModeValue,
     Link,
 } from "@chakra-ui/react"
 import {UserContext }from "../../../contexts/UserContext"
 import PlaylistContainer from './UserPlaylistContainer';
 export const UserPlaylists = () => {
-const [seeMore, setSeeMore] = useState<boolean>(false)
+// const [seeMore, setSeeMore] = useState<boolean>(false)
 const {userObj, getUsersPlaylists, userPlaylists} = useContext(UserContext);
 useEffect(() => {
   getUsersPlaylists();
@@ -45,17 +44,17 @@ return (
           </Link>
 
           {userPlaylists && <div>
-          {seeMore ? <PlaylistContainer userPlaylists={userPlaylists}/> :
-          <PlaylistContainer userPlaylists={userPlaylists.slice(0,2)}/>}</div>}
+          {/* {seeMore ? <PlaylistContainer userPlaylists={userPlaylists}/> : */}
+          <PlaylistContainer userPlaylists={userPlaylists.slice(0, 1)}/></div>}
         </Box>
 
         <Flex justifyContent="space-between" alignItems="center" mt={4}>
           <Link
             color={useColorModeValue("brand.600", "brand.400")}
             _hover={{ textDecor: "underline" }}
-            onClick={() => {setSeeMore(!seeMore)}}
+            // onClick={() => {setSeeMore(!seeMore)}}
           >
-            {seeMore ? <Text>See Less</Text>: <Text>See More</Text>}
+            {/* {seeMore ? <Text>See Less</Text>: <Text>See More</Text>} */}
           </Link>
 
           <Flex alignItems="center">
