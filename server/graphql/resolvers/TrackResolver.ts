@@ -1,11 +1,12 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import { CreateTrackInput } from '../inputs'
 import Track from "../../db/entities/Track";
+
 @Resolver()
 export class TrackResolver {
   @Query(() => [Track])
   getTracks(): Promise<Track[]> {
-    return Tracks.find();
+    return Track.find();
   }
 
   @Query(() => Track)

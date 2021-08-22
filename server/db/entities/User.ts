@@ -29,5 +29,5 @@ export default class User extends BaseEntity {
 
   @Field(() => [Friend], {nullable: true})
   @OneToMany(() => Friend, (friend: Friend) => friend.user)
-  friends: Promise<Friend[]>;
+  friends!: Promise<Friend[]>;
 }
