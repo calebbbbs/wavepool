@@ -2,6 +2,7 @@
 import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
 import Friend from './Friend';
+import RecommendedTrack from './RecommendedTrack';
 
 
 @Entity()
@@ -30,4 +31,8 @@ export default class User extends BaseEntity {
   @Field(() => [Friend], {nullable: true})
   @OneToMany(() => Friend, (friend: Friend) => friend.user)
   friends!: Promise<Friend[]>;
+
+  @Field(() => [RecommendedTrack], {nullable: true})
+  @OneToMany(() => RecommendedTrack, (recommendedTrack: RecommendedTrack) => recommendedTrack.user)
+  recommendedTracks!: Promise<RecommendedTrack[]>;
 }
