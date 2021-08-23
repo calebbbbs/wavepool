@@ -48,10 +48,8 @@ const UserContextProvider: React.FC = ({ children }) => {
       if (res.data) {
         setUserObj(res.data);
         setIsLoggedIn(true);
-        if(userObj){
         getUsersCurrentPlayback(userObj.access_token);
         spotifyApi.setAccessToken(userObj.access_token);
-        }
       }
     });
   };
