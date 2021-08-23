@@ -5,7 +5,7 @@ import { SimpleGrid } from '@chakra-ui/react'
 import RecommendedTracks from './RecommendedTracks/RecommendedTracks'
 export const Main = () => {
     return (
-        <SimpleGrid columns={[1, null, 2]} spacing="40px">
+        <SimpleGrid minChildWidth="350px" spacing="80px">
           <RecentlyPlayed/>
           <RecommendedTracks/>
           <UserPlaylists/>

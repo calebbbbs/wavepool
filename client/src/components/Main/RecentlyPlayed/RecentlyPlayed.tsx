@@ -30,7 +30,7 @@ return (
         py={4}
         rounded="lg"
         shadow="lg"
-        bg={useColorModeValue("brand.100", "brand.700")}
+        bg={useColorModeValue("brand.100", "brand.800")}
         maxW="2xl"
       >
 
