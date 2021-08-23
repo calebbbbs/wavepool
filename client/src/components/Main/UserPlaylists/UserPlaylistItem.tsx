@@ -3,7 +3,6 @@ import {
   chakra,
   Center,
   Text,
-  Image,
   Flex,
   Stack,
   Button,
@@ -19,19 +18,17 @@ const UserPlaylistItem = (props: any) => {
   const { userPlaylists } = useContext(UserContext);
   return (
     <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
-      <hr></hr>
       <Flex mx={5} p={4}>
-        <Center>
-          <Image
+        {/* <Center>
+          {/* <Image
             aspect-ratio={1}
             m={2}
             w="120px"
             h="120px"
             float="left"
             // src={album.images[1].url}
-            alt="Album Cover"
-          />
-        </Center>
+          /> */}
+        {/* </Center> */}
         <Center>
           <Stack ml={2} mr="auto">
             {/* <Text fontSize="md">{name}</Text> */}
@@ -46,20 +43,20 @@ const UserPlaylistItem = (props: any) => {
                 }
                 return (
                   <Text key={i} fontSize="md">
-                    {playlist.name},{" "}
+                    {playlist.name}{" "}
                   </Text>
                 );
               })}
             </chakra.div>
             <Text fontSize="md">{userPlaylists.name}</Text>
-            <hr></hr>
+            {/* <hr></hr> */}
           </Stack>
         </Center>
         <Spacer />
         <Stack m={4}>
           <Center>
             <Button
-              colorScheme="teal"
+              // colorScheme="teal"
               float="right"
               placeholder="send to friends"
             >
