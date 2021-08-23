@@ -6,10 +6,10 @@ import path from "path";
 import typeOrmConfig from "../server/db/dbConfig";
 import User from "./db/entities/User";
 
-import addToQueue from '../server/helpers/SpotifyWebApi';
+// import addToQueue from '../server/helpers/SpotifyWebApi';
 
 
-import axios, { AxiosError } from "axios";
+// import axios, { AxiosError } from "axios";
 
 require("dotenv").config();
 
@@ -122,6 +122,13 @@ const authCallbackPath = '/auth/spotify/callback';
       res.redirect("/");
     }
   );
+
+  app.get("/getUser", (req: Request, res: Response) => {
+  const user: any = {...req.user}
+  delete user.access_token
+  delete user.refresh_token
+    res.send(user);
+  });
 
   app.options("*", cors());
   app.use("*", cors(options));

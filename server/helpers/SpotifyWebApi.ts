@@ -39,7 +39,7 @@ const getUsersCurrentPlayback = async (access_token: string) => {
 
   await axios(getCurrentPlayback)
     .then((response) => {
-      res.status(200).send(response)
+      // res.status(200).send(response)
       // setCurrPlayback(response.data);
       // setIsPlaying(response.data.is_playing)
     })
@@ -55,7 +55,7 @@ const getUsersPlaylists = (access_token: string) =>{
 
   // const res: any[] = [];
   // response.body.items.forEach((item: any) => res.push(item));
-  setUserPlaylists(response.body.items);
+  // setUserPlaylists(response.body.items);
   console.log((response.body.items));
   // return res;
 })
