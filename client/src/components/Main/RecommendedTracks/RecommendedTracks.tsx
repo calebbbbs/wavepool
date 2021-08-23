@@ -18,7 +18,7 @@ const GET_RECOMMENDED_TRACKS = gql`
     getUser(user_id: $getUserUserId) {
       recommendedTracks {
         user_id
-        friend_id
+        # friend_id
         friend_name
         track_title
         spotify_uri

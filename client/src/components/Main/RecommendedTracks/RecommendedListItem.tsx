@@ -18,7 +18,7 @@ import { BiAlbum, BiHeadphone } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
 
 const RecommendedListItem = (props: any) => {
-  const { track_title, album_title, spotify_uri, album_art, artists, friend_id } = props.track;
+  const { track_title, album_title, spotify_uri, album_art, artists, friend_name } = props.track;
   const bg = useColorModeValue("brand.200", "brand.900");
   const { userObj } = useContext(UserContext);
   return (
@@ -26,7 +26,7 @@ const RecommendedListItem = (props: any) => {
               <Center>
         <Text
         m={4}
-        >Recommended By {friend_id}</Text>
+        >Recommended By {friend_name}</Text>
         </Center>
       <hr></hr>
       <Flex mx={5} p={4}>
