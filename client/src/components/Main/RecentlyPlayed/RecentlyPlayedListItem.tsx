@@ -18,12 +18,16 @@ import {
   PopoverArrow,
   PopoverCloseButton,
 } from "@chakra-ui/react";
+
 import { UserContext } from "../../../contexts/UserContext";
 import axios from "axios";
 
+import { BiAlbum, BiHeadphone } from "react-icons/bi";
+import { BsPerson } from "react-icons/bs";
+
 const RecentlyPlayedListItem = (props: any) => {
   const { name, artists, album } = props.track;
-  const bg = useColorModeValue("gray.200", "gray.900");
+  const bg = useColorModeValue("brand.200", "brand.900");
   const { userObj } = useContext(UserContext);
   return (
     <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
@@ -42,8 +46,11 @@ const RecentlyPlayedListItem = (props: any) => {
         </Center>
         <Center>
           <Stack ml={2} mr="auto">
-            <Text fontSize="md">{name}</Text>
-            <chakra.div>
+            <Flex>
+              <BiHeadphone/> <Text fontSize="md">{name}</Text>
+            </Flex>
+            <Flex>
+              <BsPerson /> -
               {artists.map((artist: any, i: number) => {
                 if (i === artists.length - 1) {
                   return (
@@ -58,32 +65,32 @@ const RecentlyPlayedListItem = (props: any) => {
                   </Text>
                 );
               })}
-            </chakra.div>
-            <Text fontSize="md">{album.name}</Text>
+            </Flex>
+            <Flex>
+              <BiAlbum /> -<Text fontSize="md">{album.name}</Text>
+            </Flex>
             <hr></hr>
           </Stack>
         </Center>
         <Spacer />
         <Stack m={4}>
           <Center>
-          <Popover>
-  <PopoverTrigger>
-    <Button>Send</Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverArrow />
-    <PopoverCloseButton />
-    <PopoverHeader>Recipients Email</PopoverHeader>
-    <PopoverBody><Input/>
-    <Button
-    onClick={() => {
-      
-    }}
-    >Send</Button></PopoverBody>
-  </PopoverContent>
-</Popover>
-            </Center>
-            <Center>
+            <Popover>
+              <PopoverTrigger>
+                <Button>Send</Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverHeader>Recipients Email</PopoverHeader>
+                <PopoverBody>
+                  <Input />
+                  <Button onClick={() => {}}>Send</Button>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+          </Center>
+          <Center>
             <Button
               onClick={() => {
                 const params = {
@@ -94,13 +101,13 @@ const RecentlyPlayedListItem = (props: any) => {
                   `http://localhost:4000/addToQueue/${userObj.access_token}/${props.track.uri}`,
                   { params }
                 )
-                  .then((data) => console.log(data))
+                  .then((data) => data)
                   .catch((err) => console.error(err));
               }}
             >
               Queue
             </Button>
-            </Center>
+          </Center>
         </Stack>
       </Flex>
     </chakra.div>

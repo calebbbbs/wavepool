@@ -71,6 +71,7 @@ function AddFriendDrawer() {
               }}
               placeholder="Type here..."
             />
+
             <Button 
               onClick={() => {
                 createFriend({
