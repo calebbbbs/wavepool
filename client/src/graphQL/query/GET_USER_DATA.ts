@@ -8,6 +8,11 @@ query Query($getUserUserId: String!) {
     user_email
     access_token
     refresh_token
+    friends {
+      friend_id
+      friend_name
+      friend_status
+    }
     recommendedTracks {
       user_id
       track_id
