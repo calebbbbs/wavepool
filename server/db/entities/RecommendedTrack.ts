@@ -20,6 +20,10 @@ export default class RecommendedTrack extends BaseEntity {
 
   @Field(() => String)
   @Column()
+  friend_name: string;
+
+  @Field(() => String)
+  @Column()
   track_title: string;
 
   @Field(() => String)
