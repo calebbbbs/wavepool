@@ -6,9 +6,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 import AudioPlayer from "./AudioPlayer/AudioPlayer";
 
-// import getUsersCurrentPlayback from '../../graphQL/helper';
-// import startOrResumePlayback from '../../graphQL/helper';
-// import addToQueue from '../../graphQL/helper';
+import AddFriendDrawer from "./AddFriendDrawer";
 
 import Search from "./Search/Search";
 
@@ -19,21 +17,21 @@ function Nav(props: any) {
   return (
     <Flex>
       <chakra.h1 fontSize="4xl" m={4}>
-        Wavepool 🌊{" "}
+        Wavepool 🌊
       </chakra.h1>
       <Spacer />
-      {currPlayback && <AudioPlayer />}
-      <Spacer />
-      {!isLoggedIn ? (
-        <LoginButton />
-      ) : (
-        <chakra.div>
-          <Search />
-        </chakra.div>
-      )}
       <Button m={4} variant="ghost" onClick={toggleColorMode}>
         {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
       </Button>
+      {!isLoggedIn ? (
+        <LoginButton />
+        ) : (
+          <chakra.div>
+          <Search />
+          <AddFriendDrawer/>
+        </chakra.div>
+      )}
+      {currPlayback && <AudioPlayer />}
     </Flex>
   );
 }

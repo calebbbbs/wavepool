@@ -23,7 +23,24 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [userObj, setUserObj] = useState<any>();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [currPlayback, setCurrPlayback] = useState<any>();
-  // const [spotifyApi, setSpotifyApi] = useState<SpotifyWebApi>()
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [recentPlays, setRecentPlays] = useState<any>();
+
+  const getRecentlyPlayed = (access_token: string) => {
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.getMyRecentlyPlayedTracks({
+      limit : 10
+    }).then(function(data) {
+        // Output items
+        const res: any[] = [];
+        data.body.items.forEach(item => res.push(item.track));
+        setRecentPlays(res);
+        return res;
+      }, function(err) {
+        console.log('Something went wrong!', err);
+      });
+  }
+
   const getUser = () => {
     axios.get<any>('http://localhost:4000/getUser').then((res) => {
       if (res.data) {
@@ -31,7 +48,6 @@ const UserContextProvider: React.FC = ({ children }) => {
         setIsLoggedIn(true);
         if(userObj){
         getUsersCurrentPlayback(userObj.access_token);
-        console.log(`this is the fuckin api`, spotifyApi)
         spotifyApi.setAccessToken(userObj.access_token);
         }
       }
@@ -51,17 +67,24 @@ const UserContextProvider: React.FC = ({ children }) => {
 
     await axios(getCurrentPlayback)
       .then((response) => {
-        console.log(response.data);
         setCurrPlayback(response.data);
+        setIsPlaying(response.data.is_playing)
       })
       .catch((error: AxiosError) => {
         console.log(error);
       });
   };
 
+
   React.useEffect(() => {
     getUser();
+    if(userObj){
+    getRecentlyPlayed(userObj.access_token);
+    }
   }, [JSON.stringify(userObj)]);
+
+
+
   const userProps = {
     userObj,
     isLoggedIn,
@@ -69,7 +92,12 @@ const UserContextProvider: React.FC = ({ children }) => {
     getUsersCurrentPlayback,
     currPlayback,
     setCurrPlayback,
-    spotifyApi
+    spotifyApi,
+    isPlaying,
+    setIsPlaying,
+    recentPlays,
+    setRecentPlays,
+    getRecentlyPlayed
   };
 
   return (

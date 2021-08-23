@@ -12,13 +12,5 @@ export class HistoryResolver {
   async createfriend(@Arg("data") data: CreateFriendInput) {
     const {user_id, friend_id } = data;
 
-
-    
-    // const user = new User();
-    // user.user_id = data.user_id;
-    // user.user_name = data.user_name;
-    // console.log('im trying to add a user right now');
-    // await user.save()
-    // return user;
   }
 }

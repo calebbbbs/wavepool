@@ -38,6 +38,8 @@ function Search() {
         onClose={onClose}
         isOpen={isOpen}
         motionPreset="slideInBottom"
+        size="3xl"
+        colorScheme="brand"
       >
         <ModalOverlay />
         <ModalContent>
