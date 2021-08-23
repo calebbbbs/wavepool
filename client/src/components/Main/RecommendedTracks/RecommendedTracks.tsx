@@ -19,6 +19,7 @@ const GET_RECOMMENDED_TRACKS = gql`
       recommendedTracks {
         user_id
         friend_id
+        friend_name
         track_title
         spotify_uri
         artists

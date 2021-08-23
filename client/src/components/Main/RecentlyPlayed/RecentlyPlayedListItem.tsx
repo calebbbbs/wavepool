@@ -47,7 +47,7 @@ const RecentlyPlayedListItem = (props: any) => {
         <Center>
           <Stack ml={2} mr="auto">
             <Flex>
-              <BiHeadphone /> -<Text fontSize="md">{name}</Text>
+              <BiHeadphone/> <Text fontSize="md">{name}</Text>
             </Flex>
             <Flex>
               <BsPerson /> -
@@ -101,7 +101,7 @@ const RecentlyPlayedListItem = (props: any) => {
                   `http://localhost:4000/addToQueue/${userObj.access_token}/${props.track.uri}`,
                   { params }
                 )
-                  .then((data) => console.log(data))
+                  .then((data) => data)
                   .catch((err) => console.error(err));
               }}
             >
