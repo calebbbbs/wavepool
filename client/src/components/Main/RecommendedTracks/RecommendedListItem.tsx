@@ -14,10 +14,12 @@ import {
 import { UserContext } from "../../../contexts/UserContext";
 import axios from "axios";
 
+import { BiAlbum, BiHeadphone } from "react-icons/bi";
+import { BsPerson } from "react-icons/bs";
+
 const RecommendedListItem = (props: any) => {
   const { track_title, album_title, spotify_uri, album_art, artists, friend_id } = props.track;
-  console.log(props);
-  const bg = useColorModeValue("gray.200", "gray.900");
+  const bg = useColorModeValue("brand.200", "brand.900");
   const { userObj } = useContext(UserContext);
   return (
     <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
@@ -45,8 +47,12 @@ const RecommendedListItem = (props: any) => {
         </Center>
         <Center>
           <Stack ml={2} mr="auto">
-            <Text fontSize="md">{track_title}</Text>
+              <Flex>
+          <BiHeadphone /> - <Text fontSize="md">{track_title}</Text>
+          </Flex>
             <chakra.div>
+                <Flex>
+            <BsPerson /> -
               {artists.map((artist: any, i: number) => {
                 if (i === artists.length - 1) {
                   return (
@@ -61,8 +67,11 @@ const RecommendedListItem = (props: any) => {
                   </Text>
                 );
               })}
+              </Flex>
             </chakra.div>
-            <Text fontSize="md">{album_title}</Text>
+            <Flex>
+            <BiAlbum /> - <Text fontSize="md">{album_title}</Text>
+            </Flex>
             <hr></hr>
           </Stack>
         </Center>
@@ -81,7 +90,7 @@ const RecommendedListItem = (props: any) => {
                   `http://localhost:4000/addToQueue/${userObj.access_token}/${spotify_uri}`,
                   { params }
                 )
-                  .then((data) => console.log(data))
+                  .then((data) => data)
                   .catch((err) => console.error(err));
               }}
             >

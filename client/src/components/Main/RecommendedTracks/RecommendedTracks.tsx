@@ -57,10 +57,10 @@ const RecommendedTracks = () => {
         <Box mt={2}>
           <Link
             fontSize="2xl"
-            color={useColorModeValue("gray.700", "white")}
+            color={useColorModeValue("brand.700", "white")}
             fontWeight="700"
             _hover={{
-              color: useColorModeValue("gray.600", "gray.200"),
+              color: useColorModeValue("brand.600", "brand.200"),
               textDecor: "underline",
             }}
           >
@@ -82,13 +82,6 @@ const RecommendedTracks = () => {
           </Link>
 
           <Flex alignItems="center">
-            <Link
-              color={useColorModeValue("gray.700", "gray.200")}
-              fontWeight="700"
-              cursor="pointer"
-            >
-             {userObj.user_name}
-            </Link>
           </Flex>
         </Flex>
       </Box>

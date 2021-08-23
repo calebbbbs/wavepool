@@ -39,6 +39,7 @@ function Search() {
         isOpen={isOpen}
         motionPreset="slideInBottom"
         size="3xl"
+        colorScheme="brand"
       >
         <ModalOverlay />
         <ModalContent>

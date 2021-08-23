@@ -36,6 +36,9 @@ function AddFriendDrawer() {
               }}
               placeholder="Type here..."
             />
+
+
+            
           </DrawerBody>
 
           <DrawerFooter>
