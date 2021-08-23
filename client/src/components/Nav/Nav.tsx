@@ -4,11 +4,11 @@ import { Flex, Spacer, chakra, useColorMode, Button } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
 
-import AudioPlayer from "./AudioPlayer/AudioPlayer";
+import AudioPlayer from "../Utils/AudioPlayer/AudioPlayer";
 
 import AddFriendDrawer from "./AddFriendDrawer";
 
-import Search from "./Search/Search";
+import Search from "../Utils/Search/Search";
 
 function Nav(props: any) {
   const { colorMode, toggleColorMode } = useColorMode();
