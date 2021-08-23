@@ -3,13 +3,6 @@ import { useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import SpotifyWebApi from 'spotify-web-api-node';
 
-// import getUsersCurrentPlayback from '../graphQL/helper';
-
-// import { response } from 'express';
-// interface UserContextInterface {
-//   defaultValue: any
-// }
-
 const UserContext = React.createContext(undefined as any);
 // eslint-disable-next-line react/prop-types
 const UserContextProvider: React.FC = ({ children }) => {
@@ -46,10 +39,8 @@ const UserContextProvider: React.FC = ({ children }) => {
       if (res.data) {
         setUserObj(res.data);
         setIsLoggedIn(true);
-        if(userObj){
         getUsersCurrentPlayback(userObj.access_token);
         spotifyApi.setAccessToken(userObj.access_token);
-        }
       }
     });
   };

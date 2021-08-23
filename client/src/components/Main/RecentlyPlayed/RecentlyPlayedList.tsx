@@ -1,8 +1,20 @@
 import React from 'react'
-import RecentlyPlayedListItem from './RecentlyPlayedListItem';
+import TrackInfo from '../../Utils/TrackInfo';
+import type {Track} from '../../../types'
 const RecentlyPlayedList = (props: any) => {
+
 const list = props.recentPlays.map((e: any, i: Number) => {
-    return  <RecentlyPlayedListItem track={e} key={i}/>
+    const artists = e.artists.map((artist: any) => {
+        return artist.name
+    })
+const track: Track = {
+    album_art: e.album.images[1].url,
+    track_title: e.name,
+    artists: artists,
+    album_title: e.album.name,
+    spotify_uri: e.uri
+}
+    return  <TrackInfo track={track} key={i}/>
   })
     return (
         <div>

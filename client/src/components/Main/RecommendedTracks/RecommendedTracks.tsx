@@ -8,27 +8,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { useQuery, gql } from "@apollo/client";
+import GET_RECOMMENDED_TRACKS from "../../../graphQL/queries/GET_RECOMMENDED_TRACKS";
+
+import { useQuery } from "@apollo/client";
 import { UserContext } from "../../../contexts/UserContext";
 
 import RecommendedTracksList from "./RecomendedTracksList";
-
-const GET_RECOMMENDED_TRACKS = gql`
-  query Query($getUserUserId: String!) {
-    getUser(user_id: $getUserUserId) {
-      recommendedTracks {
-        user_id
-        # friend_id
-        friend_name
-        track_title
-        spotify_uri
-        artists
-        album_art
-        album_title
-      }
-    }
-  }
-`;
 
 const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
