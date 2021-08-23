@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import SpotifyWebApi from 'spotify-web-api-node';
-
+import { useQuery } from '@apollo/client';
+import GET_USER_DATA from '../graphQL/query/GET_USER_DATA';
 // import getUsersCurrentPlayback from '../graphQL/helper';
 
 // import { response } from 'express';
@@ -43,7 +44,7 @@ const UserContextProvider: React.FC = ({ children }) => {
   }
 
   const getUser = () => {
-    axios.get<any>('http://localhost:4000/getUser').then((res) => {
+    useQuery(GET_USER_DATA).then((res) => {
       if (res.data) {
         setUserObj(res.data);
         setIsLoggedIn(true);

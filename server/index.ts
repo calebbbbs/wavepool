@@ -19,7 +19,6 @@ const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const { ApolloServer } = require("apollo-server-express");
 const express = require("express");
-// import * as express from 'express';
 import { Request, Response } from "express-serve-static-core";
 import { Profile, VerifyCallback } from "passport-spotify";
 
@@ -49,16 +48,16 @@ const authCallbackPath = '/auth/spotify/callback';
   await server.start();
 
   const app = express();
+
+
   app.use(cors());
 
   passport.serializeUser(function (user: object, done: VerifyCallback) {
     done(null, user);
   });
-
   passport.deserializeUser(function (obj: object, done: VerifyCallback) {
     done(null, obj);
   });
-
   passport.use(
     new SpotifyStrategy(
       {
@@ -89,32 +88,6 @@ const authCallbackPath = '/auth/spotify/callback';
       }
     )
   );
-
-  // const addToQueue = async (access_token: String, uri: String) => {
-  //   const toQueue: any = {
-  //     method: "POST",
-  //     url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${access_token}`,
-  //     },
-  //   };
-  //   await axios(toQueue)
-  //     .then((response) => {
-  //       // console.log(JSON.stringify(response.data));
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  app.get("/addToQueue/:access_token/:uri", (req: Request, res: Response) => {
-    const { access_token, uri } = req.params;
-    addToQueue(access_token, uri)
-      .then((data) => res.status(201).send(data))
-      .catch((error: AxiosError) => console.log(error));
-  });
 
   app.use(
     session({ secret: SESSION_SECRET, resave: true, saveUninitialized: true })
@@ -149,10 +122,6 @@ const authCallbackPath = '/auth/spotify/callback';
       res.redirect("/");
     }
   );
-
-  app.get("/getUser", (req: Request, res: Response) => {
-    res.send(req.user);
-  });
 
   app.options("*", cors());
   app.use("*", cors(options));

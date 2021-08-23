@@ -6,8 +6,6 @@ query Query($getUserUserId: String!) {
     user_id
     user_name
     user_email
-    access_token
-    refresh_token
     friends {
       friend_id
       friend_name
