@@ -33,7 +33,8 @@ export const AudioPlayer = () => {
       <Button m={4} variant="ghost" colorScheme="teal" onClick={onOpen}>
         <BsMusicNoteBeamed />
       </Button>
-      <Drawer isOpen={isOpen} placement="top" onClose={onClose}>
+      <Drawer 
+      isOpen={isOpen} placement="top" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
