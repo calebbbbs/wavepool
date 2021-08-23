@@ -6,6 +6,9 @@ import path from "path";
 import typeOrmConfig from "../server/db/dbConfig";
 import User from "./db/entities/User";
 
+import addToQueue from '../server/helpers/SpotifyWebApi';
+
+
 import axios, { AxiosError } from "axios";
 
 require("dotenv").config();
@@ -87,24 +90,24 @@ const authCallbackPath = '/auth/spotify/callback';
     )
   );
 
-  const addToQueue = async (access_token: String, uri: String) => {
-    const toQueue: any = {
-      method: "POST",
-      url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-    };
-    await axios(toQueue)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  // const addToQueue = async (access_token: String, uri: String) => {
+  //   const toQueue: any = {
+  //     method: "POST",
+  //     url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${access_token}`,
+  //     },
+  //   };
+  //   await axios(toQueue)
+  //     .then((response) => {
+  //       // console.log(JSON.stringify(response.data));
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   app.get("/addToQueue/:access_token/:uri", (req: Request, res: Response) => {
     const { access_token, uri } = req.params;

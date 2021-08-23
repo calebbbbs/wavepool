@@ -118,7 +118,7 @@ const SearchTrackListItem = (props: any) => {
             </PopoverBody>
           </PopoverContent>
         </Popover>
-        <Button
+        {/* <Button
           onClick={() => {
             const params = {
                 access_token: userObj.access_token,
@@ -137,7 +137,7 @@ const SearchTrackListItem = (props: any) => {
         colorScheme="teal"
         float="right"
         placeholder="add to playlist">Add
-        </Button>
+        </Button> */}
         </Stack>
         </chakra.div>)
 }
