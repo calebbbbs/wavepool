@@ -3,7 +3,8 @@ import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 const webpack = require('webpack')
-const dotenv = require('dotenv')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const dotenv = require('dotenv')
 
 const distDir = path.resolve(__dirname, 'client/dist');
 
@@ -24,16 +25,37 @@ export const config: Configuration = {
           loader: 'ts-loader',
         },
       },
+
+
       {
-        test: /\.(ts|js)x?$/,
-        exclude: /node_modules/,
-        enforce: 'pre',
-        use: ['source-map-loader'],
+        test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif) (\?v=\d+\.\d+\.\d+)?$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            limit: 100000,
+            name: '[name].[ext]',
+            outputPath: 'fonts/'
+          }
+        }
       },
+
+			{
+				test: /\.css$/,
+				use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+					{
+            loader: 'sass-loader'
+					}
+          ,]},
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.json', '.jsx'],
+    extensions: ['.tsx', '.ts', '.js', '.json', '.jsx', '.css', 'scss'],
   },
   output: {
     path: distDir,
@@ -48,8 +70,13 @@ export const config: Configuration = {
   plugins: [
     new HtmlWebpackPlugin({ template: path.join(__dirname, 'client/src', 'index.html') }),
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(dotenv.config().parsed) // it will automatically pick up key values from .env file
-   })
+      'process.env': {
+        'CLIENT_ID':JSON.stringify('process.env.CLIENT_ID'),
+        'CLIENT_SECRET': JSON.stringify('process.env.CLIENT_SECRET')
+      }
+       // it will automatically pick up key values from .env file
+   }),
+   new MiniCssExtractPlugin()
   ],
 };
 
