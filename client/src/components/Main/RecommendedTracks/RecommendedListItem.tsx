@@ -6,82 +6,69 @@ import {
   Image,
   Flex,
   Stack,
+  Box,
   Button,
   Spacer,
   useColorModeValue,
-  Popover,
-  PopoverTrigger,
-  Input,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverArrow,
-  PopoverCloseButton,
 } from "@chakra-ui/react";
 import { UserContext } from "../../../contexts/UserContext";
 import axios from "axios";
 
-const RecentlyPlayedListItem = (props: any) => {
-  const { name, artists, album } = props.track;
+const RecommendedListItem = (props: any) => {
+  const { track_title, album_title, spotify_uri, album_art, artists, friend_id } = props.track;
+  console.log(props);
   const bg = useColorModeValue("gray.200", "gray.900");
   const { userObj } = useContext(UserContext);
   return (
     <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
+              <Center>
+        <Text
+        m={4}
+        >Recommended By {friend_id}</Text>
+        </Center>
+      <hr></hr>
       <Flex mx={5} p={4}>
         <Center>
+            <Box>
           <Image
             aspect-ratio={1}
             m={2}
-            boxSize="120px"
-            minW="120px"
+            minW='120px'
             minH="120px"
+            boxSize="120px"
             float="left"
-            src={album.images[1].url}
+            fit="contain"
+            src={album_art}
             alt="Album Cover"
           />
+          </Box>
         </Center>
         <Center>
           <Stack ml={2} mr="auto">
-            <Text fontSize="md">{name}</Text>
+            <Text fontSize="md">{track_title}</Text>
             <chakra.div>
               {artists.map((artist: any, i: number) => {
                 if (i === artists.length - 1) {
                   return (
                     <Text key={i} fontSize="md">
-                      {artist.name}
+                      {artist}
                     </Text>
                   );
                 }
                 return (
                   <Text key={i} fontSize="md">
-                    {artist.name},{" "}
+                    {artist},{" "}
                   </Text>
                 );
               })}
             </chakra.div>
-            <Text fontSize="md">{album.name}</Text>
+            <Text fontSize="md">{album_title}</Text>
             <hr></hr>
           </Stack>
         </Center>
         <Spacer />
         <Stack m={4}>
           <Center>
-          <Popover>
-  <PopoverTrigger>
-    <Button>Send</Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverArrow />
-    <PopoverCloseButton />
-    <PopoverHeader>Recipients Email</PopoverHeader>
-    <PopoverBody><Input/>
-    <Button
-    onClick={() => {
-      
-    }}
-    >Send</Button></PopoverBody>
-  </PopoverContent>
-</Popover>
             </Center>
             <Center>
             <Button
@@ -91,7 +78,7 @@ const RecentlyPlayedListItem = (props: any) => {
                   uri: props.track.uri,
                 };
                 axios(
-                  `http://localhost:4000/addToQueue/${userObj.access_token}/${props.track.uri}`,
+                  `http://localhost:4000/addToQueue/${userObj.access_token}/${spotify_uri}`,
                   { params }
                 )
                   .then((data) => console.log(data))
@@ -107,4 +94,4 @@ const RecentlyPlayedListItem = (props: any) => {
   );
 };
 
-export default RecentlyPlayedListItem;
+export default RecommendedListItem;

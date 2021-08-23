@@ -6,9 +6,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 import AudioPlayer from "./AudioPlayer/AudioPlayer";
 
-// import getUsersCurrentPlayback from '../../graphQL/helper';
-// import startOrResumePlayback from '../../graphQL/helper';
-// import addToQueue from '../../graphQL/helper';
+import AddFriendDrawer from "./AddFriendDrawer";
 
 import Search from "./Search/Search";
 
@@ -31,6 +29,7 @@ function Nav(props: any) {
         ) : (
           <chakra.div>
           <Search />
+          <AddFriendDrawer/>
         </chakra.div>
       )}
       {currPlayback && <AudioPlayer />}

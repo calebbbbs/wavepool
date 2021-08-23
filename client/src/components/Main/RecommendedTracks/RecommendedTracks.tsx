@@ -1,23 +1,43 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, { useContext, useState } from "react";
+
 import {
-    Flex,
-    Box,
-    Text,
-    useColorModeValue,
-    Link,
-} from "@chakra-ui/react"
-import {UserContext }from "../../../contexts/UserContext"
-import RecentlyPlayedList from './RecentlyPlayedList';
-export const RecentlyPlayed = () => {
-const [seeMore, setSeeMore] = useState<boolean>(false)
-const {recentPlays, userObj, getRecentlyPlayed} = useContext(UserContext);
-useEffect(() => {
-  const interval = setInterval(() => {
-    getRecentlyPlayed();
-  }, 180000);
-  return () => clearInterval(interval);
-}, []);
-return (
+  Flex,
+  useColorModeValue,
+  Box,
+  Link,
+  Text,
+} from "@chakra-ui/react";
+
+import { useQuery, gql } from "@apollo/client";
+import { UserContext } from "../../../contexts/UserContext";
+
+import RecommendedTracksList from "./RecomendedTracksList";
+
+const GET_RECOMMENDED_TRACKS = gql`
+  query Query($getUserUserId: String!) {
+    getUser(user_id: $getUserUserId) {
+      recommendedTracks {
+        user_id
+        friend_id
+        track_title
+        spotify_uri
+        artists
+        album_art
+        album_title
+      }
+    }
+  }
+`;
+
+const RecommendedTracks = () => {
+  const { userObj } = useContext(UserContext);
+  const { loading, error, data } = useQuery(GET_RECOMMENDED_TRACKS, {
+    variables: { getUserUserId: userObj.user_id },
+  });
+  const [seeMore, setSeeMore] = useState(false)
+  if (error) console.error(error);
+  if (loading) return <p>Loading ...</p>;
+  return (
     <Flex
       p={50}
       w="full"
@@ -44,12 +64,12 @@ return (
               textDecor: "underline",
             }}
           >
-            Recently Played
+            Recommended
           </Link>
 
-          {recentPlays && <div>
-          {seeMore ? <RecentlyPlayedList recentPlays={recentPlays.slice(0,5)}/> :
-          <RecentlyPlayedList recentPlays={recentPlays.slice(0,2)}/>}</div>}
+          {data.getUser.recommendedTracks && <div>
+          {seeMore ? <RecommendedTracksList recommendedTracks={data.getUser.recommendedTracks}/> :
+          <RecommendedTracksList recommendedTracks={data.getUser.recommendedTracks.slice(0, 2)}/>}</div>}
         </Box>
 
         <Flex justifyContent="space-between" alignItems="center" mt={4}>
@@ -74,6 +94,6 @@ return (
       </Box>
     </Flex>
   );
-}
+};
 
-export default RecentlyPlayed
+export default RecommendedTracks;
