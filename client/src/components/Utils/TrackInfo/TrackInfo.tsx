@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import { UserContext } from "../../contexts/UserContext";
-
+import { UserContext } from "../../../contexts/UserContext";
+import ConfirmPopper from "./ConfirmPopper";
 import {
   chakra,
   Center,
@@ -13,26 +13,20 @@ import {
   Spacer,
   Button,
   useColorModeValue,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverArrow,
-  PopoverCloseButton,
 } from "@chakra-ui/react";
 
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
+import { MdQueueMusic } from "react-icons/md";
 
 // import { useMutation } from "@apollo/client";
 
 // import RECOMMEND_TRACK from "../../graphQL/mutations/RECOMMEND_TRACK";
 
 const TrackInfo = (props: any) => {
+
   // const [reccomendTrack] = useMutation(RECOMMEND_TRACK);
   // const [sendInput, setSendInput] = useState("");
-
   const { userObj } = useContext(UserContext);
   const {
     friend_name,
@@ -42,7 +36,8 @@ const TrackInfo = (props: any) => {
     album_title,
     spotify_uri,
   } = props.track;
-  const bg = useColorModeValue("brand.100", "brand.900");
+  const bg = useColorModeValue("brand.100", "brand.800");
+
   return (
     <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
       <Center>
@@ -56,7 +51,7 @@ const TrackInfo = (props: any) => {
       </Center>
       <Flex mx={5} p={4}>
         <Center>
-          <Box>
+        <Box>
             <Image
               aspect-ratio={1}
               m={2}
@@ -71,15 +66,15 @@ const TrackInfo = (props: any) => {
           </Box>
         </Center>
         <Center>
-          <Stack ml={2} mr="auto">
-            <Flex>
+          <Stack m={3} mr={4}>
+            <Flex minW="200px">
               <chakra.div mr={2}>
                 <BiHeadphone />
               </chakra.div>
               <Text fontSize="md">{track_title}</Text>
             </Flex>
             <chakra.div>
-              <Flex>
+              <Flex minW="200px">
                 <chakra.div mr={2}>
                   <BsPerson />
                 </chakra.div>
@@ -93,13 +88,13 @@ const TrackInfo = (props: any) => {
                   }
                   return (
                     <Text key={i} fontSize="md">
-                      {artist},{" "}
+                      {artist},{"  "}
                     </Text>
                   );
                 })}
               </Flex>
             </chakra.div>
-            <Flex>
+            <Flex minW="200px">
               <chakra.div mr={2}>
                 {" "}
                 <BiAlbum />
@@ -112,36 +107,19 @@ const TrackInfo = (props: any) => {
         <Spacer />
         <Stack>
           <Button
+            variant="ghost"
             onClick={() => {
               axios
                 .get(
                   `http://localhost:4000/spotify/addToQueue/${userObj.user_id}/${spotify_uri}`
                 )
-                .then((data) => console.log(data))
+                .then((data) => data)
                 .catch((err) => console.error(err));
             }}
           >
-            Queue
+            <MdQueueMusic />
           </Button>
-
-          <Popover>
-            <PopoverTrigger>
-              <Button>Send</Button>
-            </PopoverTrigger>
-              <PopoverContent>
-                <PopoverHeader fontWeight="semibold">
-                  Confirmation
-                </PopoverHeader>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverBody>
-                  Are you sure you want to send this track?
-                  <Center>
-                    <Button colorScheme="green">Yeah!</Button>
-                  </Center>
-                </PopoverBody>
-              </PopoverContent>
-          </Popover>
+          <ConfirmPopper/>
         </Stack>
       </Flex>
     </chakra.div>

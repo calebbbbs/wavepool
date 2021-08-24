@@ -15,11 +15,15 @@ import {
   Button,
   DrawerCloseButton,
   useDisclosure,
+  useColorModeValue
 } from "@chakra-ui/react";
 
 import { TransportControls } from "./TransportControls";
 
+
+
 export const AudioPlayer = () => {
+  const bg = useColorModeValue("brand.100", "brand.800")
   const { userObj, currPlayback, getUsersCurrentPlayback } =
     useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -38,7 +42,7 @@ export const AudioPlayer = () => {
       <Drawer
       isOpen={isOpen} placement="top" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={bg}>
           <DrawerCloseButton />
           <DrawerBody>
             <Center>

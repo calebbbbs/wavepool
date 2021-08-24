@@ -11,7 +11,7 @@ const styles = {
     "body": {
       fontFamily: "body",
       color: mode("gray.800", "whiteAlpha.900")(props),
-      bg: mode("brand.200", "brand.500")(props),
+      bg: mode("brand.200", "brand.900")(props),
       lineHeight: "tall"
     },
     "*::placeholder": {

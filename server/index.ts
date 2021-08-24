@@ -44,7 +44,6 @@ const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
 const authCallbackPath = '/auth/spotify/callback';
 
   await server.start();
-
   const app = express();
 
 
@@ -125,7 +124,7 @@ const authCallbackPath = '/auth/spotify/callback';
   const user: any = {...req.user}
   delete user.access_token
   delete user.refresh_token
-    res.send(user);
+  return res.send(user);
   });
 
   app.options("*", cors());

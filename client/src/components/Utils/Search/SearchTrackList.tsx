@@ -1,5 +1,5 @@
 import React from "react";
-import TrackInfo from "../TrackInfo";
+import TrackInfo from "../TrackInfo/TrackInfo";
 import type { Track } from "../../../types";
 import { chakra } from "@chakra-ui/react";
 

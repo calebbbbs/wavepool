@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 
 
+
 const UserContext = React.createContext(undefined as any);
 // eslint-disable-next-line react/prop-types
 const UserContextProvider: React.FC = ({ children }) => {
@@ -26,8 +27,7 @@ const UserContextProvider: React.FC = ({ children }) => {
           const res: any[] = [];
           data.data.body.items.forEach((item: any) => {
             return res.push(item.track)});
-          setRecentPlays(res);
-          return;
+          return setRecentPlays(res);
         },
         function (err) {
           console.log("Something went wrong!", err);
@@ -36,19 +36,22 @@ const UserContextProvider: React.FC = ({ children }) => {
   };
 
   const getUser = () => {
-    axios.get<any>("http://localhost:4000/getUser").then((res) => {
+   return axios.get<any>("http://localhost:4000/getUser").then((res) => {
       if (res.data) {
+        if(Object.keys(res.data).length === 0){
+          return;
+        }
         setUserObj(res.data);
         setIsLoggedIn(true);
         if (userObj) {
-          getUsersCurrentPlayback();
+        getUsersCurrentPlayback();
+        } else {
         }
       }
     });
   };
 
   const getUsersCurrentPlayback = () => {
-
     return axios.get<any>(`http://localhost:4000/spotify/currPlayback/${userObj.user_id}`)
       .then((response) => {
         setCurrPlayback(response.data);
@@ -59,25 +62,10 @@ const UserContextProvider: React.FC = ({ children }) => {
       });
   };
 
-
-
-  const getUsersPlaylists = (access_token: string) => {
-//getUserPlaylists()
-    //   .then((response) => {
-    //     // const res: any[] = [];
-    //     // response.body.items.forEach((item: any) => res.push(item));
-    //     setUserPlaylists(response.body.items);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-  };
-
   React.useEffect(() => {
     getUser();
     if (userObj) {
       getRecentlyPlayed();
-      getUsersPlaylists(userObj.access_token);
     }
   }, [JSON.stringify(userObj)]);
 
@@ -93,7 +81,6 @@ const UserContextProvider: React.FC = ({ children }) => {
     recentPlays,
     setRecentPlays,
     getRecentlyPlayed,
-    getUsersPlaylists,
     userPlaylists,
     setUserPlaylists,
   };

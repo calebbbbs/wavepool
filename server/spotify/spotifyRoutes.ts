@@ -18,8 +18,7 @@ spotifyRouter.get("/getRecentlyPlayed/:user_id", async (req: Request, res: Respo
   return getRecentlyPlayed(user.access_token).then(data => {
     return res.send(data)});
  } else {
-   res.sendStatus(404);
-   return;
+  return res.sendStatus(404);
  }
 });
 
@@ -29,9 +28,9 @@ spotifyRouter.get('/currPlayback/:user_id', async (req: Request, res: Response) 
   const { user_id } = req.params;
   const user = await User.findOne({ where: { user_id: user_id } });
   if(user){
-    const butt: any = await getUsersCurrentPlayback(user.access_token)
-    res.send(butt.data);
-    return;
+    return getUsersCurrentPlayback(user.access_token).then((data: any) => {
+    return res.send(data.data);
+  });
   } else{
    return res.sendStatus(404);
   }
@@ -113,7 +112,6 @@ spotifyRouter.get('/query/:user_id/:query', async (req: Request, res: Response) 
   if(user){
     const {access_token} = user;
    return await querySpotify(query, access_token).then((data) => {
-     console.log(data);
      return res.send(data);
    })
   } else {
