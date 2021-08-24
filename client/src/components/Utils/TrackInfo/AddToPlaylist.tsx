@@ -18,6 +18,7 @@ function AddToPlaylist() {
     const bg = useColorModeValue("brand.50", "brand.900");
     return (
       <Popover 
+      trigger="hover"
       closeOnBlur={false} placement="left">
         {(props) => (
           <>
