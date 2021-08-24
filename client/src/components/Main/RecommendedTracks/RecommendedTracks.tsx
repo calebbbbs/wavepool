@@ -8,7 +8,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import GET_RECOMMENDED_TRACKS from "../../../graphql/queries/GET_RECOMMENDED_TRACKS";
+import GET_RECOMMENDED_TRACKS from "../../../graphql_client/queries/GET_RECOMMENDED_TRACKS";
 
 import { useQuery } from "@apollo/client";
 import { UserContext } from "../../../contexts/UserContext";

@@ -33,7 +33,7 @@ const options: cors.CorsOptions = {
   origin: allowedOrigins,
 };
 
-async function startApolloServer() {
+async function startServer() {
   await createConnection(typeOrmConfig).catch((err) => console.log(err));
   const schema = await buildSchema({
     resolvers: [ UserResolver, FriendResolver, RecommendedResolver ]
@@ -127,13 +127,14 @@ const authCallbackPath = '/auth/spotify/callback';
   return res.send(user);
   });
 
+
   app.options("*", cors());
   app.use("*", cors(options));
-
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(CLIENT_PATH));
   app.use('/spotify', spotifyRouter)
+
   server.applyMiddleware({ app });
 
   app.get("*", (req: Request, res: Response) => {
@@ -146,4 +147,4 @@ const authCallbackPath = '/auth/spotify/callback';
   http://localhost:4000\n`);
   return { server, app };
 }
-startApolloServer();
+startServer();

@@ -16,7 +16,7 @@ import { RiMailSendLine } from 'react-icons/ri'
 
 const ConfirmPopper = () => {
     return (
-        <Popover>
+      <Popover>
         <PopoverTrigger>
           <Tooltip label="Send to Friends">
           <Button variant="ghost">

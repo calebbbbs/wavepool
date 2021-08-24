@@ -14,7 +14,7 @@ const {recentPlays, userObj, getRecentlyPlayed} = useContext(UserContext);
 useEffect(() => {
   const interval = setInterval(() => {
     getRecentlyPlayed();
-  }, 180000);
+  }, 60000);
   return () => clearInterval(interval);
 }, []);
 return (
