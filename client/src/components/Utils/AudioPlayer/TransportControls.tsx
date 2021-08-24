@@ -3,19 +3,18 @@ import { FaPlay, FaPause } from 'react-icons/fa';
 import { CgPlayTrackPrev, CgPlayTrackNext } from 'react-icons/cg';
 import { UserContext } from '../../../contexts/UserContext';
 import { Flex, Button, ButtonGroup } from '@chakra-ui/react';
+import axios from 'axios';
 
 export const TransportControls = () => {
-    const { isPlaying, setIsPlaying, spotifyApi, userObj, getUsersCurrentPlayback } = useContext(UserContext);
-    
+    const { isPlaying, setIsPlaying, userObj, getUsersCurrentPlayback } = useContext(UserContext);
+
 
     return (
         <Flex>
             <ButtonGroup>
                     <Button
           onClick={() => {
-            spotifyApi.setAccessToken(userObj.access_token);
-            spotifyApi.skipToPrevious()
-
+            axios.get(`/spotify/prev/${userObj.user_id}`)
             setTimeout(() => {getUsersCurrentPlayback(userObj.access_token)}, 1000)
 
           }}
@@ -27,8 +26,7 @@ export const TransportControls = () => {
           <div>
             <Button
               onClick={() => {
-                spotifyApi.setAccessToken(userObj.access_token);
-                spotifyApi.pause();
+                axios.get(`/spotify/pause/${userObj.user_id}`)
                 setIsPlaying(false);
                 getUsersCurrentPlayback(userObj.access_token)
               }}
@@ -40,8 +38,7 @@ export const TransportControls = () => {
           <div>
             <Button
               onClick={() => {
-                spotifyApi.setAccessToken(userObj.access_token);
-                spotifyApi.play();
+                axios.get(`/spotify/play/${userObj.user_id}`)
                 setIsPlaying(true);
                 getUsersCurrentPlayback(userObj.access_token)
               }}
@@ -52,9 +49,7 @@ export const TransportControls = () => {
         )}
         <Button
           onClick={() => {
-            spotifyApi.setAccessToken(userObj.access_token);
-            spotifyApi.skipToNext()
-
+            axios.get(`/spotify/next/${userObj.user_id}`)
             setTimeout(() => {getUsersCurrentPlayback(userObj.access_token)}, 1000)
           }}
         >

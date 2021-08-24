@@ -72,8 +72,6 @@ const UserContextProvider: React.FC = ({ children }) => {
       });
   };
 
-  getUsersCurrentPlayback("invadead");
-
   const getUsersPlaylists = (access_token: string) => {
     spotifyApi.setAccessToken(access_token);
     spotifyApi

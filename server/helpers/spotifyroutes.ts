@@ -72,12 +72,89 @@ spotifyRouter.get('/currPlayback/:user_id', async (req: Request, res: Response) 
   }
 })
 
-// spotifyRouter.get("/addToQueue/:access_token/:uri", (req: Request, res: Response) => {
-//   const { access_token, uri } = req.params;
-//   addToQueue(access_token, uri)
-//     .then((data) => res.status(201).send(data))
-//     .catch((error) => console.log(error));
-// });
+
+spotifyRouter.get('/next/:user_id', async (req: Request, res: Response) => {
+  const{ user_id } = req.params;
+  const user = await User.findOne({where: {user_id: user_id} });
+  if (user){
+    const {access_token} = user;
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.skipToNext()
+    res.sendStatus(200);
+    return;
+  }
+});
+
+
+spotifyRouter.get('/prev/:user_id', async (req: Request, res: Response) => {
+  const{ user_id } = req.params;
+  const user = await User.findOne({where: {user_id: user_id} });
+  if (user){
+    const {access_token} = user;
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.skipToPrevious()
+    res.sendStatus(200);
+    return;
+  }
+});
+
+
+spotifyRouter.get('/play/:user_id', async (req: Request, res: Response) => {
+  const{ user_id } = req.params;
+  const user = await User.findOne({where: {user_id: user_id} });
+  if (user){
+    const {access_token} = user;
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.play()
+    res.sendStatus(200);
+    return;
+  }
+});
+
+
+spotifyRouter.get('/pause/:user_id', async (req: Request, res: Response) => {
+  const{ user_id } = req.params;
+  const user = await User.findOne({where: {user_id: user_id} });
+  if (user){
+    const {access_token} = user;
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.pause()
+    res.sendStatus(200);
+    return;
+  }
+});
+
+const addToQueue = async (access_token: String, uri: String) => {
+  const toQueue: any = {
+    method: "POST",
+    url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${access_token}`,
+    },
+  };
+  await axios(toQueue)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch((error: AxiosError) => {
+      console.log('Error from addToQueue' ,error);
+    });
+};
+
+spotifyRouter.get("/addToQueue/:user_id/:spotify_uri", async (req: Request, res: Response) => {
+  const { user_id, spotify_uri } = req.params;
+  const user = await User.findOne({where: {user_id: user_id} });
+  if(user){
+    const {access_token} = user;
+    return await addToQueue(access_token, spotify_uri)
+    .then((data) =>  res.status(201).send(data))
+    .catch((error) => console.log(error));
+  } else {
+    return res.sendStatus(404);
+  }
+});
 
 // spotifyRouter.post()
 

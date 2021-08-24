@@ -115,14 +115,8 @@ const TrackInfo = (props: any) => {
         <Stack m={4}>
             <Button
               onClick={() => {
-                const params = {
-                  access_token: userObj.access_token,
-                  uri: props.track.uri,
-                };
                 axios(
-                  `http://localhost:4000/addToQueue/${userObj.access_token}/${spotify_uri}`,
-                  { params }
-                )
+                  `http://localhost:4000/spotify/addToQueue/${userObj.user_id}/${spotify_uri}`)
                   .then((data) => data)
                   .catch((err) => console.error(err));
               }}
