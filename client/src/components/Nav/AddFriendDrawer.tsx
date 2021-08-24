@@ -4,8 +4,8 @@ import { UserContext } from '../../contexts/UserContext'
 import FriendStat from './FriendStat';
 import { useMutation, useQuery } from "@apollo/client";
 
-import GET_FRIENDS from '../../graphQL/queries/GET_FRIENDS'
-import CREATE_FRIEND from '../../graphQL/mutations/CREATE_FRIEND'
+import GET_FRIENDS from '../../graphql/queries/GET_FRIENDS'
+import CREATE_FRIEND from '../../graphql/mutations/CREATE_FRIEND'
 
 import {
   Drawer,
