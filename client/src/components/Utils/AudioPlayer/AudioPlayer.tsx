@@ -18,12 +18,12 @@ import {
 } from "@chakra-ui/react";
 import { TransportControls } from "./TransportControls";
 export const AudioPlayer = () => {
-  const { currPlayback, getUsersCurrentPlayback, userObj } =
+  const { currPlayback, getUsersCurrentPlayback } =
     useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     const interval = setInterval(() => {
-      getUsersCurrentPlayback(userObj.access_token);
+      getUsersCurrentPlayback();
     }, 5000);
     return () => clearInterval(interval);
   }, []);

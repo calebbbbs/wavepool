@@ -1,8 +1,7 @@
-import * as React from 'react';
-import { useState } from 'react';
-import axios, { AxiosError } from 'axios';
-import SpotifyWebApi from 'spotify-web-api-node';
-
+import * as React from "react";
+import { useState } from "react";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import SpotifyWebApi from "spotify-web-api-node";
 
 // import getUsersCurrentPlayback from '../graphQL/helper';
 
@@ -14,11 +13,10 @@ import SpotifyWebApi from 'spotify-web-api-node';
 const UserContext = React.createContext(undefined as any);
 // eslint-disable-next-line react/prop-types
 const UserContextProvider: React.FC = ({ children }) => {
-
   const spotifyApi = new SpotifyWebApi({
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    redirectUri: 'http://localhost:4000/auth/spotify/callback'
+    redirectUri: "http://localhost:4000/auth/spotify/callback",
   });
 
   const [userObj, setUserObj] = useState<any>();
@@ -29,78 +27,76 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [userPlaylists, setUserPlaylists] = useState<any>();
 
   const getRecentlyPlayed = (access_token: string) => {
-    spotifyApi.setAccessToken(access_token);
-    spotifyApi.getMyRecentlyPlayedTracks({
-      limit : 10
-    }).then(function(data) {
-        // Output items
-        const res: any[] = [];
-        data.body.items.forEach(item => res.push(item.track));
-        setRecentPlays(res);
-        return res;
-      }, function(err) {
-        console.log('Something went wrong!', err);
-      });
-  }
+    const reqConfig: AxiosRequestConfig = {
+      method: "get",
+      url: `http://localhost:4000/spotify/getRecentlyPlayed/${userObj.user_id}`,
+    };
+    axios(reqConfig)
+      .then(
+        function (data: any) {
+          console.log(data);
+          const res: any[] = [];
+          data.data.body.items.forEach((item: any) => {
+            return res.push(item.track)});
+          setRecentPlays(res);
+          return;
+        },
+        function (err) {
+          console.log("Something went wrong!", err);
+        }
+      );
+  };
 
   const getUser = () => {
-    axios.get<any>('http://localhost:4000/getUser').then((res) => {
+    axios.get<any>("http://localhost:4000/getUser").then((res) => {
       if (res.data) {
         setUserObj(res.data);
         setIsLoggedIn(true);
-        if(userObj){
-        getUsersCurrentPlayback(userObj.access_token);
-        spotifyApi.setAccessToken(userObj.access_token);
+        if (userObj) {
+          getUsersCurrentPlayback(userObj.user_id);
         }
       }
     });
   };
 
-  const getUsersCurrentPlayback = async (access_token: string) => {
-    const getCurrentPlayback: any = {
-      method: 'get',
-      url: 'https://api.spotify.com/v1/me/player',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${access_token}`,
-      },
-    };
-
-    await axios(getCurrentPlayback)
+  const getUsersCurrentPlayback = (user_id: String) => {
+    console.log(`get users current playback ran`);
+    return axios.get<any>(`http://localhost:4000/spotify/currPlayback/${user_id}`)
       .then((response) => {
+        console.log(response);
         setCurrPlayback(response.data);
-        setIsPlaying(response.data.is_playing)
+        setIsPlaying(response.data.is_playing);
       })
       .catch((error: AxiosError) => {
         console.log(error);
       });
   };
 
-  const getUsersPlaylists = (access_token: string) =>{
+  getUsersCurrentPlayback("invadead");
+
+  const getUsersPlaylists = (access_token: string) => {
     spotifyApi.setAccessToken(access_token);
-    spotifyApi.getUserPlaylists()
-  .then((response) =>{
-    // const res: any[] = [];
-    // response.body.items.forEach((item: any) => res.push(item));
-    setUserPlaylists(response.body.items);
-    console.log((response.body.items));
-    // return res;
-  })
-  .catch((error) =>{
-    console.log(error);
-  });
-}
+    spotifyApi
+      .getUserPlaylists()
+      .then((response) => {
+        // const res: any[] = [];
+        // response.body.items.forEach((item: any) => res.push(item));
+        setUserPlaylists(response.body.items);
+        console.log(response.body.items);
+        // return res;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   React.useEffect(() => {
     getUser();
-    if(userObj){
-    getRecentlyPlayed(userObj.access_token);
-    getUsersPlaylists(userObj.access_token);
+    if (userObj) {
+      getRecentlyPlayed(userObj.access_token);
+      getUsersPlaylists(userObj.access_token);
     }
   }, [JSON.stringify(userObj)]);
-
-
 
   const userProps = {
     userObj,
@@ -117,7 +113,7 @@ const UserContextProvider: React.FC = ({ children }) => {
     getRecentlyPlayed,
     getUsersPlaylists,
     userPlaylists,
-    setUserPlaylists
+    setUserPlaylists,
   };
 
   return (

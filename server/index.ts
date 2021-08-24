@@ -10,7 +10,7 @@ import User from "./db/entities/User";
 
 
 // import axios, { AxiosError } from "axios";
-
+import spotifyRouter from "./helpers/spotifyroutes"
 require("dotenv").config();
 
 // import User from "./db/entities/user";
@@ -136,7 +136,7 @@ const authCallbackPath = '/auth/spotify/callback';
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(CLIENT_PATH));
-
+  app.use('/spotify', spotifyRouter)
   server.applyMiddleware({ app });
 
   app.get("*", (req: Request, res: Response) => {

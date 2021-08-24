@@ -10,43 +10,39 @@ const spotifyApi = new SpotifyWebApi({
 
 
 
-const getRecentlyPlayed = (access_token: string) => {
+const getRecentlyPlayed = async (access_token: string) => {
   spotifyApi.setAccessToken(access_token);
-  spotifyApi.getMyRecentlyPlayedTracks({
+ return await spotifyApi.getMyRecentlyPlayedTracks({
     limit : 10
   }).then((data) =>{
       // Output items
-
-      // const res: any[] = [];
-      // data.body.items.forEach(item => res.push(item.track));
-      // setRecentPlays(res);
-      // return res;
+    return data;
     }).catch((error: AxiosError) =>{
       console.log("Error from getRecentlyPlayed", error);
     });
 };
 
-const getUsersCurrentPlayback = async (access_token: string) => {
-  const getCurrentPlayback: any = {
-    method: 'get',
-    url: 'https://api.spotify.com/v1/me/player',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${access_token}`,
-    },
-  };
+// const getUsersCurrentPlayback = async (access_token: string) => {
+//   const getCurrentPlayback: any = {
+//     method: 'get',
+//     url: 'https://api.spotify.com/v1/me/player',
+//     headers: {
+//       'Accept': 'application/json',
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${access_token}`,
+//     },
+//   };
 
-  await axios(getCurrentPlayback)
-    .then((response) => {
-      // res.status(200).send(response)
-      // setCurrPlayback(response.data);
-      // setIsPlaying(response.data.is_playing)
-    })
-    .catch((error: AxiosError) => {
-      console.log('Error from getUsersCurrentPlayback', error);
-    });
-}
+//   await axios(getCurrentPlayback)
+//     .then((response) => {
+//       // res.status(200).send(response)
+//       // setCurrPlayback(response.data);
+//       // setIsPlaying(response.data.is_playing)
+//     })
+//     .catch((error: AxiosError) => {
+//       console.log('Error from getUsersCurrentPlayback', error);
+//     });
+// }
 
 const getUsersPlaylists = (access_token: string) =>{
   spotifyApi.setAccessToken(access_token);
@@ -86,7 +82,7 @@ const addToQueue = async (access_token: String, uri: String) => {
 export default {
   spotifyApi,
   getRecentlyPlayed,
-  getUsersCurrentPlayback,
+  // getUsersCurrentPlayback,
   addToQueue,
   getUsersPlaylists
 }
