@@ -45,8 +45,8 @@ const UserContextProvider: React.FC = ({ children }) => {
         setIsLoggedIn(true);
         if (userObj) {
         getUsersCurrentPlayback();
-        } else {
         }
+        return;
       }
     });
   };
