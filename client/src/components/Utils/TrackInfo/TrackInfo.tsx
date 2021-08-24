@@ -19,6 +19,8 @@ import {
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
 import { MdQueueMusic } from "react-icons/md";
+import AddToPlaylist from "./AddToPlaylist";
+
 
 // import { useMutation } from "@apollo/client";
 
@@ -123,6 +125,7 @@ const TrackInfo = (props: any) => {
           </Button>
           </Tooltip>
           <ConfirmPopper/>
+          <AddToPlaylist/>
         </Stack>
       </Flex>
     </chakra.div>

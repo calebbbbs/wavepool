@@ -35,7 +35,14 @@ const components = {
     bg: mode("brand.200", "brand.900"),
     colorScheme: "brand"
   }
-}
+},
+  PopoverContent: {
+    baseStyle: {
+      color: mode("gray.800", "whiteAlpha.900"),
+      bg: mode("brand.200", "brand.900"),
+      colorScheme: "brand"
+    }
+  }
 }
 
 const colors = {
