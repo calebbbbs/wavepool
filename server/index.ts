@@ -6,14 +6,11 @@ import path from "path";
 import typeOrmConfig from "../server/db/dbConfig";
 import User from "./db/entities/User";
 
-// import addToQueue from '../server/helpers/SpotifyWebApi';
 
-
-// import axios, { AxiosError } from "axios";
-import spotifyRouter from "./helpers/spotifyroutes"
+import spotifyRouter from "./spotify/spotifyRoutes"
 require("dotenv").config();
 
-// import User from "./db/entities/user";
+
 const session = require("express-session");
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
@@ -23,6 +20,7 @@ import { Request, Response } from "express-serve-static-core";
 import { Profile, VerifyCallback } from "passport-spotify";
 
 const CLIENT_PATH = path.resolve(__dirname, "..", "client/dist");
+
 const allowedOrigins = [
   "http://localhost:4000/",
   "https://studio.apollographql.com",
@@ -35,7 +33,7 @@ const options: cors.CorsOptions = {
   origin: allowedOrigins,
 };
 
-async function startApolloServer() {
+async function startServer() {
   await createConnection(typeOrmConfig).catch((err) => console.log(err));
   const schema = await buildSchema({
     resolvers: [ UserResolver, FriendResolver, RecommendedResolver ]
@@ -46,7 +44,6 @@ const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
 const authCallbackPath = '/auth/spotify/callback';
 
   await server.start();
-
   const app = express();
 
 
@@ -127,16 +124,17 @@ const authCallbackPath = '/auth/spotify/callback';
   const user: any = {...req.user}
   delete user.access_token
   delete user.refresh_token
-    res.send(user);
+  return res.send(user);
   });
+
 
   app.options("*", cors());
   app.use("*", cors(options));
-
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(CLIENT_PATH));
   app.use('/spotify', spotifyRouter)
+
   server.applyMiddleware({ app });
 
   app.get("*", (req: Request, res: Response) => {
@@ -149,4 +147,4 @@ const authCallbackPath = '/auth/spotify/callback';
   http://localhost:4000\n`);
   return { server, app };
 }
-startApolloServer();
+startServer();

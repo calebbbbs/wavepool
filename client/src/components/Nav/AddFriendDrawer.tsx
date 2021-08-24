@@ -4,8 +4,8 @@ import { UserContext } from '../../contexts/UserContext'
 import FriendStat from './FriendStat';
 import { useMutation, useQuery } from "@apollo/client";
 
-import GET_FRIENDS from '../../graphQL/queries/GET_FRIENDS'
-import CREATE_FRIEND from '../../graphQL/mutations/CREATE_FRIEND'
+import GET_FRIENDS from '../../graphql_client/queries/GET_FRIENDS'
+import CREATE_FRIEND from '../../graphql_client/mutations/CREATE_FRIEND'
 
 import {
   Drawer,
@@ -72,7 +72,7 @@ function AddFriendDrawer() {
               size="md"
             >Friends:</Heading>
             <br/>
-            {data.getUser.friends.map((friend: any, i: number) => {
+            {data.getUser && data.getUser.friends.map((friend: any, i: number) => {
               if(friend.friend_status){
                 return <FriendStat friend={friend} key={i}/>
               }
@@ -84,7 +84,7 @@ function AddFriendDrawer() {
               size="md"
             >Pending friends:</Heading>
             <br/>
-            {data.getUser.friends.map((friend: any, i: number) => {
+            {data.getUser && data.getUser.friends.map((friend: any, i: number) => {
               if(!friend.friend_status){
                 return <FriendStat friend={friend} key={i}/>
               }

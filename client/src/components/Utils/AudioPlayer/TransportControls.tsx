@@ -6,7 +6,7 @@ import { Flex, Button, ButtonGroup } from '@chakra-ui/react';
 import axios from 'axios';
 
 export const TransportControls = () => {
-    const { isPlaying, setIsPlaying, userObj, getUsersCurrentPlayback } = useContext(UserContext);
+    const { isPlaying, setIsPlaying,  userObj, getUsersCurrentPlayback } = useContext(UserContext);
 
 
     return (
@@ -14,8 +14,9 @@ export const TransportControls = () => {
             <ButtonGroup>
                     <Button
           onClick={() => {
+            //axios get previous
             axios.get(`/spotify/prev/${userObj.user_id}`)
-            setTimeout(() => {getUsersCurrentPlayback(userObj.access_token)}, 1000)
+            setTimeout(() => {getUsersCurrentPlayback(userObj.user_id)}, 1000)
 
           }}
         >
@@ -26,9 +27,10 @@ export const TransportControls = () => {
           <div>
             <Button
               onClick={() => {
+                //axios get pause
                 axios.get(`/spotify/pause/${userObj.user_id}`)
                 setIsPlaying(false);
-                getUsersCurrentPlayback(userObj.access_token)
+                getUsersCurrentPlayback(userObj.user_id)
               }}
             >
                  <FaPause />
@@ -38,9 +40,10 @@ export const TransportControls = () => {
           <div>
             <Button
               onClick={() => {
-                axios.get(`/spotify/play/${userObj.user_id}`)
+               //axios get play
+               axios.get(`/spotify/play/${userObj.user_id}`)
                 setIsPlaying(true);
-                getUsersCurrentPlayback(userObj.access_token)
+                getUsersCurrentPlayback(userObj.user_id)
               }}
             >
               <FaPlay />
@@ -50,7 +53,8 @@ export const TransportControls = () => {
         <Button
           onClick={() => {
             axios.get(`/spotify/next/${userObj.user_id}`)
-            setTimeout(() => {getUsersCurrentPlayback(userObj.access_token)}, 1000)
+
+            setTimeout(() => {getUsersCurrentPlayback(userObj.user_id)}, 1000)
           }}
         >
           <CgPlayTrackNext/>

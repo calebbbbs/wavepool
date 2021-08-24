@@ -8,7 +8,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import GET_RECOMMENDED_TRACKS from "../../../graphQL/queries/GET_RECOMMENDED_TRACKS";
+import GET_RECOMMENDED_TRACKS from "../../../graphql_client/queries/GET_RECOMMENDED_TRACKS";
 
 import { useQuery } from "@apollo/client";
 import { UserContext } from "../../../contexts/UserContext";
@@ -17,12 +17,11 @@ import RecommendedTracksList from "./RecomendedTracksList";
 
 const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
-  const { loading, error, data } = useQuery(GET_RECOMMENDED_TRACKS, {
+  const [seeMore, setSeeMore] = useState(false)
+  const { error, data } = useQuery(GET_RECOMMENDED_TRACKS, {
     variables: { getUserUserId: userObj.user_id },
   });
-  const [seeMore, setSeeMore] = useState(false)
-  if (error) console.error(error);
-  if (loading) return <p>Loading ...</p>;
+  if(error) console.error(error);
   return (
     <Flex
       p={50}
@@ -36,7 +35,7 @@ const RecommendedTracks = () => {
         py={4}
         rounded="lg"
         shadow="lg"
-        bg={useColorModeValue("brand.100", "brand.700")}
+        bg={useColorModeValue("brand.100", "brand.800")}
         maxW="2xl"
       >
 
@@ -53,7 +52,7 @@ const RecommendedTracks = () => {
             Recommended
           </Link>
 
-          {data.getUser.recommendedTracks && <div>
+          {data && data.getUser.recommendedTracks && <div>
           {seeMore ? <RecommendedTracksList recommendedTracks={data.getUser.recommendedTracks}/> :
           <RecommendedTracksList recommendedTracks={data.getUser.recommendedTracks.slice(0, 2)}/>}</div>}
         </Box>

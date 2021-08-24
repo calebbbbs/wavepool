@@ -26,7 +26,6 @@ export const config: Configuration = {
         },
       },
 
-
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif) (\?v=\d+\.\d+\.\d+)?$/,
         use: {

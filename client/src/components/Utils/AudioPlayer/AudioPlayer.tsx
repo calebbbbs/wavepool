@@ -15,28 +15,37 @@ import {
   Button,
   DrawerCloseButton,
   useDisclosure,
+  useColorModeValue,
+  Tooltip
 } from "@chakra-ui/react";
+
 import { TransportControls } from "./TransportControls";
+
+
+
 export const AudioPlayer = () => {
-  const { currPlayback, getUsersCurrentPlayback } =
+  const bg = useColorModeValue("brand.100", "brand.800")
+  const { userObj, currPlayback, getUsersCurrentPlayback } =
     useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     const interval = setInterval(() => {
-      getUsersCurrentPlayback();
+      getUsersCurrentPlayback(userObj.user_id);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <>
+      <Tooltip label="Spotify Controls">
       <Button m={4} variant="ghost" colorScheme="teal" onClick={onOpen}>
-        <BsMusicNoteBeamed />
+     <BsMusicNoteBeamed />
       </Button>
-      <Drawer 
+      </Tooltip>
+      <Drawer
       isOpen={isOpen} placement="top" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={bg}>
           <DrawerCloseButton />
           <DrawerBody>
             <Center>
