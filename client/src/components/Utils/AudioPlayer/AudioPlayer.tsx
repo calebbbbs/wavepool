@@ -15,7 +15,8 @@ import {
   Button,
   DrawerCloseButton,
   useDisclosure,
-  useColorModeValue
+  useColorModeValue,
+  Tooltip
 } from "@chakra-ui/react";
 
 import { TransportControls } from "./TransportControls";
@@ -36,9 +37,11 @@ export const AudioPlayer = () => {
 
   return (
     <>
+      <Tooltip label="Spotify Controls">
       <Button m={4} variant="ghost" colorScheme="teal" onClick={onOpen}>
-        <BsMusicNoteBeamed />
+     <BsMusicNoteBeamed />
       </Button>
+      </Tooltip>
       <Drawer
       isOpen={isOpen} placement="top" onClose={onClose}>
         <DrawerOverlay />

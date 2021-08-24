@@ -13,6 +13,7 @@ import {
   Spacer,
   Button,
   useColorModeValue,
+  Tooltip
 } from "@chakra-ui/react";
 
 import { BsPerson } from "react-icons/bs";
@@ -106,6 +107,7 @@ const TrackInfo = (props: any) => {
         </Center>
         <Spacer />
         <Stack>
+          <Tooltip placement="top" label="Add to Queue">
           <Button
             variant="ghost"
             onClick={() => {
@@ -119,6 +121,7 @@ const TrackInfo = (props: any) => {
           >
             <MdQueueMusic />
           </Button>
+          </Tooltip>
           <ConfirmPopper/>
         </Stack>
       </Flex>

@@ -24,17 +24,15 @@ const styles = {
     "a": {
       color:  mode("teal.300", "teal.500")(props),
     },
-    "Drawer": {
-      bg: mode("brand.50", "brand.900")(props),
-    }
   })
 }
 
 
 const components = {
-  Drawer: {
+  Tooltip: {
   baseStyle: {
-    bg: "brand.800",
+    color: mode("gray.800", "whiteAlpha.900"),
+    bg: mode("brand.200", "brand.900"),
     colorScheme: "brand"
   }
 }

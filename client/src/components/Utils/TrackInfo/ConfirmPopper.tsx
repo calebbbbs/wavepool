@@ -8,6 +8,7 @@ PopoverHeader,
 PopoverArrow,
 PopoverCloseButton,
 PopoverBody,
+Tooltip,
 Center} from '@chakra-ui/react'
 
 
@@ -17,9 +18,11 @@ const ConfirmPopper = () => {
     return (
         <Popover>
         <PopoverTrigger>
+          <Tooltip label="Send to Friends">
           <Button variant="ghost">
             <RiMailSendLine />
           </Button>
+          </Tooltip>
         </PopoverTrigger>
         <PopoverContent bg={"brand.800"}>
           <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
