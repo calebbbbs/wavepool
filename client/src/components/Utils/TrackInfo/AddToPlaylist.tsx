@@ -13,28 +13,41 @@ import {
   Box,
   Button,
   useColorModeValue,
-  Select,
+  Menu,
+  MenuItem,
+  MenuButton,
+  MenuList,
 } from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
-function AddToPlaylist(props: any) {
+
+import { AddIcon, ChevronDownIcon } from '@chakra-ui/icons';
+
+const AddToPlaylist = (props: any) => {
   const { userObj } = useContext(UserContext);
+
   const bg = useColorModeValue('brand.50', 'brand.900');
+  const list = props.playlists.map((playlist: any, i: number) => {
+    return (
+      <MenuItem
+        onClick={() => {
+          console.log('i got clicked');
+          axios
+            .get(
+              `http://localhost:4000/spotify/addToPlaylist/${userObj.user_id}/${playlist.id}/${props.trackUri}`
+            )
+            .then((data: any) => data);
+        }}
+        key={i}
+      >
+        {playlist.name}
+      </MenuItem>
+    );
+  });
   return (
-    <Popover closeOnBlur={false} placement='left'>
+    <Popover trigger='hover' placement='left'>
       {(props) => (
         <>
           <PopoverTrigger>
-            <Button
-              variant='ghost'
-              onClick={() => {
-                axios
-                  .get(
-                    `http://localhost:4000/spotify/userPlaylists/${userObj.user_id}`
-                  )
-                  .then((data) => data)
-                  .catch((err) => console.log(err));
-              }}
-            >
+            <Button variant='ghost'>
               <AddIcon />
             </Button>
           </PopoverTrigger>
@@ -44,11 +57,12 @@ function AddToPlaylist(props: any) {
               <PopoverCloseButton />
               <PopoverBody>
                 <Box>
-                  <Select placeholder='Select Playlist'>
-                    <option value='option1'>Option 1</option>
-                    <option value='option2'>Option 2</option>
-                    <option value='option3'>Option 3</option>
-                  </Select>
+                  <Menu>
+                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                      Playlists
+                    </MenuButton>
+                    <MenuList>{list && <div> {list}</div>}</MenuList>
+                  </Menu>
                 </Box>
               </PopoverBody>
             </PopoverContent>
@@ -57,6 +71,6 @@ function AddToPlaylist(props: any) {
       )}
     </Popover>
   );
-}
+};
 
 export default AddToPlaylist;
