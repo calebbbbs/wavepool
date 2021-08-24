@@ -5,6 +5,7 @@ import {
   spotifyApi,
   getRecentlyPlayed,
   getUsersCurrentPlayback,
+  getUsersPlaylists,
   addToQueue,
   querySpotify
 } from './helpers'
@@ -116,6 +117,18 @@ spotifyRouter.get('/query/:user_id/:query', async (req: Request, res: Response) 
    })
   } else {
   return res.sendStatus(404);
+  }
+});
+
+
+spotifyRouter.get('/userPlaylists/:user_id', async (req: Request, res: Response) =>{
+  const {user_id} = req.params;
+  const user = await User.findOne({ where: {user_id: user_id}});
+  if(user){
+    const {access_token} = user;
+    return await getUsersPlaylists(access_token)
+    .then((data) => res.status(200).send(data))
+    .catch((error) => console.log(error));
   }
 })
 

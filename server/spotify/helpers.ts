@@ -44,7 +44,7 @@ const getUsersCurrentPlayback = async (access_token: string) => {
     });
 }
 
-const getUsersPlaylists = (access_token: string) =>{
+const getUsersPlaylists = async (access_token: string) =>{
   spotifyApi.setAccessToken(access_token);
   spotifyApi.getUserPlaylists()
 .then((response) =>{
