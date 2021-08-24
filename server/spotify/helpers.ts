@@ -1,11 +1,10 @@
-import axios, { AxiosError } from "axios";
-import SpotifyWebApi from "spotify-web-api-node";
-
+import axios, { AxiosError } from 'axios';
+import SpotifyWebApi from 'spotify-web-api-node';
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  redirectUri: 'http://localhost:4000/auth/spotify/callback'
+  redirectUri: 'http://localhost:4000/auth/spotify/callback',
 });
 
 const getRecentlyPlayed = async (access_token: string) => {
@@ -19,17 +18,16 @@ const getRecentlyPlayed = async (access_token: string) => {
       return data;
     })
     .catch((error) => {
-      console.log("Error from getRecentlyPlayed", error);
+      console.log('Error from getRecentlyPlayed', error);
     });
 };
-
 
 const getUsersCurrentPlayback = async (access_token: string) => {
   const getCurrentPlayback: any = {
     method: 'get',
     url: 'https://api.spotify.com/v1/me/player',
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
       Authorization: `Bearer ${access_token}`,
     },
@@ -37,36 +35,33 @@ const getUsersCurrentPlayback = async (access_token: string) => {
 
   return await axios(getCurrentPlayback)
     .then((response) => {
-      return response
+      return response;
     })
     .catch((error: AxiosError) => {
       console.log('Error from getUsersCurrentPlayback', error);
     });
-}
+};
 
-const getUsersPlaylists = (access_token: string) =>{
+const getUsersPlaylists = async (access_token: string) => {
   spotifyApi.setAccessToken(access_token);
-  spotifyApi.getUserPlaylists()
-.then((response) =>{
-
-  // const res: any[] = [];
-  // response.body.items.forEach((item: any) => res.push(item));
-  // setUserPlaylists(response.body.items);
-  console.log((response.body.items));
-  return response;
-})
-.catch((error: AxiosError) =>{
-  console.log('Error from getUsersPlaylists', error);
-});
-}
+  return await spotifyApi
+    .getUserPlaylists()
+    .then((response) => {
+      // console.log((response.body.items));
+      return response.body.items;
+    })
+    .catch((error: AxiosError) => {
+      console.log('Error from getUsersPlaylists', error);
+    });
+};
 
 const addToQueue = async (access_token: String, uri: String) => {
   const toQueue: any = {
-    method: "POST",
+    method: 'POST',
     url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${access_token}`,
     },
   };
@@ -75,22 +70,35 @@ const addToQueue = async (access_token: String, uri: String) => {
       console.log(JSON.stringify(response.data));
     })
     .catch((error: AxiosError) => {
-      console.log('Error from addToQueue' ,error);
+      console.log('Error from addToQueue', error);
     });
 };
 
 const querySpotify = (query: string, access_token: string) => {
   return axios({
-     url: `https://api.spotify.com/v1/search?q=${query}&type=track`,
-     method: "get",
-     headers: {
-       Authorization: `Bearer ${access_token}`,
-     },
-   }).then((data) => {
-       return data.data.tracks.items;
-   });
- }
+    url: `https://api.spotify.com/v1/search?q=${query}&type=track`,
+    method: 'get',
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  }).then((data) => {
+    return data.data.tracks.items;
+  });
+};
 
+const addToPlaylist = async (
+  access_token: string,
+  playlist_id: string,
+  track_uri: string
+) => {
+  spotifyApi.setAccessToken(access_token);
+  return await spotifyApi
+    .addTracksToPlaylist(playlist_id, [track_uri])
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => console.log(err));
+};
 
 export {
   spotifyApi,
@@ -98,6 +106,6 @@ export {
   getUsersCurrentPlayback,
   addToQueue,
   getUsersPlaylists,
-  querySpotify
-}
-
+  querySpotify,
+  addToPlaylist,
+};

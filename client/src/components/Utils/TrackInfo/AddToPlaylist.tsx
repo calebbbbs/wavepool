@@ -1,48 +1,78 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import axios from 'axios';
+import { UserContext } from '../../../contexts/UserContext';
 
 import {
-Popover,
-PopoverTrigger,
-Portal,
-PopoverHeader,
-PopoverContent,
-PopoverBody,
-PopoverCloseButton,
-Box,
-Button,
-PopoverFooter,
-useColorModeValue
-} from '@chakra-ui/react'
-import { AddIcon } from "@chakra-ui/icons";
-function AddToPlaylist() {
-    const bg = useColorModeValue("brand.50", "brand.900");
-    return (
-      <Popover 
-      trigger="hover"
-      closeOnBlur={false} placement="left">
-        {(props) => (
-          <>
-            <PopoverTrigger>
-              <Button variant="ghost">
-                  <AddIcon/>
-              </Button>
-            </PopoverTrigger>
-            <Portal>
-              <PopoverContent bg={bg}>
-                <PopoverHeader>This is the header</PopoverHeader>
-                <PopoverCloseButton />
-                <PopoverBody>
-                  <Box>
-                    Hello. Nice to meet you! This is the body of the popover
-                  </Box>
-                </PopoverBody>
-                <PopoverFooter>This is the footer</PopoverFooter>
-              </PopoverContent>
-            </Portal>
-          </>
-        )}
-      </Popover>
-    )
-  }
+  Popover,
+  PopoverTrigger,
+  Portal,
+  PopoverHeader,
+  PopoverContent,
+  PopoverBody,
+  PopoverCloseButton,
+  Box,
+  Button,
+  useColorModeValue,
+  Menu,
+  MenuItem,
+  MenuButton,
+  MenuList,
+} from '@chakra-ui/react';
 
-export default AddToPlaylist
+import { AddIcon, ChevronDownIcon } from '@chakra-ui/icons';
+
+const AddToPlaylist = (props: any) => {
+  const { userObj } = useContext(UserContext);
+
+  const bg = useColorModeValue('brand.50', 'brand.900');
+
+  const addToPlaylist = () => {
+    console.log('i got clicked');
+    axios
+      .get(
+        `http://localhost:4000/spotify/addToPlaylist/${userObj.user_id}/${playlist.id}/${props.trackUri}`
+      )
+      .then((data: any) => data);
+  }
+  const list = props.playlists.map((playlist: any, i: number) => {
+    return (
+      <MenuItem
+        onClick={addToPlaylist}
+        key={i}
+      >
+        {playlist.name}
+      </MenuItem>
+    );
+  });
+  return (
+    <Popover trigger='hover' placement='left'>
+      {(props) => (
+        <>
+          <PopoverTrigger>
+            <Button variant='ghost'>
+              <AddIcon />
+            </Button>
+          </PopoverTrigger>
+          <Portal>
+            <PopoverContent bg={bg}>
+              <PopoverHeader>Choose A Playlist</PopoverHeader>
+              <PopoverCloseButton />
+              <PopoverBody>
+                <Box>
+                  <Menu>
+                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                      Playlists
+                    </MenuButton>
+                    <MenuList>{list && <div> {list}</div>}</MenuList>
+                  </Menu>
+                </Box>
+              </PopoverBody>
+            </PopoverContent>
+          </Portal>
+        </>
+      )}
+    </Popover>
+  );
+};
+
+export default AddToPlaylist;
