@@ -1,5 +1,5 @@
 import React from 'react'
-import TrackInfo from '../../Utils/TrackInfo';
+import TrackInfo from '../../Utils/TrackInfo/TrackInfo';
 import type {Track} from '../../../types'
 const RecentlyPlayedList = (props: any) => {
 

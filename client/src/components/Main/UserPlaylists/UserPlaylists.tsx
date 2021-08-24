@@ -1,21 +1,17 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
 import {
     Flex,
     Box,
-    Text,
     useColorModeValue,
     Link,
 } from "@chakra-ui/react"
 import {UserContext }from "../../../contexts/UserContext"
-import RecentlyPlayedList from './RecentlyPlayedList';
-export const RecentlyPlayed = () => {
-const [seeMore, setSeeMore] = useState<boolean>(false)
-const {recentPlays, userObj, getRecentlyPlayed} = useContext(UserContext);
+import PlaylistContainer from './UserPlaylistContainer';
+export const UserPlaylists = () => {
+// const [seeMore, setSeeMore] = useState<boolean>(false)
+const {userObj, getUsersPlaylists, userPlaylists} = useContext(UserContext);
 useEffect(() => {
-  const interval = setInterval(() => {
-    getRecentlyPlayed();
-  }, 60000);
-  return () => clearInterval(interval);
+  getUsersPlaylists();
 }, []);
 return (
     <Flex
@@ -30,7 +26,7 @@ return (
         py={4}
         rounded="lg"
         shadow="lg"
-        bg={useColorModeValue("brand.100", "brand.800")}
+        bg={useColorModeValue("brand.100", "brand.700")}
         maxW="2xl"
       >
 
@@ -44,21 +40,21 @@ return (
               textDecor: "underline",
             }}
           >
-            Recently Played
+            User Playlists
           </Link>
 
-          {recentPlays && <div>
-          {seeMore ? <RecentlyPlayedList recentPlays={recentPlays.slice(0,5)}/> :
-          <RecentlyPlayedList recentPlays={recentPlays.slice(0,2)}/>}</div>}
+          {userPlaylists && <div>
+          {/* {seeMore ? <PlaylistContainer userPlaylists={userPlaylists}/> : */}
+          <PlaylistContainer userPlaylists={userPlaylists.slice(0, 1)}/></div>}
         </Box>
 
         <Flex justifyContent="space-between" alignItems="center" mt={4}>
           <Link
             color={useColorModeValue("brand.600", "brand.400")}
             _hover={{ textDecor: "underline" }}
-            onClick={() => {setSeeMore(!seeMore)}}
+            // onClick={() => {setSeeMore(!seeMore)}}
           >
-            {seeMore ? <Text>See Less</Text>: <Text>See More</Text>}
+            {/* {seeMore ? <Text>See Less</Text>: <Text>See More</Text>} */}
           </Link>
 
           <Flex alignItems="center">
@@ -76,4 +72,4 @@ return (
   );
 }
 
-export default RecentlyPlayed
+export default UserPlaylists
