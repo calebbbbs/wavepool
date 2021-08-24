@@ -72,7 +72,7 @@ function AddFriendDrawer() {
               size="md"
             >Friends:</Heading>
             <br/>
-            {data.getUser.friends.map((friend: any, i: number) => {
+            {data.getUser && data.getUser.friends.map((friend: any, i: number) => {
               if(friend.friend_status){
                 return <FriendStat friend={friend} key={i}/>
               }
@@ -84,7 +84,7 @@ function AddFriendDrawer() {
               size="md"
             >Pending friends:</Heading>
             <br/>
-            {data.getUser.friends.map((friend: any, i: number) => {
+            {data.getUser && data.getUser.friends.map((friend: any, i: number) => {
               if(!friend.friend_status){
                 return <FriendStat friend={friend} key={i}/>
               }

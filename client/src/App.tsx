@@ -12,7 +12,7 @@ return (
     <Switch>
       <Route exact path='/'>
         <Nav user={...userObj}/>
-        {isLoggedIn && <Main/>}
+        {isLoggedIn && userObj && <Main/>}
       </Route>
     </Switch>
 );

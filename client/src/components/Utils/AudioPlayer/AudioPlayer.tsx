@@ -16,14 +16,16 @@ import {
   DrawerCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
+
 import { TransportControls } from "./TransportControls";
+
 export const AudioPlayer = () => {
-  const { currPlayback, getUsersCurrentPlayback } =
+  const { userObj, currPlayback, getUsersCurrentPlayback } =
     useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     const interval = setInterval(() => {
-      getUsersCurrentPlayback();
+      getUsersCurrentPlayback(userObj.user_id);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -33,7 +35,7 @@ export const AudioPlayer = () => {
       <Button m={4} variant="ghost" colorScheme="teal" onClick={onOpen}>
         <BsMusicNoteBeamed />
       </Button>
-      <Drawer 
+      <Drawer
       isOpen={isOpen} placement="top" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>

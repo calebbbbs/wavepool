@@ -6,14 +6,11 @@ import path from "path";
 import typeOrmConfig from "../server/db/dbConfig";
 import User from "./db/entities/User";
 
-// import addToQueue from '../server/helpers/SpotifyWebApi';
 
-
-// import axios, { AxiosError } from "axios";
-import spotifyRouter from "./helpers/spotifyroutes"
+import spotifyRouter from "./spotify/spotifyRoutes"
 require("dotenv").config();
 
-// import User from "./db/entities/user";
+
 const session = require("express-session");
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
@@ -23,6 +20,7 @@ import { Request, Response } from "express-serve-static-core";
 import { Profile, VerifyCallback } from "passport-spotify";
 
 const CLIENT_PATH = path.resolve(__dirname, "..", "client/dist");
+
 const allowedOrigins = [
   "http://localhost:4000/",
   "https://studio.apollographql.com",

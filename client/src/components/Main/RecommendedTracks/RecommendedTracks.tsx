@@ -17,12 +17,11 @@ import RecommendedTracksList from "./RecomendedTracksList";
 
 const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
-  const { loading, error, data } = useQuery(GET_RECOMMENDED_TRACKS, {
+  const [seeMore, setSeeMore] = useState(false)
+  const { error, data } = useQuery(GET_RECOMMENDED_TRACKS, {
     variables: { getUserUserId: userObj.user_id },
   });
-  const [seeMore, setSeeMore] = useState(false)
-  if (error) console.error(error);
-  if (loading) return <p>Loading ...</p>;
+  if(error) console.error(error);
   return (
     <Flex
       p={50}
@@ -53,7 +52,7 @@ const RecommendedTracks = () => {
             Recommended
           </Link>
 
-          {data.getUser.recommendedTracks && <div>
+          {data && data.getUser.recommendedTracks && <div>
           {seeMore ? <RecommendedTracksList recommendedTracks={data.getUser.recommendedTracks}/> :
           <RecommendedTracksList recommendedTracks={data.getUser.recommendedTracks.slice(0, 2)}/>}</div>}
         </Box>

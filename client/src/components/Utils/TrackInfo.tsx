@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../contexts/UserContext";
 
@@ -18,23 +18,21 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverBody,
-  Input,
   PopoverArrow,
   PopoverCloseButton,
-  useDisclosure,
 } from "@chakra-ui/react";
 
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
 
-import { useMutation } from "@apollo/client";
+// import { useMutation } from "@apollo/client";
 
-import RECOMMEND_TRACK from "../../graphQL/mutations/RECOMMEND_TRACK";
+// import RECOMMEND_TRACK from "../../graphQL/mutations/RECOMMEND_TRACK";
 
 const TrackInfo = (props: any) => {
-  const [reccomendTrack] = useMutation(RECOMMEND_TRACK);
-  const [sendInput, setSendInput] = useState("");
-  const { onOpen, onClose } = useDisclosure();
+  // const [reccomendTrack] = useMutation(RECOMMEND_TRACK);
+  // const [sendInput, setSendInput] = useState("");
+
   const { userObj } = useContext(UserContext);
   const {
     friend_name,
@@ -112,56 +110,38 @@ const TrackInfo = (props: any) => {
           </Stack>
         </Center>
         <Spacer />
-        <Stack m={4}>
-            <Button
-              onClick={() => {
-                const params = {
-                  access_token: userObj.access_token,
-                  uri: props.track.uri,
-                };
-                axios(
-                  `http://localhost:4000/addToQueue/${userObj.access_token}/${spotify_uri}`,
-                  { params }
+        <Stack>
+          <Button
+            onClick={() => {
+              axios
+                .get(
+                  `http://localhost:4000/spotify/addToQueue/${userObj.user_id}/${spotify_uri}`
                 )
-                  .then((data) => data)
-                  .catch((err) => console.error(err));
-              }}
-            >
-              Queue
-            </Button>
-            <Popover>
-              <PopoverTrigger>
-                <Button onClick={onOpen}>Send</Button>
-              </PopoverTrigger>
+                .then((data) => console.log(data))
+                .catch((err) => console.error(err));
+            }}
+          >
+            Queue
+          </Button>
+
+          <Popover>
+            <PopoverTrigger>
+              <Button>Send</Button>
+            </PopoverTrigger>
               <PopoverContent>
+                <PopoverHeader fontWeight="semibold">
+                  Confirmation
+                </PopoverHeader>
                 <PopoverArrow />
                 <PopoverCloseButton />
-                <PopoverHeader>Recipients Email</PopoverHeader>
                 <PopoverBody>
-                  <Input onChange={(e) => setSendInput(e.target.value)} />
-                  <Button
-                    onClick={() => {
-                      reccomendTrack({
-                        variables: {
-                          createRecommendedData: {
-                            user_id: userObj.user_id,
-                            friend_id: sendInput,
-                            track_title: name,
-                            spotify_uri: props.track.uri,
-                            artists: [props.track.artists[0].name],
-                            album_title: props.track.album.name,
-                            album_art: props.track.album.images[1].url,
-                          },
-                        },
-                      });
-                      onClose();
-                    }}
-                  >
-                    Send
-                  </Button>
+                  Are you sure you want to send this track?
+                  <Center>
+                    <Button colorScheme="green">Yeah!</Button>
+                  </Center>
                 </PopoverBody>
               </PopoverContent>
-            </Popover>
+          </Popover>
         </Stack>
       </Flex>
     </chakra.div>

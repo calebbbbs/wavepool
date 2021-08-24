@@ -17,6 +17,7 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../../contexts/UserContext";
 
+
 // import {SearchIcon} from '@chakra-ui/icons'
 function Search() {
   const { isOpen, onOpen, onClose } = useDisclosure();
