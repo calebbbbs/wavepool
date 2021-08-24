@@ -1,11 +1,10 @@
-import React from "react";
-import TrackInfo from "../TrackInfo/TrackInfo";
-import type { Track } from "../../../types";
-import { chakra } from "@chakra-ui/react";
+import React from 'react';
+import TrackInfo from '../TrackInfo/TrackInfo';
+import type { Track } from '../../../types';
+import { chakra } from '@chakra-ui/react';
 
 const SearchTrackList = (props: any) => {
   const list = props.trackList.map((e: any, i: Number) => {
-
     const artists = e.artists.map((artist: any) => {
       return artist.name;
     });

@@ -8,23 +8,24 @@ PopoverHeader,
 PopoverArrow,
 PopoverCloseButton,
 PopoverBody,
-Tooltip,
+
+useColorModeValue,
 Center} from '@chakra-ui/react'
 
-
 import { RiMailSendLine } from 'react-icons/ri'
-
 const ConfirmPopper = () => {
+  const bg = useColorModeValue('brand.100', 'brand.800');
     return (
-      <Popover>
+      <Popover 
+      trigger="hover"
+      placement="left">
         <PopoverTrigger>
-          <Tooltip label="Send to Friends">
           <Button variant="ghost">
             <RiMailSendLine />
           </Button>
-          </Tooltip>
         </PopoverTrigger>
-        <PopoverContent bg={"brand.800"}>
+        <PopoverContent 
+        bg={bg}>
           <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
           <PopoverArrow />
           <PopoverCloseButton />
