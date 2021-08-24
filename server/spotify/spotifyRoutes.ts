@@ -93,7 +93,7 @@ spotifyRouter.get('/pause/:user_id', async (req: Request, res: Response) => {
 spotifyRouter.get("/addToQueue/:user_id/:spotify_uri", async (req: Request, res: Response) => {
   const { spotify_uri } = req.params;
   const { user_id } = req.params;
-  console.log(req.params);
+
   const user = await User.findOne({ where: { user_id: user_id } });
   if(user){
     const {access_token} = user;
