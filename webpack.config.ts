@@ -3,7 +3,7 @@ import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 const webpack = require('webpack')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // const dotenv = require('dotenv')
 
 const distDir = path.resolve(__dirname, 'client/dist');
@@ -26,18 +26,6 @@ export const config: Configuration = {
         },
       },
 
-      {
-        test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif) (\?v=\d+\.\d+\.\d+)?$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            limit: 100000,
-            name: '[name].[ext]',
-            outputPath: 'fonts/'
-          }
-        }
-      },
-
 			{
 				test: /\.css$/,
 				use: [
@@ -46,11 +34,7 @@ export const config: Configuration = {
           },
           {
             loader: 'css-loader'
-          },
-					{
-            loader: 'sass-loader'
-					}
-          ,]},
+          }]},
     ],
   },
   resolve: {
@@ -75,7 +59,7 @@ export const config: Configuration = {
       }
        // it will automatically pick up key values from .env file
    }),
-   new MiniCssExtractPlugin()
+  //  new MiniCssExtractPlugin()
   ],
 };
 

@@ -1,49 +1,52 @@
-import React, {useContext} from 'react'
-import { FaPlay, FaPause } from 'react-icons/fa';
-import { CgPlayTrackPrev, CgPlayTrackNext } from 'react-icons/cg';
-import { UserContext } from '../../../contexts/UserContext';
-import { Flex, Button, ButtonGroup } from '@chakra-ui/react';
-import axios from 'axios';
+import React, { useContext } from "react";
+import { FaPlay, FaPause } from "react-icons/fa";
+import { CgPlayTrackPrev, CgPlayTrackNext } from "react-icons/cg";
+import { UserContext } from "../../../contexts/UserContext";
+import { Flex, Button, ButtonGroup } from "@chakra-ui/react";
+import axios from "axios";
 
 export const TransportControls = () => {
-    const { isPlaying, setIsPlaying,  userObj, getUsersCurrentPlayback } = useContext(UserContext);
+  const { isPlaying, setIsPlaying, userObj, getUsersCurrentPlayback } =
+    useContext(UserContext);
 
-
-    return (
-        <Flex>
-            <ButtonGroup>
-                    <Button
+  return (
+    <Flex>
+      <ButtonGroup>
+        <Button
+          variant="ghost"
           onClick={() => {
             //axios get previous
-            axios.get(`/spotify/prev/${userObj.user_id}`)
-            setTimeout(() => {getUsersCurrentPlayback(userObj.user_id)}, 1000)
-
+            axios.get(`/spotify/prev/${userObj.user_id}`);
+            setTimeout(() => {
+              getUsersCurrentPlayback(userObj.user_id);
+            }, 1000);
           }}
         >
-          <CgPlayTrackPrev/>
+          <CgPlayTrackPrev />
         </Button>
 
         {isPlaying ? (
           <div>
             <Button
+              variant="ghost"
               onClick={() => {
                 //axios get pause
-                axios.get(`/spotify/pause/${userObj.user_id}`)
+                axios.get(`/spotify/pause/${userObj.user_id}`);
                 setIsPlaying(false);
-                getUsersCurrentPlayback(userObj.user_id)
+                getUsersCurrentPlayback(userObj.user_id);
               }}
             >
-                 <FaPause />
+              <FaPause />
             </Button>
           </div>
         ) : (
           <div>
             <Button
+              variant="ghost"
               onClick={() => {
-               //axios get play
-               axios.get(`/spotify/play/${userObj.user_id}`)
+                axios.get(`/spotify/play/${userObj.user_id}`);
                 setIsPlaying(true);
-                getUsersCurrentPlayback(userObj.user_id)
+                getUsersCurrentPlayback(userObj.user_id);
               }}
             >
               <FaPlay />
@@ -51,15 +54,18 @@ export const TransportControls = () => {
           </div>
         )}
         <Button
+          variant="ghost"
           onClick={() => {
-            axios.get(`/spotify/next/${userObj.user_id}`)
+            axios.get(`/spotify/next/${userObj.user_id}`);
 
-            setTimeout(() => {getUsersCurrentPlayback(userObj.user_id)}, 1000)
+            setTimeout(() => {
+              getUsersCurrentPlayback(userObj.user_id);
+            }, 1000);
           }}
         >
-          <CgPlayTrackNext/>
+          <CgPlayTrackNext />
         </Button>
-        </ButtonGroup>
-      </Flex>
-    )
-}
+      </ButtonGroup>
+    </Flex>
+  );
+};

@@ -93,6 +93,7 @@ const authCallbackPath = '/auth/spotify/callback';
   app.use(passport.initialize());
   app.use(passport.session());
 
+
   app.get(
     "/auth/spotify",
     await passport.authenticate("spotify", {
@@ -119,6 +120,11 @@ const authCallbackPath = '/auth/spotify/callback';
       res.redirect("/");
     }
   );
+
+  app.get('/logout', function(req: Request, res: Response){
+    req.logout();
+    res.redirect('/');
+  });
 
   app.get("/getUser", (req: Request, res: Response) => {
   const user: any = {...req.user}
