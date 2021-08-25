@@ -24,7 +24,7 @@ const { PORT } = process.env
 const allowedOrigins = [
   "http://localhost:4000/",
   "http://localhost:8080",
-  "ec2-18-220-159-62.us-east-2.compute.amazonaws.com",
+  "http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com:8080/",
   "https://studio.apollographql.com",
   "https://api.spotify.com/",
 ];
@@ -62,7 +62,7 @@ const authCallbackPath = '/auth/spotify/callback';
       {
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        callbackURL: `http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com${authCallbackPath}`,
+        callbackURL: `http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com:8080${authCallbackPath}`,
         passReqToCallback: true,
       },
       async (
@@ -136,7 +136,7 @@ const authCallbackPath = '/auth/spotify/callback';
   });
 
 
-  app.options("*", cors());
+  app.options("*", cors(options));
   app.use("*", cors(options));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -149,7 +149,7 @@ const authCallbackPath = '/auth/spotify/callback';
     res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
   });
 
-  await new Promise((resolve) => app.listen({ PORT }, resolve));
+  await new Promise((resolve) => app.listen({port:  PORT }, resolve));
   console.log(`🌊 Ride the Wave 🌊 \n
   http://localhost:${PORT}/${server.graphqlPath}\n
   http://localhost:${PORT}\n
