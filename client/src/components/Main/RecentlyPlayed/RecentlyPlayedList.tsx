@@ -1,5 +1,5 @@
 import React from 'react'
-import TrackInfo from '../../Utils/TrackInfo/TrackInfo';
+import TrackComp from '../../Utils/Track/TrackComp';
 import type {Track} from '../../../types'
 const RecentlyPlayedList = (props: any) => {
 
@@ -14,7 +14,7 @@ const track: Track = {
     album_title: e.album.name,
     spotify_uri: e.uri
 }
-    return  <TrackInfo track={track} key={i}/>
+    return  <TrackComp track={track} key={i}/>
   })
     return (
         <div>

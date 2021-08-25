@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
-import { UserContext } from '../../../contexts/UserContext';
+import { UserContext } from '../../../../contexts/UserContext';
 
 import {
   Link,
@@ -15,6 +15,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   DrawerFooter,
+  Tooltip,
 } from '@chakra-ui/react';
 
 import { AddIcon } from '@chakra-ui/icons';
@@ -46,9 +47,11 @@ const AddToPlaylist = (props: any) => {
   });
   return (
     <>
+    <Tooltip placement="right" label="Add to Playlist">
     <Button  variant="ghost" onClick={onOpen}>
       <AddIcon/>
     </Button>
+    </Tooltip>
     <Drawer
       isOpen={isOpen}
       placement="left"

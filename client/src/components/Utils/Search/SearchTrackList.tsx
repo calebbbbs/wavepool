@@ -1,5 +1,5 @@
 import React from 'react';
-import TrackInfo from '../TrackInfo/TrackInfo';
+import TrackComp from '../Track/TrackComp';
 import type { Track } from '../../../types';
 import { chakra } from '@chakra-ui/react';
 
@@ -17,7 +17,7 @@ const SearchTrackList = (props: any) => {
       spotify_uri: e.uri,
     };
 
-    return <TrackInfo track={track} key={i} />;
+    return <TrackComp track={track} key={i} />;
   });
 
   return <chakra.div>{list}</chakra.div>;

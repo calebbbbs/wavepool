@@ -114,6 +114,27 @@ spotifyRouter.get(
 );
 
 spotifyRouter.get(
+  '/playNow/:user_id/:spotify_uri',
+  async (req: Request, res: Response) => {
+    const { spotify_uri } = req.params;
+    const { user_id } = req.params;
+
+    const user = await User.findOne({ where: { user_id: user_id } });
+    if (user) {
+      const { access_token } = user;
+      return addToQueue(access_token, spotify_uri)
+        .then((data) => {
+        spotifyApi.setAccessToken(access_token)
+        spotifyApi.skipToNext();
+        return res.status(201).send(data)})
+        .catch((error) => console.log(error));
+    } else {
+      return res.sendStatus(404);
+    }
+  }
+);
+
+spotifyRouter.get(
   '/query/:user_id/:query',
   async (req: Request, res: Response) => {
     const { user_id, query } = req.params;
@@ -128,6 +149,7 @@ spotifyRouter.get(
     }
   }
 );
+
 
 spotifyRouter.get(
   '/userPlaylists/:user_id',

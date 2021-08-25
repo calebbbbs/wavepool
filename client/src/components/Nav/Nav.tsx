@@ -8,6 +8,7 @@ import {
   HStack,
   Box,
   IconButton,
+  Link,
   useColorModeValue,
   VisuallyHidden,
   useDisclosure,
@@ -15,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 
 import { AiOutlineMenu } from "react-icons/ai";
-
+import { BiLogOut } from "react-icons/bi";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
 
@@ -27,32 +28,16 @@ function Nav(props: any) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isLoggedIn, currPlayback }: any = useContext(UserContext);
   const { isOpen, onClose, onOpen } = useDisclosure();
-  // return (
-  //   <Flex zIndex="2">
-  //     <chakra.h1 fontSize="4xl" m={4}>
-  //       Wavepool 🌊
-  //     </chakra.h1>
-  //     <Spacer />
-  //     <Tooltip label="Toggle Color Mode">
-  //       <Button m={4} variant="ghost" onClick={toggleColorMode}>
-  //         {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-  //       </Button>
-  //     </Tooltip>
-  //     {!isLoggedIn ? (
-  //       <div></div>
-  //     ) : (
-  //       <chakra.div>
-  //         <Search />
-  //         {/* <AddFriendDrawer/> */}
-  //       </chakra.div>
-  //     )}
-  //     {currPlayback && <AudioPlayer />}
-  //   </Flex>
-  // );
 
   return (
     <>
-      <chakra.header w="full" px={{ base: 2, sm: 4 }} py={4} shadow="md">
+      <chakra.header
+        zIndex="2"
+        bg="blackAlpha.50"
+        position="fixed"
+        w="full"
+        px={{ base: 2, sm: 4 }}
+      >
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <Flex>
             <chakra.a
@@ -80,15 +65,22 @@ function Nav(props: any) {
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
+              {currPlayback && <AudioPlayer />}
               {!isLoggedIn ? (
                 <div></div>
               ) : (
                 <chakra.div>
                   <Search />
                   {/* <AddFriendDrawer/> */}
+                  <Link href="/logout">
+                    <Tooltip label="Log Out">
+                      <Button variant="ghost">
+                        <BiLogOut />
+                      </Button>
+                    </Tooltip>
+                  </Link>
                 </chakra.div>
               )}
-              {currPlayback && <AudioPlayer />}
             </HStack>
             <Box display={{ base: "inline-flex", md: "none" }}>
               <IconButton
@@ -100,7 +92,6 @@ function Nav(props: any) {
                 icon={<AiOutlineMenu />}
                 onClick={onOpen}
               />
-
               <Flex
                 pos="absolute"
                 top={0}
@@ -113,10 +104,9 @@ function Nav(props: any) {
                 mr={6}
                 spacing={3}
                 rounded="sm"
-                shadow="sm"
               >
                 <CloseButton m={4} aria-label="Close menu" onClick={onClose} />
-
+                {currPlayback && <AudioPlayer />}
                 <Tooltip label="Toggle Color Mode">
                   <Button m={4} variant="ghost" onClick={toggleColorMode}>
                     {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
@@ -127,9 +117,15 @@ function Nav(props: any) {
                 ) : (
                   <chakra.div>
                     <Search />
+                    <Tooltip label="Log Out">
+                      <Link href="/logout">
+                        <Button variant="ghost">
+                          <BiLogOut />
+                        </Button>
+                      </Link>
+                    </Tooltip>
                   </chakra.div>
                 )}
-                {currPlayback && <AudioPlayer />}
               </Flex>
             </Box>
           </HStack>

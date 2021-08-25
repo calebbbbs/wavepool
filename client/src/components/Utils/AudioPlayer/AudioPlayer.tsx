@@ -3,7 +3,7 @@ import { BsMusicNoteBeamed } from 'react-icons/bs'
 import { UserContext } from "../../../contexts/UserContext";
 import {
   chakra,
-  Flex,
+  VStack,
   Image,
   Text,
   Stack,
@@ -38,18 +38,23 @@ export const AudioPlayer = () => {
   return (
     <>
       <Tooltip label="Spotify Controls">
-      <Button m={4} variant="ghost" colorScheme="teal" onClick={onOpen}>
+      <Button m={4} variant="ghost" onClick={onOpen}>
      <BsMusicNoteBeamed />
       </Button>
       </Tooltip>
       <Drawer
-      isOpen={isOpen} placement="top" onClose={onClose}>
+      size="xs"
+      isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent bg={bg}>
           <DrawerCloseButton />
           <DrawerBody>
             <Center>
-              <Flex m={4} float="right" fontSize="xs">
+              <VStack 
+              alignContent="center"
+              alignItems="center"
+              my="auto"
+              float="right" fontSize="xs">
                 <Center>
                   <Image
                     borderRadius="5px"
@@ -83,8 +88,8 @@ export const AudioPlayer = () => {
                   </chakra.div>
                   <TransportControls />
                 </Stack>
-              </Flex>
-            </Center>
+              </VStack>
+              </Center>
           </DrawerBody>
         </DrawerContent>
       </Drawer>

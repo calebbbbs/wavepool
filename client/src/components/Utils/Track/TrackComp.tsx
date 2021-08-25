@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
-import axios from 'axios';
-import { UserContext } from '../../../contexts/UserContext';
-import ConfirmPopper from './ConfirmPopper';
+import React, { useContext, useState } from "react";
+import axios from "axios";
+import { UserContext } from "../../../contexts/UserContext";
+import ConfirmPopper from "./buttons/ConfirmSend";
 import {
   chakra,
   Center,
@@ -14,19 +14,19 @@ import {
   Button,
   useColorModeValue,
   Tooltip,
-  Skeleton
-} from '@chakra-ui/react';
+  Skeleton,
+} from "@chakra-ui/react";
 
-import { BsPerson } from 'react-icons/bs';
-import { BiHeadphone, BiAlbum } from 'react-icons/bi';
-import { MdQueueMusic } from 'react-icons/md';
-import AddToPlaylist from './AddToPlaylist';
-
+import { BsPerson } from "react-icons/bs";
+import { BiHeadphone, BiAlbum } from "react-icons/bi";
+import { MdQueueMusic } from "react-icons/md";
+import AddToPlaylist from "./buttons/AddToPlaylist";
+import PlayNow from "./buttons/PlayNow";
 // import { useMutation } from "@apollo/client";
 
 // import RECOMMEND_TRACK from "../../graphQL/mutations/RECOMMEND_TRACK";
 
-const TrackInfo = (props: any) => {
+const TrackComp = (props: any) => {
   // const [reccomendTrack] = useMutation(RECOMMEND_TRACK);
   // const [sendInput, setSendInput] = useState("");
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -39,19 +39,20 @@ const TrackInfo = (props: any) => {
     album_title,
     spotify_uri,
   } = props.track;
-  const bg = useColorModeValue('brand.100', 'brand.800');
 
- const addToPlaylist = () => {
-  axios
-    .get(
-      `http://localhost:4000/spotify/addToQueue/${userObj.user_id}/${spotify_uri}`
-    )
-    .then((data) => data)
-    .catch((err) => console.error(err));
-}
+  const bg = useColorModeValue("brand.50", "brand.900");
+
+  const addToQueue = () => {
+    axios
+      .get(
+        `http://localhost:4000/spotify/addToQueue/${userObj.user_id}/${spotify_uri}`
+      )
+      .then((data) => data)
+      .catch((err) => console.error(err));
+  };
 
   return (
-    <chakra.div bg={bg} h='auto' borderRadius='2vh' m={2}>
+    <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
       <Center>
         {friend_name && (
           <div>
@@ -65,69 +66,65 @@ const TrackInfo = (props: any) => {
         <Center>
           <Box>
             <Skeleton isLoaded={imgLoaded}>
-            <Image
-              aspect-ratio={1}
-              m={2}
-              minW='120px'
-              minH='120px'
-              boxSize='120px'
-              float='left'
-              fit='contain'
-              onLoad={() => {
-                setImgLoaded(true)
-              }}
-              src={album_art}
-              alt='Album Cover'
-            />
+              <Image
+                aspect-ratio={1}
+                m={2}
+                minW="120px"
+                minH="120px"
+                boxSize="120px"
+                float="left"
+                fit="contain"
+                onLoad={() => {
+                  setImgLoaded(true);
+                }}
+                src={album_art}
+                alt="Album Cover"
+              />
             </Skeleton>
           </Box>
         </Center>
         <Center>
-          <Stack m={3} mr={4}>
-            <Flex minW='200px'>
+          <Stack padding={2} borderRadius="15px" m={2} mr={4}>
+            <Flex alignItems="center" minW="200px">
               <chakra.div mr={2}>
                 <BiHeadphone />
               </chakra.div>
-              <Text fontSize='md'>{track_title}</Text>
+              <Text fontSize="md">{track_title}</Text>
             </Flex>
             <chakra.div>
-              <Flex minW='200px'>
+              <Flex alignItems="center" minW="200px">
                 <chakra.div mr={2}>
                   <BsPerson />
                 </chakra.div>
                 {artists.map((artist: any, i: number) => {
                   if (i === artists.length - 1) {
                     return (
-                      <Text key={i} fontSize='md'>
+                      <Text key={i} fontSize="md">
                         {artist}
                       </Text>
                     );
                   }
                   return (
-                    <Text key={i} fontSize='md'>
-                      {artist},{'  '}
+                    <Text key={i} fontSize="md">
+                      {artist},{"  "}
                     </Text>
                   );
                 })}
               </Flex>
             </chakra.div>
-            <Flex minW='200px'>
+            <Flex alignItems="center" minW="200px">
               <chakra.div mr={2}>
-                {' '}
                 <BiAlbum />
               </chakra.div>
-              <Text fontSize='md'>{album_title}</Text>
+              <Text fontSize="md">{album_title}</Text>
             </Flex>
             <hr></hr>
           </Stack>
         </Center>
         <Spacer />
         <Stack>
-          <Tooltip placement='top' label='Add to Queue'>
-            <Button
-              variant='ghost'
-              onClick={addToPlaylist}
-            >
+          <Tooltip placement="left" label="Add to Queue">
+            <Button variant="ghost" onClick={addToQueue}>
               <MdQueueMusic />
             </Button>
           </Tooltip>
@@ -135,10 +132,11 @@ const TrackInfo = (props: any) => {
           {userPlaylists && (
             <AddToPlaylist playlists={userPlaylists} trackUri={spotify_uri} />
           )}
+          <PlayNow user_id={userObj.user_id} spotify_uri={spotify_uri} />
         </Stack>
       </Flex>
     </chakra.div>
   );
 };
 
-export default TrackInfo;
+export default TrackComp;

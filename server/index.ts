@@ -121,6 +121,11 @@ const authCallbackPath = '/auth/spotify/callback';
     }
   );
 
+  app.get('/logout', function(req: Request, res: Response){
+    req.logout();
+    res.redirect('/');
+  });
+
   app.get("/getUser", (req: Request, res: Response) => {
   const user: any = {...req.user}
   delete user.access_token
