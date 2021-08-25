@@ -2,7 +2,10 @@ import { AddIcon } from "@chakra-ui/icons";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { UserContext } from '../../contexts/UserContext'
 import FriendStat from './FriendStat';
-import { useMutation, useQuery, gql } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+
+import GET_FRIENDS from '../../graphql_client/queries/GET_FRIENDS'
+import CREATE_FRIEND from '../../graphql_client/mutations/CREATE_FRIEND'
 
 import {
   Drawer,
@@ -18,28 +21,6 @@ import {
 } from "@chakra-ui/react";
 import React, { useState, useContext } from "react";
 
-const GET_FRIENDS = gql`
-  query Query($getUserUserId: String!) {
-    getUser(user_id: $getUserUserId) {
-      friends {
-        friend_id
-        friend_name
-        friend_status
-      }
-    }
-  }
-`;
-
-const CREATE_FRIEND = gql`
-mutation CreateFriendMutation($createFriendData: CreateFriendInput!) {
-  createFriend(data: $createFriendData) {
-    user_id
-    friend_id
-    friend_status
-  }
-}
-`;
-
 function AddFriendDrawer() {
   const [ createFriend ] = useMutation(CREATE_FRIEND);
   const [ newFriendInput, setNewFriendInput ] = useState("");
@@ -48,7 +29,7 @@ function AddFriendDrawer() {
   const { loading, error, data } = useQuery(GET_FRIENDS, {
     variables: { getUserUserId: userObj.user_id },
   });
-  
+
   if (error) console.error(error);
   if (loading) return <p>Loading ...</p>;
 
@@ -72,7 +53,7 @@ function AddFriendDrawer() {
               placeholder="Type here..."
             />
 
-            <Button 
+            <Button
               onClick={() => {
                 createFriend({
                   variables: {
@@ -91,7 +72,7 @@ function AddFriendDrawer() {
               size="md"
             >Friends:</Heading>
             <br/>
-            {data.getUser.friends.map((friend: any, i: number) => {
+            {data.getUser && data.getUser.friends.map((friend: any, i: number) => {
               if(friend.friend_status){
                 return <FriendStat friend={friend} key={i}/>
               }
@@ -103,7 +84,7 @@ function AddFriendDrawer() {
               size="md"
             >Pending friends:</Heading>
             <br/>
-            {data.getUser.friends.map((friend: any, i: number) => {
+            {data.getUser && data.getUser.friends.map((friend: any, i: number) => {
               if(!friend.friend_status){
                 return <FriendStat friend={friend} key={i}/>
               }

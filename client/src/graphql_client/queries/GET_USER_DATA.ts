@@ -6,21 +6,23 @@ query Query($getUserUserId: String!) {
     user_id
     user_name
     user_email
-    access_token
-    refresh_token
     friends {
+      user_id
+      id
       friend_id
       friend_name
       friend_status
     }
     recommendedTracks {
+      id
       user_id
-      track_id
       friend_id
+      friend_name
+      track_title
       spotify_uri
       artists
-      album_id
-      album_uri
+      album_title
+      album_art
     }
   }
 }

@@ -1,9 +1,8 @@
 import React from 'react'
-import RecommendedListItem from './RecommendedListItem'
-
+import TrackComp from '../../Utils/Track/TrackComp'
 const RecommendedTracksList = (props: any) => {
 const list = props.recommendedTracks.map((e: any, i: Number) => {
-    return  <RecommendedListItem track={e} key={i}/>
+    return  <TrackComp track={e} key={i}/>
   })
 
     return (
