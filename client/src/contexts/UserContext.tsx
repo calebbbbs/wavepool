@@ -1,6 +1,9 @@
-import * as React from 'react';
-import { useState } from 'react';
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import * as React from "react";
+import { useState } from "react";
+import {useLazyQuery} from '@apollo/client'
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import GET_USER_DATA from "../graphql_client/queries/GET_USER_DATA";
+
 
 const UserContext = React.createContext(undefined as any);
 // eslint-disable-next-line react/prop-types
@@ -11,7 +14,12 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [recentPlays, setRecentPlays] = useState<any>();
   const [userPlaylists, setUserPlaylists] = useState<any>();
+  const [getUserData, {error, data}] = useLazyQuery(GET_USER_DATA);
 
+
+
+
+  if(error) console.warn(error);
   const getRecentlyPlayed = () => {
     const reqConfig: AxiosRequestConfig = {
       method: 'get',
@@ -31,13 +39,16 @@ const UserContextProvider: React.FC = ({ children }) => {
     );
   };
 
+
   const getUser = () => {
     return axios.get<any>('http://localhost:4000/getUser').then((res) => {
       if (res.data) {
         if (Object.keys(res.data).length === 0) {
           return;
         }
-        setUserObj(res.data);
+        getUserData({
+          variables: { getUserUserId: res.data.user_id },
+        })
         setIsLoggedIn(true);
         if (userObj) {
           getUsersCurrentPlayback();
@@ -46,6 +57,7 @@ const UserContextProvider: React.FC = ({ children }) => {
       }
     });
   };
+
 
   const getUsersCurrentPlayback = () => {
     return axios
@@ -77,6 +89,11 @@ const UserContextProvider: React.FC = ({ children }) => {
       getUsersPlaylists();
     }
   }, [JSON.stringify(userObj)]);
+
+  React.useEffect(() => {if(data){
+    setUserObj(data.getUser);
+  }}, [JSON.stringify(data)])
+
 
   const userProps = {
     userObj,

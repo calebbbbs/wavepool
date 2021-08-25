@@ -5,9 +5,8 @@ import {
   useColorModeValue,
   Box,
   Link,
-  Text,
 } from "@chakra-ui/react";
-
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import GET_RECOMMENDED_TRACKS from "../../../graphql_client/queries/GET_RECOMMENDED_TRACKS";
 
 import { useQuery } from "@apollo/client";
@@ -59,11 +58,10 @@ const RecommendedTracks = () => {
 
         <Flex justifyContent="space-between" alignItems="center" mt={4}>
           <Link
-            color={useColorModeValue("brand.600", "brand.400")}
             _hover={{ textDecor: "underline" }}
             onClick={() => {setSeeMore(!seeMore)}}
           >
-            {seeMore ? <Text>See Less</Text>: <Text>See More</Text>}
+            {seeMore ? <ChevronUpIcon/>: <ChevronDownIcon/>}
           </Link>
 
           <Flex alignItems="center">

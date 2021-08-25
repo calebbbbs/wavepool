@@ -74,6 +74,28 @@ const addToQueue = async (access_token: String, uri: String) => {
     });
 };
 
+const playNow = async (access_token: string, uri: string) => {
+  const toQueue: any = {
+    method: 'POST',
+    url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${access_token}`,
+    },
+  };
+  await axios(toQueue)
+    .then((response) => {
+      spotifyApi.setAccessToken(access_token);
+      spotifyApi.skipToNext();
+    })
+    .catch((error: AxiosError) => {
+      console.log('Error from addToQueue', error);
+    });
+};
+
+
+
 const querySpotify = (query: string, access_token: string) => {
   return axios({
     url: `https://api.spotify.com/v1/search?q=${query}&type=track`,
@@ -100,12 +122,46 @@ const addToPlaylist = async (
     .catch((err) => console.log(err));
 };
 
+const createPlaylist = async (access_token: string) => {
+//   let data = JSON.stringify({
+//     "name": "{{artist_name}} Mix",
+//     "public": false
+//   });
+// let config: any = {
+//   method: 'post',
+//   url: `https://api.spotify.com/v1/users/${user_id}/playlists`,
+//   headers: {
+//     'Accept': 'application/json',
+//     'Authorization': `Bearer ${access_token}`,
+//     'Content-Type': 'application/json'
+//   },
+//   data : data
+// };
+spotifyApi.setAccessToken(access_token);
+return await spotifyApi.createPlaylist(
+  'WavePool Playlist', { 'description': 'My description', 'public': true })
+.then(function(data) {
+  console.log('Created playlist!');
+  console.log(data);
+}, function(err) {
+  console.log('Something went wrong!', err);
+});
+// .then(function (response) {
+//   console.log(JSON.stringify(response.data));
+// })
+// .catch(function (error) {
+//   console.log(error);
+// });
+};
+
 export {
   spotifyApi,
   getRecentlyPlayed,
   getUsersCurrentPlayback,
   addToQueue,
+  playNow,
   getUsersPlaylists,
   querySpotify,
   addToPlaylist,
+  createPlaylist
 };
