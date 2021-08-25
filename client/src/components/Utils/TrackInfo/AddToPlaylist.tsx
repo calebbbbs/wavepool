@@ -3,75 +3,75 @@ import axios from 'axios';
 import { UserContext } from '../../../contexts/UserContext';
 
 import {
-  Popover,
-  PopoverTrigger,
-  Portal,
-  PopoverHeader,
-  PopoverContent,
-  PopoverBody,
-  PopoverCloseButton,
-  Box,
+  Link,
   Button,
   useColorModeValue,
-  Menu,
-  MenuItem,
-  MenuButton,
-  MenuList,
+  chakra,
+  useDisclosure,
+  Drawer,
+  DrawerOverlay,
+  DrawerHeader,
+  DrawerBody,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerFooter,
 } from '@chakra-ui/react';
 
-import { AddIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 
 const AddToPlaylist = (props: any) => {
+  const {isOpen, onOpen, onClose} = useDisclosure();
   const { userObj } = useContext(UserContext);
 
   const bg = useColorModeValue('brand.50', 'brand.900');
 
-  const addToPlaylist = () => {
-    console.log('i got clicked');
-    axios
-      .get(
-        `http://localhost:4000/spotify/addToPlaylist/${userObj.user_id}/${playlist.id}/${props.trackUri}`
-      )
-      .then((data: any) => data);
-  }
   const list = props.playlists.map((playlist: any, i: number) => {
     return (
-      <MenuItem
-        onClick={addToPlaylist}
+      <chakra.div
+        onClick={() => {
+
+          axios
+            .get(
+              `http://localhost:4000/spotify/addToPlaylist/${userObj.user_id}/${playlist.id}/${props.trackUri}`
+            )
+            .then((data: any) => {
+              onClose();
+              data});
+        }}
         key={i}
       >
-        {playlist.name}
-      </MenuItem>
+       <Link> {playlist.name} </Link>
+      </chakra.div>
     );
   });
   return (
-    <Popover trigger='hover' placement='left'>
-      {(props) => (
-        <>
-          <PopoverTrigger>
-            <Button variant='ghost'>
-              <AddIcon />
-            </Button>
-          </PopoverTrigger>
-          <Portal>
-            <PopoverContent bg={bg}>
-              <PopoverHeader>Choose A Playlist</PopoverHeader>
-              <PopoverCloseButton />
-              <PopoverBody>
-                <Box>
-                  <Menu>
-                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                      Playlists
-                    </MenuButton>
-                    <MenuList>{list && <div> {list}</div>}</MenuList>
-                  </Menu>
-                </Box>
-              </PopoverBody>
-            </PopoverContent>
-          </Portal>
-        </>
-      )}
-    </Popover>
+    <>
+    <Button  variant="ghost" onClick={onOpen}>
+      <AddIcon/>
+    </Button>
+    <Drawer
+      isOpen={isOpen}
+      placement="left"
+      onClose={onClose}
+    >
+      <DrawerOverlay />
+      <DrawerContent
+      bg={bg}>
+        <DrawerCloseButton />
+        <DrawerHeader>Add to Playlist</DrawerHeader>
+
+        <DrawerBody>
+        {list && <div> {list}</div>}
+        </DrawerBody>
+
+        <DrawerFooter>
+          <Button variant="outline" mr={3} onClick={onClose}>
+            Cancel
+          </Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  </>
   );
 };
 

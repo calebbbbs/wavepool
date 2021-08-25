@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../../contexts/UserContext';
 import ConfirmPopper from './ConfirmPopper';
@@ -14,6 +14,7 @@ import {
   Button,
   useColorModeValue,
   Tooltip,
+  Skeleton
 } from '@chakra-ui/react';
 
 import { BsPerson } from 'react-icons/bs';
@@ -28,6 +29,7 @@ import AddToPlaylist from './AddToPlaylist';
 const TrackInfo = (props: any) => {
   // const [reccomendTrack] = useMutation(RECOMMEND_TRACK);
   // const [sendInput, setSendInput] = useState("");
+  const [imgLoaded, setImgLoaded] = useState(false);
   const { userObj, userPlaylists } = useContext(UserContext);
   const {
     friend_name,
@@ -62,6 +64,7 @@ const TrackInfo = (props: any) => {
       <Flex mx={5} p={4}>
         <Center>
           <Box>
+            <Skeleton isLoaded={imgLoaded}>
             <Image
               aspect-ratio={1}
               m={2}
@@ -70,9 +73,13 @@ const TrackInfo = (props: any) => {
               boxSize='120px'
               float='left'
               fit='contain'
+              onLoad={() => {
+                setImgLoaded(true)
+              }}
               src={album_art}
               alt='Album Cover'
             />
+            </Skeleton>
           </Box>
         </Center>
         <Center>

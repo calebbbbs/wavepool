@@ -19,7 +19,7 @@ function Nav(props: any) {
   const { isLoggedIn, currPlayback }: any = useContext(UserContext);
 
   return (
-    <Flex 
+    <Flex
     zIndex="2"
     >
       <chakra.h1 fontSize="4xl" m={4}>
@@ -46,6 +46,8 @@ function Nav(props: any) {
       {currPlayback && <AudioPlayer />}
     </Flex>
   );
+
+  
 }
 
 export default Nav;

@@ -24,7 +24,7 @@ import { TransportControls } from "./TransportControls";
 
 
 export const AudioPlayer = () => {
-  const bg = useColorModeValue("brand.100", "brand.800")
+  const bg = useColorModeValue("brand.50", "brand.900")
   const { userObj, currPlayback, getUsersCurrentPlayback } =
     useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();

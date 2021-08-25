@@ -35,7 +35,7 @@ const components = {
     bg: mode("brand.200", "brand.900"),
     colorScheme: "brand"
   }
-},
+}
 }
 
 const colors = {

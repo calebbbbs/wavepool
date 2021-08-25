@@ -3,7 +3,7 @@ import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 const webpack = require('webpack')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // const dotenv = require('dotenv')
 
 const distDir = path.resolve(__dirname, 'client/dist');
@@ -75,7 +75,7 @@ export const config: Configuration = {
       }
        // it will automatically pick up key values from .env file
    }),
-   new MiniCssExtractPlugin()
+  //  new MiniCssExtractPlugin()
   ],
 };
 
