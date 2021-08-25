@@ -6,14 +6,14 @@ import {
   Popover,
   PopoverTrigger,
   Portal,
-  PopoverHeader,
-  PopoverContent,
-  PopoverBody,
-  PopoverCloseButton,
-  Box,
+  // PopoverHeader,
+  // PopoverContent,
+  // PopoverBody,
+  // PopoverCloseButton,
+  // Box,
   Button,
-  useColorModeValue,
-  Menu,
+  // useColorModeValue,
+  // Menu,
   // MenuButton,
 } from '@chakra-ui/react';
 
@@ -21,7 +21,7 @@ import { AddIcon} from '@chakra-ui/icons';
 
 const CreatePlaylist = (props: any) => {
   const { userObj } = useContext(UserContext);
-  const bg = useColorModeValue('brand.50', 'brand.900');
+  // const bg = useColorModeValue('brand.50', 'brand.900');
 return (
 <Popover trigger='hover' placement='left'>
 {(props) => (
@@ -41,7 +41,7 @@ return (
       </Button>
     </PopoverTrigger>
     <Portal>
-      <PopoverContent bg={bg}>
+      {/* <PopoverContent bg={bg}>
         <PopoverHeader>Create A Playlist</PopoverHeader>
         <PopoverCloseButton />
         <PopoverBody>
@@ -50,16 +50,16 @@ return (
               {/* <MenuButton as={Button} rightIcon={<ChevronDownIcon />}> */}
               {/* </MenuButton> */}
               {/* <MenuList>{list && <div> {list}</div>}</MenuList> */}
-            </Menu>
-          </Box>
-        </PopoverBody>
-      </PopoverContent>
+            {/* </Menu> */}
+          {/* </Box> */}
+        {/* </PopoverBody> */}
+      {/* </PopoverContent>  */}
     </Portal>
     </>
 )}
 </Popover>
 );
-        };
+};
 
 
 export default CreatePlaylist
