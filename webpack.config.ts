@@ -26,18 +26,6 @@ export const config: Configuration = {
         },
       },
 
-      {
-        test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif) (\?v=\d+\.\d+\.\d+)?$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            limit: 100000,
-            name: '[name].[ext]',
-            outputPath: 'fonts/'
-          }
-        }
-      },
-
 			{
 				test: /\.css$/,
 				use: [
@@ -46,11 +34,7 @@ export const config: Configuration = {
           },
           {
             loader: 'css-loader'
-          },
-					{
-            loader: 'sass-loader'
-					}
-          ,]},
+          }]},
     ],
   },
   resolve: {
