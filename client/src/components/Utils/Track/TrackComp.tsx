@@ -46,7 +46,7 @@ const TrackComp = (props: any) => {
   const addToQueue = () => {
     axios
       .get(
-        `http://localhost:4000/spotify/addToQueue/${userObj.user_id}/${spotify_uri}`
+        `/spotify/addToQueue/${userObj.user_id}/${spotify_uri}`
       )
       .then((data) => data)
       .catch((err) => console.error(err));
