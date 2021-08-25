@@ -100,6 +100,38 @@ const addToPlaylist = async (
     .catch((err) => console.log(err));
 };
 
+const createPlaylist = async (access_token: string) => {
+//   let data = JSON.stringify({
+//     "name": "{{artist_name}} Mix",
+//     "public": false
+//   });
+// let config: any = {
+//   method: 'post',
+//   url: `https://api.spotify.com/v1/users/${user_id}/playlists`,
+//   headers: {
+//     'Accept': 'application/json',
+//     'Authorization': `Bearer ${access_token}`,
+//     'Content-Type': 'application/json'
+//   },
+//   data : data
+// };
+spotifyApi.setAccessToken(access_token);
+return await spotifyApi.createPlaylist(
+  'WavePool Playlist', { 'description': 'My description', 'public': true })
+.then(function(data) {
+  console.log('Created playlist!');
+  console.log(data);
+}, function(err) {
+  console.log('Something went wrong!', err);
+});
+// .then(function (response) {
+//   console.log(JSON.stringify(response.data));
+// })
+// .catch(function (error) {
+//   console.log(error);
+// });
+};
+
 export {
   spotifyApi,
   getRecentlyPlayed,
@@ -108,4 +140,5 @@ export {
   getUsersPlaylists,
   querySpotify,
   addToPlaylist,
+  createPlaylist
 };

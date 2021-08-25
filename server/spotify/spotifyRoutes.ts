@@ -9,6 +9,7 @@ import {
   addToQueue,
   querySpotify,
   addToPlaylist,
+  createPlaylist,
 } from './helpers';
 
 const spotifyRouter = Router();
@@ -162,4 +163,14 @@ spotifyRouter.get(
   }
 );
 
+spotifyRouter.get('/createPlaylist/:user_id', async(req: Request, res: Response) => {
+  const{user_id} = req.params;
+  const user = await User.findOne({where: {user_id: user_id}});
+  if(user) {
+    const { access_token } = user;
+    return createPlaylist(access_token)
+    .then((data) => res.status(201).send(data))
+    .catch((error) => console.log(error));
+  }
+})
 export default spotifyRouter;

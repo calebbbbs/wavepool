@@ -20,6 +20,7 @@ import { BsPerson } from 'react-icons/bs';
 import { BiHeadphone, BiAlbum } from 'react-icons/bi';
 import { MdQueueMusic } from 'react-icons/md';
 import AddToPlaylist from './AddToPlaylist';
+import CreatePlaylist from './CreatePlaylist';
 
 // import { useMutation } from "@apollo/client";
 
@@ -128,6 +129,7 @@ const TrackInfo = (props: any) => {
           {userPlaylists && (
             <AddToPlaylist playlists={userPlaylists} trackUri={spotify_uri} />
           )}
+          <CreatePlaylist/>
         </Stack>
       </Flex>
     </chakra.div>
