@@ -136,7 +136,7 @@ const authCallbackPath = '/auth/spotify/callback';
   });
 
 
-  app.options("*", cors());
+  app.options("*", cors(options));
   app.use("*", cors(options));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
