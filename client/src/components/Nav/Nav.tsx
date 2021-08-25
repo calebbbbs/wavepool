@@ -24,6 +24,8 @@ import AudioPlayer from "../Utils/AudioPlayer/AudioPlayer";
 
 import Search from "../Utils/Search/Search";
 
+import AddFriend from "../Utils/AddFriend/AddFriend";
+
 function Nav(props: any) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isLoggedIn, currPlayback }: any = useContext(UserContext);
@@ -71,6 +73,7 @@ function Nav(props: any) {
               ) : (
                 <chakra.div>
                   <Search />
+                  <AddFriend />
                   {/* <AddFriendDrawer/> */}
                   <Link href="/logout">
                     <Tooltip label="Log Out">
@@ -117,6 +120,7 @@ function Nav(props: any) {
                 ) : (
                   <chakra.div>
                     <Search />
+                    <AddFriend/>
                     <Tooltip label="Log Out">
                       <Link href="/logout">
                         <Button variant="ghost">

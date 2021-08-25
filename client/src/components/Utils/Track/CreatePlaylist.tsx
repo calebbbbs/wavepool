@@ -14,10 +14,10 @@ import {
   Button,
   useColorModeValue,
   Menu,
-  MenuButton,
+  // MenuButton,
 } from '@chakra-ui/react';
 
-import { AddIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { AddIcon} from '@chakra-ui/icons';
 
 const CreatePlaylist = (props: any) => {
   const { userObj } = useContext(UserContext);
@@ -47,9 +47,8 @@ return (
         <PopoverBody>
           <Box>
             <Menu>
-              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                Playlists
-              </MenuButton>
+              {/* <MenuButton as={Button} rightIcon={<ChevronDownIcon />}> */}
+              {/* </MenuButton> */}
               {/* <MenuList>{list && <div> {list}</div>}</MenuList> */}
             </Menu>
           </Box>
