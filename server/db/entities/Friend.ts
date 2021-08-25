@@ -30,4 +30,12 @@ export default class Friend extends BaseEntity {
   @Field(() => Boolean)
   @Column()
   friend_status: boolean;
+
+  @Field(() => Number)
+  @Column()
+  friend_score: number;
+
+  @Field(() => Number)
+  @Column()
+  number_of_songs: number;
 }
