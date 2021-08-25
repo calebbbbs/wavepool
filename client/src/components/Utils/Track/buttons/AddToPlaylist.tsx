@@ -33,7 +33,7 @@ const AddToPlaylist = (props: any) => {
 
           axios
             .get(
-              `http://localhost:4000/spotify/addToPlaylist/${userObj.user_id}/${playlist.id}/${props.trackUri}`
+              `/spotify/addToPlaylist/${userObj.user_id}/${playlist.id}/${props.trackUri}`
             )
             .then((data: any) => {
               onClose();

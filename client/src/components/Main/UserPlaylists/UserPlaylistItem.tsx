@@ -64,22 +64,6 @@ const UserPlaylistItem = (props: any) => {
             </Button>
             </Center>
             <Center>
-            {/* <Button
-              onClick={() => {
-                const params = {
-                  access_token: userObj.access_token,
-                  uri: props.track.uri,
-                };
-                axios(
-                  `http://localhost:4000/addToQueue/${userObj.access_token}/${props.track.uri}`,
-                  { params }
-                )
-                  .then((data) => console.log(data))
-                  .catch((err) => console.error(err));
-              }}
-            >
-              Queue
-            </Button> */}
             </Center>
         </Stack>
       </Flex>

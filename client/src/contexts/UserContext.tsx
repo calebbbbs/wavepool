@@ -23,7 +23,7 @@ const UserContextProvider: React.FC = ({ children }) => {
   const getRecentlyPlayed = () => {
     const reqConfig: AxiosRequestConfig = {
       method: 'get',
-      url: `http://localhost:4000/spotify/getRecentlyPlayed/${userObj.user_id}`,
+      url: `http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com/spotify/getRecentlyPlayed/${userObj.user_id}`,
     };
     axios(reqConfig).then(
       function (data: any) {
@@ -41,7 +41,7 @@ const UserContextProvider: React.FC = ({ children }) => {
 
 
   const getUser = () => {
-    return axios.get<any>('http://localhost:4000/getUser').then((res) => {
+    return axios.get<any>('/getUser').then((res) => {
       if (res.data) {
         if (Object.keys(res.data).length === 0) {
           return;
@@ -61,7 +61,7 @@ const UserContextProvider: React.FC = ({ children }) => {
 
   const getUsersCurrentPlayback = () => {
     return axios
-      .get<any>(`http://localhost:4000/spotify/currPlayback/${userObj.user_id}`)
+      .get<any>(`/spotify/currPlayback/${userObj.user_id}`)
       .then((response) => {
         setCurrPlayback(response.data);
         setIsPlaying(response.data.is_playing);
@@ -73,7 +73,7 @@ const UserContextProvider: React.FC = ({ children }) => {
 
   const getUsersPlaylists = () => {
     axios
-      .get(`http://localhost:4000/spotify/userPlaylists/${userObj.user_id}`)
+      .get(`/spotify/userPlaylists/${userObj.user_id}`)
       .then((data: any) => {
         return setUserPlaylists(data.data);
       })

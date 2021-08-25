@@ -7,7 +7,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { UserContextProvider } from './contexts/UserContext';
 import theme from "./theme"
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com/graphql',
   cache: new InMemoryCache(),
 });
 
