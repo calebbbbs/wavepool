@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../../contexts/UserContext";
-import ConfirmPopper from "./buttons/ConfirmSend";
+import SendTrack from "./buttons/SendTrack";
 import {
   chakra,
   Center,
@@ -27,7 +27,7 @@ import PlayNow from "./buttons/PlayNow";
 // import RECOMMEND_TRACK from "../../graphQL/mutations/RECOMMEND_TRACK";
 
 const TrackComp = (props: any) => {
-  // const [reccomendTrack] = useMutation(RECOMMEND_TRACK);
+  // const [recommendTrack] = useMutation(RECOMMEND_TRACK);
   // const [sendInput, setSendInput] = useState("");
   const [imgLoaded, setImgLoaded] = useState(false);
   const { userObj, userPlaylists } = useContext(UserContext);
@@ -128,7 +128,7 @@ const TrackComp = (props: any) => {
               <MdQueueMusic />
             </Button>
           </Tooltip>
-          <ConfirmPopper />
+          <SendTrack track={props.track}/>
           {userPlaylists && (
             <AddToPlaylist playlists={userPlaylists} trackUri={spotify_uri} />
           )}

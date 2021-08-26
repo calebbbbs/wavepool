@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, { useState, useContext } from "react";
+import CREATE_FRIEND from "../../../graphql_client/mutations/CREATE_FRIEND";
 import {
   Modal,
   useDisclosure,
@@ -8,19 +8,22 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
+  Input,
+  Button,
   ModalCloseButton,
   IconButton,
   useColorModeValue,
   Tooltip,
 } from "@chakra-ui/react";
-
+import { useMutation } from "@apollo/client";
 import { AddIcon } from "@chakra-ui/icons";
-// import { UserContext } from "../../../contexts/UserContext";
 
+import { UserContext } from "../../../contexts/UserContext";
 const AddFriend = () => {
-
+  const [createFriend] = useMutation(CREATE_FRIEND);
+  const { userObj } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const { userObj } = useContext(UserContext);
+  const [friendInput, setFriendInput] = useState("");
   const bg = useColorModeValue("brand.100", "brand.800");
 
   return (
@@ -45,15 +48,7 @@ const AddFriend = () => {
       >
         <ModalOverlay />
         <ModalContent bg={bg}>
-          <ModalHeader>
-            {/* <SearchInput
-              // width="100%"
-              userObj={userObj}
-              query={searchQuery}
-              setSearchQuery={setSearchQuery}
-              setTrackList={setTrackList}
-            /> */}
-          </ModalHeader>
+          <ModalHeader>Add Friend</ModalHeader>
           <ModalBody
             css={{
               "&::-webkit-scrollbar": {
@@ -68,9 +63,32 @@ const AddFriend = () => {
               },
             }}
           >
-            {/* {trackList.length > 0 && <SearchTrackList trackList={trackList} />} */}
+            <Input
+              value={friendInput}
+              onChange={(e) => {
+                setFriendInput(e.target.value);
+              }}
+            ></Input>
           </ModalBody>
           <ModalFooter>
+            <Button
+              onClick={() => {
+                console.log('userObj.user_id', userObj.user_id)
+                console.log('friendInput', friendInput)
+                createFriend({
+                  variables: {
+                    data: {
+                      user_id: userObj.user_id,
+                      friend_email: friendInput,
+                      friend_status: false
+                    },
+                  },
+                });
+                onClose();
+              }}
+            >
+              Send Request
+            </Button>
             <ModalCloseButton />
           </ModalFooter>
         </ModalContent>
@@ -79,4 +97,4 @@ const AddFriend = () => {
   );
 };
 
-export default AddFriend
+export default AddFriend;
