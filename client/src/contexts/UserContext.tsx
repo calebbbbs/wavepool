@@ -15,7 +15,7 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [recentPlays, setRecentPlays] = useState<any>();
   const [userPlaylists, setUserPlaylists] = useState<any>();
   const [getUserData, {error, data}] = useLazyQuery(GET_USER_DATA);
-
+  const [selectedFriend, setSelectedFriend] = useState<any[]>([])
 
 
 
@@ -23,7 +23,7 @@ const UserContextProvider: React.FC = ({ children }) => {
   const getRecentlyPlayed = () => {
     const reqConfig: AxiosRequestConfig = {
       method: 'get',
-      url: `http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com:8080/spotify/getRecentlyPlayed/${userObj.user_id}`,
+      url: `http://localhost:4000/spotify/getRecentlyPlayed/${userObj.user_id}`,
     };
     axios(reqConfig).then(
       function (data: any) {
@@ -71,7 +71,7 @@ const UserContextProvider: React.FC = ({ children }) => {
       });
   };
 
-  const getUsersPlaylists = () => {
+  const getUserPlaylists = () => {
     axios
       .get(`/spotify/userPlaylists/${userObj.user_id}`)
       .then((data: any) => {
@@ -84,9 +84,10 @@ const UserContextProvider: React.FC = ({ children }) => {
 
   React.useEffect(() => {
     getUser();
+
     if (userObj) {
       getRecentlyPlayed();
-      getUsersPlaylists();
+      getUserPlaylists();
     }
   }, [JSON.stringify(userObj)]);
 
@@ -109,7 +110,9 @@ const UserContextProvider: React.FC = ({ children }) => {
     getRecentlyPlayed,
     userPlaylists,
     setUserPlaylists,
-    getUsersPlaylists,
+    getUserPlaylists,
+    selectedFriend,
+    setSelectedFriend
   };
 
   return (
