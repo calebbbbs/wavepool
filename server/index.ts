@@ -6,23 +6,25 @@ import path from "path";
 import typeOrmConfig from "../server/db/dbConfig";
 import User from "./db/entities/User";
 
-import axios, { AxiosError } from "axios";
 
+import spotifyRouter from "./spotify/spotifyRoutes"
 require("dotenv").config();
 
-// import User from "./db/entities/user";
+
 const session = require("express-session");
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const { ApolloServer } = require("apollo-server-express");
 const express = require("express");
-// import * as express from 'express';
 import { Request, Response } from "express-serve-static-core";
 import { Profile, VerifyCallback } from "passport-spotify";
 
 const CLIENT_PATH = path.resolve(__dirname, "..", "client/dist");
+const { PORT } = process.env
 const allowedOrigins = [
   "http://localhost:4000/",
+  "http://localhost:8080",
+  "http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com:8080/",
   "https://studio.apollographql.com",
   "https://api.spotify.com/",
 ];
@@ -33,7 +35,7 @@ const options: cors.CorsOptions = {
   origin: allowedOrigins,
 };
 
-async function startApolloServer() {
+async function startServer() {
   await createConnection(typeOrmConfig).catch((err) => console.log(err));
   const schema = await buildSchema({
     resolvers: [ UserResolver, FriendResolver, RecommendedResolver ]
@@ -44,24 +46,23 @@ const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
 const authCallbackPath = '/auth/spotify/callback';
 
   await server.start();
-
   const app = express();
+
+
   app.use(cors());
 
   passport.serializeUser(function (user: object, done: VerifyCallback) {
     done(null, user);
   });
-
   passport.deserializeUser(function (obj: object, done: VerifyCallback) {
     done(null, obj);
   });
-
   passport.use(
     new SpotifyStrategy(
       {
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        callbackURL: `http://localhost:4000${authCallbackPath}`,
+        callbackURL: `http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com:8080${authCallbackPath}`,
         passReqToCallback: true,
       },
       async (
@@ -87,38 +88,13 @@ const authCallbackPath = '/auth/spotify/callback';
     )
   );
 
-  const addToQueue = async (access_token: String, uri: String) => {
-    const toQueue: any = {
-      method: "POST",
-      url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-    };
-    await axios(toQueue)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  app.get("/addToQueue/:access_token/:uri", (req: Request, res: Response) => {
-    const { access_token, uri } = req.params;
-    addToQueue(access_token, uri)
-      .then((data) => res.status(201).send(data))
-      .catch((error: AxiosError) => console.log(error));
-  });
-
   app.use(
     session({ secret: SESSION_SECRET, resave: true, saveUninitialized: true })
   );
 
   app.use(passport.initialize());
   app.use(passport.session());
+
 
   app.get(
     "/auth/spotify",
@@ -147,16 +123,25 @@ const authCallbackPath = '/auth/spotify/callback';
     }
   );
 
-  app.get("/getUser", (req: Request, res: Response) => {
-    res.send(req.user);
+  app.get('/logout', function(req: Request, res: Response){
+    req.logout();
+    res.redirect('/');
   });
 
-  app.options("*", cors());
-  app.use("*", cors(options));
+  app.get("/getUser", (req: Request, res: Response) => {
+  const user: any = {...req.user}
+  delete user.access_token
+  delete user.refresh_token
+  return res.send(user);
+  });
 
+
+  app.options("*", cors(options));
+  app.use("*", cors(options));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(CLIENT_PATH));
+  app.use('/spotify', spotifyRouter)
 
   server.applyMiddleware({ app });
 
@@ -164,10 +149,11 @@ const authCallbackPath = '/auth/spotify/callback';
     res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
   });
 
-  await new Promise((resolve) => app.listen({ port: 4000 }, resolve));
+  await new Promise((resolve) => app.listen({port:  PORT }, resolve));
   console.log(`🌊 Ride the Wave 🌊 \n
-  http://localhost:4000${server.graphqlPath}\n
-  http://localhost:4000\n`);
+  http://localhost:${PORT}/${server.graphqlPath}\n
+  http://localhost:${PORT}\n
+  "http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com"`);
   return { server, app };
 }
-startApolloServer();
+startServer();

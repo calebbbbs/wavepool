@@ -3,7 +3,7 @@ import { BsMusicNoteBeamed } from 'react-icons/bs'
 import { UserContext } from "../../../contexts/UserContext";
 import {
   chakra,
-  Flex,
+  VStack,
   Image,
   Text,
   Stack,
@@ -15,32 +15,46 @@ import {
   Button,
   DrawerCloseButton,
   useDisclosure,
+  useColorModeValue,
+  Tooltip
 } from "@chakra-ui/react";
+
 import { TransportControls } from "./TransportControls";
+
+
+
 export const AudioPlayer = () => {
-  const { currPlayback, getUsersCurrentPlayback, userObj } =
+  const bg = useColorModeValue("brand.50", "brand.900")
+  const { userObj, currPlayback, getUsersCurrentPlayback } =
     useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     const interval = setInterval(() => {
-      getUsersCurrentPlayback(userObj.access_token);
+      getUsersCurrentPlayback(userObj.user_id);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <>
-      <Button m={4} variant="ghost" colorScheme="teal" onClick={onOpen}>
-        <BsMusicNoteBeamed />
+      <Tooltip label="Spotify Controls">
+      <Button m={4} variant="ghost" onClick={onOpen}>
+     <BsMusicNoteBeamed />
       </Button>
-      <Drawer 
-      isOpen={isOpen} placement="top" onClose={onClose}>
+      </Tooltip>
+      <Drawer
+      size="xs"
+      isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg={bg}>
           <DrawerCloseButton />
           <DrawerBody>
             <Center>
-              <Flex m={4} float="right" fontSize="xs">
+              <VStack 
+              alignContent="center"
+              alignItems="center"
+              my="auto"
+              float="right" fontSize="xs">
                 <Center>
                   <Image
                     borderRadius="5px"
@@ -74,8 +88,8 @@ export const AudioPlayer = () => {
                   </chakra.div>
                   <TransportControls />
                 </Stack>
-              </Flex>
-            </Center>
+              </VStack>
+              </Center>
           </DrawerBody>
         </DrawerContent>
       </Drawer>

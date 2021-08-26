@@ -35,7 +35,6 @@ const { userObj } = useContext(UserContext);
         </Text>
       <Button
         onClick={() => {
-          console.log(friend_id, userObj.user_id)
           confirmFriend({
             variables: {
               confirmFriendData: {
