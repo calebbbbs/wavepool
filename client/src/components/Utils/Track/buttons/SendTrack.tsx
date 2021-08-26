@@ -55,9 +55,14 @@ const SendTrack = (props: any) => {
         <PopoverHeader>Send Track?</PopoverHeader>
         <PopoverBody>
           <chakra.span>
-            Are you sure you want to send {props.track.track_title} to{" "}
-            {selectedFriend[1]}?
+            Are you sure you want to send 
           </chakra.span>
+          <chakra.span>
+            <b>{props.track.track_title}</b> to{" "}
+            </chakra.span>
+            <chakra.span>
+            <b>{selectedFriend[1]}</b>?
+            </chakra.span>
           <Button
             float="right"
             onClick={() => {

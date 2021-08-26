@@ -11,6 +11,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import RecommendedTracksList from "./RecomendedTracksList";
+import StatsModal from "./StatsModal";
 import { UserContext } from "../../../contexts/UserContext";
 import {ImRadioChecked, ImRadioUnchecked} from 'react-icons/im'
 const FCListItem = (props: any) => {
@@ -50,7 +51,9 @@ const FCListItem = (props: any) => {
         <RecommendedTracksList recommendedTracks={list.reverse()} />
       </AccordionPanel>
     </AccordionItem>
+    <StatsModal/>
     <Button 
+    variant="ghost"
     onClick={() => {
       setSelectedFriend([props.friendId, props.friendName]);
       
