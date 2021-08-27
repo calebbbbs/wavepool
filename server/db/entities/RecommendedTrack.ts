@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
 import User from './User';
+import Comment from './Comment';
 
 @Entity()
 @ObjectType()
@@ -28,7 +29,7 @@ export default class RecommendedTrack extends BaseEntity {
 
   @Field(() => String)
   @Column()
-  spotify_uri: string;
+  track_uri: string;
  
   @Field(() => [String])
   @Column("text", { array: true })
@@ -42,6 +43,10 @@ export default class RecommendedTrack extends BaseEntity {
   @Column()
   album_art: string;
 
+  @Field(() => String)
+  @Column()
+  album_uri: string;
+
   @Field(() => User)
   @ManyToOne(() => User, (user: User) => user.recommendedTracks, {cascade:true})
   user!: Promise<User | undefined>;
@@ -49,4 +54,8 @@ export default class RecommendedTrack extends BaseEntity {
   @Field(() => Boolean)
   @Column()
   in_queue: boolean;
+
+  @Field(() => [Comment], {nullable: true})
+  @OneToMany(() => Comment, (comment: Comment) => comment.recommendedTrack)
+  comments!: Promise<Comment[]>;
 }

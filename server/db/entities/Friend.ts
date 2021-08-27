@@ -2,8 +2,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, OneToMany } from 'typeorm';
 import { ObjectType, Field } from "type-graphql";
 import User from './User';
-import RecommendedGenre from './RecommendedGenre';
-
+import RecommendedGenre from './RecommendedGenre'
 
 @Entity()
 @ObjectType()

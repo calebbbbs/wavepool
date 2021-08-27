@@ -22,7 +22,7 @@ export class RecommendedResolver {
       track.friend_id = friend_id;
       track.friend_name = friend.user_name;
       track.track_title = track_title;
-      track.spotify_uri = spotify_uri;
+      track.track_uri = spotify_uri;
       track.artists = artists;
       track.album_title = album_title;
       track.album_art = album_art;
@@ -34,7 +34,7 @@ export class RecommendedResolver {
     .relation(User, "recommendedTracks")
     .of(friend_id)
     .add(track);
-  return track;
+    return track;
   }
 
   @Mutation(() => Boolean)

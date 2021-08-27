@@ -1,7 +1,7 @@
 import { InputType, Field } from "type-graphql";
 
 @InputType()
-export class DeleteRecommendedInput {
+export class RemoveRecommendedInput {
   @Field()
   user_id: string;
 
