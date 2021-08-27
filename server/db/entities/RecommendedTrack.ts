@@ -45,4 +45,8 @@ export default class RecommendedTrack extends BaseEntity {
   @Field(() => User)
   @ManyToOne(() => User, (user: User) => user.recommendedTracks, {cascade:true})
   user!: Promise<User | undefined>;
+
+  @Field(() => Boolean)
+  @Column()
+  in_queue: boolean;
 }

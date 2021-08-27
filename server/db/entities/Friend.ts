@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, OneToMany } from 'typeorm';
 import { ObjectType, Field } from "type-graphql";
 import User from './User';
+import RecommendedGenre from './RecommendedGenre';
 
 
 @Entity()
@@ -38,4 +39,8 @@ export default class Friend extends BaseEntity {
   @Field(() => Number)
   @Column()
   number_of_songs: number;
+
+  @Field(() => [RecommendedGenre], {nullable: true})
+  @OneToMany(() => RecommendedGenre, (recommendedGenre: RecommendedGenre) => recommendedGenre.friend)
+  recommendedGenres!: Promise<RecommendedGenre[]>;
 }
