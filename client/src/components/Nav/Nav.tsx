@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Tooltip,
   Flex,
@@ -13,12 +13,14 @@ import {
   VisuallyHidden,
   useDisclosure,
   CloseButton,
-
+  useToast
 } from "@chakra-ui/react";
+
+
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
-import { SunIcon, MoonIcon, ViewIcon } from "@chakra-ui/icons";
+import { SunIcon, MoonIcon, ViewIcon, AtSignIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
 
 import AudioPlayer from "../Utils/AudioPlayer/AudioPlayer";
@@ -31,10 +33,29 @@ import CreatePlaylist from "./CreatePlaylist";
 
 // import AddFriendDrawer from "./AddFriendDrawer";
 
+
+
 function Nav(props: any) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isLoggedIn, currPlayback }: any = useContext(UserContext);
   const { isOpen, onClose, onOpen } = useDisclosure();
+
+  const [toastMessage, setToastMessage] = useState<any>('');
+  const toast = useToast();
+
+  useEffect(() => {
+    if (toastMessage) {
+      const { title, body }: any = toastMessage;
+
+      toast({
+        title,
+        description: body,
+        status: 'success',
+        duration: 4500,
+        isClosable: true
+      });
+    }
+  }, [toastMessage, toast]);
 
   return (
     <>
@@ -55,7 +76,7 @@ function Nav(props: any) {
               🌊
               <VisuallyHidden>WavePool</VisuallyHidden>
             </chakra.a>
-            <chakra.h1 fontSize="2xl" fontWeight="medium" ml="2">
+            <chakra.h1 textStyle="h1.xl" fontWeight="medium" ml="2">
               WavePool
             </chakra.h1>
           </Flex>
@@ -72,11 +93,24 @@ function Nav(props: any) {
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
-              <Tooltip label="Increase Font Size">
+              <Tooltip label="Notifications">
                 <Button
                 m={4}
-                variant="ghost">
-                  <ViewIcon />
+                variant="ghost"
+                onClick={() =>{ setToastMessage({
+                  title:  "Notifications",
+                  body: "",
+                });
+                setToastMessage(undefined);
+                  // toast({
+                  //   title: "Recommendations",
+                  //   description: "New tracks from",
+                  //   status: "success",
+                  //   duration: 4500,
+                  //   isClosable: true
+                  // })
+                }}>
+                  <AtSignIcon/>
                 </Button>
               </Tooltip>
               {!isLoggedIn ? (

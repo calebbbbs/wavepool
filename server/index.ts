@@ -47,7 +47,7 @@ const authCallbackPath = '/auth/spotify/callback';
 
   await server.start();
   const app = express();
-
+  // const socketio = require('http')
 
   app.use(cors());
 

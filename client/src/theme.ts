@@ -64,5 +64,5 @@ const fonts: any = {
   },
 };
 
-const theme = extendTheme({ config, styles, colors, components, }, fonts);
+const theme = extendTheme({ config, styles, colors, components, fonts });
 export default theme;
