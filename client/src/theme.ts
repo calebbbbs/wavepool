@@ -55,5 +55,14 @@ const colors = {
   },
 };
 
-const theme = extendTheme({ config, styles, colors, components });
+const fonts: any = {
+  textStyles: {
+    h1: {
+        xl: "1.25rem",
+        "2xl": "1.5rem"
+    },
+  },
+};
+
+const theme = extendTheme({ config, styles, colors, components, }, fonts);
 export default theme;

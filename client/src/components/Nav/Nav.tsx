@@ -13,11 +13,12 @@ import {
   VisuallyHidden,
   useDisclosure,
   CloseButton,
+
 } from "@chakra-ui/react";
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
-import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import { SunIcon, MoonIcon, ViewIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
 
 import AudioPlayer from "../Utils/AudioPlayer/AudioPlayer";
@@ -54,7 +55,7 @@ function Nav(props: any) {
               🌊
               <VisuallyHidden>WavePool</VisuallyHidden>
             </chakra.a>
-            <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
+            <chakra.h1 fontSize="2xl" fontWeight="medium" ml="2">
               WavePool
             </chakra.h1>
           </Flex>
@@ -71,6 +72,13 @@ function Nav(props: any) {
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
+              <Tooltip label="Increase Font Size">
+                <Button
+                m={4}
+                variant="ghost">
+                  <ViewIcon />
+                </Button>
+              </Tooltip>
               {!isLoggedIn ? (
                 <div></div>
               ) : (
@@ -78,7 +86,7 @@ function Nav(props: any) {
                   <Search />
                   <AddFriend/>
                   <CreatePlaylist/>
-                  
+
                   {/* <AddFriendDrawer/> */}
                   <Link href="/logout">
                     <Tooltip label="Log Out">
@@ -120,6 +128,15 @@ function Nav(props: any) {
                     {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                   </Button>
                 </Tooltip>
+                <Tooltip label="Increase Font Size">
+                <Button
+                m={4}
+                variant="ghost"
+                >
+                  <ViewIcon />
+                </Button>
+              </Tooltip>
+
                 {!isLoggedIn ? (
                   <div></div>
                 ) : (

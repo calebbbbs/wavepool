@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useMutation, gql } from "@apollo/client";
 import {
   Button,
-  // Tooltip,
+  Tooltip,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -43,11 +43,11 @@ const SendTrack = (props: any) => {
   return (
     <Popover placement="right">
       <PopoverTrigger>
-        {/* <Tooltip placement="right" label="Send Track"> */}
+        <Tooltip placement="right" label="Send Track">
           <Button variant="ghost " onClick={onOpen}>
             <RiMailSendLine />
           </Button>
-        {/* </Tooltip> */}
+        </Tooltip>
       </PopoverTrigger>
       <PopoverContent bg={bg}>
         <PopoverArrow />
@@ -55,7 +55,7 @@ const SendTrack = (props: any) => {
         <PopoverHeader>Send Track?</PopoverHeader>
         <PopoverBody>
           <chakra.span>
-            Are you sure you want to send 
+            Are you sure you want to send
           </chakra.span>
           <chakra.span>
             <b>{props.track.track_title}</b> to{" "}
