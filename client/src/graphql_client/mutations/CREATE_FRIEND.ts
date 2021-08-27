@@ -5,6 +5,7 @@ mutation CreateFriendMutation($createFriendData: CreateFriendInput!) {
   createFriend(data: $createFriendData) {
     user_id
     friend_email
+    friend_status
   }
 }
 `;

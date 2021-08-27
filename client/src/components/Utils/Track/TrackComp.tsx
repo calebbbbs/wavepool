@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../../contexts/UserContext";
-import ConfirmPopper from "./buttons/ConfirmSend";
+import SendTrack from "./buttons/SendTrack";
 import {
   chakra,
   Center,
@@ -22,13 +22,12 @@ import { BiHeadphone, BiAlbum } from "react-icons/bi";
 import { MdQueueMusic } from "react-icons/md";
 import AddToPlaylist from "./buttons/AddToPlaylist";
 import PlayNow from "./buttons/PlayNow";
-import CreatePlaylist from "./CreatePlaylist";
 // import { useMutation } from "@apollo/client";
 
 // import RECOMMEND_TRACK from "../../graphQL/mutations/RECOMMEND_TRACK";
 
 const TrackComp = (props: any) => {
-  // const [reccomendTrack] = useMutation(RECOMMEND_TRACK);
+  // const [recommendTrack] = useMutation(RECOMMEND_TRACK);
   // const [sendInput, setSendInput] = useState("");
   const [imgLoaded, setImgLoaded] = useState(false);
   const { userObj, userPlaylists } = useContext(UserContext);
@@ -129,12 +128,11 @@ const TrackComp = (props: any) => {
               <MdQueueMusic />
             </Button>
           </Tooltip>
-          <ConfirmPopper />
+          <SendTrack track={props.track}/>
           {userPlaylists && (
             <AddToPlaylist playlists={userPlaylists} trackUri={spotify_uri} />
           )}
           <PlayNow user_id={userObj.user_id} spotify_uri={spotify_uri} />
-          <CreatePlaylist/>
         </Stack>
       </Flex>
     </chakra.div>

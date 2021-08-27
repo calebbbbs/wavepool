@@ -21,8 +21,14 @@ import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
 
 import AudioPlayer from "../Utils/AudioPlayer/AudioPlayer";
-
+import AudioPlayerMobile from "../Utils/AudioPlayer/AudioPlayerMobile";
 import Search from "../Utils/Search/Search";
+
+import AddFriend from "../Utils/AddFriend/AddFriend";
+
+import CreatePlaylist from "./CreatePlaylist";
+
+// import AddFriendDrawer from "./AddFriendDrawer";
 
 function Nav(props: any) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -34,7 +40,6 @@ function Nav(props: any) {
       <chakra.header
         zIndex="2"
         bg="blackAlpha.50"
-        position="fixed"
         w="full"
         px={{ base: 2, sm: 4 }}
       >
@@ -53,6 +58,7 @@ function Nav(props: any) {
               WavePool
             </chakra.h1>
           </Flex>
+            {currPlayback && <AudioPlayer />}
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack
               spacing={1}
@@ -65,12 +71,14 @@ function Nav(props: any) {
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
-              {currPlayback && <AudioPlayer />}
               {!isLoggedIn ? (
                 <div></div>
               ) : (
                 <chakra.div>
                   <Search />
+                  <AddFriend/>
+                  <CreatePlaylist/>
+                  
                   {/* <AddFriendDrawer/> */}
                   <Link href="/logout">
                     <Tooltip label="Log Out">
@@ -106,7 +114,7 @@ function Nav(props: any) {
                 rounded="sm"
               >
                 <CloseButton m={4} aria-label="Close menu" onClick={onClose} />
-                {currPlayback && <AudioPlayer />}
+                {currPlayback && <AudioPlayerMobile />}
                 <Tooltip label="Toggle Color Mode">
                   <Button m={4} variant="ghost" onClick={toggleColorMode}>
                     {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
@@ -117,6 +125,8 @@ function Nav(props: any) {
                 ) : (
                   <chakra.div>
                     <Search />
+                    <AddFriend/>
+                    <CreatePlaylist/>
                     <Tooltip label="Log Out">
                       <Link href="/logout">
                         <Button variant="ghost">
