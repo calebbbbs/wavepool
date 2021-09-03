@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
+import FriendStat from "../../Nav/FriendStat";
+
 import {
   AccordionItem,
+  chakra,
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
@@ -15,6 +18,7 @@ import StatsModal from "./StatsModal";
 import { UserContext } from "../../../contexts/UserContext";
 import {ImRadioChecked, ImRadioUnchecked} from 'react-icons/im'
 const FCListItem = (props: any) => {
+  console.log(props);
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
     return recTrack.friend_name === props.friendName;
   });
@@ -40,6 +44,9 @@ const FCListItem = (props: any) => {
             textAlign="left"
           >
             {props.friendName}
+            {props.friendStatus === false && <FriendStat friend_name={props.friendName}
+            friend_id={props.friendId}
+            friend_status={props.friend_status}/>}
             <Badge colorscheme="green" float="right">
               {list.length.toString()}
             </Badge>
@@ -58,7 +65,7 @@ const FCListItem = (props: any) => {
       setSelectedFriend([props.friendId, props.friendName]);
       
     }}
-    ml={2}>{isSelected ? <ImRadioChecked/> : <ImRadioUnchecked/>}</Button>
+    ml={2}>{isSelected ?<chakra.div minW="10px" minH="10px"> <ImRadioChecked/> </chakra.div>:<chakra.div minW="10px" minH="10px"> <ImRadioUnchecked/></chakra.div>}</Button>
     </Flex>
   );
 };

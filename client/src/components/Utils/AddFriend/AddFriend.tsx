@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import CREATE_FRIEND from "../../../graphql_client/mutations/CREATE_FRIEND";
 import {
   Modal,
   useDisclosure,
@@ -15,10 +14,21 @@ import {
   useColorModeValue,
   Tooltip,
 } from "@chakra-ui/react";
-import { useMutation } from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 import { AddIcon } from "@chakra-ui/icons";
 
 import { UserContext } from "../../../contexts/UserContext";
+
+const CREATE_FRIEND = gql`
+mutation Mutation($createFriendData: CreateFriendInput!) {
+  createFriend(data: $createFriendData) {
+    user_id
+    friend_id
+    friend_name
+  }
+}
+`;
+
 const AddFriend = () => {
   const [createFriend] = useMutation(CREATE_FRIEND);
   const { userObj } = useContext(UserContext);
@@ -37,7 +47,7 @@ const AddFriend = () => {
           icon={<AddIcon />}
         ></IconButton>
       </Tooltip>
-
+      
       <Modal
         scrollBehavior="inside"
         onClose={onClose}
@@ -77,12 +87,12 @@ const AddFriend = () => {
                 console.log('friendInput', friendInput)
                 createFriend({
                   variables: {
-                    data: {
+                    createFriendData: {
                       user_id: userObj.user_id,
                       friend_email: friendInput,
                       friend_status: false
-                    },
-                  },
+                    }
+                  }
                 });
                 onClose();
               }}
