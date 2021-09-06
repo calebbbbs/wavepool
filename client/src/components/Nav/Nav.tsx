@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
   Tooltip,
   Flex,
@@ -13,14 +13,14 @@ import {
   VisuallyHidden,
   useDisclosure,
   CloseButton,
-  useToast
+  // useToast
 } from "@chakra-ui/react";
 
 
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
-import { SunIcon, MoonIcon, ViewIcon, AtSignIcon } from "@chakra-ui/icons";
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
 
 import AudioPlayer from "../Utils/AudioPlayer/AudioPlayer";
@@ -40,22 +40,22 @@ function Nav(props: any) {
   const { isLoggedIn, currPlayback }: any = useContext(UserContext);
   const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const [toastMessage, setToastMessage] = useState<any>('');
-  const toast = useToast();
+  // const [toastMessage, setToastMessage] = useState<any>('');
+  // const toast = useToast();
 
-  useEffect(() => {
-    if (toastMessage) {
-      const { title, body }: any = toastMessage;
+  // useEffect(() => {
+  //   if (toastMessage) {
+  //     const { title, body }: any = toastMessage;
 
-      toast({
-        title,
-        description: body,
-        status: 'success',
-        duration: 4500,
-        isClosable: true
-      });
-    }
-  }, [toastMessage, toast]);
+  //     toast({
+  //       title,
+  //       description: body,
+  //       status: 'success',
+  //       duration: 4500,
+  //       isClosable: true
+  //     });
+  //   }
+  // }, [toastMessage, toast]);
 
   return (
     <>
@@ -93,7 +93,7 @@ function Nav(props: any) {
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
-              <Tooltip label="Notifications">
+              {/* <Tooltip label="Notifications">
                 <Button
                 m={4}
                 variant="ghost"
@@ -112,7 +112,7 @@ function Nav(props: any) {
                 }}>
                   <AtSignIcon/>
                 </Button>
-              </Tooltip>
+              </Tooltip> */}
               {!isLoggedIn ? (
                 <div></div>
               ) : (
@@ -162,14 +162,14 @@ function Nav(props: any) {
                     {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                   </Button>
                 </Tooltip>
-                <Tooltip label="Increase Font Size">
+                {/* <Tooltip label="Increase Font Size">
                 <Button
                 m={4}
                 variant="ghost"
                 >
                   <ViewIcon />
                 </Button>
-              </Tooltip>
+              </Tooltip> */}
 
                 {!isLoggedIn ? (
                   <div></div>
