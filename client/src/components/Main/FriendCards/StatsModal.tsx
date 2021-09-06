@@ -5,6 +5,7 @@ import {
     ModalOverlay,
     ModalContent,
     ModalHeader,
+    chakra,
     ModalFooter,
     ModalBody,
     ModalCloseButton,
@@ -20,7 +21,7 @@ const StatsModal = () => {
     const bg = useColorModeValue('brand.200', "brand.800")
     return (
         <>
-        <Button variant="ghost" onClick={onOpen}><AiOutlineBarChart/></Button>
+        <Button variant="ghost" onClick={onOpen}><chakra.div minW="10px"minH="10px"><AiOutlineBarChart/></chakra.div></Button>
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />

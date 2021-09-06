@@ -37,11 +37,15 @@ const SendTrack = (props: any) => {
   const bg = useColorModeValue("brand.50", "brand.900");
 
   const { selectedFriend, userObj } = useContext(UserContext);
-  const { onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [recommendTrack] = useMutation(RECOMMEND_TRACK);
 
   return (
-    <Popover placement="right">
+    <Popover 
+    isOpen={isOpen}
+    onOpen={onOpen}
+    onClose={onClose}
+    placement="right">
       <PopoverTrigger>
         {/* <Tooltip placement="right" label="Send Track"> */}
           <Button variant="ghost " onClick={onOpen}>
