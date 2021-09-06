@@ -1,12 +1,10 @@
 import React, { useContext } from 'react';
 import { 
   Box, 
-  Text,
-  Button,
-  Flex } from '@chakra-ui/react';
+  Button } from '@chakra-ui/react';
 import { useMutation, gql } from "@apollo/client";
 import { UserContext } from '../../contexts/UserContext'
-
+import { CheckIcon } from '@chakra-ui/icons';
 const CONFIRM_FRIEND = gql`
 mutation ConfirmFriendMutation($confirmFriendData: ConfirmFriendInput!) {
   ConfirmFriend(data: $confirmFriendData) {
@@ -17,23 +15,15 @@ mutation ConfirmFriendMutation($confirmFriendData: ConfirmFriendInput!) {
 `;
 
 const FriendStat = (props: any) => {
-const { friend_name, friend_status, friend_id } = props.friend;
+const { friend_id } = props;
 const [ confirmFriend ] = useMutation(CONFIRM_FRIEND);
 const { userObj } = useContext(UserContext);
 
   return (
   <Box>
-
-    {friend_status ?(
-      <Text>
-        {friend_name}
-      </Text>
-      ):(
-      <Flex>
-        <Text>
-          {friend_name}
-        </Text>
       <Button
+      colorScheme="green"
+
         onClick={() => {
           confirmFriend({
             variables: {
@@ -44,10 +34,7 @@ const { userObj } = useContext(UserContext);
             },
           });
         }}
-      >Confirm</Button>
-    </Flex>)}
-  </Box>
-  );
-};
-
+      ><CheckIcon/></Button>
+      </Box>
+  )}
 export default FriendStat;

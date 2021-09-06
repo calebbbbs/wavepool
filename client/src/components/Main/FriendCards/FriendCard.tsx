@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import GET_RECOMMENDED_TRACKS from "../../../graphql_client/queries/GET_RECOMMENDED_TRACKS";
-
 import { useQuery } from "@apollo/client";
 import { UserContext } from "../../../contexts/UserContext";
 import FCListItem from "./FCListItem";
@@ -19,17 +18,18 @@ import FCListItem from "./FCListItem";
 
 const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
-  const {friends} = userObj;
+  const { friends } = userObj;
   const [seeMore, setSeeMore] = useState(false)
   const { error, data } = useQuery(GET_RECOMMENDED_TRACKS, {
     variables: { getUserUserId: userObj.user_id },
   });
 
   const list = friends.map((friend: any, i: number) => {
-      return <FCListItem key={i} userObj={userObj} friendId={friend.friend_id} friendName={friend.friend_name}/>
+    console.log(friend);
+    return <FCListItem key={i} userObj={userObj} friendId={friend.friend_id} friendName={friend.friend_name} friendStatus={friend.friend_status} />
   })
 
-  if(error) console.error(error);
+  if (error) console.error(error);
   return (
     <Flex
       p={50}
@@ -65,9 +65,9 @@ const RecommendedTracks = () => {
           <RecommendedTracksList recommendedTracks={data.getUser.recommendedTracks.slice(0, 2)}/>}</div>} */}
           <div>
             <Accordion
-            minW="500px"
-            allowMultiple allowToggle>
-            {list}
+              minW="500px"
+              allowMultiple allowToggle>
+              {list}
             </Accordion>
           </div>
         </Box>
@@ -76,10 +76,11 @@ const RecommendedTracks = () => {
           <Link
             _hover={{ textDecor: "underline" }}
             onClick={() => {
-                console.log(data);
-                setSeeMore(!seeMore)}}
+              console.log(data);
+              setSeeMore(!seeMore)
+            }}
           >
-            {seeMore ? <ChevronUpIcon/>: <ChevronDownIcon/>}
+            {seeMore ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </Link>
 
           <Flex alignItems="center">
