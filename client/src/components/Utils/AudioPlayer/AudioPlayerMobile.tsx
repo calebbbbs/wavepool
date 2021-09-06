@@ -3,23 +3,33 @@ import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import {
   chakra,
-  HStack,
+  VStack,
   Image,
   Text,
   Stack,
   Center,
-  Flex
-
+  Drawer,
+  Flex,
+  DrawerBody,
+  DrawerOverlay,
+  DrawerContent,
+  Button,
+  DrawerCloseButton,
+  useDisclosure,
+  useColorModeValue,
+  Tooltip,
 } from "@chakra-ui/react";
-
-import { TransportControls } from "./TransportControls";
 
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
 
-export const AudioPlayer = () => {
-  // const bg = useColorModeValue("brand.50", "brand.900")
-  // const { isOpen, onOpen, onClose } = useDisclosure();
+import { TransportControls } from "./TransportControls";
+
+import { BsMusicNoteBeamed } from "react-icons/bs";
+
+export const AudioPlayerMobile = () => {
+  const bg = useColorModeValue("brand.50", "brand.900");
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { userObj, currPlayback, getUsersCurrentPlayback } =
     useContext(UserContext);
   useEffect(() => {
@@ -31,13 +41,29 @@ export const AudioPlayer = () => {
 
   return (
     <>
+      <Tooltip label="Spotify Controls">
+        <Button
+          display={{ base: "inline-flex", md: "none" }}
+          m={4}
+          variant="ghost"
+          onClick={onOpen}
+        >
+          <BsMusicNoteBeamed />
+        </Button>
+      </Tooltip>
+      <Drawer size="xs" isOpen={isOpen} placement="bottom" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent bg={bg}>
+          <DrawerCloseButton />
+          <DrawerBody>
             <Center>
-              <HStack 
-               display={{ base: "none", md: "inline-flex" }}
-              alignContent="center"
-              alignItems="center"
-              my="auto"
-              float="right" fontSize="xs">
+              <VStack
+                alignContent="center"
+                alignItems="center"
+                my="auto"
+                float="right"
+                fontSize="xs"
+              >
                 <Center>
                   <Image
                     borderRadius="5px"
@@ -49,16 +75,12 @@ export const AudioPlayer = () => {
                 </Center>
                 <Stack>
                   <Flex alignItems="center">
-                    <chakra.div mr={4}>
                     <BiHeadphone />
-                    </chakra.div>
-                    <Text fontSize="md"> {currPlayback.item.name}</Text>
+                    <Text fontSize="xl"> {currPlayback.item.name}</Text>
                   </Flex>
                   <Flex alignItems="center">
-                    <chakra.div mr={4}>
                       <BsPerson/>
-                      </chakra.div>
-                    <chakra.div fontSize="md">
+                    <chakra.div fontSize="xl">
                       {currPlayback.item.artists.map(
                         (artist: any, i: number) => {
                           if (i === currPlayback.item.artists.length - 1) {
@@ -74,19 +96,20 @@ export const AudioPlayer = () => {
                     </chakra.div>
                   </Flex>
                   <Flex alignItems="center">
-                    <chakra.div mr={4}>
                       <BiAlbum/>
-                      </chakra.div>
-                    <Text fontSize="md">
-                      {currPlayback.item.album.name}
+                    <Text fontSize="xl">
+                     {currPlayback.item.album.name}
                     </Text>
                   </Flex>
                 </Stack>
-                  <TransportControls />
-              </HStack>
-              </Center>
+                <TransportControls />
+              </VStack>
+            </Center>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };
 
-export default AudioPlayer;
+export default AudioPlayerMobile;
