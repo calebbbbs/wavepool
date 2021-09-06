@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import { getConnection } from "typeorm";
-import { CreateRecommendedInput, DeleteRecommendedInput } from '../inputs'
+import { CreateRecommendedInput, RemoveRecommendedInput, UpdateRecommendedInput } from '../inputs'
 import RecommendedTrack from "../../db/entities/RecommendedTrack";
 import User from '../../db/entities/User';
 
@@ -38,11 +38,18 @@ export class RecommendedResolver {
   }
 
   @Mutation(() => Boolean)
-  async deleteRecommended(@Arg("data") data: DeleteRecommendedInput) {
+  async RemoveRecommended(@Arg("data") data: RemoveRecommendedInput) {
     const { user_id, track_title } = data;
     const recommended = await RecommendedTrack.findOne({where: {user_id: user_id, track_title: track_title}});
     if(!recommended) { return false }
     await recommended.remove();
     return true;
+  }
+
+  @Mutation(() => Boolean)
+  async updateRecommended(@Arg("data") data: UpdateRecommendedInput) {
+    const { user_id, track_title } = data;
+    const recommended = await RecommendedTrack.findOne({where: {user_id: user_id, track_title: track_title}});
+    console.log(recommended);
   }
 }

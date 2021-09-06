@@ -1,8 +1,7 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
 import User from './User';
-import Comment from './Comment';
 
 @Entity()
 @ObjectType()
@@ -55,7 +54,7 @@ export default class RecommendedTrack extends BaseEntity {
   @Column()
   in_queue: boolean;
 
-  @Field(() => [Comment], {nullable: true})
-  @OneToMany(() => Comment, (comment: Comment) => comment.recommendedTrack)
-  comments!: Promise<Comment[]>;
+  @Field(() => String)
+  @Column()
+  comment_text: string;
 }

@@ -132,33 +132,32 @@ const createPlaylist = async (
     );
 };
 
-const getTrackInfo = (track_uri: string, access_token: string) => {
-  let track_data = {};
-  const track_id = track_uri.split(':')[2];
-  return axios({
-    url: `https://api.spotify.com/v1/tracks/${track_id}`,
-    method: "get",
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-  }).then((data) => {
-    const  { artists } = data;
-    artist_id = artists[0].id;
+// const getTrackInfo = (track_uri: string, access_token: string) => {
+//   const track_id = track_uri.split(':')[2];
+//   return axios({
+//     url: `https://api.spotify.com/v1/tracks/${track_id}`,
+//     method: "get",
+//     headers: {
+//       Authorization: `Bearer ${access_token}`,
+//     },
+//   }).then((data) => {
+//     const  { artists } = data;
+//     artist_id = artists[0].id;
     
-    return axios({
-      url: `https://api.spotify.com/v1/artist/${artist_id}`,
-      method: "get",
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    }).then((data) => {
-      const { genres, images } = data;
-      track_data.generes = genres;
-      track_data.image = images[1];
-      return track_data;
-    });
-  });
-};
+//     return axios({
+//       url: `https://api.spotify.com/v1/artist/${artist_id}`,
+//       method: "get",
+//       headers: {
+//         Authorization: `Bearer ${access_token}`,
+//       },
+//     }).then((data) => {
+//       const { genres, images } = data;
+//       track_data.generes = genres;
+//       track_data.image = images[1];
+//       return track_data;
+//     });
+//   });
+// };
 
 export {
   spotifyApi,
@@ -170,5 +169,4 @@ export {
   querySpotify,
   addToPlaylist,
   createPlaylist,
-  getTrackInfo
 };
