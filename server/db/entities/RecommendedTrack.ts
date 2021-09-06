@@ -54,7 +54,7 @@ export default class RecommendedTrack extends BaseEntity {
   @Column()
   in_queue: boolean;
 
-  @Field(() => String)
+  @Field(() => String, {nullable: true})
   @Column()
   comment_text: string;
 }

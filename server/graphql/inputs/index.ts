@@ -4,7 +4,7 @@ import { CreateFriendInput } from './CreateFriendInput';
 import { CreateRecommendedInput } from './CreateRecommendedInput';
 import { RemoveRecommendedInput } from './RemoveRecommendedInput';
 import { ConfirmFriendInput } from './ConfirmFriendInput';
-import { UpdateRecommendedInput } from './UpdateRecommendedInput';
+import { UpdateFriendshipInput } from './UpdateFriendshipInput';
 
 export { 
   CreateUserInput, 
@@ -12,4 +12,4 @@ export {
   CreateRecommendedInput,
   ConfirmFriendInput,
   RemoveRecommendedInput,
-  UpdateRecommendedInput }
+  UpdateFriendshipInput }

@@ -1,10 +1,13 @@
 import { InputType, Field } from "type-graphql";
 
 @InputType()
-export class UpdateRecommendedInput {
+export class UpdateFriendshipInput {
   @Field()
   user_id: string;
 
   @Field()
-  track_title: string;
+  friend_id: string;
+
+  @Field()
+  action: string;
 }
