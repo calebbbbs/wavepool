@@ -34,7 +34,8 @@ export class RecommendedResolver {
           let contains = false;
           recommendedGenres.forEach((recGenre: RecommendedGenre) => {
             if(genre === recGenre.genre) {
-  
+              recGenre.count++;
+              recGenre.save();
               contains = true;
             }
           })
