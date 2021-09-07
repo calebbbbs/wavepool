@@ -4,6 +4,7 @@ import FriendStat from "../../Nav/FriendStat";
 import {
   AccordionItem,
   chakra,
+  Tooltip,
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
@@ -58,13 +59,14 @@ const FCListItem = (props: any) => {
       </AccordionPanel>
     </AccordionItem>
     <StatsModal/>
+    <Tooltip label={`Select ${props.friendName}`}>
     <Button 
     variant="ghost"
     onClick={() => {
       setSelectedFriend([props.friendId, props.friendName]);
-      
     }}
     ml={2}>{isSelected ?<chakra.div minW="10px" minH="10px"> <ImRadioChecked/> </chakra.div>:<chakra.div minW="10px" minH="10px"> <ImRadioUnchecked/></chakra.div>}</Button>
+    </Tooltip>
     </Flex>
   );
 };
