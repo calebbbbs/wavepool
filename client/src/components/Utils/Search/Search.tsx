@@ -30,7 +30,6 @@ function Search() {
       <Tooltip label="Search">
         <IconButton
           variant="ghost"
-          m={4}
           aria-label="spotify search"
           onClick={onOpen}
           icon={<SearchIcon />}

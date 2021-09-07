@@ -67,7 +67,7 @@ function Nav(props: any) {
               display={{ base: "none", md: "inline-flex" }}
             >
               <Tooltip label="Toggle Color Mode">
-                <Button m={4} variant="ghost" onClick={toggleColorMode}>
+                <Button variant="ghost" onClick={toggleColorMode}>
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
@@ -83,7 +83,7 @@ function Nav(props: any) {
                   <Link href="/logout">
                     <Tooltip label="Log Out">
                       <Button variant="ghost">
-                        <BiLogOut />
+                        <BiLogOut size={25}/>
                       </Button>
                     </Tooltip>
                   </Link>
@@ -130,7 +130,7 @@ function Nav(props: any) {
                     <Tooltip label="Log Out">
                       <Link href="/logout">
                         <Button variant="ghost">
-                          <BiLogOut />
+                          <BiLogOut size={25}/>
                         </Button>
                       </Link>
                     </Tooltip>

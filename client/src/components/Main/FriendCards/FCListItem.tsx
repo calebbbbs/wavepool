@@ -18,7 +18,6 @@ import StatsModal from "./StatsModal";
 import { UserContext } from "../../../contexts/UserContext";
 import {ImRadioChecked, ImRadioUnchecked} from 'react-icons/im'
 const FCListItem = (props: any) => {
-  console.log(props);
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
     return recTrack.friend_name === props.friendName;
   });

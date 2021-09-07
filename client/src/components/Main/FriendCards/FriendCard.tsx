@@ -10,8 +10,6 @@ import {
   Accordion,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
-import GET_RECOMMENDED_TRACKS from "../../../graphql_client/queries/GET_RECOMMENDED_TRACKS";
-import { useQuery } from "@apollo/client";
 import { UserContext } from "../../../contexts/UserContext";
 import FCListItem from "./FCListItem";
 // import FriendStat from "../../Nav/FriendStat";
@@ -20,16 +18,11 @@ const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
   const { friends } = userObj;
   const [seeMore, setSeeMore] = useState(false)
-  const { error, data } = useQuery(GET_RECOMMENDED_TRACKS, {
-    variables: { getUserUserId: userObj.user_id },
-  });
 
   const list = friends.map((friend: any, i: number) => {
-    console.log(friend);
     return <FCListItem key={i} userObj={userObj} friendId={friend.friend_id} friendName={friend.friend_name} friendStatus={friend.friend_status} />
   })
 
-  if (error) console.error(error);
   return (
     <Flex
       p={50}
@@ -76,7 +69,6 @@ const RecommendedTracks = () => {
           <Link
             _hover={{ textDecor: "underline" }}
             onClick={() => {
-              console.log(data);
               setSeeMore(!seeMore)
             }}
           >
