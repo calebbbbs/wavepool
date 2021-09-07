@@ -29,7 +29,7 @@ import AddFriend from '../Utils/AddFriend/AddFriend';
 
 import CreatePlaylist from './CreatePlaylist';
 
-function Nav(props: any) {
+const Nav = (props: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isLoggedIn, currPlayback }: any = useContext(UserContext);
   const { isOpen, onClose, onOpen } = useDisclosure();
