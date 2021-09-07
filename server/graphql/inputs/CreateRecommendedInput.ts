@@ -12,7 +12,13 @@ export class CreateRecommendedInput {
   track_title: string;
 
   @Field()
-  spotify_uri: string;
+  track_uri: string;
+
+  @Field()
+  artist_uri: string;
+
+  @Field()
+  album_uri: string;
 
   @Field(() => [String])
   artists: string[];

@@ -18,20 +18,15 @@ import {
 import { UserContext } from '../../../../contexts/UserContext';
 import { RiMailSendLine } from 'react-icons/ri';
 // import { Track } from "client/src/types";
-// import RECOMMEND_TRACK from "../../../../graphql_client/mutations/RECOMMEND_TRACK";
+
+
 import SocketContext from "../../../Main/SocketContext";
 const RECOMMEND_TRACK = gql`
   mutation CreateRecommendedMutation(
     $createRecommendedData: CreateRecommendedInput!
   ) {
     createRecommended(data: $createRecommendedData) {
-      user_id
-      friend_id
       track_title
-      artists
-      spotify_uri
-      album_title
-      album_art
     }
   }
 `;
@@ -39,9 +34,11 @@ const SendTrack = (props: any) => {
   const bg = useColorModeValue('brand.50', 'brand.900');
   const { selectedFriend, userObj } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [recommendTrack] = useMutation(RECOMMEND_TRACK);
+  const [recommendTrack, {error}] = useMutation(RECOMMEND_TRACK);
   const { socket } = useContext(SocketContext);
-
+if(error){
+  console.log(error);
+}
   const trackNotif = (data: any) => {
     socket.emit("recommendTrack", data);
   };
@@ -77,14 +74,31 @@ const SendTrack = (props: any) => {
               colorScheme="green"
               float="right"
               onClick={() => {
+                console.log({
+                  variables: {
+                    createRecommendedData: {
+                      user_id: userObj.user_id,
+                      friend_id: selectedFriend[0],
+                      track_title: props.track.track_title,
+                      track_uri: props.track.track_uri,
+                      artist_uri: props.track.artist_uri,
+                      album_uri: props.track.album_uri,
+                      artists: props.track.artists,
+                      album_title: props.track.album_title,
+                      album_art: props.track.album_art,
+                    },
+                  },
+                });
                 recommendTrack({
                   variables: {
                     createRecommendedData: {
                       user_id: userObj.user_id,
                       friend_id: selectedFriend[0],
                       track_title: props.track.track_title,
-                      spotify_uri: props.track.spotify_uri,
-                      artists: props.track.artists[0],
+                      track_uri: props.track.track_uri,
+                      artist_uri: props.track.artist_uri,
+                      album_uri: props.track.album_uri,
+                      artists: props.track.artists,
                       album_title: props.track.album_title,
                       album_art: props.track.album_art,
                     },
@@ -111,8 +125,24 @@ const SendTrack = (props: any) => {
         </PopoverContent>
       )}
     </Popover>
-   
+
   );
 };
 
 export default SendTrack;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
