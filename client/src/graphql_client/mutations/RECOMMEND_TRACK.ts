@@ -7,7 +7,7 @@ mutation CreateRecommendedMutation($createRecommendedData: CreateRecommendedInpu
     friend_id
     track_title
     artists
-    spotify_uri
+    track_uri
     album_title
     album_art
     user {

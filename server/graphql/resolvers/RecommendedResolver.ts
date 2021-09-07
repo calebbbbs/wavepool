@@ -20,15 +20,16 @@ export class RecommendedResolver {
     const user = await User.findOne({where: {user_id: friend_id}});
     const friend = await User.findOne({where: { user_id: user_id}});
     const track = new RecommendedTrack();
-    
+
     const friendship = await Friend.findOne({where: {user_id: friend_id, friend_id: user_id}});
-  
+
     if(friendship){
       friendship.number_of_songs++;
       await friendship.save();
       const recommendedGenres = await friendship.recommendedGenres;
       if(friend && user) {
-        const genres = await getArtistData(artist_uri, user.access_token);
+        const artist_id = artist_uri.split(':')[2];
+        const genres = await getArtistData(artist_id, user.access_token);
         console.log(recommendedGenres);
         genres.forEach((genre: string) => {
           let contains = false;
@@ -44,7 +45,7 @@ export class RecommendedResolver {
           }
           console.log(friendship);
         });
-  
+
         track.user_id = user_id;
         track.friend_id = friend_id;
         track.friend_name = friend.user_name;

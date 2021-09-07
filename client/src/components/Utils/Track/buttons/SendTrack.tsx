@@ -29,7 +29,9 @@ const RECOMMEND_TRACK = gql`
       friend_id
       track_title
       artists
-      spotify_uri
+      track_uri
+      artist_uri
+      album_uri
       album_title
       album_art
     }
@@ -77,14 +79,31 @@ const SendTrack = (props: any) => {
               colorScheme="green"
               float="right"
               onClick={() => {
+                console.log({
+                  variables: {
+                    createRecommendedData: {
+                      user_id: userObj.user_id,
+                      friend_id: selectedFriend[0],
+                      track_title: props.track.track_title,
+                      track_uri: props.track.track_uri,
+                      artist_uri: props.track.artist_uri,
+                      album_uri: props.track.album_uri,
+                      artists: props.track.artists,
+                      album_title: props.track.album_title,
+                      album_art: props.track.album_art,
+                    },
+                  },
+                });
                 recommendTrack({
                   variables: {
                     createRecommendedData: {
                       user_id: userObj.user_id,
                       friend_id: selectedFriend[0],
                       track_title: props.track.track_title,
-                      spotify_uri: props.track.spotify_uri,
-                      artists: props.track.artists[0],
+                      track_uri: props.track.track_uri,
+                      artist_uri: props.track.artist_uri,
+                      album_uri: props.track.album_uri,
+                      artists: props.track.artists,
                       album_title: props.track.album_title,
                       album_art: props.track.album_art,
                     },
@@ -111,8 +130,24 @@ const SendTrack = (props: any) => {
         </PopoverContent>
       )}
     </Popover>
-   
+
   );
 };
 
 export default SendTrack;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
