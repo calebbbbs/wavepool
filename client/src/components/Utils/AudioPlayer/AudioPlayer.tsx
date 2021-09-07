@@ -36,8 +36,7 @@ export const AudioPlayer = () => {
                display={{ base: "none", md: "inline-flex" }}
               alignContent="center"
               alignItems="center"
-              my="auto"
-              float="right" fontSize="xs">
+              float="right">
                 <Center>
                   <Image
                     borderRadius="5px"
@@ -52,13 +51,13 @@ export const AudioPlayer = () => {
                     <chakra.div mr={4}>
                     <BiHeadphone />
                     </chakra.div>
-                    <Text fontSize="md"> {currPlayback.item.name}</Text>
+                    <Text fontSize="xs"> {currPlayback.item.name}</Text>
                   </Flex>
                   <Flex alignItems="center">
                     <chakra.div mr={4}>
                       <BsPerson/>
                       </chakra.div>
-                    <chakra.div fontSize="md">
+                    <chakra.div fontSize="xs">
                       {currPlayback.item.artists.map(
                         (artist: any, i: number) => {
                           if (i === currPlayback.item.artists.length - 1) {
@@ -77,7 +76,7 @@ export const AudioPlayer = () => {
                     <chakra.div mr={4}>
                       <BiAlbum/>
                       </chakra.div>
-                    <Text fontSize="md">
+                    <Text fontSize="xs">
                       {currPlayback.item.album.name}
                     </Text>
                   </Flex>
