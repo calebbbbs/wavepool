@@ -12,7 +12,7 @@ const track: Track = {
     track_title: e.name,
     artists: artists,
     album_title: e.album.name,
-    spotify_uri: e.uri
+    track_uri: e.uri
 }
     return  <TrackComp track={track} key={i}/>
   })

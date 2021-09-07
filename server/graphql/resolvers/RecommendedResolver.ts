@@ -29,7 +29,6 @@ export class RecommendedResolver {
       const recommendedGenres = await friendship.recommendedGenres;
       if(friend && user) {
         const genres = await getArtistData(artist_uri, user.access_token);
-        console.log(recommendedGenres);
         genres.forEach((genre: string) => {
           let contains = false;
           recommendedGenres.forEach((recGenre: RecommendedGenre) => {
@@ -42,7 +41,6 @@ export class RecommendedResolver {
           if(!contains) {
             createGenre(friendship.id, genre);
           }
-          console.log(friendship);
         });
   
         track.user_id = user_id;
