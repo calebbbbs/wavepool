@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { useMutation, gql } from "@apollo/client";
+import React, { useContext } from 'react';
+import { useMutation, gql } from '@apollo/client';
 import {
   Button,
   Tooltip,
@@ -13,11 +13,12 @@ import {
   PopoverBody,
   chakra,
   useColorModeValue,
-} from "@chakra-ui/react";
-import { UserContext } from "../../../../contexts/UserContext";
-import { RiMailSendLine } from "react-icons/ri";
+} from '@chakra-ui/react';
+import { UserContext } from '../../../../contexts/UserContext';
+import { RiMailSendLine } from 'react-icons/ri';
+// import { Track } from "client/src/types";
 // import RECOMMEND_TRACK from "../../../../graphql_client/mutations/RECOMMEND_TRACK";
-
+import SocketContext from '../../../Main/SocketContext';
 const RECOMMEND_TRACK = gql`
   mutation CreateRecommendedMutation(
     $createRecommendedData: CreateRecommendedInput!
@@ -34,21 +35,26 @@ const RECOMMEND_TRACK = gql`
   }
 `;
 const SendTrack = (props: any) => {
-  const bg = useColorModeValue("brand.50", "brand.900");
-
+  const bg = useColorModeValue('brand.50', 'brand.900');
   const { selectedFriend, userObj } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [recommendTrack] = useMutation(RECOMMEND_TRACK);
+  const { socket } = useContext(SocketContext);
+
+  const trackNotif = (data: any) => {
+    socket.emit('recommendTrack', data);
+  };
 
   return (
-    <Popover 
-    isOpen={isOpen}
-    onOpen={onOpen}
-    onClose={onClose}
-    placement="right">
+    <Popover
+      isOpen={isOpen}
+      onOpen={onOpen}
+      onClose={onClose}
+      placement='right'
+    >
       <PopoverTrigger>
-        <Tooltip placement="right" label="Send Track">
-          <Button variant="ghost " onClick={onOpen}>
+        <Tooltip placement='right' label='Send Track'>
+          <Button variant='ghost ' onClick={onOpen}>
             <RiMailSendLine />
           </Button>
         </Tooltip>
@@ -58,17 +64,15 @@ const SendTrack = (props: any) => {
         <PopoverCloseButton />
         <PopoverHeader>Send Track?</PopoverHeader>
         <PopoverBody>
+          <chakra.span>Are you sure you want to send </chakra.span>
           <chakra.span>
-            Are you sure you want to send
+            <b>{props.track.track_title}</b> to{' '}
           </chakra.span>
           <chakra.span>
-            <b>{props.track.track_title}</b> to{" "}
-            </chakra.span>
-            <chakra.span>
             <b>{selectedFriend[1]}</b>?
-            </chakra.span>
+          </chakra.span>
           <Button
-            float="right"
+            float='right'
             onClick={() => {
               recommendTrack({
                 variables: {
@@ -83,6 +87,11 @@ const SendTrack = (props: any) => {
                   },
                 },
               });
+              const temp = {
+                userId: userObj.user_id,
+                friendId: selectedFriend[0],
+              };
+              trackNotif(temp);
               onClose();
             }}
           >
