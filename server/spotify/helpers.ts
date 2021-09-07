@@ -104,6 +104,18 @@ const querySpotify = (query: string, access_token: string) => {
   });
 };
 
+const getArtistData = (artist_uri: string, access_token: string) => {
+  return axios({
+    url: `https://api.spotify.com/v1/artists/${artist_uri}`,
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  }).then(({data}) => {
+    return data.genres;
+  }).catch(error => console.log(error));
+};
+
 const addToPlaylist = async (
   access_token: string,
   playlist_id: string,
@@ -169,4 +181,5 @@ export {
   querySpotify,
   addToPlaylist,
   createPlaylist,
+  getArtistData,
 };

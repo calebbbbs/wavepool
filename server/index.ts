@@ -80,7 +80,7 @@ const authCallbackPath = '/auth/spotify/callback';
         user.access_token = accessToken;
         user.refresh_token = refreshToken;
         //user.photo = profile.photos[0].value || null;
-        await user.save();
+        await user.save()
         process.nextTick(() => {
           done(null, user);
         });
