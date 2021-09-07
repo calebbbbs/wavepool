@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 interface SocketContextInterface {
-  socket: any;
-}
+    socket: any;
+  }
 
-const SocketContext = React.createContext<SocketContextInterface>({
-  socket: null,
-});
+  const SocketContext = React.createContext<SocketContextInterface>({
+    socket: null,
+  });
 
-export default SocketContext;
+export default SocketContext

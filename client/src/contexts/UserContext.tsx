@@ -14,8 +14,9 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [recentPlays, setRecentPlays] = useState<any>();
   const [userPlaylists, setUserPlaylists] = useState<any>();
-  const [getUserData, { error, data, refetch }] = useLazyQuery(GET_USER_DATA);
-  const [selectedFriend, setSelectedFriend] = useState<any[]>([]);
+  const [getUserData, {error, data, refetch}] = useLazyQuery(GET_USER_DATA);
+  const [selectedFriend, setSelectedFriend] = useState<any[]>([])
+
 
   if (error) console.warn(error);
   const getRecentlyPlayed = () => {

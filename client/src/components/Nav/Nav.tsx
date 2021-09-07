@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import {
   Tooltip,
   Flex,
@@ -31,25 +31,11 @@ import CreatePlaylist from './CreatePlaylist';
 
 function Nav(props: any) {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isLoggedIn, currPlayback, userObj }: any = useContext(UserContext);
+  const { isLoggedIn, currPlayback }: any = useContext(UserContext);
   const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const [toastMessage, setToastMessage] = useState<any>('');
   const toast = useToast();
 
-  useEffect(() => {
-    if (toastMessage) {
-      const { title, body }: any = toastMessage;
-
-      toast({
-        title,
-        description: body,
-        status: 'success',
-        duration: 4500,
-        isClosable: true,
-      });
-    }
-  }, [toastMessage, toast]);
 
   return (
     <>
@@ -82,31 +68,9 @@ function Nav(props: any) {
               color='brand.500'
               display={{ base: 'none', md: 'inline-flex' }}
             >
-              <Tooltip label='Toggle Color Mode'>
-                <Button m={4} variant='ghost' onClick={toggleColorMode}>
-                  {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                </Button>
-              </Tooltip>
-              <Tooltip label='Notifications'>
-                <Button
-                  m={4}
-                  variant='ghost'
-                  onClick={() => {
-                    //   setToastMessage({
-                    //   title:  "Notifications",
-                    //   body: `You have new notifications, ${userObj.user_name}`,
-                    // });
-                    setToastMessage(undefined);
-                    toast({
-                      title: 'Notifications',
-                      description: `You have new notifications, ${userObj.user_name}`,
-                      status: 'success',
-                      duration: 4500,
-                      isClosable: true,
-                    });
-                  }}
-                >
-                  <AtSignIcon />
+              <Tooltip label="Toggle Color Mode">
+                <Button variant="ghost" onClick={toggleColorMode}>
+                  {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
               {!isLoggedIn ? (
@@ -114,12 +78,14 @@ function Nav(props: any) {
               ) : (
                 <chakra.div>
                   <Search />
-                  <AddFriend />
-                  <CreatePlaylist />
-                  <Link href='/logout'>
-                    <Tooltip label='Log Out'>
-                      <Button variant='ghost'>
-                        <BiLogOut />
+                  <AddFriend/>
+                  <CreatePlaylist/>
+                  
+                  {/* <AddFriendDrawer/> */}
+                  <Link href="/logout">
+                    <Tooltip label="Log Out">
+                      <Button variant="ghost">
+                        <BiLogOut size={25}/>
                       </Button>
                     </Tooltip>
                   </Link>
@@ -184,12 +150,12 @@ function Nav(props: any) {
                 ) : (
                   <chakra.div>
                     <Search />
-                    <AddFriend />
-                    <CreatePlaylist />
-                    <Tooltip label='Log Out'>
-                      <Link href='/logout'>
-                        <Button variant='ghost'>
-                          <BiLogOut />
+                    <AddFriend/>
+                    <CreatePlaylist/>
+                    <Tooltip label="Log Out">
+                      <Link href="/logout">
+                        <Button variant="ghost">
+                          <BiLogOut size={25}/>
                         </Button>
                       </Link>
                     </Tooltip>
