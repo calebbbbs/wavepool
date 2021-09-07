@@ -15,6 +15,8 @@ const SearchTrackList = (props: any) => {
       artists: artists,
       album_title: e.album.name,
       track_uri: e.uri,
+      artist_uri: e.artists[0].uri,
+      album_uri: e.album.uri
     };
 
     return <TrackComp track={track} key={i} />;

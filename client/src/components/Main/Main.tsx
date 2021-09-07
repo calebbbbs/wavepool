@@ -17,7 +17,7 @@ const {userObj, refetch} = useContext(UserContext);
 
       setTimeout(() => {refetch()
         toast({
-          title: 'New Track!.',
+          title: 'New Track!',
           description: `${friendId} sent you a track!`,
           status: 'info',
           duration: 4000,
