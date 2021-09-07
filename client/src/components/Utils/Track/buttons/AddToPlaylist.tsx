@@ -22,7 +22,7 @@ import { AddIcon } from '@chakra-ui/icons';
 
 const AddToPlaylist = (props: any) => {
   const {isOpen, onOpen, onClose} = useDisclosure();
-  const { userObj } = useContext(UserContext);
+  const { userObj, getUserPlaylists } = useContext(UserContext);
 
   const bg = useColorModeValue('brand.50', 'brand.900');
 
@@ -48,7 +48,9 @@ const AddToPlaylist = (props: any) => {
   return (
     <>
     <Tooltip placement="right" label="Add to Playlist">
-    <Button  variant="ghost" onClick={onOpen}>
+    <Button  variant="ghost" onClick={() => {
+       getUserPlaylists();
+      onOpen()}}>
       <AddIcon/>
     </Button>
     </Tooltip>

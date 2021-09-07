@@ -5,7 +5,7 @@ import {
   spotifyApi,
   getRecentlyPlayed,
   getUsersCurrentPlayback,
-  getUsersPlaylists,
+  getUserPlaylists,
   addToQueue,
   querySpotify,
   addToPlaylist,
@@ -159,7 +159,7 @@ spotifyRouter.get(
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
       const { access_token } = user;
-      return getUsersPlaylists(access_token)
+      return getUserPlaylists(access_token)
         .then((data) => res.status(200).send(data))
         .catch((error) => console.log(error));
     }
@@ -185,12 +185,13 @@ spotifyRouter.get(
   }
 );
 
-spotifyRouter.get('/createPlaylist/:user_id', async(req: Request, res: Response) => {
-  const{user_id} = req.params;
+spotifyRouter.post('/createPlaylist/:playlist_name/:user_id', async(req: Request, res: Response) => {
+  const{user_id, playlist_name} = req.params;
+  const {playlist_desc} = req.body;
   const user = await User.findOne({where: {user_id: user_id}});
   if(user) {
     const { access_token } = user;
-    return createPlaylist(access_token)
+    return createPlaylist(access_token, playlist_name, playlist_desc)
     .then((data) => res.status(201).send(data))
     .catch((error) => console.log(error));
   }
