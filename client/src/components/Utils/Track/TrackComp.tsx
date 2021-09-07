@@ -17,18 +17,14 @@ import {
   Skeleton,
 } from '@chakra-ui/react';
 
-import { BsPerson } from 'react-icons/bs';
-import { BiHeadphone, BiAlbum } from 'react-icons/bi';
-import { MdQueueMusic } from 'react-icons/md';
-import AddToPlaylist from './buttons/AddToPlaylist';
-import PlayNow from './buttons/PlayNow';
-// import { useMutation } from "@apollo/client";
-
-// import RECOMMEND_TRACK from "../../graphQL/mutations/RECOMMEND_TRACK";
+import { BsPerson } from "react-icons/bs";
+import { BiHeadphone, BiAlbum } from "react-icons/bi";
+import { MdQueueMusic } from "react-icons/md";
+import AddToPlaylist from "./buttons/AddToPlaylist";
+import PlayNow from "./buttons/PlayNow";
 
 const TrackComp = (props: any) => {
-  // const [recommendTrack] = useMutation(RECOMMEND_TRACK);
-  // const [sendInput, setSendInput] = useState("");
+
   const [imgLoaded, setImgLoaded] = useState(false);
   const { userObj, userPlaylists } = useContext(UserContext);
   const {

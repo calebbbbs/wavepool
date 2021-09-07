@@ -40,9 +40,8 @@ const AddFriend = () => {
     <>
       <Tooltip label='Add A Friend'>
         <IconButton
-          variant='ghost'
-          m={4}
-          aria-label='friend search'
+          variant="ghost"
+          aria-label="friend search"
           onClick={onOpen}
           icon={<AddIcon />}
         ></IconButton>
