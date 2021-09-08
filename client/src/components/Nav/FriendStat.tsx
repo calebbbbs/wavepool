@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import { 
-  Box, 
-  Button } from '@chakra-ui/react';
+import {
+  Box,
+  Link } from '@chakra-ui/react';
 import { useMutation, gql } from "@apollo/client";
 import { UserContext } from '../../contexts/UserContext'
 import { CheckIcon } from '@chakra-ui/icons';
+import SocketContext from '../Main/SocketContext';
+
+
 const CONFIRM_FRIEND = gql`
 mutation ConfirmFriendMutation($confirmFriendData: ConfirmFriendInput!) {
   ConfirmFriend(data: $confirmFriendData) {
@@ -17,11 +20,15 @@ mutation ConfirmFriendMutation($confirmFriendData: ConfirmFriendInput!) {
 const FriendStat = (props: any) => {
 const { friend_id } = props;
 const [ confirmFriend ] = useMutation(CONFIRM_FRIEND);
-const { userObj } = useContext(UserContext);
+const { userObj, refetch } = useContext(UserContext);
+const {socket} = useContext(SocketContext);
 
+const friendConfirmed = (data: any) => {
+  socket.emit("confirmFriend", data);
+};
   return (
   <Box>
-      <Button
+      <Link
       colorScheme="green"
 
         onClick={() => {
@@ -33,8 +40,15 @@ const { userObj } = useContext(UserContext);
               },
             },
           });
+          const temp = {
+            userId: userObj.user_id,
+            friendId: friend_id,
+          };
+
+          setTimeout(() => {refetch()}, 1500)
+          friendConfirmed(temp);
         }}
-      ><CheckIcon/></Button>
+      ><CheckIcon/></Link>
       </Box>
   )}
 export default FriendStat;
