@@ -55,7 +55,7 @@ const FCListItem = (props: any) => {
           </AccordionButton>
         </h2>
         <AccordionPanel>
-          <RecommendedTracksList recommendedTracks={list.reverse()} />
+          <RecommendedTracksList friendId={props.friendId} recommendedTracks={list.reverse()} />
         </AccordionPanel>
       </AccordionItem>
       <StatsModal />
