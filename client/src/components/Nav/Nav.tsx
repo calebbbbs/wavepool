@@ -13,12 +13,11 @@ import {
   VisuallyHidden,
   useDisclosure,
   CloseButton,
-  useToast,
 } from '@chakra-ui/react';
 
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BiLogOut } from 'react-icons/bi';
-import { SunIcon, MoonIcon, AtSignIcon } from '@chakra-ui/icons';
+import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { UserContext } from '../../contexts/UserContext';
 
 import AudioPlayer from '../Utils/AudioPlayer/AudioPlayer';
@@ -34,7 +33,6 @@ const Nav = (props: any) => {
   const { isLoggedIn, currPlayback }: any = useContext(UserContext);
   const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const toast = useToast();
 
 
   return (
@@ -80,8 +78,6 @@ const Nav = (props: any) => {
                   <Search />
                   <AddFriend/>
                   <CreatePlaylist/>
-                  
-                  {/* <AddFriendDrawer/> */}
                   <Link href="/logout">
                     <Tooltip label="Log Out">
                       <Button variant="ghost">
@@ -122,29 +118,6 @@ const Nav = (props: any) => {
                     {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                   </Button>
                 </Tooltip>
-                <Tooltip label='Notifications'>
-                  <Button
-                    m={4}
-                    variant='ghost'
-                    onClick={() => {
-                      //   setToastMessage({
-                      //   title:  "Notifications",
-                      //   body: `You have new notifications, ${userObj.user_name}`,
-                      // });
-                      // setToastMessage(undefined);
-                      toast({
-                        title: 'Recommendations',
-                        description: 'New tracks from',
-                        status: 'success',
-                        duration: 4500,
-                        isClosable: true,
-                      });
-                    }}
-                  >
-                    <AtSignIcon />
-                  </Button>
-                </Tooltip>
-
                 {!isLoggedIn ? (
                   <div></div>
                 ) : (
