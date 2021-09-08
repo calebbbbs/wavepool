@@ -28,6 +28,7 @@ query Query($getUserUserId: String!) {
       track_uri
       artists
       album_title
+      in_queue
       album_art
     }
   }

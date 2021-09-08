@@ -70,9 +70,12 @@ export class RecommendedResolver {
   @Mutation(() => Boolean)
   async RemoveRecommended(@Arg("data") data: RemoveRecommendedInput) {
     const { user_id, track_title } = data;
+    console.log(data);
     const recommended = await RecommendedTrack.findOne({where: {user_id: user_id, track_title: track_title}});
     if(!recommended) { return false }
-    await recommended.remove();
+    recommended.in_queue = false;
+    recommended.save();
+    // await recommended.remove();
     return true;
   }
 }
