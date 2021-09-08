@@ -40,6 +40,18 @@ const {userObj, refetch} = useContext(UserContext);
       }, 1500);
     });
 
+    socket.on('friendConfirmed', (friendId: string) =>{
+      console.log('Im trying to confirm friends')
+      setTimeout(() => {refetch()
+        toast({
+          title: 'New Friend!',
+          description: `${friendId} confirmed your friend request!`,
+          status: 'info',
+          duration: 4000,
+          isClosable: true,
+        });
+      }, 1500);
+    });
   }, []);
 
 
