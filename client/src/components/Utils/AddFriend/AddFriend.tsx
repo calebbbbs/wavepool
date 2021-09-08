@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   Modal,
   useDisclosure,
@@ -16,25 +16,37 @@ import {
 } from '@chakra-ui/react';
 import { useMutation, gql } from '@apollo/client';
 import { AddIcon } from '@chakra-ui/icons';
-
 import { UserContext } from '../../../contexts/UserContext';
+import SocketContext from '../../Main/SocketContext';
 
 const CREATE_FRIEND = gql`
   mutation Mutation($createFriendData: CreateFriendInput!) {
     createFriend(data: $createFriendData) {
       user_id
-      friend_id
-      friend_name
     }
   }
 `;
 
 const AddFriend = () => {
-  const [createFriend] = useMutation(CREATE_FRIEND);
+  const [createFriend, { data }] = useMutation(CREATE_FRIEND);
   const { userObj } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [friendInput, setFriendInput] = useState('');
   const bg = useColorModeValue('brand.100', 'brand.800');
+  const { socket } = useContext(SocketContext);
+  const friendNotif = (data: any) =>{
+    // console.log(data);
+    socket.emit('createFriend', data);
+  }
+  useEffect(() =>{
+    if(data){
+      const temp = {
+        userId: userObj.user_id,
+        friendId: data.createFriend.user_id,
+      };
+      friendNotif(temp);
+    }
+  }, [JSON.stringify(data)]);
 
   return (
     <>
@@ -91,7 +103,6 @@ const AddFriend = () => {
                     },
                   },
                 });
-                // friendNotif(userObj.user_id);
                 onClose();
               }}
             >
