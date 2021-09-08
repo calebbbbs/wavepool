@@ -25,7 +25,7 @@ const PlayNow = (props: any) => {
       <Button
         variant='ghost'
         onClick={() => {
-          if(props.user_id) {
+          if(props.friend_id) {
             updateFriendship({
               variables: {
                 updateFriendshipData: {
