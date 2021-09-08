@@ -21,8 +21,9 @@ import {
 import { AddIcon } from '@chakra-ui/icons';
 
 const UPDATE_FRIENDSHIP = gql`
-mutation UpdateFriendshipMutation($updateFriendshipData: UpdateFriendshipInput!) {
-  updateFriendship(data: $updateFriendshipData)
+mutation UpdateFriendshipMutation(
+  $updateFriendshipData: UpdateFriendshipInput!) {
+  UpdateFriendship(data: $updateFriendshipData)
 }
 `;
 
@@ -35,16 +36,17 @@ const AddToPlaylist = (props: any) => {
     return (
       <chakra.div
         onClick={() => {
-          console.log(userObj.user_id);
-          updateFriendship({
-            variables: {
-              updateFriendshipData: {
-                user_id: "985",
-                friend_id: "504",
-                action: "like"
+          if(props.user_id) {
+            updateFriendship({
+              variables: {
+                updateFriendshipData: {
+                  user_id: props.user_id,
+                  friend_id: userObj.user_id,
+                  action: "playlist"
+                },
               },
-            },
-          });
+            });
+          }
           axios
             .get(
               `/spotify/addToPlaylist/${userObj.user_id}/${playlist.id}/${props.trackUri}`

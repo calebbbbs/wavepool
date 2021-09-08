@@ -62,6 +62,7 @@ export class FriendResolver {
   @Mutation(() => Boolean)
   async UpdateFriendship(@Arg("data") data: UpdateFriendshipInput) {
     const { user_id, friend_id, action } = data;
+    console.log(data);
     const friendship = await Friend.findOne({where: {user_id: user_id, friend_id: friend_id}});
     if(friendship) {
       if(action === 'queue') {

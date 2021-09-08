@@ -33,14 +33,15 @@ const TrackComp = (props: any) => {
     track_title,
     artists,
     album_title,
-    spotify_uri,
+    track_uri,
+    user_id
   } = props.track;
 
   const bg = useColorModeValue('brand.50', 'brand.900');
 
   const addToQueue = () => {
     axios
-      .get(`/spotify/addToQueue/${userObj.user_id}/${spotify_uri}`)
+      .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
       .then((data) => data)
       .catch((err) => console.error(err));
   };
@@ -122,9 +123,9 @@ const TrackComp = (props: any) => {
           </Tooltip>
           <SendTrack track={props.track} />
           {userPlaylists && (
-            <AddToPlaylist playlists={userPlaylists} trackUri={spotify_uri} />
+            <AddToPlaylist user_id={user_id} playlists={userPlaylists} trackUri={track_uri} />
           )}
-          <PlayNow user_id={userObj.user_id} spotify_uri={spotify_uri} />
+          <PlayNow user_id={userObj.user_id} spotify_uri={track_uri} />
         </Stack>
       </Flex>
     </chakra.div>
