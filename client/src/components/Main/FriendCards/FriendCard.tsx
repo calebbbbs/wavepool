@@ -18,7 +18,8 @@ const RecommendedTracks = () => {
   const [seeMore, setSeeMore] = useState(false)
 
   const list = friends.map((friend: any, i: number) => {
-    return <FCListItem key={i} userObj={userObj} friendId={friend.friend_id} friendName={friend.friend_name} friendStatus={friend.friend_status} />
+    console.log(friend);
+    return <FCListItem friendScore={friend.friend_score} key={i} userObj={userObj} friendId={friend.friend_id} friendName={friend.friend_name} friendStatus={friend.friend_status} />
   })
 
   return (

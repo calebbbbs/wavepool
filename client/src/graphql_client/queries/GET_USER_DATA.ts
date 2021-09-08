@@ -12,6 +12,7 @@ query Query($getUserUserId: String!) {
       friend_id
       friend_name
       friend_status
+      friend_score
     }
     recommendedTracks {
       id

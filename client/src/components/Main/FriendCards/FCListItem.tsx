@@ -39,7 +39,7 @@ const FCListItem = (props: any) => {
               flex='1'
               textAlign='left'
             >
-              {props.friendName}
+              {props.friendName} - {props.friendScore}
               {props.friendStatus === false && (
                 <FriendStat
                   friend_name={props.friendName}
