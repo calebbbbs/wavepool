@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { 
   Box, 
-  Button } from '@chakra-ui/react';
+  Link } from '@chakra-ui/react';
 import { useMutation, gql } from "@apollo/client";
 import { UserContext } from '../../contexts/UserContext'
 import { CheckIcon } from '@chakra-ui/icons';
@@ -21,7 +21,7 @@ const { userObj } = useContext(UserContext);
 
   return (
   <Box>
-      <Button
+      <Link
       colorScheme="green"
 
         onClick={() => {
@@ -34,7 +34,7 @@ const { userObj } = useContext(UserContext);
             },
           });
         }}
-      ><CheckIcon/></Button>
+      ><CheckIcon/></Link>
       </Box>
   )}
 export default FriendStat;
