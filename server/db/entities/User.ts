@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany } from 'typeorm';
+import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany, OneToOne } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
 import Friend from './Friend';
+import History from './History';
 import RecommendedTrack from './RecommendedTrack';
 
 
@@ -27,6 +28,10 @@ export default class User extends BaseEntity {
   @Field(() => String)
   @Column()
   refresh_token: string;
+
+  @Field(() => History, {nullable: true})
+  @OneToOne(() => History, (history: History) => history.user)
+  trackHistory!: Promise<History>;
 
   @Field(() => [Friend], {nullable: true})
   @OneToMany(() => Friend, (friend: Friend) => friend.user)
