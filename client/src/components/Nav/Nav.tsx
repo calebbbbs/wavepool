@@ -28,9 +28,7 @@ import AddFriend from "../Utils/AddFriend/AddFriend";
 
 import CreatePlaylist from "./CreatePlaylist";
 
-// import AddFriendDrawer from "./AddFriendDrawer";
-
-function Nav(props: any) {
+const Nav = (props: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isLoggedIn, currPlayback }: any = useContext(UserContext);
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -54,11 +52,11 @@ function Nav(props: any) {
               🌊
               <VisuallyHidden>WavePool</VisuallyHidden>
             </chakra.a>
-            <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
+            <chakra.h1 textStyle="h1.xl" fontWeight="medium" ml="2">
               WavePool
             </chakra.h1>
           </Flex>
-            {currPlayback && <AudioPlayer />}
+          {currPlayback && <AudioPlayer />}
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack
               spacing={1}
@@ -67,7 +65,7 @@ function Nav(props: any) {
               display={{ base: "none", md: "inline-flex" }}
             >
               <Tooltip label="Toggle Color Mode">
-                <Button m={4} variant="ghost" onClick={toggleColorMode}>
+                <Button variant="ghost" onClick={toggleColorMode}>
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
@@ -76,14 +74,12 @@ function Nav(props: any) {
               ) : (
                 <chakra.div>
                   <Search />
-                  <AddFriend/>
-                  <CreatePlaylist/>
-                  
-                  {/* <AddFriendDrawer/> */}
+                  <AddFriend />
+                  <CreatePlaylist />
                   <Link href="/logout">
                     <Tooltip label="Log Out">
                       <Button variant="ghost">
-                        <BiLogOut />
+                        <BiLogOut size={25} />
                       </Button>
                     </Tooltip>
                   </Link>
@@ -125,12 +121,12 @@ function Nav(props: any) {
                 ) : (
                   <chakra.div>
                     <Search />
-                    <AddFriend/>
-                    <CreatePlaylist/>
+                    <AddFriend />
+                    <CreatePlaylist />
                     <Tooltip label="Log Out">
                       <Link href="/logout">
                         <Button variant="ghost">
-                          <BiLogOut />
+                          <BiLogOut size={25} />
                         </Button>
                       </Link>
                     </Tooltip>
@@ -143,6 +139,6 @@ function Nav(props: any) {
       </chakra.header>
     </>
   );
-}
+};
 
 export default Nav;

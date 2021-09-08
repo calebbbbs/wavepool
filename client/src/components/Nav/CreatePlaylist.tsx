@@ -34,7 +34,7 @@ const CreatePlaylist = (props: any) => {
     <>
       <Tooltip label="Create Playlist" placement="bottom">
         <Button variant="ghost" onClick={onOpen}>
-          <MdPlaylistAdd/>
+          <MdPlaylistAdd size={25}/>
         </Button>
       </Tooltip>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -67,7 +67,6 @@ const CreatePlaylist = (props: any) => {
             <Button
               variant="ghost"
               onClick={() => {
-                console.log("i got clicked");
                 axios
                   .post(
                     `/spotify/createPlaylist/${playlistName}/${userObj.user_id}`,

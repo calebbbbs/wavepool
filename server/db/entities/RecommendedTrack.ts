@@ -28,7 +28,7 @@ export default class RecommendedTrack extends BaseEntity {
 
   @Field(() => String)
   @Column()
-  spotify_uri: string;
+  track_uri: string;
  
   @Field(() => [String])
   @Column("text", { array: true })
@@ -42,7 +42,19 @@ export default class RecommendedTrack extends BaseEntity {
   @Column()
   album_art: string;
 
+  @Field(() => String)
+  @Column()
+  album_uri: string;
+
   @Field(() => User)
   @ManyToOne(() => User, (user: User) => user.recommendedTracks, {cascade:true})
   user!: Promise<User | undefined>;
+
+  @Field(() => Boolean)
+  @Column()
+  in_queue: boolean;
+
+  @Field(() => String, {nullable: true})
+  @Column()
+  comment_text: string;
 }

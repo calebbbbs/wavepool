@@ -1,5 +1,4 @@
 import React, { ReactElement, useContext } from 'react';
-import Nav from './components/Nav/Nav';
 import { Switch, Route } from 'react-router-dom';
 
 import { UserContext } from './contexts/UserContext';
@@ -12,7 +11,6 @@ const App = (): ReactElement => {
 return (
     <Switch>
       <Route exact path='/'>
-        <Nav user={...userObj}/>
         {isLoggedIn && userObj ? <Main/> : <Welcome/>}
       </Route>
     </Switch>

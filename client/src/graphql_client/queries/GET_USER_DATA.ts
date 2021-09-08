@@ -19,9 +19,10 @@ query Query($getUserUserId: String!) {
       friend_id
       friend_name
       track_title
-      spotify_uri
+      track_uri
       artists
       album_title
+      in_queue
       album_art
     }
   }

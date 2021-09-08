@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
-import {useLazyQuery} from '@apollo/client'
+import { useLazyQuery } from "@apollo/client";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import GET_USER_DATA from "../graphql_client/queries/GET_USER_DATA";
 
-
 const UserContext = React.createContext(undefined as any);
+
 // eslint-disable-next-line react/prop-types
 const UserContextProvider: React.FC = ({ children }) => {
   const [userObj, setUserObj] = useState<any>();
@@ -14,15 +14,13 @@ const UserContextProvider: React.FC = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [recentPlays, setRecentPlays] = useState<any>();
   const [userPlaylists, setUserPlaylists] = useState<any>();
-  const [getUserData, {error, data}] = useLazyQuery(GET_USER_DATA);
-  const [selectedFriend, setSelectedFriend] = useState<any[]>([])
+  const [getUserData, { error, data, refetch }] = useLazyQuery(GET_USER_DATA);
+  const [selectedFriend, setSelectedFriend] = useState<any[]>([]);
 
-
-
-  if(error) console.warn(error);
+  if (error) console.warn(error);
   const getRecentlyPlayed = () => {
     const reqConfig: AxiosRequestConfig = {
-      method: 'get',
+      method: "get",
       url: `http://localhost:4000/spotify/getRecentlyPlayed/${userObj.user_id}`,
     };
     axios(reqConfig).then(
@@ -34,21 +32,20 @@ const UserContextProvider: React.FC = ({ children }) => {
         return setRecentPlays(res);
       },
       function (err) {
-        console.log('Something went wrong!', err);
+        console.log("Something went wrong!", err);
       }
     );
   };
 
-
   const getUser = () => {
-    return axios.get<any>('/getUser').then((res) => {
+    return axios.get<any>("/getUser").then((res) => {
       if (res.data) {
         if (Object.keys(res.data).length === 0) {
           return;
         }
         getUserData({
           variables: { getUserUserId: res.data.user_id },
-        })
+        });
         setIsLoggedIn(true);
         if (userObj) {
           getUsersCurrentPlayback();
@@ -57,7 +54,6 @@ const UserContextProvider: React.FC = ({ children }) => {
       }
     });
   };
-
 
   const getUsersCurrentPlayback = () => {
     return axios
@@ -91,16 +87,25 @@ const UserContextProvider: React.FC = ({ children }) => {
     }
   }, [JSON.stringify(userObj)]);
 
-  React.useEffect(() => {if(data){
-    setUserObj(data.getUser);
-  }}, [JSON.stringify(data)])
-
+  React.useEffect(() => {
+    if (data) {
+      console.log(data.getUser);
+      const newUserObj = { ...data.getUser };
+      newUserObj.recommendedTracks = data.getUser.recommendedTracks.filter(
+        (e: any) => {
+          return e.in_queue === true;
+        }
+      );
+      setUserObj(newUserObj);
+    }
+  }, [data]);
 
   const userProps = {
     userObj,
     isLoggedIn,
     getUser,
     getUsersCurrentPlayback,
+    refetch,
     currPlayback,
     setCurrPlayback,
     isPlaying,
@@ -112,7 +117,7 @@ const UserContextProvider: React.FC = ({ children }) => {
     setUserPlaylists,
     getUserPlaylists,
     selectedFriend,
-    setSelectedFriend
+    setSelectedFriend,
   };
 
   return (

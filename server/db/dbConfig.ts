@@ -2,12 +2,12 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 import dotenv from 'dotenv';
 
 dotenv.config();
-const { CLIENT_URL, DB_USERNAME, DB_PASSWORD } = process.env;
+const { DB_USERNAME, DB_PASSWORD, DB_URL } = process.env;
 
 const typeOrmConfig: PostgresConnectionOptions = {
   type: 'postgres',
   logging: false,
-  host: CLIENT_URL,
+  host: DB_URL,
   port: 5432,
   username: DB_USERNAME,
   password: DB_PASSWORD,
