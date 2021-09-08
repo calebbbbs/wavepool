@@ -19,7 +19,7 @@ import { UserContext } from '../../../contexts/UserContext';
 import { ImRadioChecked, ImRadioUnchecked } from 'react-icons/im';
 const FCListItem = (props: any) => {
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
-    return recTrack.friend_name === props.friendName;
+    return recTrack.friend_name === props.friendName && recTrack.in_queue === true;
   });
 
   const { selectedFriend, setSelectedFriend } = useContext(UserContext);
