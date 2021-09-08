@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../../../contexts/UserContext';
-
+import { useMutation, gql } from '@apollo/client';
 import {
   Link,
   Button,
@@ -20,17 +20,31 @@ import {
 
 import { AddIcon } from '@chakra-ui/icons';
 
+const UPDATE_FRIENDSHIP = gql`
+mutation UpdateFriendshipMutation($updateFriendshipData: UpdateFriendshipInput!) {
+  updateFriendship(data: $updateFriendshipData)
+}
+`;
+
 const AddToPlaylist = (props: any) => {
   const {isOpen, onOpen, onClose} = useDisclosure();
   const { userObj, getUserPlaylists } = useContext(UserContext);
-
+  const [updateFriendship] = useMutation(UPDATE_FRIENDSHIP);
   const bg = useColorModeValue('brand.50', 'brand.900');
-
   const list = props.playlists.map((playlist: any, i: number) => {
     return (
       <chakra.div
         onClick={() => {
-
+          console.log(userObj.user_id);
+          updateFriendship({
+            variables: {
+              updateFriendshipData: {
+                user_id: "985",
+                friend_id: "504",
+                action: "like"
+              },
+            },
+          });
           axios
             .get(
               `/spotify/addToPlaylist/${userObj.user_id}/${playlist.id}/${props.trackUri}`

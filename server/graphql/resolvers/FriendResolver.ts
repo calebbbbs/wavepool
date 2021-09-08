@@ -60,7 +60,7 @@ export class FriendResolver {
   }
 
   @Mutation(() => Boolean)
-  async updateFriendship(@Arg("data") data: UpdateFriendshipInput) {
+  async UpdateFriendship(@Arg("data") data: UpdateFriendshipInput) {
     const { user_id, friend_id, action } = data;
     const friendship = await Friend.findOne({where: {user_id: user_id, friend_id: friend_id}});
     if(friendship) {
