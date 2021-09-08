@@ -22,10 +22,12 @@ const FCListItem = (props: any) => {
     return recTrack.friend_name === props.friendName && recTrack.in_queue === true;
   });
 
+
   const { selectedFriend, setSelectedFriend } = useContext(UserContext);
   const isSelected = selectedFriend[0] === props.friendId;
   const bg = useColorModeValue('brand.100', 'brand.800');
   const bg2 = useColorModeValue('brand.200', 'brand.700');
+  const score=(props.friendScore / props.totalSongs);
 
   return (
     <Flex alignItems='center'>
@@ -39,7 +41,7 @@ const FCListItem = (props: any) => {
               flex='1'
               textAlign='left'
             >
-              {props.friendName} - {props.friendScore}
+              {props.friendName}
               {props.friendStatus === false && (
                 <FriendStat
                   friend_name={props.friendName}
@@ -58,7 +60,7 @@ const FCListItem = (props: any) => {
           <RecommendedTracksList friendId={props.friendId} recommendedTracks={list.reverse()} />
         </AccordionPanel>
       </AccordionItem>
-      <StatsModal />
+      <StatsModal friendScore={score}/>
       <Button
         variant='ghost'
         onClick={() => {
