@@ -203,7 +203,7 @@ async function startServer() {
   console.log(`🌊 Ride the Wave 🌊 \n
   http://localhost:${PORT}/${server.graphqlPath}\n
   http://localhost:${PORT}\n
-  "http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com"`);
+  "http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com:8080"`);
   return { server, app };
 }
 startServer();
