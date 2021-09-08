@@ -125,7 +125,7 @@ const TrackComp = (props: any) => {
           {userPlaylists && (
             <AddToPlaylist user_id={user_id} playlists={userPlaylists} trackUri={track_uri} />
           )}
-          <PlayNow user_id={userObj.user_id} spotify_uri={track_uri} />
+          <PlayNow user_id={userObj.user_id} friend_id={user_id} track_uri={track_uri} />
         </Stack>
       </Flex>
     </chakra.div>
