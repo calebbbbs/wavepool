@@ -34,7 +34,6 @@ const RecommendedTracks = () => {
       >
         <Box mt={2}>
           <Link
-            fontSize='2xl'
             color={useColorModeValue('brand.700', 'white')}
             fontWeight='700'
             _hover={{

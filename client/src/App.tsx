@@ -5,13 +5,13 @@ import { UserContext } from './contexts/UserContext';
 import Main from './components/Main/Main';
 import Welcome from './components/Welcome/Welcome';
 
-const App = (): ReactElement => {
+const App = (props: any): ReactElement => {
   const { userObj, isLoggedIn }: any = useContext(UserContext);
 
 return (
     <Switch>
       <Route exact path='/'>
-        {isLoggedIn && userObj ? <Main/> : <Welcome/>}
+        {isLoggedIn && userObj ? <Main toggleFont={props.toggleFont}/> : <Welcome/>}
       </Route>
     </Switch>
 );
