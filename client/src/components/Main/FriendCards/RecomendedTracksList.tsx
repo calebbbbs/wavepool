@@ -19,7 +19,6 @@ const RecommendedTracksList = (props: any) => {
   const [removeRec] = useMutation(REMOVE_REC);
     const bg = useColorModeValue("brand.50", "brand.900");
   const list = props.recommendedTracks.map((e: any, i: number) => {
-    console.log(e);
     return (
       <chakra.div bg={ bg } key={i}>
         <Button variant="ghost"
