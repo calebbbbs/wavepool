@@ -28,7 +28,6 @@ const {userObj, refetch} = useContext(UserContext);
     });
 
     socket.on('updateFriends', (friendId: string) =>{
-      console.log('Im trying to update friends')
       setTimeout(() => {refetch()
         toast({
           title: 'New Friend Request!',
@@ -41,7 +40,6 @@ const {userObj, refetch} = useContext(UserContext);
     });
 
     socket.on('friendConfirmed', (friendId: string) =>{
-      console.log('Im trying to confirm friends')
       setTimeout(() => {refetch()
         toast({
           title: 'New Friend!',

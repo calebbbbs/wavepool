@@ -30,6 +30,7 @@ query Query($getUserUserId: String!) {
       album_title
       in_queue
       album_art
+      been_liked
     }
   }
 }

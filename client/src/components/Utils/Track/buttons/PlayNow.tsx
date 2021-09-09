@@ -19,7 +19,6 @@ mutation UpdateFriendshipMutation(
 const PlayNow = (props: any) => {
   const [updateFriendship] = useMutation(UPDATE_FRIENDSHIP);
   const { userObj } = useContext(UserContext);
-  console.log(props)
   return (
     <Tooltip placement='left' label='Play Now'>
       <Button
