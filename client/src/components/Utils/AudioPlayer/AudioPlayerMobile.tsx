@@ -62,7 +62,6 @@ export const AudioPlayerMobile = () => {
                 alignItems="center"
                 my="auto"
                 float="right"
-                fontSize="xs"
               >
                 <Center>
                   <Image
@@ -76,11 +75,11 @@ export const AudioPlayerMobile = () => {
                 <Stack>
                   <Flex alignItems="center">
                     <BiHeadphone />
-                    <Text fontSize="xl"> {currPlayback.item.name}</Text>
+                    <Text > {currPlayback.item.name}</Text>
                   </Flex>
                   <Flex alignItems="center">
                       <BsPerson/>
-                    <chakra.div fontSize="xl">
+                    <chakra.div >
                       {currPlayback.item.artists.map(
                         (artist: any, i: number) => {
                           if (i === currPlayback.item.artists.length - 1) {
@@ -97,7 +96,7 @@ export const AudioPlayerMobile = () => {
                   </Flex>
                   <Flex alignItems="center">
                       <BiAlbum/>
-                    <Text fontSize="xl">
+                    <Text >
                      {currPlayback.item.album.name}
                     </Text>
                   </Flex>

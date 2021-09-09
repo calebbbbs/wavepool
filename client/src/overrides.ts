@@ -1,11 +1,12 @@
-// theme.ts
 import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
+
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
   useSystemColorMode: false,
 };
+
 const styles = {
   global: (props: any) => ({
     body: {
@@ -31,19 +32,19 @@ const styles = {
       backgroundColor: mode("white", "black"),
     },
     Link: {
-      fontSize: "2xl",
+      fontSize: "4xl",
     },
     p: {
-      fontSize: "xs",
+      fontSize: "xl",
     },
     div: {
-      fontSize: "xl",
+      fontSize: "3xl",
     },
     VStack: {
-      fontSize: "xs",
+      fontSize: "xl",
     },
     Text: {
-      fontSize: "xl",
+      fontSize: "4xl",
     },
   }),
 };
@@ -73,34 +74,5 @@ const colors = {
   },
 };
 
-const fonts: any = {
-  textStyles: {
-    h1: {
-        "xl": "1.25rem",
-        "2xl": "1.5rem"
-    },
-  },
-};
-
-// const overrides = extendTheme({
-//   global: (props: any) => ({
-//     Link: {
-//       fontSize: "3xl",
-//     },
-//     p: {
-//       fontSize: "md",
-//     },
-//     div: {
-//       fontSize: "2xl",
-//     },
-//     VStack: {
-//       fontSize: "md",
-//     },
-//     Text: {
-//       fontSize: "2xl",
-//     },
-//   }),
-// });
-
-const theme = extendTheme({ config, styles, colors, components, fonts });
-export default theme;
+const customTheme = extendTheme({ config, styles, colors, components});
+export default customTheme;
