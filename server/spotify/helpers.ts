@@ -2,6 +2,7 @@ import axios, { AxiosError } from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import { getConnection } from "typeorm";
 import HistoryTrack from "../db/entities/HistoryTrack";
+import HistoryArtist from "../db/entities/HistoryArtist";
 import User from "../db/entities/User";
 
 const spotifyApi = new SpotifyWebApi({
@@ -36,10 +37,11 @@ const archiveHistory = async (data: any, user_id: string) => {
 const createHistoryTrack = async (trackObj: any, user_id: string) => {
   const { played_at, track } = trackObj;
   const { name, uri, album } = track;
-  console.log(name);
+
   const historyTrack = await HistoryTrack.findOne({where:{user_id: user_id, played_at: played_at, track_title: name}});
   if(!historyTrack) {
     const artists = track.album.artists.map((artist: any) => {
+      createHistoryArtist(artist, user_id);
       return artist.name;
     });
     
@@ -63,6 +65,20 @@ const createHistoryTrack = async (trackObj: any, user_id: string) => {
   }
   return false;
 }
+
+const createHistoryArtist = async (artistObj: any, user_id: string) => {
+  const {uri} = artistObj;
+  const artist_id = uri.split(':')[2];
+  console.log(artist_id);
+  //console.log(artistObj);
+  const user = await User.findOne({where: {user_id: user_id}});
+
+  if(user) {
+    const historyArtist = await user.historyArtists;
+    console.log(historyArtist);
+  }
+  HistoryArtist;
+};
 
 const getUsersCurrentPlayback = async (access_token: string) => {
   const getCurrentPlayback: any = {
