@@ -6,10 +6,11 @@ import { RemoveRecommendedInput } from './RemoveRecommendedInput';
 import { ConfirmFriendInput } from './ConfirmFriendInput';
 import { UpdateFriendshipInput } from './UpdateFriendshipInput';
 import { RecommendedGenreInput } from './RecommendedGenreInput';
-
-export { 
-  CreateUserInput, 
-  CreateFriendInput, 
+import { TrackRespondedInput } from './trackResponded';
+export {
+  CreateUserInput,
+  TrackRespondedInput,
+  CreateFriendInput,
   CreateRecommendedInput,
   ConfirmFriendInput,
   RemoveRecommendedInput,

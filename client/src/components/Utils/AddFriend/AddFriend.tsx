@@ -35,7 +35,6 @@ const AddFriend = () => {
   const bg = useColorModeValue('brand.100', 'brand.800');
   const { socket } = useContext(SocketContext);
   const friendNotif = (data: any) =>{
-    // console.log(data);
     socket.emit('createFriend', data);
   }
   useEffect(() =>{
