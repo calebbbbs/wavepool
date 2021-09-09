@@ -5,7 +5,7 @@ import {
   chakra,
   HStack,
   Image,
-  Text,
+  // Text,
   Stack,
   Center,
   Flex
@@ -32,7 +32,7 @@ export const AudioPlayer = () => {
   return (
     <>
             <Center>
-              <HStack 
+              <HStack
                display={{ base: "none", md: "inline-flex" }}
               alignContent="center"
               alignItems="center"
@@ -51,7 +51,7 @@ export const AudioPlayer = () => {
                     <chakra.div mr={4}>
                     <BiHeadphone />
                     </chakra.div>
-                    <Text fontSize="xs"> {currPlayback.item.name}</Text>
+                    <chakra.p > {currPlayback.item.name}</ chakra.p>
                   </Flex>
                   <Flex alignItems="center">
                     <chakra.div mr={4}>
@@ -76,9 +76,9 @@ export const AudioPlayer = () => {
                     <chakra.div mr={4}>
                       <BiAlbum/>
                       </chakra.div>
-                    <Text fontSize="xs">
+                    <chakra.p >
                       {currPlayback.item.album.name}
-                    </Text>
+                    </chakra.p>
                   </Flex>
                 </Stack>
                   <TransportControls />
