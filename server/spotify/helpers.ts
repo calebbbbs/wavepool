@@ -1,5 +1,8 @@
 import axios, { AxiosError } from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
+import { getConnection } from "typeorm";
+import HistoryTrack from "../db/entities/HistoryTrack";
+import User from "../db/entities/User";
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
@@ -8,13 +11,14 @@ const spotifyApi = new SpotifyWebApi({
     "http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com:8080/auth/spotify/callback",
 });
 
-const getRecentlyPlayed = async (access_token: string) => {
+const getRecentlyPlayed = async (access_token: string, user_id: string) => {
   spotifyApi.setAccessToken(access_token);
   return await spotifyApi
     .getMyRecentlyPlayedTracks({
-      limit: 10,
+      limit: 25,
     })
     .then((data) => {
+      archiveHistory(data, user_id);
       // Output items
       return data;
     })
@@ -22,6 +26,43 @@ const getRecentlyPlayed = async (access_token: string) => {
       console.log("Error from getRecentlyPlayed", error);
     });
 };
+
+const archiveHistory = async (data: any, user_id: string) => {
+  data.body.items.forEach((trackObj: any) => {
+    createHistoryTrack(trackObj, user_id);
+  });
+}
+
+const createHistoryTrack = async (trackObj: any, user_id: string) => {
+  const { played_at, track } = trackObj;
+  const { name, uri, album } = track;
+  console.log(name);
+  const historyTrack = await HistoryTrack.findOne({where:{user_id: user_id, played_at: played_at, track_title: name}});
+  if(!historyTrack) {
+    const artists = track.album.artists.map((artist: any) => {
+      return artist.name;
+    });
+    
+    const newTrack = await new HistoryTrack();
+    newTrack.user_id = user_id;
+    newTrack.track_title = name;
+    newTrack.played_at = played_at;
+    newTrack.track_uri = uri;
+    newTrack.artists = artists;
+    newTrack.album_title = album.name;
+    newTrack.album_art = album.images[1].url;
+    newTrack.album_uri = album.uri;
+    await newTrack.save();
+
+    await getConnection()
+      .createQueryBuilder()
+      .relation(User, "historyTracks")
+      .of(user_id)
+      .add(newTrack);
+    return newTrack;
+  }
+  return false;
+}
 
 const getUsersCurrentPlayback = async (access_token: string) => {
   const getCurrentPlayback: any = {
@@ -104,8 +145,8 @@ const querySpotify = (query: string, access_token: string) => {
   });
 };
 
-const getArtistData = (artist_uri: string, access_token: string) => {
-  return axios({
+const getArtistData = async (artist_uri: string, access_token: string) => {
+  return await axios({
     url: `https://api.spotify.com/v1/artists/${artist_uri}`,
     method: "get",
     headers: {

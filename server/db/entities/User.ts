@@ -1,9 +1,10 @@
 /* eslint-disable camelcase */
-import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany, OneToOne } from 'typeorm';
+import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
 import Friend from './Friend';
-import History from './History';
 import RecommendedTrack from './RecommendedTrack';
+import HistoryGenre from './HistoryGenre';
+import HistoryTrack from './HistoryTrack';
 
 
 @Entity()
@@ -29,10 +30,6 @@ export default class User extends BaseEntity {
   @Column()
   refresh_token: string;
 
-  @Field(() => History, {nullable: true})
-  @OneToOne(() => History, (history: History) => history.user)
-  trackHistory!: Promise<History>;
-
   @Field(() => [Friend], {nullable: true})
   @OneToMany(() => Friend, (friend: Friend) => friend.user)
   friends!: Promise<Friend[]>;
@@ -40,4 +37,12 @@ export default class User extends BaseEntity {
   @Field(() => [RecommendedTrack], {nullable: true})
   @OneToMany(() => RecommendedTrack, (recommendedTrack: RecommendedTrack) => recommendedTrack.user)
   recommendedTracks!: Promise<RecommendedTrack[]>;
+
+  @Field(() => [HistoryGenre], {nullable: true})
+  @OneToMany(() => HistoryGenre, (historyGenre: HistoryGenre) => historyGenre.user)
+  historyGenres!: Promise<HistoryGenre[] | undefined>;
+
+  @Field(() => [HistoryTrack], {nullable: true})
+  @OneToMany(() => HistoryTrack, (historyTrack: HistoryTrack) => historyTrack.user)
+  historyTracks!: Promise<HistoryTrack[] | undefined>;
 }

@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from 'typeorm';
-import { ObjectType, Field, ID } from "type-graphql";
-import History from './History';
+import { ObjectType, Field } from "type-graphql";
+import User from './User';
 
 @Entity()
 @ObjectType()
@@ -10,13 +10,17 @@ export default class HistoryTrack extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
+  @Field(() => String)
   @Column()
-  @Field(() => ID)
-  user_id: String;
+  user_id: string;
 
   @Field(() => String)
   @Column()
   track_title: string;
+
+  @Field(() => String)
+  @Column()
+  played_at: string;
 
   @Field(() => String)
   @Column()
@@ -38,7 +42,7 @@ export default class HistoryTrack extends BaseEntity {
   @Column()
   album_uri: string;
 
-  @Field(() => History)
-  @ManyToOne(() => History, (history: History) => history.historyTracks, {cascade:true})
-  history!: Promise<History | undefined>;
+  @Field(() => User)
+  @ManyToOne(() => User, (user: User) => user.historyTracks, {cascade:true})
+  user!: Promise<User | undefined>;
 }
