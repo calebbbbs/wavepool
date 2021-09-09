@@ -1,11 +1,11 @@
 import axios, { AxiosError } from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
-
+const { HOST } = process.env;
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   redirectUri:
-    "http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com:8080/auth/spotify/callback",
+    `${HOST}/auth/spotify/callback`,
 });
 
 const getRecentlyPlayed = async (access_token: string) => {

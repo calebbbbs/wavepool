@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { useLazyQuery } from "@apollo/client";
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosError } from "axios";
 import GET_USER_DATA from "../graphql_client/queries/GET_USER_DATA";
 
 const UserContext = React.createContext(undefined as any);
@@ -19,11 +19,8 @@ const UserContextProvider: React.FC = ({ children }) => {
 
   if (error) console.warn(error);
   const getRecentlyPlayed = () => {
-    const reqConfig: AxiosRequestConfig = {
-      method: "get",
-      url: `http://localhost:4000/spotify/getRecentlyPlayed/${userObj.user_id}`,
-    };
-    axios(reqConfig).then(
+
+    axios.get(`/spotify/getRecentlyPlayed/${userObj.user_id}`).then(
       function (data: any) {
         const res: any[] = [];
         data.data.body.items.forEach((item: any) => {
