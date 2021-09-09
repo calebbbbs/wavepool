@@ -28,7 +28,6 @@ const TrackComp = (props: any) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const { userObj, userPlaylists } = useContext(UserContext);
   const {
-    friend_name,
     album_art,
     track_title,
     artists,
@@ -48,13 +47,6 @@ const TrackComp = (props: any) => {
 
   return (
     <chakra.div bg={bg} h='auto' borderRadius='2vh' m={2}>
-      {friend_name && (
-        <div>
-          <Text m={4}>
-            <b> {friend_name}</b>
-          </Text>
-        </div>
-      )}
       <Flex mx={5} p={4}>
         <Center>
           <Box>
@@ -89,12 +81,13 @@ const TrackComp = (props: any) => {
                 <chakra.div mr={2}>
                   <BsPerson />
                 </chakra.div>
+                <chakra.div maxW={'150px'}>
                 {artists.map((artist: any, i: number) => {
                   if (i === artists.length - 1) {
                     return (
-                      <Text key={i} fontSize='md'>
+                      <chakra.p key={i} fontSize='md'>
                         {artist}
-                      </Text>
+                      </chakra.p>
                     );
                   }
                   return (
@@ -103,6 +96,7 @@ const TrackComp = (props: any) => {
                     </Text>
                   );
                 })}
+                </chakra.div>
               </Flex>
             </chakra.div>
             <Flex alignItems='center' minW='200px'>

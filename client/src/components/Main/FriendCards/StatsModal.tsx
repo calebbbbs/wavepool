@@ -17,7 +17,7 @@ import {
 
 import { AiOutlineBarChart } from "react-icons/ai";
 
-const StatsModal = () => {
+const StatsModal = (props: any) => {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("brand.200", "brand.800");
   return (
@@ -34,7 +34,11 @@ const StatsModal = () => {
         <ModalContent bg={bg}>
           <ModalHeader>Charts & Stuff</ModalHeader>
           <ModalCloseButton />
-          <ModalBody></ModalBody>
+          <ModalBody>
+
+            <h1>Friend Score: {Math.round(props.friendScore)}</h1>
+
+          </ModalBody>
 
           <ModalFooter>
             <Button colorScheme="blue" float="right" mr={3} onClick={onClose}>

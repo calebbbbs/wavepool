@@ -128,9 +128,7 @@ async function startServer() {
 
     socket.on('createFriend', (data: any) => {
       const { userId, friendId } = data;
-      // console.log('!!!!!!! data', data);
       users.forEach((e) =>{
-        // console.log(e);
         if(e.user_id === friendId) {
           io.to(e.socket_id).emit('updateFriends', userId);
         }

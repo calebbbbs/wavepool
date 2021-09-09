@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import { getConnection } from "typeorm";
-import { CreateRecommendedInput, RemoveRecommendedInput } from '../inputs'
+import { CreateRecommendedInput, RemoveRecommendedInput, TrackRespondedInput } from '../inputs'
 import { getArtistData } from '../../spotify/helpers'
 import RecommendedTrack from "../../db/entities/RecommendedTrack";
 import RecommendedGenre from "../../db/entities/RecommendedGenre";
@@ -54,6 +54,7 @@ export class RecommendedResolver {
         track.album_art = album_art;
         track.album_uri = album_uri;
         track.in_queue = true;
+        track.been_liked = false;
         track.comment_text = '';
         await track.save()
       }
@@ -70,7 +71,6 @@ export class RecommendedResolver {
   @Mutation(() => Boolean)
   async RemoveRecommended(@Arg("data") data: RemoveRecommendedInput) {
     const { user_id, track_title } = data;
-    console.log(data);
     const recommended = await RecommendedTrack.findOne({where: {user_id: user_id, track_title: track_title}});
     if(!recommended) { return false }
     recommended.in_queue = false;
@@ -78,6 +78,18 @@ export class RecommendedResolver {
     // await recommended.remove();
     return true;
   }
+
+  @Mutation(() => Boolean)
+  async trackResponded(@Arg("data") data: TrackRespondedInput) {
+    const { user_id, track_id } = data;
+    const recommended = await RecommendedTrack.findOne({where: {user_id: user_id, id: track_id}});
+    if(!recommended) { return false }
+    recommended.been_liked = true;
+    recommended.save();
+
+    return true;
+  }
+
 }
 
 const createGenre = async(id: String, genre: string) => {

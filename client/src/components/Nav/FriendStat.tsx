@@ -30,7 +30,6 @@ const friendConfirmed = (data: any) => {
   <Box>
       <Link
       colorScheme="green"
-
         onClick={() => {
           confirmFriend({
             variables: {
