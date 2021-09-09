@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import {
   Tooltip,
   Flex,
@@ -13,13 +13,16 @@ import {
   VisuallyHidden,
   useDisclosure,
   CloseButton,
+  // mergeThemeOverride,
+  // extendTheme,
 } from "@chakra-ui/react";
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
-import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import { SunIcon, MoonIcon, SettingsIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
-
+// import customTheme from '../../overrides'
+// import theme from "../../theme";
 import AudioPlayer from "../Utils/AudioPlayer/AudioPlayer";
 import AudioPlayerMobile from "../Utils/AudioPlayer/AudioPlayerMobile";
 import Search from "../Utils/Search/Search";
@@ -41,6 +44,7 @@ const Nav = (props: any) => {
         w="full"
         px={{ base: 2, sm: 4 }}
       >
+
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <Flex>
             <chakra.a
@@ -68,6 +72,11 @@ const Nav = (props: any) => {
                 <Button variant="ghost" onClick={toggleColorMode}>
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
+              </Tooltip>
+              <Tooltip label="Adjust Text Size">
+                <Button variant="ghost" onClick={props.toggleFont}>
+                  <SettingsIcon/>
+                  </Button>
               </Tooltip>
               {!isLoggedIn ? (
                 <div></div>
