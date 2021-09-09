@@ -12,6 +12,12 @@ query Query($getUserUserId: String!) {
       friend_id
       friend_name
       friend_status
+      friend_score
+      number_of_songs
+      recommendedGenres{
+        genre
+        count
+      }
     }
     recommendedTracks {
       id
@@ -24,6 +30,7 @@ query Query($getUserUserId: String!) {
       album_title
       in_queue
       album_art
+      been_liked
     }
   }
 }

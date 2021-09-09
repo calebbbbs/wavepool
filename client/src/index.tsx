@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import ReactDOM from 'react-dom';
-import { ChakraProvider, ColorModeScript, ThemeProvider } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript} from '@chakra-ui/react';
 import App from './App';
+import customTheme from './overrides';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { UserContextProvider } from './contexts/UserContext';
@@ -11,19 +12,23 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
-ReactDOM.render(
-  <ChakraProvider theme={theme}>
+const AppStyles = () =>{
+  const [fontSize, toggleFontSize] = useReducer((state) => !state, false);
+  return (
+  <ChakraProvider theme={fontSize ? customTheme : theme}>
     <ApolloProvider client={client}>
       <UserContextProvider>
       <Router>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <ThemeProvider theme={theme}>
-        <App />
-        </ThemeProvider>
+        <App toggleFont={toggleFontSize}/>
       </Router>
       </UserContextProvider>
     </ApolloProvider>
-  </ChakraProvider>,
+  </ChakraProvider>
+  )
+};
+
+ReactDOM.render(
+  <AppStyles/>,
   document.getElementById('root')
 );

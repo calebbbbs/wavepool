@@ -28,32 +28,25 @@ const TrackComp = (props: any) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const { userObj, userPlaylists } = useContext(UserContext);
   const {
-    friend_name,
     album_art,
     track_title,
     artists,
     album_title,
-    spotify_uri,
+    track_uri,
+    user_id
   } = props.track;
 
   const bg = useColorModeValue('brand.50', 'brand.900');
 
   const addToQueue = () => {
     axios
-      .get(`/spotify/addToQueue/${userObj.user_id}/${spotify_uri}`)
+      .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
       .then((data) => data)
       .catch((err) => console.error(err));
   };
 
   return (
     <chakra.div bg={bg} h='auto' borderRadius='2vh' m={2}>
-      {friend_name && (
-        <div>
-          <Text m={4}>
-            <b> {friend_name}</b>
-          </Text>
-        </div>
-      )}
       <Flex mx={5} p={4}>
         <Center>
           <Box>
@@ -88,12 +81,13 @@ const TrackComp = (props: any) => {
                 <chakra.div mr={2}>
                   <BsPerson />
                 </chakra.div>
+                <chakra.div maxW={'150px'}>
                 {artists.map((artist: any, i: number) => {
                   if (i === artists.length - 1) {
                     return (
-                      <Text key={i} fontSize='md'>
+                      <chakra.p key={i} fontSize='md'>
                         {artist}
-                      </Text>
+                      </chakra.p>
                     );
                   }
                   return (
@@ -102,6 +96,7 @@ const TrackComp = (props: any) => {
                     </Text>
                   );
                 })}
+                </chakra.div>
               </Flex>
             </chakra.div>
             <Flex alignItems='center' minW='200px'>
@@ -122,9 +117,9 @@ const TrackComp = (props: any) => {
           </Tooltip>
           <SendTrack track={props.track} />
           {userPlaylists && (
-            <AddToPlaylist playlists={userPlaylists} trackUri={spotify_uri} />
+            <AddToPlaylist user_id={user_id} playlists={userPlaylists} trackUri={track_uri} />
           )}
-          <PlayNow user_id={userObj.user_id} spotify_uri={spotify_uri} />
+          <PlayNow user_id={userObj.user_id} friend_id={user_id} track_uri={track_uri} />
         </Stack>
       </Flex>
     </chakra.div>

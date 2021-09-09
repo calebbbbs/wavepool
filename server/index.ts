@@ -128,9 +128,7 @@ async function startServer() {
 
     socket.on('createFriend', (data: any) => {
       const { userId, friendId } = data;
-      // console.log('!!!!!!! data', data);
       users.forEach((e) =>{
-        // console.log(e);
         if(e.user_id === friendId) {
           io.to(e.socket_id).emit('updateFriends', userId);
         }
@@ -203,7 +201,7 @@ async function startServer() {
   console.log(`🌊 Ride the Wave 🌊 \n
   http://localhost:${PORT}/${server.graphqlPath}\n
   http://localhost:${PORT}\n
-  "http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com"`);
+  "http://ec2-18-220-159-62.us-east-2.compute.amazonaws.com:8080"`);
   return { server, app };
 }
 startServer();

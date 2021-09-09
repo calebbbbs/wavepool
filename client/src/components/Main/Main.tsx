@@ -8,7 +8,7 @@ import SocketContext from './SocketContext'
 import io from 'socket.io-client';
 import { UserContext } from '../../contexts/UserContext'
 const socket = io();
-export const Main = () => {
+export const Main = (props: any) => {
   const toast = useToast();
 const {userObj, refetch} = useContext(UserContext);
   useEffect(() => {
@@ -28,7 +28,6 @@ const {userObj, refetch} = useContext(UserContext);
     });
 
     socket.on('updateFriends', (friendId: string) =>{
-      console.log('Im trying to update friends')
       setTimeout(() => {refetch()
         toast({
           title: 'New Friend Request!',
@@ -41,7 +40,6 @@ const {userObj, refetch} = useContext(UserContext);
     });
 
     socket.on('friendConfirmed', (friendId: string) =>{
-      console.log('Im trying to confirm friends')
       setTimeout(() => {refetch()
         toast({
           title: 'New Friend!',
@@ -57,7 +55,7 @@ const {userObj, refetch} = useContext(UserContext);
 
     return (
       <SocketContext.Provider value={{ socket }}>
-        <Nav user={...userObj}/>
+        <Nav user={...userObj} toggleFont={props.toggleFont}/>
       <SimpleGrid minChildWidth='350px' spacing='80px'>
         <RecentlyPlayed />
         <FriendCard />

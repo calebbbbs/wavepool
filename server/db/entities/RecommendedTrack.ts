@@ -29,11 +29,11 @@ export default class RecommendedTrack extends BaseEntity {
   @Field(() => String)
   @Column()
   track_uri: string;
- 
+
   @Field(() => [String])
   @Column("text", { array: true })
   artists: string[];
- 
+
   @Field(() => String)
   @Column()
   album_title: string;
@@ -53,6 +53,10 @@ export default class RecommendedTrack extends BaseEntity {
   @Field(() => Boolean)
   @Column()
   in_queue: boolean;
+
+  @Field(() => Boolean)
+  @Column()
+  been_liked: boolean;
 
   @Field(() => String, {nullable: true})
   @Column()
