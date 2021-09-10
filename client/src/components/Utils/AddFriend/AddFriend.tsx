@@ -40,7 +40,7 @@ const AddFriend = () => {
   useEffect(() =>{
     if(data){
       const temp = {
-        userId: userObj.user_id,
+        userId: userObj.user_name,
         friendId: data.createFriend.user_id,
       };
       friendNotif(temp);

@@ -48,16 +48,16 @@ export const AudioPlayer = () => {
                 </Center>
                 <Stack>
                   <Flex alignItems="center">
-                    <chakra.div mr={4}>
+                    {/* <chakra.div mr={4}> */}
                     <BiHeadphone />
-                    </chakra.div>
+                    {/* </chakra.div> */}
                     <chakra.p > {currPlayback.item.name}</ chakra.p>
                   </Flex>
                   <Flex alignItems="center">
-                    <chakra.div mr={4}>
+                    {/* <chakra.div mr={4}> */}
                       <BsPerson/>
-                      </chakra.div>
-                    <chakra.div fontSize="xs">
+                      {/* </chakra.div> */}
+                    <chakra.div >
                       {currPlayback.item.artists.map(
                         (artist: any, i: number) => {
                           if (i === currPlayback.item.artists.length - 1) {
@@ -73,9 +73,9 @@ export const AudioPlayer = () => {
                     </chakra.div>
                   </Flex>
                   <Flex alignItems="center">
-                    <chakra.div mr={4}>
+                    {/* <chakra.div mr={4}> */}
                       <BiAlbum/>
-                      </chakra.div>
+                      {/* </chakra.div> */}
                     <chakra.p >
                       {currPlayback.item.album.name}
                     </chakra.p>

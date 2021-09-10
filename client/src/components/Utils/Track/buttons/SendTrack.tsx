@@ -91,7 +91,7 @@ if(error){
                   },
                 });
                 const temp = {
-                  userId: userObj.user_id,
+                  userId: userObj.user_name,
                   friendId: selectedFriend[0],
                 };
                 trackNotif(temp);
