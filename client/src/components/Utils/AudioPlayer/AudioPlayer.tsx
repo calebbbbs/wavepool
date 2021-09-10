@@ -9,7 +9,6 @@ import {
   Center,
   StackDivider,
   Flex,
-  SimpleGrid,
   useColorModeValue
 
 } from "@chakra-ui/react";
@@ -53,16 +52,16 @@ export const AudioPlayer = () => {
                 spacing={0}
                 divider={<StackDivider borderColor={bg} />}>
                   <Flex alignItems="center">
-                    <chakra.div mr={4}>
+                    {/* <chakra.div mr={4}> */}
                     <BiHeadphone />
-                    </chakra.div>
+                    {/* </chakra.div> */}
                     <chakra.p > {currPlayback.item.name}</ chakra.p>
                   </Flex>
                   <Flex alignItems="center">
-                    <chakra.div mr={4}>
+                    {/* <chakra.div mr={4}> */}
                       <BsPerson/>
-                      </chakra.div>
-                    <SimpleGrid columns={2} spacingX="10px" spacingY="2px">
+                      {/* </chakra.div> */}
+                    <chakra.div >
                       {currPlayback.item.artists.map(
                         (artist: any, i: number) => {
                           if (i === currPlayback.item.artists.length - 1) {
@@ -75,12 +74,12 @@ export const AudioPlayer = () => {
                           );
                         }
                       )}
-                    </SimpleGrid>
+                    </chakra.div>
                   </Flex>
                   <Flex alignItems="center">
-                    <chakra.div mr={4}>
+                    {/* <chakra.div mr={4}> */}
                       <BiAlbum/>
-                      </chakra.div>
+                      {/* </chakra.div> */}
                     <chakra.p >
                       {currPlayback.item.album.name}
                     </chakra.p>

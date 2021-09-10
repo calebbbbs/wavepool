@@ -121,31 +121,13 @@ async function startServer() {
       });
     });
 
-    socket.on('recommendTrack', (data: any) => {
-      const { userId, friendId } = data;
+    socket.on('notification', (data: any) => {
+      const { friendId } = data;
       users.forEach((e) => {
         if (e.user_id === friendId) {
-          io.to(e.socket_id).emit('updateRecs', userId);
+          io.to(e.socket_id).emit('notification', data);
         }
       });
-    });
-
-    socket.on('createFriend', (data: any) => {
-      const { userId, friendId } = data;
-      users.forEach((e) =>{
-        if(e.user_id === friendId) {
-          io.to(e.socket_id).emit('updateFriends', userId);
-        }
-      })
-    });
-
-    socket.on('confirmFriend', (data: any) =>{
-      const { userId, friendId } = data;
-      users.forEach((e) => {
-        if(e.user_id === friendId) {
-          io.to(e.socket_id).emit('friendConfirmed', userId);
-        }
-      })
     });
   });
 

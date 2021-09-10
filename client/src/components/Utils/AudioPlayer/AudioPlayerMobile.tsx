@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import {
   chakra,
-  VStack,
+  HStack,
   Image,
   Text,
   Stack,
@@ -17,7 +17,6 @@ import {
   DrawerCloseButton,
   useDisclosure,
   useColorModeValue,
-  Tooltip,
 } from "@chakra-ui/react";
 
 import { BsPerson } from "react-icons/bs";
@@ -41,23 +40,20 @@ export const AudioPlayerMobile = () => {
 
   return (
     <>
-      <Tooltip label="Spotify Controls">
         <Button
-          display={{ base: "inline-flex", md: "none" }}
-          m={4}
+          display={{ base:"inline-flex", md: "none" }}
           variant="ghost"
           onClick={onOpen}
         >
-          <BsMusicNoteBeamed />
+          <BsMusicNoteBeamed/>Audio Controls
         </Button>
-      </Tooltip>
       <Drawer size="xs" isOpen={isOpen} placement="bottom" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent bg={bg}>
           <DrawerCloseButton />
           <DrawerBody>
             <Center>
-              <VStack
+              <HStack
                 alignContent="center"
                 alignItems="center"
                 my="auto"
@@ -102,7 +98,7 @@ export const AudioPlayerMobile = () => {
                   </Flex>
                 </Stack>
                 <TransportControls />
-              </VStack>
+              </HStack>
             </Center>
           </DrawerBody>
         </DrawerContent>

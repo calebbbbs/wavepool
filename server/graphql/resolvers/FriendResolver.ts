@@ -15,8 +15,6 @@ export class FriendResolver {
     if(friendship || friendship2){
       return friendship || friendship2
     }
-    console.log(`friendData`, friendData);
-    console.log(`userData`, userData);
     const newFriend = new Friend();
 
     newFriend.user_id = friendData.user_id;

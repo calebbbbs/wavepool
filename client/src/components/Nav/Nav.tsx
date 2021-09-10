@@ -6,6 +6,8 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  MenuGroup,
+  MenuDivider,
   useColorMode,
   Button,
   Image,
@@ -25,11 +27,11 @@ import Search from "../Utils/Search/Search";
 import AddFriend from "../Utils/AddFriend/AddFriend";
 
 import CreatePlaylist from "./CreatePlaylist";
+import AudioPlayerMobile from "../Utils/AudioPlayer/AudioPlayerMobile";
 
 const Nav = (props: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isLoggedIn, currPlayback, userObj }: any = useContext(UserContext);
-  console.log(userObj);
   return (
     <>
       <chakra.header>
@@ -57,6 +59,7 @@ const Nav = (props: any) => {
               variant="ghost"
             />
             <MenuList bg={useColorModeValue("brand.50", "brand.900")}>
+              <MenuGroup>
               {isLoggedIn && (
                 <chakra.div>
                   <MenuItem>
@@ -77,8 +80,14 @@ const Nav = (props: any) => {
                   <MenuItem>
                     <CreatePlaylist />
                   </MenuItem>
+                  <MenuItem display={{ base:"inline-flex", md: "none" }}>
+                    {currPlayback && <AudioPlayerMobile/>}
+                  </MenuItem>
                 </chakra.div>
               )}
+              </MenuGroup>
+              <MenuDivider />
+              <MenuGroup>
               <MenuItem onClick={props.toggleFont}>
                 <Button variant="ghost">
                   <SettingsIcon />
@@ -101,6 +110,7 @@ const Nav = (props: any) => {
                   </Link>
                 </MenuItem>
               )}
+              </MenuGroup>
             </MenuList>
           </Menu>
         </Flex>

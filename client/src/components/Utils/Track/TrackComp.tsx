@@ -16,7 +16,6 @@ import {
   Tooltip,
   Skeleton,
   StackDivider,
-  SimpleGrid
 } from '@chakra-ui/react';
 
 import { BsPerson } from "react-icons/bs";
@@ -38,20 +37,20 @@ const TrackComp = (props: any) => {
     user_id
   } = props.track;
 
-  const list = artists.map((artist: any, i: number) => {
-    if (i === artists.length - 1) {
-      return (
-        <Text key={i}>
-          {artist}
-        </Text>
-      );
-    }
-    return (
-      <Text key={i}>
-        {artist},{'  '}
-      </Text>
-    );
-  })
+  // const list = artists.map((artist: any, i: number) => {
+  //   if (i === artists.length - 1) {
+  //     return (
+  //       <Text key={i}>
+  //         {artist}
+  //       </Text>
+  //     );
+  //   }
+  //   return (
+  //     <Text key={i}>
+  //       {artist},{'  '}
+  //     </Text>
+  //   );
+  // })
 
   const bg = useColorModeValue('brand.50', 'brand.900');
   const dividerColor = useColorModeValue('brand.900', 'brand.50');
@@ -87,31 +86,43 @@ const TrackComp = (props: any) => {
           </Box>
         </Center>
         <Center>
-        <Stack
-                justifyContent="space-between"
-                spacing={0}
-                divider={<StackDivider borderColor={dividerColor} />}>
-            <Flex alignItems='center' minW='200px'>
-              <chakra.div mr={2}>
-                <BiHeadphone/>
-              </chakra.div>
-              <Text>{track_title}</Text>
+          <Stack 
+          divider={<StackDivider borderColor={dividerColor} />}
+          padding={2} borderRadius='15px' m={2} mr={4}>
+            <Flex alignItems='center' >
+              {/* <chakra.div mr={2}> */}
+                <BiHeadphone />
+              {/* </chakra.div> */}
+              <Text >{track_title}</Text>
             </Flex>
             <chakra.div>
-              <Flex alignItems='center'>
-                <chakra.div mr={2}>
+              <Flex alignItems='center' >
+                {/* <chakra.div mr={2}> */}
                   <BsPerson />
+                {/* </chakra.div> */}
+                <chakra.div >
+                {artists.map((artist: any, i: number) => {
+                  if (i === artists.length - 1) {
+                    return (
+                      <chakra.p key={i} >
+                        {artist}
+                      </chakra.p>
+                    );
+                  }
+                  return (
+                    <Text key={i} >
+                      {artist},{'  '}
+                    </Text>
+                  );
+                })}
                 </chakra.div>
-                <SimpleGrid columns={2} spacingX="10px" spacingY="2px">
-                {list}
-                </SimpleGrid>
               </Flex>
             </chakra.div>
-            <Flex alignItems='center' minW='200px'>
-              <chakra.div mr={2}>
+            <Flex alignItems='center' >
+              {/* <chakra.div mr={2}> */}
                 <BiAlbum />
-              </chakra.div>
-              <Text>{album_title}</Text>
+              {/* </chakra.div> */}
+              <Text >{album_title}</Text>
             </Flex>
           </Stack>
         </Center>

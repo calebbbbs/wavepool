@@ -25,15 +25,13 @@ function Search() {
   const { userObj } = useContext(UserContext);
   const bg = useColorModeValue("brand.100", "brand.800");
 
-
-
   return (
     <>
         <Button
           variant="ghost"
           aria-label="spotify search"
           onClick={onOpen}
-        > <SearchIcon/>Search</Button>
+        > <SearchIcon/>Search Spotify</Button>
 
 
       <Modal

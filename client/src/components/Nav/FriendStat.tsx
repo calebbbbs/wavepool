@@ -24,7 +24,7 @@ const { userObj, refetch } = useContext(UserContext);
 const {socket} = useContext(SocketContext);
 
 const friendConfirmed = (data: any) => {
-  socket.emit("confirmFriend", data);
+  socket.emit("notification", data);
 };
   return (
   <Box>
@@ -40,8 +40,10 @@ const friendConfirmed = (data: any) => {
             },
           });
           const temp = {
-            userId: userObj.user_id,
+            userId: userObj.user_name,
             friendId: friend_id,
+            action: 'New Friend!',
+            message: `${userObj.user_name} accepted your friend request!`
           };
 
           setTimeout(() => {refetch()}, 1500)

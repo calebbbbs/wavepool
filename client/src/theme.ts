@@ -21,9 +21,6 @@ const styles = {
       borderColor: mode("gray.200", "whiteAlpha.300")(props),
       wordWrap: "break-word",
     },
-    // ":root":{
-    //   fontSize: "3xl"
-    // },
     a: {
       color: mode("teal.300", "teal.500")(props),
     },
@@ -73,25 +70,15 @@ const fonts: any = {
   },
 };
 
-// const overrides = extendTheme({
-//   global: (props: any) => ({
-//     Link: {
-//       fontSize: "3xl",
-//     },
-//     p: {
-//       fontSize: "md",
-//     },
-//     div: {
-//       fontSize: "2xl",
-//     },
-//     VStack: {
-//       fontSize: "md",
-//     },
-//     Text: {
-//       fontSize: "2xl",
-//     },
-//   }),
-// });
+const components = {
+  Tooltip: {
+    baseStyle: {
+      color: mode("gray.800", "whiteAlpha.900"),
+      bg: mode("brand.200", "brand.900"),
+      colorScheme: "brand",
+    },
+  },
+};
 
-const theme = extendTheme({ config, styles, colors, fonts });
+const theme = extendTheme({ config, styles, colors, components, fonts });
 export default theme;

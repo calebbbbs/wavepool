@@ -88,7 +88,7 @@ const FCListItem = (props: any) => {
         <AccordionPanel>
           <RecommendedTracksList
             friendId={props.friendId}
-            recommendedTracks={currentPosts.reverse()}
+            recommendedTracks={currentPosts}
           />
           <Pagination
             postsPerPage={tracksPerPage}
