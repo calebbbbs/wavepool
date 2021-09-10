@@ -41,7 +41,7 @@ if(error){
   console.log(error);
 }
   const trackNotif = (data: any) => {
-    socket.emit("recommendTrack", data);
+    socket.emit("notification", data);
   };
   return (
     <Popover
@@ -93,6 +93,8 @@ if(error){
                 const temp = {
                   userId: userObj.user_name,
                   friendId: selectedFriend[0],
+                  action: 'New Track!',
+                  message: `${userObj.user_name} sent you a track!`
                 };
                 trackNotif(temp);
                 onClose();

@@ -14,42 +14,42 @@ const {userObj, refetch} = useContext(UserContext);
   useEffect(() => {
 
     socket.emit('userConnected', userObj.user_id);
-    socket.on('updateRecs', (friendId: string) => {
-
+    socket.on('notification', (data: any) => {
+      console.log(data);
       setTimeout(() => {refetch()
         toast({
-          title: 'New Track!',
-          description: `${friendId} sent you a track!`,
-          status: 'info',
+          title: data.action,
+          description: data.message,
+          status: data.status || 'info',
           duration: 4000,
           isClosable: true,
         });
       }, 1500);
     });
 
-    socket.on('updateFriends', (friendId: string) =>{
-      setTimeout(() => {refetch()
-        toast({
-          title: 'New Friend Request!',
-          description: `${friendId} sent you a friend request!`,
-          status: 'info',
-          duration: 4000,
-          isClosable: true,
-        });
-      }, 1500);
-    });
+  //   socket.on('updateFriends', (friendId: string) =>{
+  //     setTimeout(() => {refetch()
+  //       toast({
+  //         title: 'New Friend Request!',
+  //         description: `${friendId} sent you a friend request!`,
+  //         status: 'info',
+  //         duration: 4000,
+  //         isClosable: true,
+  //       });
+  //     }, 1500);
+  //   });
 
-    socket.on('friendConfirmed', (friendId: string) =>{
-      setTimeout(() => {refetch()
-        toast({
-          title: 'New Friend!',
-          description: `${friendId} confirmed your friend request!`,
-          status: 'info',
-          duration: 4000,
-          isClosable: true,
-        });
-      }, 1500);
-    });
+  //   socket.on('friendConfirmed', (friendId: string) =>{
+  //     setTimeout(() => {refetch()
+  //       toast({
+  //         title: 'New Friend!',
+  //         description: `${friendId} confirmed your friend request!`,
+  //         status: 'info',
+  //         duration: 4000,
+  //         isClosable: true,
+  //       });
+  //     }, 1500);
+  //   });
   }, []);
 
 

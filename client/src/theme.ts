@@ -42,9 +42,6 @@ const styles = {
     Text: {
       fontSize: "xl",
     },
-    // ":root": {
-    //   fontSize: "16px"
-    // }
   }),
 };
 

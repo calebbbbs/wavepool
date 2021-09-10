@@ -35,13 +35,15 @@ const AddFriend = () => {
   const bg = useColorModeValue('brand.100', 'brand.800');
   const { socket } = useContext(SocketContext);
   const friendNotif = (data: any) =>{
-    socket.emit('createFriend', data);
+    socket.emit('notification', data);
   }
   useEffect(() =>{
     if(data){
       const temp = {
         userId: userObj.user_name,
         friendId: data.createFriend.user_id,
+        action: 'New Friend Request',
+        message: `${userObj.user_name} sent you a Friend Request!`
       };
       friendNotif(temp);
     }
