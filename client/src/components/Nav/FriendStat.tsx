@@ -40,7 +40,7 @@ const friendConfirmed = (data: any) => {
             },
           });
           const temp = {
-            userId: userObj.user_id,
+            userId: userObj.user_name,
             friendId: friend_id,
           };
 
