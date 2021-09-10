@@ -20,7 +20,7 @@ spotifyRouter.get(
     const { user_id } = req.params;
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
-      return getRecentlyPlayed(user.access_token, user.user_id).then((data) => {
+      return getRecentlyPlayed(user.access_token, user_id).then((data) => {
         return res.send(data);
       });
     } else {
@@ -35,7 +35,7 @@ spotifyRouter.get(
     const { user_id } = req.params;
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
-      return getUsersCurrentPlayback(user.access_token).then((data: any) => {
+      return getUsersCurrentPlayback(user.access_token,).then((data: any) => {
         return res.send(data.data);
       });
     } else {

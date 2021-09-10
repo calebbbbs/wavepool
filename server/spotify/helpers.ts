@@ -1,8 +1,8 @@
 import axios, { AxiosError } from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import { getConnection } from "typeorm";
-import HistoryTrack from "../db/entities/HistoryTrack";
 import HistoryArtist from "../db/entities/HistoryArtist";
+import HistoryTrack from "../db/entities/HistoryTrack";
 import User from "../db/entities/User";
 
 const spotifyApi = new SpotifyWebApi({
@@ -29,23 +29,32 @@ const getRecentlyPlayed = async (access_token: string, user_id: string) => {
 };
 
 const archiveHistory = async (data: any, user_id: string) => {
-  data.body.items.forEach((trackObj: any) => {
-    createHistoryTrack(trackObj, user_id);
-  });
+  try {
+    const { items } =  data.body;
+    return Promise.all(items.map( (trackObj: any) => {
+        return createHistoryTrack(trackObj, user_id)
+      }
+    )).then((tracks) => {
+      createHistoryArtist(tracks, user_id);
+    });
+  } catch (err) {
+    console.error('Error archiving data\'s body!');
+  };
+  return;
 }
 
 const createHistoryTrack = async (trackObj: any, user_id: string) => {
   const { played_at, track } = trackObj;
   const { name, uri, album } = track;
+  //console.log(track);
 
   const historyTrack = await HistoryTrack.findOne({where:{user_id: user_id, played_at: played_at, track_title: name}});
-  if(!historyTrack) {
+  if(historyTrack === undefined) {
     const artists = track.album.artists.map((artist: any) => {
-      createHistoryArtist(artist, user_id);
       return artist.name;
     });
-    
-    const newTrack = await new HistoryTrack();
+
+    const newTrack = new HistoryTrack();
     newTrack.user_id = user_id;
     newTrack.track_title = name;
     newTrack.played_at = played_at;
@@ -61,24 +70,70 @@ const createHistoryTrack = async (trackObj: any, user_id: string) => {
       .relation(User, "historyTracks")
       .of(user_id)
       .add(newTrack);
-    return newTrack;
+    return track; 
   }
-  return false;
+  return;
 }
 
-const createHistoryArtist = async (artistObj: any, user_id: string) => {
-  const {uri} = artistObj;
-  const artist_id = uri.split(':')[2];
-  console.log(artist_id);
-  //console.log(artistObj);
-  const user = await User.findOne({where: {user_id: user_id}});
+const createHistoryArtist = async (tracks: Array<any>, user_id: string) => {
+  let artistObj: any = {};
+  tracks.forEach((track) => {
+    if(track){
+      if(artistObj.hasOwnProperty(track.artists[0].name)){
+        artistObj[track.artists[0].name].count += 1;
+      } else {
+        const tempArtist = {
+          artist_name: track.artists[0].name,
+          artist_uri: track.artists[0].uri,
+          count: 1
+        }
+        artistObj[track.artists[0].name] = tempArtist;
+      }
+    }
+  });
+  const artistArray: Array<string> = Object.values(artistObj);
 
-  if(user) {
-    const historyArtist = await user.historyArtists;
-    console.log(historyArtist);
+  try {
+    Promise.all(artistArray.map(
+      (artist) => {
+       console.log(artist)
+       createArtist(artist, user_id);
+      }
+    ))
+  } catch (err) {
+    console.error('Error archiving artists!', err);
+  };
+}
+
+const createArtist = async(artistObj: any, user_id: string) => {
+  const { artist_uri, artist_name, count } = artistObj;
+  console.log(artistObj);
+  console.log(artist_uri);
+
+  let historyArtist = await HistoryArtist.findOne({where:{user_id: user_id, artist_name: artist_name}});
+  console.log(historyArtist);
+  if(historyArtist) {
+    await getConnection()
+      .createQueryBuilder()
+      .update(HistoryArtist)
+      .set({count: () => `count + ${count}`})
+      .where("user_id = :user_id AND artist_name = :artist_name", {user_id: user_id, artist_name: artist_name})
+      .execute();
+  } else {
+    let newArtist = new HistoryArtist();
+    newArtist.artist_name = artist_name;
+    newArtist.artist_uri = artist_uri;
+    newArtist.user_id = user_id;
+    newArtist.count = count;
+    await newArtist.save();
+    return await getConnection()
+      .createQueryBuilder()
+      .relation(User, "historyArtists")
+      .of(user_id)
+      .add(newArtist);
   }
-  HistoryArtist;
-};
+  
+}
 
 const getUsersCurrentPlayback = async (access_token: string) => {
   const getCurrentPlayback: any = {
@@ -161,6 +216,7 @@ const querySpotify = (query: string, access_token: string) => {
   });
 };
 
+
 const getArtistData = async (artist_uri: string, access_token: string) => {
   return await axios({
     url: `https://api.spotify.com/v1/artists/${artist_uri}`,
@@ -172,7 +228,6 @@ const getArtistData = async (artist_uri: string, access_token: string) => {
     return data.genres;
   }).catch(error => console.log(error));
 };
-
 const addToPlaylist = async (
   access_token: string,
   playlist_id: string,

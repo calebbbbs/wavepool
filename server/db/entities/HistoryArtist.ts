@@ -12,6 +12,10 @@ export default class HistoryArtist extends BaseEntity {
 
   @Column()
   @Field(() => String)
+  user_id: string;
+
+  @Column()
+  @Field(() => String)
   artist_name: string;
 
   @Column()
@@ -23,6 +27,6 @@ export default class HistoryArtist extends BaseEntity {
   count: number;
 
   @Field(() => User)
-  @ManyToOne(() => User, (user: User) => user.historyGenres, {cascade:true})
+  @ManyToOne(() => User, (user: User) => user.historyArtists, {cascade:true})
   user!: Promise<User | undefined>;
 }
