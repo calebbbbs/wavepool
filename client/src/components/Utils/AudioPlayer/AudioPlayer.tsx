@@ -5,10 +5,12 @@ import {
   chakra,
   HStack,
   Image,
-  // Text,
   Stack,
   Center,
-  Flex
+  StackDivider,
+  Flex,
+  SimpleGrid,
+  useColorModeValue
 
 } from "@chakra-ui/react";
 
@@ -18,7 +20,7 @@ import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
 
 export const AudioPlayer = () => {
-  // const bg = useColorModeValue("brand.50", "brand.900")
+  const bg = useColorModeValue("brand.900", "brand.50")
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const { userObj, currPlayback, getUsersCurrentPlayback } =
     useContext(UserContext);
@@ -46,7 +48,10 @@ export const AudioPlayer = () => {
                     src={currPlayback.item.album.images[2].url}
                   />
                 </Center>
-                <Stack>
+                <Stack 
+                justifyContent="space-between"
+                spacing={0}
+                divider={<StackDivider borderColor={bg} />}>
                   <Flex alignItems="center">
                     <chakra.div mr={4}>
                     <BiHeadphone />
@@ -57,20 +62,20 @@ export const AudioPlayer = () => {
                     <chakra.div mr={4}>
                       <BsPerson/>
                       </chakra.div>
-                    <chakra.div fontSize="xs">
+                    <SimpleGrid columns={2} spacingX="10px" spacingY="2px">
                       {currPlayback.item.artists.map(
                         (artist: any, i: number) => {
                           if (i === currPlayback.item.artists.length - 1) {
                             return (
-                              <chakra.span key={i}>{artist.name}</chakra.span>
+                              <chakra.p key={i}>{artist.name}</chakra.p>
                             );
                           }
                           return (
-                            <chakra.span key={i}>{artist.name}, </chakra.span>
+                            <chakra.p key={i}>{artist.name}, </chakra.p>
                           );
                         }
                       )}
-                    </chakra.div>
+                    </SimpleGrid>
                   </Flex>
                   <Flex alignItems="center">
                     <chakra.div mr={4}>

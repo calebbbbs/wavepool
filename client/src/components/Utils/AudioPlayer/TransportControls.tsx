@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { CgPlayTrackPrev, CgPlayTrackNext } from "react-icons/cg";
 import { UserContext } from "../../../contexts/UserContext";
-import { Flex, Button, ButtonGroup } from "@chakra-ui/react";
+import { Flex, Button, ButtonGroup, Tooltip } from "@chakra-ui/react";
 import axios from "axios";
 
 export const TransportControls = () => {
@@ -12,6 +12,7 @@ export const TransportControls = () => {
   return (
     <Flex>
       <ButtonGroup>
+        <Tooltip label="Previous Track" placement="bottom">
         <Button
           variant="ghost"
           onClick={() => {
@@ -24,9 +25,10 @@ export const TransportControls = () => {
         >
           <CgPlayTrackPrev />
         </Button>
-
+          </Tooltip>
         {isPlaying ? (
           <div>
+            <Tooltip label="Pause Track">
             <Button
               variant="ghost"
               onClick={() => {
@@ -38,9 +40,11 @@ export const TransportControls = () => {
             >
               <FaPause />
             </Button>
+            </Tooltip>
           </div>
         ) : (
           <div>
+            <Tooltip label="Play Track" placement="bottom">
             <Button
               variant="ghost"
               onClick={() => {
@@ -51,8 +55,10 @@ export const TransportControls = () => {
             >
               <FaPlay />
             </Button>
+            </Tooltip>
           </div>
         )}
+                <Tooltip label="Next Track" placement="bottom">
         <Button
           variant="ghost"
           onClick={() => {
@@ -65,6 +71,7 @@ export const TransportControls = () => {
         >
           <CgPlayTrackNext />
         </Button>
+        </Tooltip>
       </ButtonGroup>
     </Flex>
   );

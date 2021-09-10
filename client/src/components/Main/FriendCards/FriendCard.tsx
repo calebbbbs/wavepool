@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import {
   Flex,
@@ -7,7 +7,6 @@ import {
   Link,
   Accordion,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../../contexts/UserContext";
 import FCListItem from "./FCListItem";
 // import FriendStat from "../../Nav/FriendStat";
@@ -15,7 +14,6 @@ import FCListItem from "./FCListItem";
 const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
   const { friends } = userObj;
-  const [seeMore, setSeeMore] = useState(false);
 
   const list = friends.map((friend: any, i: number) => {
 
@@ -28,6 +26,7 @@ const RecommendedTracks = () => {
         key={i}
         userObj={userObj}
         friendId={friend.friend_id}
+        friendPhoto={friend.friend_photo}
         friendName={friend.friend_name}
         friendStatus={friend.friend_status}
       />
@@ -62,19 +61,6 @@ const RecommendedTracks = () => {
             </Accordion>
           </div>
         </Box>
-
-        <Flex justifyContent="space-between" alignItems="center" mt={4}>
-          <Link
-            _hover={{ textDecor: "underline" }}
-            onClick={() => {
-              setSeeMore(!seeMore);
-            }}
-          >
-            {seeMore ? <ChevronUpIcon /> : <ChevronDownIcon />}
-          </Link>
-
-          <Flex alignItems="center"></Flex>
-        </Flex>
       </Box>
     </Flex>
   );

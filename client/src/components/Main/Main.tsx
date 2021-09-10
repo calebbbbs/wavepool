@@ -2,7 +2,6 @@ import React, {useEffect, useContext} from 'react'
 import RecentlyPlayed from './RecentlyPlayed/RecentlyPlayed'
 import { SimpleGrid, useToast } from '@chakra-ui/react'
 import Nav from '../Nav/Nav';
-// import RecommendedTracks from './RecommendedTracks/RecommendedTracks'
 import FriendCard from './FriendCards/FriendCard'
 import SocketContext from './SocketContext'
 import io from 'socket.io-client';

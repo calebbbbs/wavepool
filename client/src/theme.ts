@@ -34,13 +34,13 @@ const styles = {
       fontSize: "2xl",
     },
     p: {
-      fontSize: "xs",
+      fontSize: "xl",
     },
     div: {
       fontSize: "xl",
     },
     VStack: {
-      fontSize: "xs",
+      fontSize: "xl",
     },
     Text: {
       fontSize: "xl",
@@ -48,15 +48,6 @@ const styles = {
   }),
 };
 
-const components = {
-  Tooltip: {
-    baseStyle: {
-      color: mode("gray.800", "whiteAlpha.900"),
-      bg: mode("brand.200", "brand.900"),
-      colorScheme: "brand",
-    },
-  },
-};
 
 const colors = {
   brand: {
@@ -102,5 +93,5 @@ const fonts: any = {
 //   }),
 // });
 
-const theme = extendTheme({ config, styles, colors, components, fonts });
+const theme = extendTheme({ config, styles, colors, fonts });
 export default theme;

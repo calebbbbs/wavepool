@@ -35,13 +35,13 @@ const styles = {
       fontSize: "4xl",
     },
     p: {
-      fontSize: "xl",
+      fontSize: "3xl",
     },
     div: {
       fontSize: "3xl",
     },
     VStack: {
-      fontSize: "xl",
+      fontSize: "3xl",
     },
     Text: {
       fontSize: "4xl",

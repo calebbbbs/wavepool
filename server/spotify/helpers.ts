@@ -155,7 +155,6 @@ const createPlaylist = async (
 //   }).then((data) => {
 //     const  { artists } = data;
 //     artist_id = artists[0].id;
-    
 //     return axios({
 //       url: `https://api.spotify.com/v1/artist/${artist_id}`,
 //       method: "get",

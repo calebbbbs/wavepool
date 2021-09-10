@@ -53,7 +53,7 @@ if(error){
       <PopoverTrigger>
         {/* <Tooltip placement="right" label="Send Track"> */}
     <Tooltip placement="right" label="Send Track">
-        <Button variant="ghost " onClick={onOpen}>
+        <Button variant="ghost" onClick={onOpen}>
           <RiMailSendLine />
         </Button>
         </Tooltip>

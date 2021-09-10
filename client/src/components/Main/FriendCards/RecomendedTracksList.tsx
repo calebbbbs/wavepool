@@ -6,6 +6,9 @@ import {
   useColorModeValue,
   Tooltip,
 } from "@chakra-ui/react";
+
+
+
 import { CloseIcon } from "@chakra-ui/icons";
 import TrackComp from "../../Utils/Track/TrackComp";
 import { RiThumbDownLine, RiThumbUpLine, RiThumbUpFill } from "react-icons/ri";
@@ -38,10 +41,15 @@ const RecommendedTracksList = (props: any) => {
   const [removeRec] = useMutation(REMOVE_REC);
   const [updateFriendship] = useMutation(UPDATE_FRIENDSHIP);
   const [trackResponded] = useMutation(TRACK_RESPONDED);
+
+
   const bg = useColorModeValue("brand.50", "brand.900");
+
+
   const list = props.recommendedTracks.map((e: any, i: number) => {
     return (
       <chakra.div bg={bg} key={i}>
+
         <Button
           variant="ghost"
           onClick={() => {
@@ -153,7 +161,9 @@ const RecommendedTracksList = (props: any) => {
     );
   });
 
-  return <div>{list}</div>;
+
+  return <div>
+    {list}</div>;
 };
 
 export default RecommendedTracksList;
