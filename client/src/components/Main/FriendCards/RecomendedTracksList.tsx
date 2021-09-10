@@ -11,6 +11,8 @@ import TrackComp from "../../Utils/Track/TrackComp";
 import { RiThumbDownLine, RiThumbUpLine, RiThumbUpFill } from "react-icons/ri";
 import { UserContext } from "../../../contexts/UserContext";
 import { gql, useMutation } from "@apollo/client";
+import SocketContext from '../../Main/SocketContext';
+
 
 const REMOVE_REC = gql`
   mutation RemoveRecommendedMutation(
@@ -39,6 +41,10 @@ const RecommendedTracksList = (props: any) => {
   const [updateFriendship] = useMutation(UPDATE_FRIENDSHIP);
   const [trackResponded] = useMutation(TRACK_RESPONDED);
   const bg = useColorModeValue("brand.50", "brand.900");
+  const { socket } = useContext(SocketContext);
+  const respond = (data: any) => {
+    socket.emit("notification", data);
+  }
   const list = props.recommendedTracks.map((e: any, i: number) => {
     return (
       <chakra.div bg={bg} key={i}>
@@ -65,25 +71,6 @@ const RecommendedTracksList = (props: any) => {
             {e.been_liked ? (
               <Button
                 variant="ghost"
-                onClick={() => {
-                  trackResponded({
-                    variables: {
-                      trackRespondedData: {
-                        user_id: e.user_id,
-                        track_id: e.id,
-                      },
-                    },
-                  });
-                  updateFriendship({
-                    variables: {
-                      updateFriendshipData: {
-                        user_id: e.friend_id,
-                        friend_id: e.user_id,
-                        action: "like",
-                      },
-                    },
-                  });
-                }}
               >
                 <RiThumbUpFill />
               </Button>
@@ -108,6 +95,14 @@ const RecommendedTracksList = (props: any) => {
                       },
                     },
                   });
+                  const temp = {
+                    userId: e.friend_id,
+                    friendId: e.user_id,
+                    status: 'info',
+                    action: "👍 Liked Track!",
+                    message: `${e.friend_name} liked ${e.track_title} by ${e.artists[0]}`,
+                  }
+                  respond(temp)
                   setTimeout(() => {
                     refetch();
                   }, 1500);
@@ -139,6 +134,14 @@ const RecommendedTracksList = (props: any) => {
                     },
                   },
                 });
+                const temp = {
+                  userId: e.friend_id,
+                  friendId: e.user_id,
+                  status: 'warning',
+                  action: "👎 Disliked Track!",
+                  message: `${e.friend_name} disliked ${e.track_title} by ${e.artists[0]}`,
+                }
+                respond(temp);
                 setTimeout(() => {
                   refetch();
                 }, 1500);
