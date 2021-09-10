@@ -46,7 +46,6 @@ const RecommendedTracksList = (props: any) => {
     socket.emit("notification", data);
   }
   const list = props.recommendedTracks.map((e: any, i: number) => {
-    console.log('!!!!!!!!!', e);
     return (
       <chakra.div bg={bg} key={i}>
         <Button

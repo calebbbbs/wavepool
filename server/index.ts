@@ -118,32 +118,13 @@ async function startServer() {
     });
 
     socket.on('notification', (data: any) => {
-      console.log(data);
-      // console.log(userId);
+      const { friendId } = data;
       users.forEach((e) => {
-        if (e.user_id === data.friendId) {
+        if (e.user_id === friendId) {
           io.to(e.socket_id).emit('notification', data);
         }
       });
     });
-
-  //   socket.on('createFriend', (data: any) => {
-  //     const { userId, friendId } = data;
-  //     users.forEach((e) =>{
-  //       if(e.user_id === friendId) {
-  //         io.to(e.socket_id).emit('updateFriends', userId);
-  //       }
-  //     })
-  //   });
-
-  //   socket.on('confirmFriend', (data: any) =>{
-  //     const { userId, friendId } = data;
-  //     users.forEach((e) => {
-  //       if(e.user_id === friendId) {
-  //         io.to(e.socket_id).emit('friendConfirmed', userId);
-  //       }
-  //     })
-  //   });
   });
 
   app.get(
