@@ -27,7 +27,6 @@ const AppStyles = () =>{
     800: "#31493B",
     900: "#020402",
   },);
-  // console.log(theme);
 
   const config: ThemeConfig = {
     initialColorMode: "dark",

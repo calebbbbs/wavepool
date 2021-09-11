@@ -29,9 +29,9 @@ export const RecentlyPlayed = () => {
 
 
   return (
-    <Flex mt={8} p={50} w="full" alignItems="center" justifyContent="center">
+    <Flex mt={8} w="full" alignItems="center" justifyContent="center">
       <Box
-        mx="auto"
+        // mx="auto"
         px={8}
         py={4}
         rounded="lg"

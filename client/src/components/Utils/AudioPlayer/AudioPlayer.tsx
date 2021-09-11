@@ -11,7 +11,7 @@ import {
   Flex,
   useColorModeValue,
 } from "@chakra-ui/react";
-
+import Marquee from 'react-fast-marquee'
 import { TransportControls } from "./TransportControls";
 import {usePalette} from 'react-palette'
 import { BsPerson } from "react-icons/bs";
@@ -28,7 +28,22 @@ export const AudioPlayer = (props: any) => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+
   const {data, error} = usePalette(currPlayback.item.album.images[2].url);
+  let str = ''
+currPlayback.item.artists.map(
+    (artist: any, i: number) => {
+      if (i === currPlayback.item.artists.length - 1) {
+        return (
+         str += artist.name
+        );
+      }
+      return (
+        str += `${artist.name}, `
+      );
+    }
+  );
 useEffect(() => {
 if(data && !error){
   console.log(data);
@@ -67,34 +82,18 @@ if(data && !error){
                 spacing={0}
                 divider={<StackDivider borderColor={bg} />}>
                   <Flex alignItems="center">
-                    {/* <chakra.div mr={4}> */}
                     <BiHeadphone />
-                    {/* </chakra.div> */}
                     <chakra.p > {currPlayback.item.name}</ chakra.p>
                   </Flex>
                   <Flex alignItems="center">
-                    {/* <chakra.div mr={4}> */}
                       <BsPerson/>
-                      {/* </chakra.div> */}
-                    <chakra.div >
-                      {currPlayback.item.artists.map(
-                        (artist: any, i: number) => {
-                          if (i === currPlayback.item.artists.length - 1) {
-                            return (
-                              <chakra.p key={i}>{artist.name}</chakra.p>
-                            );
-                          }
-                          return (
-                            <chakra.p key={i}>{artist.name}, </chakra.p>
-                          );
-                        }
-                      )}
-                    </chakra.div>
+                      <Marquee
+                      gradient={false} pauseOnHover={true} pauseOnClick={true}>
+                    {str}
+                    </Marquee>
                   </Flex>
                   <Flex alignItems="center">
-                    {/* <chakra.div mr={4}> */}
                       <BiAlbum/>
-                      {/* </chakra.div> */}
                     <chakra.p >
                       {currPlayback.item.album.name}
                     </chakra.p>

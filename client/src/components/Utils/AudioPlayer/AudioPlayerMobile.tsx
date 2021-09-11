@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 // import { BsMusicNoteBeamed } from 'react-icons/bs'
 import { UserContext } from "../../../contexts/UserContext";
+import Marquee from "react-fast-marquee";
 import {
-  chakra,
   HStack,
   Image,
   Text,
@@ -37,6 +37,20 @@ export const AudioPlayerMobile = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  let str = ''
+  currPlayback.item.artists.map(
+      (artist: any, i: number) => {
+        if (i === currPlayback.item.artists.length - 1) {
+          return (
+           str += artist.name
+          );
+        }
+        return (
+          str += `${artist.name}, `
+        );
+      }
+    );
 
   return (
     <>
@@ -75,20 +89,10 @@ export const AudioPlayerMobile = () => {
                   </Flex>
                   <Flex alignItems="center">
                       <BsPerson/>
-                    <chakra.div >
-                      {currPlayback.item.artists.map(
-                        (artist: any, i: number) => {
-                          if (i === currPlayback.item.artists.length - 1) {
-                            return (
-                              <chakra.span key={i}>{artist.name}</chakra.span>
-                            );
-                          }
-                          return (
-                            <chakra.span key={i}>{artist.name}, </chakra.span>
-                          );
-                        }
-                      )}
-                    </chakra.div>
+                      <Marquee
+                      gradient={false} pauseOnHover={true} pauseOnClick={true}>
+                      {str}
+                    </Marquee>
                   </Flex>
                   <Flex alignItems="center">
                       <BiAlbum/>

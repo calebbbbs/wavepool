@@ -24,13 +24,13 @@ export const Main = (props: any) => {
         });
       }, 1500);
     });
-  }, []);
+  }, [])
 
 
     return (
       <SocketContext.Provider value={{ socket }}>
         <Nav user={...userObj} toggleFont={props.toggleFont} changeColorTheme={props.changeColorTheme}/>
-      <SimpleGrid minChildWidth='500px' spacing='80px'>
+      <SimpleGrid minChildWidth='400px' spacing='10px'>
         <RecentlyPlayed />
         <FriendCard />
       </SimpleGrid>

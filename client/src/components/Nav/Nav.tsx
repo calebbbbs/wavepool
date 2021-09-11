@@ -23,9 +23,7 @@ import { SunIcon, MoonIcon, SettingsIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
 import AudioPlayer from "../Utils/AudioPlayer/AudioPlayer";
 import Search from "../Utils/Search/Search";
-
 import AddFriend from "../Utils/AddFriend/AddFriend";
-
 import CreatePlaylist from "./CreatePlaylist";
 import AudioPlayerMobile from "../Utils/AudioPlayer/AudioPlayerMobile";
 
@@ -58,7 +56,7 @@ const Nav = (props: any) => {
               icon={<HamburgerIcon />}
               variant="ghost"
             />
-            <MenuList bg={useColorModeValue("brand.50", "brand.900")}>
+            <MenuList bg={useColorModeValue("brand.50", "brand.900")} zIndex={2}>
               <MenuGroup>
               {isLoggedIn && (
                 <chakra.div>
@@ -91,7 +89,7 @@ const Nav = (props: any) => {
               <MenuItem onClick={props.toggleFont}>
                 <Button variant="ghost">
                   <SettingsIcon />
-                  Toggle Bigger Font{" "}
+                  Toggle Accessibility Mode{" "}
                 </Button>
               </MenuItem>
               <MenuItem onClick={toggleColorMode}>

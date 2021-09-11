@@ -44,8 +44,8 @@ const FCListItem = (props: any) => {
   };
 
   return (
-    <Flex alignItems="center">
-      <AccordionItem w="90%">
+    <Flex alignItems="center" flexDirection={{base: 'column', md: 'row'}}>
+      <AccordionItem>
         <h2>
           <AccordionButton>
             <Box
@@ -87,6 +87,7 @@ const FCListItem = (props: any) => {
           />
         </AccordionPanel>
       </AccordionItem>
+      <Flex  flexDirection={{base: 'column', md: 'row'}}>
       <StatsModal friendScore={score} />
       <Tooltip label={`Select ${props.friendName}`}>
         <Button
@@ -109,6 +110,7 @@ const FCListItem = (props: any) => {
           )}
         </Button>
       </Tooltip>
+      </Flex>
     </Flex>
   );
 };

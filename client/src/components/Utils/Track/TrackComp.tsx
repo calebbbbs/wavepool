@@ -17,7 +17,7 @@ import {
   Skeleton,
   StackDivider,
 } from '@chakra-ui/react';
-
+import Marquee from 'react-fast-marquee'
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
 import { MdQueueMusic } from "react-icons/md";
@@ -48,13 +48,20 @@ const TrackComp = (props: any) => {
   //   return (
   //     <Text key={i}>
   //       {artist},{'  '}
-  //     </Text>
+  //     </Text >
   //   );
   // })
 
   const bg = useColorModeValue('brand.50', 'brand.900');
   const dividerColor = useColorModeValue('brand.900', 'brand.50');
-
+  let str = ''
+  artists.map((artist: any, i: number) => {
+    if (i === artists.length - 1) {
+      return (str += `  ${artist}  `)
+    }
+    return (str += `  ${artist},  `)
+  })
+  console.log(str);
   const addToQueue = () => {
     axios
       .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
@@ -86,41 +93,29 @@ const TrackComp = (props: any) => {
           </Box>
         </Center>
         <Center>
-          <Stack 
-          divider={<StackDivider borderColor={dividerColor} />}
-          padding={2} borderRadius='15px' m={2} mr={4}>
+          <Stack
+            divider={<StackDivider borderColor={dividerColor} />}
+            padding={2} borderRadius='15px' m={2} mr={4}>
             <Flex alignItems='center' >
               {/* <chakra.div mr={2}> */}
-                <BiHeadphone />
+              <BiHeadphone />
               {/* </chakra.div> */}
               <Text >{track_title}</Text>
             </Flex>
             <chakra.div>
               <Flex alignItems='center' >
                 {/* <chakra.div mr={2}> */}
-                  <BsPerson />
+                <BsPerson />
                 {/* </chakra.div> */}
                 <chakra.div >
-                {artists.map((artist: any, i: number) => {
-                  if (i === artists.length - 1) {
-                    return (
-                      <chakra.p key={i} >
-                        {artist}
-                      </chakra.p>
-                    );
-                  }
-                  return (
-                    <Text key={i} >
-                      {artist},{'  '}
-                    </Text>
-                  );
-                })}
+                <Marquee
+                      gradient={false} pauseOnHover={true} pauseOnClick={true}>{str}</Marquee>
                 </chakra.div>
               </Flex>
             </chakra.div>
             <Flex alignItems='center' >
               {/* <chakra.div mr={2}> */}
-                <BiAlbum />
+              <BiAlbum />
               {/* </chakra.div> */}
               <Text >{album_title}</Text>
             </Flex>

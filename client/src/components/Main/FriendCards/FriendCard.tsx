@@ -34,8 +34,11 @@ const RecommendedTracks = () => {
   });
 
   return (
-    <Flex alignItems="center" justifyContent="center">
+    <Flex 
+    minX="300px"
+    alignItems="center" justifyContent="center">
       <Box
+        minX="300px"
         mx="auto"
         px={8}
         py={4}
@@ -44,7 +47,8 @@ const RecommendedTracks = () => {
         bg={useColorModeValue("brand.100", "brand.800")}
         maxW="2xl"
       >
-        <Box mt={2}>
+        <Box mt={2}
+        >
           <Link
             color={useColorModeValue('brand.700', 'white')}
             fontWeight='700'
@@ -56,7 +60,7 @@ const RecommendedTracks = () => {
             Recommended
           </Link>
           <div>
-            <Accordion minW="350px" allowMultiple allowToggle>
+            <Accordion minW="300" allowMultiple allowToggle>
               {list}
             </Accordion>
           </div>
