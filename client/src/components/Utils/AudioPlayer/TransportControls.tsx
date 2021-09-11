@@ -14,12 +14,12 @@ export const TransportControls = () => {
       <ButtonGroup>
         <Button
           variant="ghost"
-          onClick={() => {
+          onClick={async () => {
             //axios get previous
-            axios.get(`/spotify/prev/${userObj.user_id}`);
-            setTimeout(() => {
+            await axios.get(`/spotify/prev/${userObj.user_id}`);
+            await new Promise(resolve => setTimeout(resolve => {
               getUsersCurrentPlayback(userObj.user_id);
-            }, 1000);
+            }, 0));
           }}
         >
           <CgPlayTrackPrev />
@@ -29,11 +29,11 @@ export const TransportControls = () => {
           <div>
             <Button
               variant="ghost"
-              onClick={() => {
+              onClick={async () => {
                 //axios get pause
-                axios.get(`/spotify/pause/${userObj.user_id}`);
-                setIsPlaying(false);
-                getUsersCurrentPlayback(userObj.user_id);
+                await axios.get(`/spotify/pause/${userObj.user_id}`);
+                await setIsPlaying(false);
+                await getUsersCurrentPlayback(userObj.user_id);
               }}
             >
               <FaPause />
@@ -43,10 +43,10 @@ export const TransportControls = () => {
           <div>
             <Button
               variant="ghost"
-              onClick={() => {
-                axios.get(`/spotify/play/${userObj.user_id}`);
-                setIsPlaying(true);
-                getUsersCurrentPlayback(userObj.user_id);
+              onClick={async () => {
+                await axios.get(`/spotify/play/${userObj.user_id}`);
+                await setIsPlaying(true);
+                await getUsersCurrentPlayback(userObj.user_id);
               }}
             >
               <FaPlay />
@@ -55,12 +55,11 @@ export const TransportControls = () => {
         )}
         <Button
           variant="ghost"
-          onClick={() => {
-            axios.get(`/spotify/next/${userObj.user_id}`);
-
-            setTimeout(() => {
+          onClick={async () => {
+            await axios.get(`/spotify/next/${userObj.user_id}`);
+            await new Promise(resolve => setTimeout(resolve => {
               getUsersCurrentPlayback(userObj.user_id);
-            }, 1000);
+            }, 0));
           }}
         >
           <CgPlayTrackNext />

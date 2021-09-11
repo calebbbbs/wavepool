@@ -13,8 +13,8 @@ export const Main = (props: any) => {
 
   useEffect(() => {
     socket.emit('userConnected', userObj.user_id);
-    socket.on('notification', (data: any) => {
-      setTimeout(() => {refetch()
+    socket.on('notification', async (data: any) => {
+      await new Promise(resolve => setTimeout(resolve => {refetch()
         toast({
           title: data.action,
           description: data.message,
@@ -22,7 +22,7 @@ export const Main = (props: any) => {
           duration: 4000,
           isClosable: true,
         });
-      }, 1500);
+      }, 10));
     });
   }, []);
 
