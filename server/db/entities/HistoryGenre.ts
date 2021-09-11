@@ -10,6 +10,10 @@ export default class HistoryGenre extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
+  @Field(() => String)
+  @Column()
+  user_id: string;
+
   @Column()
   @Field(() => String)
   genre: string;

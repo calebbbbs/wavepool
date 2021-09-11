@@ -2,6 +2,7 @@ import { getConnection } from "typeorm";
 import axios from "axios";
 import HistoryArtist from "../db/entities/HistoryArtist";
 import HistoryTrack from "../db/entities/HistoryTrack";
+import HistoryGenre from "../db/entities/HistoryGenre";
 import User from "../db/entities/User";
 
 const archiveHistory = async (data: any, user_id: string, access_token: string) => {
@@ -14,15 +15,15 @@ const archiveHistory = async (data: any, user_id: string, access_token: string) 
      return getMultipleArtistData(tracks, access_token);
     }).then((tracks) => {
       return getMultipleTrackData(tracks, access_token);
-    })
-    .then((tracks) => {
+    }).then((tracks) => {
       return Promise.all(tracks.map((track: any) => {
         return updateHistoryTrack(track, user_id)
       }))
-    })
-    .then((tracks) => {
-      createHistoryArtist(tracks, user_id);
-      createHistoryGenre(tracks, user_id);
+    }).then((tracks) => {
+      return createHistoryArtist(tracks, user_id);
+      
+    }).then((tracks) => {
+      return createHistoryGenre(tracks, user_id);
     });
   } catch (err) {
     console.error('Error archiving data\'s body!');
@@ -75,8 +76,6 @@ const getMultipleTrackData = async (tracks: any, access_token: string) => {
       }
     }).then(({data}) => {
       const { audio_features } = data;
-      //console.log("tracks", tracks[0]);
-      //console.log("data", audio_features);
       tracks.forEach((track: any, index: number) => {
         track.features = {};
         track.features.danceability = audio_features[index].danceability;
@@ -140,17 +139,14 @@ const updateHistoryTrack = async (track: any, user_id: string) => {
   if(track) {
     const { name, played_at, features } = track;
     const { danceability, energy, loudness, acousticness, instrumentalness} = features
-    console.log(features);
     const historyTrack = await HistoryTrack.findOne({where:{user_id: user_id, played_at: played_at, track_title: name}});
     if(historyTrack){
-      console.log(typeof danceability);
       historyTrack.danceability = danceability;
       historyTrack.energy = energy;
       historyTrack.loudness = loudness;
       historyTrack.acousticness = acousticness;
       historyTrack.instrumentalness = instrumentalness;
       await historyTrack.save();
-      console.log(historyTrack);
       return track;
     }
     return track;
@@ -170,6 +166,7 @@ const createHistoryArtist = async (tracks: Array<any>, user_id: string) => {
           artist_uri: track.artists[0].uri,
           time_listened: track.duration_ms,
           is_explicit: track.explicit,
+          image_url: track.album.images[1].url,
           count: 1
         }
         artistObj[track.artists[0].name] = tempArtist;
@@ -187,17 +184,22 @@ const createHistoryArtist = async (tracks: Array<any>, user_id: string) => {
   } catch (err) {
     console.error('Error archiving artists!', err);
   };
+  return tracks;
 }
 
 const createArtist = async(artistObj: any, user_id: string) => {
-  const { artist_uri, artist_name, count, time_listened, is_explicit } = artistObj;
+  const { artist_uri, artist_name, count, time_listened, is_explicit, image_url } = artistObj;
   let historyArtist = await HistoryArtist.findOne({where:{user_id: user_id, artist_name: artist_name}});
   if(historyArtist) {
-    await getConnection()
+    console.log(user_id);
+    console.log(artist_name);
+      await getConnection()
       .createQueryBuilder()
       .update(HistoryArtist)
-      .set({count: () => `count + ${count}`})
-      .set({time_listened: () => `time_listened + ${time_listened}`})
+      .set({
+        count: () => `count + ${count}`, 
+        time_listened: () => `time_listened + ${time_listened}`
+      })
       .where("user_id = :user_id AND artist_name = :artist_name", {user_id: user_id, artist_name: artist_name})
       .execute();
   } else {
@@ -205,6 +207,7 @@ const createArtist = async(artistObj: any, user_id: string) => {
     newArtist.artist_name = artist_name;
     newArtist.artist_uri = artist_uri;
     newArtist.user_id = user_id;
+    newArtist.image_url = image_url;
     newArtist.is_explicit = is_explicit;
     newArtist.time_listened = time_listened
     newArtist.count = count;
@@ -218,35 +221,61 @@ const createArtist = async(artistObj: any, user_id: string) => {
 }
 
 const createHistoryGenre = async (tracks: Array<any>, user_id: string) => {
-  let genreObj: any = {};
+  let genreArray: Array<any> = [];
   tracks.forEach((track) => {
     if(track){
-      if(genreObj.hasOwnProperty(track.artists[0].name)){
-        genreObj[track.artists[0].name].count += 1;
-        genreObj[track.artists[0].name].time_listened += track.duration_ms;
-      } else {
-        const tempArtist = {
-          artist_name: track.artists[0].name,
-          artist_uri: track.artists[0].uri,
-          time_listened: track.duration_ms,
-          is_explicit: track.explicit,
-          count: 1
-        }
-        genreObj[track.artists[0].name] = tempArtist;
-      }
+      genreArray.push(track.artists[0].genres)
     }
   });
-  // const artistArray: Array<string> = Object.values(artistObj);
+  const flatGenres = genreArray.flat();
 
-  // try {
-  //   Promise.all(artistArray.map(
-  //     (artist) => {
-  //      createArtist(artist, user_id);
-  //     }
-  //   ))
-  // } catch (err) {
-  //   console.error('Error archiving artists!', err);
-  // };
+  let genreObj: any = {};
+  flatGenres.forEach((genre) => {
+    if(genreObj.hasOwnProperty(genre)){
+      genreObj[genre].count += 1;
+    } else {
+      const tempGenre = {
+        genre: genre,
+        count: 1
+      }
+      genreObj[genre] = tempGenre;
+    }
+  });
+  const genres: Array<string> = Object.values(genreObj);
+
+  try {
+    Promise.all(genres.map(
+      (genre) => {
+       createGenre(genre, user_id);
+      }
+    ))
+  } catch (err) {
+    console.error('Error archiving genres!', err);
+  };
+}
+
+const createGenre = async(genreObj: any, user_id: string) => {
+  const { genre, count } = genreObj;
+  let historyGenre = await HistoryGenre.findOne({where:{user_id: user_id, genre: genre}});
+  if(historyGenre) {
+    await getConnection()
+      .createQueryBuilder()
+      .update(HistoryGenre)
+      .set({count: () => `count + ${count}`})
+      .where("user_id = :user_id AND genre = :genre", {user_id: user_id, genre: genre})
+      .execute();
+  } else {
+    let newGenre = new HistoryGenre();
+    newGenre.genre = genre;
+    newGenre.user_id = user_id;
+    newGenre.count = count;
+    await newGenre.save();
+    return await getConnection()
+      .createQueryBuilder()
+      .relation(User, "historyGenres")
+      .of(user_id)
+      .add(newGenre);
+  }
 }
 
 const getTrackFeature = async (track_uri: string, access_token: string) => {

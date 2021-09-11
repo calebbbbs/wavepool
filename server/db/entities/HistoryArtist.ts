@@ -22,6 +22,10 @@ export default class HistoryArtist extends BaseEntity {
   @Column()
   artist_uri: string;
 
+  @Field(() => String)
+  @Column()
+  image_url: string;
+
   @Field(() => Number)
   @Column()
   count: number;
@@ -37,8 +41,4 @@ export default class HistoryArtist extends BaseEntity {
   @Field(() => User)
   @ManyToOne(() => User, (user: User) => user.historyArtists, {cascade:true})
   user!: Promise<User | undefined>;
-
-  @Field(() => String)
-  @Column({nullable: true})
-  image_uri: string;
 }
