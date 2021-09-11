@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import {
-  Box,
-  Link } from '@chakra-ui/react';
+  Link,
+HStack } from '@chakra-ui/react';
 import { useMutation, gql } from "@apollo/client";
 import { UserContext } from '../../contexts/UserContext'
 import { CheckIcon, DeleteIcon } from '@chakra-ui/icons';
@@ -41,7 +41,7 @@ const friendDenied = (data: any) =>{
   socket.emit("notification", data);
 }
   return (
-  <Box>
+  <HStack>
       <Link
       colorScheme="green"
         onClick={() => {
@@ -88,6 +88,6 @@ const friendDenied = (data: any) =>{
           friendDenied(temp);
         }}
       ><DeleteIcon/></Link>
-      </Box>
+      </HStack>
   )}
 export default FriendStat;
