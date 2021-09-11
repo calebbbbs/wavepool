@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   chakra,
@@ -38,10 +38,26 @@ const TRACK_RESPONDED = gql`
 const RecommendedTracksList = (props: any) => {
   const { refetch } = useContext(UserContext);
   const [removeRec] = useMutation(REMOVE_REC);
-  const [updateFriendship] = useMutation(UPDATE_FRIENDSHIP);
-  const [trackResponded] = useMutation(TRACK_RESPONDED);
+  const [updateFriendship, {data}] = useMutation(UPDATE_FRIENDSHIP);
+  const [trackResponded, trackRespondedReturn] = useMutation(TRACK_RESPONDED);
   const bg = useColorModeValue("brand.50", "brand.900");
   const { socket } = useContext(SocketContext);
+  const [temp, setTemp] = useState<any>({});
+useEffect(() =>{
+  if(data){
+    refetch();
+    respond(temp)
+  }
+}, [JSON.stringify(data)])
+
+useEffect(() =>{
+  if(data){
+    refetch();
+    respond(temp);
+  }
+}, [JSON.stringify(trackRespondedReturn.data)]);
+
+
   const respond = (data: any) => {
     socket.emit("notification", data);
   }
@@ -59,9 +75,7 @@ const RecommendedTracksList = (props: any) => {
                 },
               },
             });
-            setTimeout(() => {
-              refetch();
-            }, 1500);
+
           }}
         >
           <CloseIcon />
@@ -95,14 +109,13 @@ const RecommendedTracksList = (props: any) => {
                       },
                     },
                   });
-                  const temp = {
+                  setTemp({
                     userId: e.friend_id,
                     friendId: e.user_id,
                     status: 'info',
                     action: "👍 Liked Track!",
                     message: `${e.friend_name} liked ${e.track_title} by ${e.artists[0]}`,
-                  }
-                  respond(temp)
+                  })
                   setTimeout(() => {
                     refetch();
                   }, 1500);
@@ -134,14 +147,13 @@ const RecommendedTracksList = (props: any) => {
                     },
                   },
                 });
-                const temp = {
+                setTemp({
                   userId: e.friend_id,
                   friendId: e.user_id,
                   status: 'warning',
                   action: "👎 Disliked Track!",
                   message: `${e.friend_name} disliked ${e.track_title} by ${e.artists[0]}`,
-                }
-                respond(temp);
+                })
                 setTimeout(() => {
                   refetch();
                 }, 1500);
