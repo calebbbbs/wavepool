@@ -11,6 +11,7 @@ import {
   Button,
   Badge,
   Flex,
+  Spacer,
   useColorModeValue,
 } from '@chakra-ui/react';
 import RecommendedTracksList from './RecomendedTracksList';
@@ -19,15 +20,16 @@ import { UserContext } from '../../../contexts/UserContext';
 import { ImRadioChecked, ImRadioUnchecked } from 'react-icons/im';
 const FCListItem = (props: any) => {
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
-    return recTrack.friend_name === props.friendName && recTrack.in_queue === true;
+    return (
+      recTrack.friend_name === props.friendName && recTrack.in_queue === true
+    );
   });
-
 
   const { selectedFriend, setSelectedFriend } = useContext(UserContext);
   const isSelected = selectedFriend[0] === props.friendId;
   const bg = useColorModeValue('brand.100', 'brand.800');
   const bg2 = useColorModeValue('brand.200', 'brand.700');
-  const score=(props.friendScore / props.totalSongs);
+  const score = props.friendScore / props.totalSongs;
 
   return (
     <Flex alignItems='center'>
@@ -41,26 +43,34 @@ const FCListItem = (props: any) => {
               flex='1'
               textAlign='left'
             >
-              {props.friendName}
-              {props.friendStatus === false && (
-                <FriendStat
-                  friend_name={props.friendName}
-                  friend_id={props.friendId}
-                  friend_status={props.friend_status}
-                />
-              )}
-              <Badge colorscheme='green' float='right'>
-                {list.length.toString()}
-              </Badge>
+              <Flex>
+                <chakra.div>{props.friendName}</chakra.div>
+                <Spacer />
+                {props.friendStatus === false && (
+                  <FriendStat
+                    friend_name={props.friendName}
+                    friend_id={props.friendId}
+                    friend_status={props.friend_status}
+                  />
+                )}
+                {props.friendStatus === true && (
+                  <Badge colorscheme='green' float='right'>
+                    {list.length.toString()}
+                  </Badge>
+                )}
+              </Flex>
             </Box>
             <AccordionIcon />
           </AccordionButton>
         </h2>
         <AccordionPanel>
-          <RecommendedTracksList friendId={props.friendId} recommendedTracks={list.reverse()} />
+          <RecommendedTracksList
+            friendId={props.friendId}
+            recommendedTracks={list.reverse()}
+          />
         </AccordionPanel>
       </AccordionItem>
-      <StatsModal friendScore={score}/>
+      <StatsModal friendScore={score} />
       <Button
         variant='ghost'
         onClick={() => {
