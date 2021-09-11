@@ -10,9 +10,9 @@ import {
   Box,
   Tooltip,
   Button,
-  HStack,
   Badge,
   Flex,
+  Spacer,
   useColorModeValue,
 } from "@chakra-ui/react";
 import Pagination from "../../Utils/Pagination";
@@ -52,35 +52,25 @@ const FCListItem = (props: any) => {
               borderRadius="15px"
               p={5}
               bg={isSelected ? bg2 : bg}
-              flex="1"
-              textAlign="left"
-            ><HStack>
-              {/* {props.friendPhoto !== "no photo" ? (
-                <HStack>
-                  <Image
-                    boxSize="2rem"
-                    borderRadius="full"
-                    src={props.friendPhoto}
-                    alt="Profile Pic"
-                    mr="12px"
+              flex='1'
+              textAlign='left'
+            >
+              <Flex>
+                <chakra.div>{props.friendName}</chakra.div>
+                <Spacer />
+                {props.friendStatus === false && (
+                  <FriendStat
+                    friend_name={props.friendName}
+                    friend_id={props.friendId}
+                    friend_status={props.friend_status}
                   />
-                  <chakra.p>{props.friendName}</chakra.p>
-                </HStack>
-              ) : (
-                <chakra.p>{props.friendName}</chakra.p>
-              )} */}
- <chakra.p>{props.friendName}</chakra.p>
-              {props.friendStatus === false && (
-                <FriendStat
-                  friend_name={props.friendName}
-                  friend_id={props.friendId}
-                  friend_status={props.friend_status}
-                />
-              )}
-              </HStack>
-              <Badge colorscheme="green" float="right">
-                {list.length.toString()}
-              </Badge>
+                )}
+                {props.friendStatus === true && (
+                  <Badge colorscheme='green' float='right'>
+                    {list.length.toString()}
+                  </Badge>
+                )}
+              </Flex>
             </Box>
             <AccordionIcon />
           </AccordionButton>
