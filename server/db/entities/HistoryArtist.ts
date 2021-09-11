@@ -10,27 +10,35 @@ export default class HistoryArtist extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
-  @Column()
   @Field(() => String)
+  @Column()
   user_id: string;
 
-  @Column()
   @Field(() => String)
+  @Column()
   artist_name: string;
 
-  @Column()
   @Field(() => String)
+  @Column()
   artist_uri: string;
 
-  @Column()
   @Field(() => Number)
+  @Column()
   count: number;
-
-  @Column()
+  
   @Field(() => Number)
+  @Column()
   time_listened: number;
-
+  
+  @Field(() => Boolean)
+  @Column()
+  is_explicit: boolean;
+  
   @Field(() => User)
   @ManyToOne(() => User, (user: User) => user.historyArtists, {cascade:true})
   user!: Promise<User | undefined>;
+
+  @Field(() => String)
+  @Column({nullable: true})
+  image_uri: string;
 }

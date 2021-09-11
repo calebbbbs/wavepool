@@ -45,4 +45,24 @@ export default class HistoryTrack extends BaseEntity {
   @Field(() => User)
   @ManyToOne(() => User, (user: User) => user.historyTracks, {cascade:true})
   user!: Promise<User | undefined>;
+
+  @Field(() => Number)
+  @Column({nullable: true})
+  danceability: number;
+
+  @Field(() => Number)
+  @Column({nullable: true})
+  energy: number;
+
+  @Field(() => Number)
+  @Column({nullable: true})
+  loudness: number;
+
+  @Field(() => Number)
+  @Column({nullable: true})
+  acousticness: number;
+
+  @Field(() => Number)
+  @Column({nullable: true})
+  instrumentalness: number;
 }

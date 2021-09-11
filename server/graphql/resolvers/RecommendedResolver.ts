@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import { getConnection } from "typeorm";
 import { CreateRecommendedInput, RemoveRecommendedInput, TrackRespondedInput } from '../inputs'
-import { getArtistData } from '../../spotify/helpers'
+import { getArtistData } from '../../spotify/archiveHelpers'
 import RecommendedTrack from "../../db/entities/RecommendedTrack";
 import RecommendedGenre from "../../db/entities/RecommendedGenre";
 import User from '../../db/entities/User';
