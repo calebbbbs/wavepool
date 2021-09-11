@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useState } from "react";
+
 import { useLazyQuery } from "@apollo/client";
 import axios, { AxiosError } from "axios";
 import GET_USER_DATA from "../graphql_client/queries/GET_USER_DATA";
-
 const UserContext = React.createContext(undefined as any);
 
 // eslint-disable-next-line react/prop-types
@@ -95,6 +95,8 @@ const UserContextProvider: React.FC = ({ children }) => {
       setUserObj(newUserObj);
     }
   }, [data]);
+
+
 
   const userProps = {
     userObj,

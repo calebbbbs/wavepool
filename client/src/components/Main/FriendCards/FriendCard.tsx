@@ -34,7 +34,7 @@ const RecommendedTracks = () => {
   });
 
   return (
-    <Flex p={50} w="full" alignItems="center" justifyContent="center">
+    <Flex alignItems="center" justifyContent="center">
       <Box
         mx="auto"
         px={8}
@@ -56,7 +56,7 @@ const RecommendedTracks = () => {
             Recommended
           </Link>
           <div>
-            <Accordion minW="500px" allowMultiple allowToggle>
+            <Accordion minW="350px" allowMultiple allowToggle>
               {list}
             </Accordion>
           </div>

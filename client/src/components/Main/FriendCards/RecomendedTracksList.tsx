@@ -87,7 +87,6 @@ const RecommendedTracksList = (props: any) => {
               <Button
                 variant="ghost"
                 onClick={() => {
-                  console.log(`this is e`, e)
                   trackResponded({
                     variables: {
                       trackRespondedData: {

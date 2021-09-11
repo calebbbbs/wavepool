@@ -46,20 +46,20 @@ const styles = {
 };
 
 
-const colors = {
-  brand: {
-    50: "#EFFBF1",
-    100: "#CCE0D1",
-    200: "#A6C9AE",
-    300: "#4FCF62",
-    400: "#30B043",
-    500: "#2F8122",
-    600: "#758173",
-    700: "#4E564D",
-    800: "#31493B",
-    900: "#020402",
-  },
-};
+// const colors = {
+//   brand: {
+//     50: "#EFFBF1",
+//     100: "#CCE0D1",
+//     200: "#A6C9AE",
+//     300: "#4FCF62",
+//     400: "#30B043",
+//     500: "#2F8122",
+//     600: "#758173",
+//     700: "#4E564D",
+//     800: "#31493B",
+//     900: "#020402",
+//   },
+// };
 
 const fonts: any = {
   textStyles: {
@@ -80,5 +80,5 @@ const components = {
   },
 };
 
-const theme = extendTheme({ config, styles, colors, components, fonts });
+const theme = extendTheme({ config, styles, components, fonts });
 export default theme;

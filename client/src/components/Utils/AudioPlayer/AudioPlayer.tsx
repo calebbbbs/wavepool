@@ -9,16 +9,15 @@ import {
   Center,
   StackDivider,
   Flex,
-  useColorModeValue
-
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { TransportControls } from "./TransportControls";
-
+import {usePalette} from 'react-palette'
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
 
-export const AudioPlayer = () => {
+export const AudioPlayer = (props: any) => {
   const bg = useColorModeValue("brand.900", "brand.50")
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const { userObj, currPlayback, getUsersCurrentPlayback } =
@@ -29,7 +28,23 @@ export const AudioPlayer = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
-
+  const {data, error} = usePalette(currPlayback.item.album.images[2].url);
+useEffect(() => {
+if(data && !error){
+  console.log(data);
+  const colors = {
+    50: data.lightVibrant,
+    100: data.lightMuted,
+    200: data.muted,
+    500: data.vibrant,
+    600: data.muted,
+    700: data.vibrant,
+    800: data.darkVibrant,
+    900: data.darkMuted
+  }
+  props.changeColorTheme(colors);
+}
+}, [data])
   return (
     <>
             <Center>

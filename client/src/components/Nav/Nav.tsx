@@ -49,7 +49,7 @@ const Nav = (props: any) => {
               WavePool
             </chakra.h1>
           </Flex>
-          {currPlayback && <AudioPlayer />}
+          {currPlayback && <AudioPlayer changeColorTheme={props.changeColorTheme}/>}
           <Menu>
             <MenuButton
               m={4}
