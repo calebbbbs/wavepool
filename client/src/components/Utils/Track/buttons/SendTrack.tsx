@@ -43,7 +43,6 @@ if(error){
 
 useEffect(() =>{
   if(data){
-    console.log(data);
     const temp = {
       userId: userObj.user_name,
       friendId: selectedFriend[0],

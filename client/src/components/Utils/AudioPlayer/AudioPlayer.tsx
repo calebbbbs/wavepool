@@ -20,6 +20,7 @@ import { BiHeadphone, BiAlbum } from "react-icons/bi";
 export const AudioPlayer = () => {
   // const bg = useColorModeValue("brand.50", "brand.900")
   // const { isOpen, onOpen, onClose } = useDisclosure();
+  // const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const { userObj, currPlayback, getUsersCurrentPlayback } =
     useContext(UserContext);
   useEffect(() => {
