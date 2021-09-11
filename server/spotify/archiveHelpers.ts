@@ -16,7 +16,11 @@ const archiveHistory = async (data: any, user_id: string, access_token: string) 
       return getMultipleTrackData(tracks, access_token);
     })
     .then((tracks) => {
-      updateHistoryTrack();
+      return Promise.all(tracks.map((track: any) => {
+        return updateHistoryTrack(track, user_id)
+      }))
+    })
+    .then((tracks) => {
       createHistoryArtist(tracks, user_id);
       createHistoryGenre(tracks, user_id);
     });
@@ -81,7 +85,6 @@ const getMultipleTrackData = async (tracks: any, access_token: string) => {
         track.features.acousticness = audio_features[index].acousticness;
         track.features.instrumentalness = audio_features[index].instrumentalness;
       });
-      console.log("tracks", tracks[0]);
       return tracks;
     });
   }
@@ -133,8 +136,25 @@ const createHistoryTrack = async (trackObj: any, user_id: string) => {
   return;
 }
 
-const updateHistoryTrack = async () => {
-  
+const updateHistoryTrack = async (track: any, user_id: string) => {
+  if(track) {
+    const { name, played_at, features } = track;
+    const { danceability, energy, loudness, acousticness, instrumentalness} = features
+    console.log(features);
+    const historyTrack = await HistoryTrack.findOne({where:{user_id: user_id, played_at: played_at, track_title: name}});
+    if(historyTrack){
+      console.log(typeof danceability);
+      historyTrack.danceability = danceability;
+      historyTrack.energy = energy;
+      historyTrack.loudness = loudness;
+      historyTrack.acousticness = acousticness;
+      historyTrack.instrumentalness = instrumentalness;
+      await historyTrack.save();
+      console.log(historyTrack);
+      return track;
+    }
+    return track;
+  }
 }
 
 const createHistoryArtist = async (tracks: Array<any>, user_id: string) => {

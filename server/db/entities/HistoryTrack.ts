@@ -47,22 +47,22 @@ export default class HistoryTrack extends BaseEntity {
   user!: Promise<User | undefined>;
 
   @Field(() => Number)
-  @Column({nullable: true})
-  danceability: number;
+  @Column({nullable: true, type: 'real'})
+  danceability: string;
 
   @Field(() => Number)
-  @Column({nullable: true})
-  energy: number;
+  @Column({nullable: true, type: 'real'})
+  energy: string;
 
   @Field(() => Number)
-  @Column({nullable: true})
-  loudness: number;
+  @Column({nullable: true, type: 'real'})
+  loudness: string;
 
   @Field(() => Number)
-  @Column({nullable: true})
-  acousticness: number;
+  @Column({nullable: true, type: 'real'})
+  acousticness: string;
 
   @Field(() => Number)
-  @Column({nullable: true})
-  instrumentalness: number;
+  @Column({nullable: true, type: 'real'})
+  instrumentalness: string;
 }
