@@ -21,9 +21,6 @@ const styles = {
       borderColor: mode("gray.200", "whiteAlpha.300")(props),
       wordWrap: "break-word",
     },
-    // ":root":{
-    //   fontSize: "3xl"
-    // },
     a: {
       color: mode("teal.300", "teal.500")(props),
     },
@@ -34,13 +31,13 @@ const styles = {
       fontSize: "2xl",
     },
     p: {
-      fontSize: "xs",
+      fontSize: "xl",
     },
     div: {
       fontSize: "xl",
     },
     VStack: {
-      fontSize: "xs",
+      fontSize: "xl",
     },
     Text: {
       fontSize: "xl",
@@ -81,26 +78,6 @@ const fonts: any = {
     },
   },
 };
-
-// const overrides = extendTheme({
-//   global: (props: any) => ({
-//     Link: {
-//       fontSize: "3xl",
-//     },
-//     p: {
-//       fontSize: "md",
-//     },
-//     div: {
-//       fontSize: "2xl",
-//     },
-//     VStack: {
-//       fontSize: "md",
-//     },
-//     Text: {
-//       fontSize: "2xl",
-//     },
-//   }),
-// });
 
 const theme = extendTheme({ config, styles, colors, components, fonts });
 export default theme;

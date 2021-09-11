@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import {
   Button,
@@ -35,13 +35,25 @@ const SendTrack = (props: any) => {
   const bg = useColorModeValue('brand.50', 'brand.900');
   const { selectedFriend, userObj } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [recommendTrack, {error}] = useMutation(RECOMMEND_TRACK);
+  const [recommendTrack, {error, data}] = useMutation(RECOMMEND_TRACK);
   const { socket } = useContext(SocketContext);
 if(error){
   console.log(error);
 }
+
+useEffect(() =>{
+  if(data){
+    const temp = {
+      userId: userObj.user_name,
+      friendId: selectedFriend[0],
+      action: 'New Track!',
+      message: `${userObj.user_name} sent you a track!`
+    };
+    trackNotif(temp);
+  }
+}, [JSON.stringify(data)]);
   const trackNotif = (data: any) => {
-    socket.emit("recommendTrack", data);
+    socket.emit("notification", data);
   };
   return (
     <Popover
@@ -90,11 +102,7 @@ if(error){
                     },
                   },
                 });
-                const temp = {
-                  userId: userObj.user_id,
-                  friendId: selectedFriend[0],
-                };
-                trackNotif(temp);
+
                 onClose();
               }}
             >

@@ -1,6 +1,7 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
 import { getConnection } from "typeorm";
 import { CreateFriendInput, ConfirmFriendInput, UpdateFriendshipInput } from '../inputs'
+import { DenyFriendInput } from "../inputs/DenyFriendInput";
 import Friend from "../../db/entities/Friend";
 import User from '../../db/entities/User';
 @Resolver()
@@ -57,6 +58,17 @@ export class FriendResolver {
         return newFriend;
     }
     return "Missing entities";
+  }
+
+  @Mutation(() => Friend)
+  async DenyFriend(@Arg("data") data: DenyFriendInput): Promise<any | string> {
+    const { user_id, friend_id } = data;
+      await getConnection()
+      .createQueryBuilder()
+      .delete()
+      .from(Friend)
+      .where('user_id = :user_id AND friend_id = :friend_id', {user_id: friend_id, friend_id: user_id})
+      .execute();
   }
 
   @Mutation(() => Boolean)

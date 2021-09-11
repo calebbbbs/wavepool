@@ -70,28 +70,28 @@ const TrackComp = (props: any) => {
         </Center>
         <Center>
           <Stack padding={2} borderRadius='15px' m={2} mr={4}>
-            <Flex alignItems='center' minW='200px'>
-              <chakra.div mr={2}>
+            <Flex alignItems='center' >
+              {/* <chakra.div mr={2}> */}
                 <BiHeadphone />
-              </chakra.div>
-              <Text fontSize='md'>{track_title}</Text>
+              {/* </chakra.div> */}
+              <Text >{track_title}</Text>
             </Flex>
             <chakra.div>
-              <Flex alignItems='center' minW='200px'>
-                <chakra.div mr={2}>
+              <Flex alignItems='center' >
+                {/* <chakra.div mr={2}> */}
                   <BsPerson />
-                </chakra.div>
-                <chakra.div maxW={'150px'}>
+                {/* </chakra.div> */}
+                <chakra.div >
                 {artists.map((artist: any, i: number) => {
                   if (i === artists.length - 1) {
                     return (
-                      <chakra.p key={i} fontSize='md'>
+                      <chakra.p key={i} >
                         {artist}
                       </chakra.p>
                     );
                   }
                   return (
-                    <Text key={i} fontSize='md'>
+                    <Text key={i} >
                       {artist},{'  '}
                     </Text>
                   );
@@ -99,11 +99,11 @@ const TrackComp = (props: any) => {
                 </chakra.div>
               </Flex>
             </chakra.div>
-            <Flex alignItems='center' minW='200px'>
-              <chakra.div mr={2}>
+            <Flex alignItems='center' >
+              {/* <chakra.div mr={2}> */}
                 <BiAlbum />
-              </chakra.div>
-              <Text fontSize='md'>{album_title}</Text>
+              {/* </chakra.div> */}
+              <Text >{album_title}</Text>
             </Flex>
             <hr></hr>
           </Stack>
