@@ -87,7 +87,7 @@ const FCListItem = (props: any) => {
           />
         </AccordionPanel>
       </AccordionItem>
-      <Flex  flexDirection={{base: 'column', md: 'row'}}>
+      <Flex  flexDirection={{base: 'row', md: 'row'}}>
       <StatsModal friendScore={score} />
       <Tooltip label={`Select ${props.friendName}`}>
         <Button
