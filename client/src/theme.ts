@@ -45,30 +45,21 @@ const styles = {
   }),
 };
 
-const components = {
-  Tooltip: {
-    baseStyle: {
-      color: mode("gray.800", "whiteAlpha.900"),
-      bg: mode("brand.200", "brand.900"),
-      colorScheme: "brand",
-    },
-  },
-};
 
-const colors = {
-  brand: {
-    50: "#EFFBF1",
-    100: "#CCE0D1",
-    200: "#A6C9AE",
-    300: "#4FCF62",
-    400: "#30B043",
-    500: "#2F8122",
-    600: "#758173",
-    700: "#4E564D",
-    800: "#31493B",
-    900: "#020402",
-  },
-};
+// const colors = {
+//   brand: {
+//     50: "#EFFBF1",
+//     100: "#CCE0D1",
+//     200: "#A6C9AE",
+//     300: "#4FCF62",
+//     400: "#30B043",
+//     500: "#2F8122",
+//     600: "#758173",
+//     700: "#4E564D",
+//     800: "#31493B",
+//     900: "#020402",
+//   },
+// };
 
 const fonts: any = {
   textStyles: {
@@ -79,5 +70,15 @@ const fonts: any = {
   },
 };
 
-const theme = extendTheme({ config, styles, colors, components, fonts });
+const components = {
+  Tooltip: {
+    baseStyle: {
+      color: mode("gray.800", "whiteAlpha.900"),
+      bg: mode("brand.200", "brand.900"),
+      colorScheme: "brand",
+    },
+  },
+};
+
+const theme = extendTheme({ config, styles, components, fonts });
 export default theme;

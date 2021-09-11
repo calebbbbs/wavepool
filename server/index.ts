@@ -81,7 +81,11 @@ async function startServer() {
         user.user_email = profile._json.email;
         user.access_token = accessToken;
         user.refresh_token = refreshToken;
-        //user.photo = profile.photos[0].value || null;
+        if(profile._json.images && profile._json.images[0] && profile._json.images[0].url){
+        user.photo = profile._json.images[0].url
+        } else {
+          user.photo = 'no photo'
+        }
         await user.save()
         process.nextTick(() => {
           done(null, user);

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 // import { BsMusicNoteBeamed } from 'react-icons/bs'
 import { UserContext } from "../../../contexts/UserContext";
+import Marquee from "react-fast-marquee";
 import {
-  chakra,
-  VStack,
+  HStack,
   Image,
   Text,
   Stack,
@@ -17,7 +17,6 @@ import {
   DrawerCloseButton,
   useDisclosure,
   useColorModeValue,
-  Tooltip,
 } from "@chakra-ui/react";
 
 import { BsPerson } from "react-icons/bs";
@@ -39,25 +38,36 @@ export const AudioPlayerMobile = () => {
     return () => clearInterval(interval);
   }, []);
 
+  let str = ''
+  currPlayback.item.artists.map(
+      (artist: any, i: number) => {
+        if (i === currPlayback.item.artists.length - 1) {
+          return (
+           str += artist.name
+          );
+        }
+        return (
+          str += `${artist.name}, `
+        );
+      }
+    );
+
   return (
     <>
-      <Tooltip label="Spotify Controls">
         <Button
-          display={{ base: "inline-flex", md: "none" }}
-          m={4}
+          display={{ base:"inline-flex", md: "none" }}
           variant="ghost"
           onClick={onOpen}
         >
-          <BsMusicNoteBeamed />
+          <BsMusicNoteBeamed/>Audio Controls
         </Button>
-      </Tooltip>
       <Drawer size="xs" isOpen={isOpen} placement="bottom" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent bg={bg}>
           <DrawerCloseButton />
           <DrawerBody>
             <Center>
-              <VStack
+              <HStack
                 alignContent="center"
                 alignItems="center"
                 my="auto"
@@ -79,20 +89,10 @@ export const AudioPlayerMobile = () => {
                   </Flex>
                   <Flex alignItems="center">
                       <BsPerson/>
-                    <chakra.div >
-                      {currPlayback.item.artists.map(
-                        (artist: any, i: number) => {
-                          if (i === currPlayback.item.artists.length - 1) {
-                            return (
-                              <chakra.span key={i}>{artist.name}</chakra.span>
-                            );
-                          }
-                          return (
-                            <chakra.span key={i}>{artist.name}, </chakra.span>
-                          );
-                        }
-                      )}
-                    </chakra.div>
+                      <Marquee
+                      gradient={false} pauseOnHover={true} pauseOnClick={true}>
+                      {str}
+                    </Marquee>
                   </Flex>
                   <Flex alignItems="center">
                       <BiAlbum/>
@@ -102,7 +102,7 @@ export const AudioPlayerMobile = () => {
                   </Flex>
                 </Stack>
                 <TransportControls />
-              </VStack>
+              </HStack>
             </Center>
           </DrawerBody>
         </DrawerContent>

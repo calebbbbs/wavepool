@@ -32,6 +32,10 @@ export default class User extends BaseEntity {
   @OneToMany(() => Friend, (friend: Friend) => friend.user)
   friends!: Promise<Friend[]>;
 
+  @Field(() => String)
+  @Column({nullable: true})
+  photo?: string;
+
   @Field(() => [RecommendedTrack], {nullable: true})
   @OneToMany(() => RecommendedTrack, (recommendedTrack: RecommendedTrack) => recommendedTrack.user)
   recommendedTracks!: Promise<RecommendedTrack[]>;

@@ -10,9 +10,8 @@ import {
   Input,
   Button,
   ModalCloseButton,
-  IconButton,
+  useToast,
   useColorModeValue,
-  Tooltip,
 } from '@chakra-ui/react';
 import { useMutation, gql } from '@apollo/client';
 import { AddIcon } from '@chakra-ui/icons';
@@ -28,7 +27,8 @@ const CREATE_FRIEND = gql`
 `;
 
 const AddFriend = () => {
-  const [createFriend, { data }] = useMutation(CREATE_FRIEND);
+  const toast = useToast()
+  const [createFriend, { data, error }] = useMutation(CREATE_FRIEND);
   const { userObj } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [friendInput, setFriendInput] = useState('');
@@ -38,7 +38,15 @@ const AddFriend = () => {
     socket.emit('notification', data);
   }
   useEffect(() =>{
-    if(data){
+ 
+    if(data && !error){
+      if(data.createFriend.user_id === userObj.user_id){
+        toast({
+          title: `This Person is Already Your Friend`,
+          status: "error",
+          isClosable: true,
+        })
+      } else {
       const temp = {
         userId: userObj.user_name,
         friendId: data.createFriend.user_id,
@@ -47,18 +55,27 @@ const AddFriend = () => {
       };
       friendNotif(temp);
     }
+  }
   }, [JSON.stringify(data)]);
+
+  useEffect(() => {
+    if(error){
+      toast({
+        title: `User Not Found`,
+        status: "error",
+        isClosable: true,
+      })
+    }
+  }, [error])
 
   return (
     <>
-      <Tooltip label='Add A Friend'>
-        <IconButton
+        <Button
           variant="ghost"
           aria-label="friend search"
           onClick={onOpen}
-          icon={<AddIcon />}
-        ></IconButton>
-      </Tooltip>
+        ><AddIcon />Add New Friend </Button>
+
 
       <Modal
         scrollBehavior='inside'

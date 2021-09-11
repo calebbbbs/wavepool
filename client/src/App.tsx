@@ -11,7 +11,7 @@ const App = (props: any): ReactElement => {
 return (
     <Switch>
       <Route exact path='/'>
-        {isLoggedIn && userObj ? <Main toggleFont={props.toggleFont}/> : <Welcome/>}
+        {isLoggedIn && userObj ? <Main cusTheme={props.cusTheme} toggleFont={props.toggleFont} changeColorTheme={props.changeColorTheme}/> : <Welcome/>}
       </Route>
     </Switch>
 );
