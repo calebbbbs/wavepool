@@ -23,6 +23,10 @@ export default class Friend extends BaseEntity {
   @Column()
   friend_id: string;
 
+  // @Field(() => String)
+  // @Column({nullable: true})
+  // friend_photo?: string;
+
   @Field(() => String)
   @Column()
   friend_name: string;

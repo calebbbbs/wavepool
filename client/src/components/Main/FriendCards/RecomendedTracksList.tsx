@@ -5,7 +5,12 @@ import {
   Center,
   useColorModeValue,
   Tooltip,
+  Flex,
+  Spacer
 } from "@chakra-ui/react";
+
+
+
 import { CloseIcon } from "@chakra-ui/icons";
 import TrackComp from "../../Utils/Track/TrackComp";
 import { RiThumbDownLine, RiThumbUpLine, RiThumbUpFill } from "react-icons/ri";
@@ -36,7 +41,7 @@ const TRACK_RESPONDED = gql`
 `;
 
 const RecommendedTracksList = (props: any) => {
-  const { refetch } = useContext(UserContext);
+  const { refetch, userObj } = useContext(UserContext);
   const [removeRec] = useMutation(REMOVE_REC);
   const [updateFriendship, {data}] = useMutation(UPDATE_FRIENDSHIP);
   const [trackResponded, trackRespondedReturn] = useMutation(TRACK_RESPONDED);
@@ -64,6 +69,7 @@ useEffect(() =>{
   const list = props.recommendedTracks.map((e: any, i: number) => {
     return (
       <chakra.div bg={bg} key={i}>
+        <Flex>
         <Button
           variant="ghost"
           onClick={() => {
@@ -80,6 +86,7 @@ useEffect(() =>{
         >
           <CloseIcon />
         </Button>
+        <Spacer/>
         <Center>
           <Tooltip placement="left" label="Like">
             {e.been_liked ? (
@@ -114,11 +121,8 @@ useEffect(() =>{
                     friendId: e.user_id,
                     status: 'info',
                     action: "👍 Liked Track!",
-                    message: `${e.friend_name} liked ${e.track_title} by ${e.artists[0]}`,
+                    message: `${userObj.user_name} liked ${e.track_title} by ${e.artists[0]}`,
                   })
-                  setTimeout(() => {
-                    refetch();
-                  }, 1500);
                 }
               }
               >
@@ -152,23 +156,23 @@ useEffect(() =>{
                   friendId: e.user_id,
                   status: 'warning',
                   action: "👎 Disliked Track!",
-                  message: `${e.friend_name} disliked ${e.track_title} by ${e.artists[0]}`,
-                })
-                setTimeout(() => {
-                  refetch();
-                }, 1500);
+                  message: `${userObj.user_name} disliked ${e.track_title} by ${e.artists[0]}`,
+                });
               }}
             >
               <RiThumbDownLine />
             </Button>
           </Tooltip>
         </Center>
+        </Flex>
         <TrackComp track={e}/>
       </chakra.div>
     );
   });
 
-  return <div>{list}</div>;
+
+  return <div>
+    {list}</div>;
 };
 
 export default RecommendedTracksList;

@@ -6,6 +6,7 @@ query Query($getUserUserId: String!) {
     user_id
     user_name
     user_email
+    photo
     friends {
       user_id
       id
