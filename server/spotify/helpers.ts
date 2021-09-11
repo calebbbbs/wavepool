@@ -1,17 +1,13 @@
 import axios, { AxiosError } from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
-<<<<<<< HEAD
 import { archiveHistory } from "./archiveHelpers";
 
 
-=======
-const { HOST } = process.env;
->>>>>>> 2cef1e52057b8046e97becdd49b09fe9909f6e11
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   redirectUri:
-    `${HOST}/auth/spotify/callback`,
+    `${process.env.HOST}/auth/spotify/callback`,
 });
 
 const getRecentlyPlayed = async (access_token: string, user_id: string) => {
