@@ -46,7 +46,6 @@ const archiveHistory = async (data: any, user_id: string) => {
 const createHistoryTrack = async (trackObj: any, user_id: string) => {
   const { played_at, track } = trackObj;
   const { name, uri, album } = track;
-  //console.log(track);
 
   const historyTrack = await HistoryTrack.findOne({where:{user_id: user_id, played_at: played_at, track_title: name}});
   if(historyTrack === undefined) {
@@ -81,10 +80,12 @@ const createHistoryArtist = async (tracks: Array<any>, user_id: string) => {
     if(track){
       if(artistObj.hasOwnProperty(track.artists[0].name)){
         artistObj[track.artists[0].name].count += 1;
+        artistObj[track.artists[0].name].time_listened += track.duration_ms;
       } else {
         const tempArtist = {
           artist_name: track.artists[0].name,
           artist_uri: track.artists[0].uri,
+          time_listened: track.duration_ms,
           count: 1
         }
         artistObj[track.artists[0].name] = tempArtist;
@@ -106,17 +107,14 @@ const createHistoryArtist = async (tracks: Array<any>, user_id: string) => {
 }
 
 const createArtist = async(artistObj: any, user_id: string) => {
-  const { artist_uri, artist_name, count } = artistObj;
-  console.log(artistObj);
-  console.log(artist_uri);
-
+  const { artist_uri, artist_name, count, time_listened } = artistObj;
   let historyArtist = await HistoryArtist.findOne({where:{user_id: user_id, artist_name: artist_name}});
-  console.log(historyArtist);
   if(historyArtist) {
     await getConnection()
       .createQueryBuilder()
       .update(HistoryArtist)
       .set({count: () => `count + ${count}`})
+      .set({count: () => `time_listened + ${time_listened}`})
       .where("user_id = :user_id AND artist_name = :artist_name", {user_id: user_id, artist_name: artist_name})
       .execute();
   } else {
@@ -124,6 +122,7 @@ const createArtist = async(artistObj: any, user_id: string) => {
     newArtist.artist_name = artist_name;
     newArtist.artist_uri = artist_uri;
     newArtist.user_id = user_id;
+    newArtist.time_listened = time_listened
     newArtist.count = count;
     await newArtist.save();
     return await getConnection()

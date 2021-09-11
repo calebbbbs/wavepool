@@ -26,6 +26,10 @@ export default class HistoryArtist extends BaseEntity {
   @Field(() => Number)
   count: number;
 
+  @Column()
+  @Field(() => Number)
+  time_listened: number;
+
   @Field(() => User)
   @ManyToOne(() => User, (user: User) => user.historyArtists, {cascade:true})
   user!: Promise<User | undefined>;
