@@ -30,6 +30,10 @@ export const AudioPlayer = (props: any) => {
     return () => clearInterval(interval);
   }, []);
 
+  if(currPlayback.item === null){
+    return (<div></div>)
+  }
+
 
   const {data, error} = usePalette(currPlayback.item.album.images[2].url);
   let str = ''

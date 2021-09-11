@@ -38,6 +38,10 @@ export const AudioPlayerMobile = () => {
     return () => clearInterval(interval);
   }, []);
 
+  if(currPlayback.item === null){
+    return (<div></div>)
+  }
+
   let str = ''
   currPlayback.item.artists.map(
       (artist: any, i: number) => {
