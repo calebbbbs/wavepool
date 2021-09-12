@@ -16,7 +16,7 @@ import TrackComp from "../../Utils/Track/TrackComp";
 import { RiThumbDownLine, RiThumbUpLine, RiThumbUpFill } from "react-icons/ri";
 import { UserContext } from "../../../contexts/UserContext";
 import { gql, useMutation } from "@apollo/client";
-import SocketContext from '../../Main/SocketContext';
+import SocketContext from '../../../contexts/SocketContext'
 
 
 const REMOVE_REC = gql`
@@ -81,7 +81,7 @@ useEffect(() =>{
                 },
               },
             });
-
+            setTimeout(() => refetch(), 500)
           }}
         >
           <CloseIcon />

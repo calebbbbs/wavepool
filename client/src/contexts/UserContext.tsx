@@ -19,7 +19,6 @@ const UserContextProvider: React.FC = ({ children }) => {
 
   if (error) console.warn(error);
   const getRecentlyPlayed = () => {
-
     axios.get(`/spotify/getRecentlyPlayed/${userObj.user_id}`).then(
       function ({data}) {
         const res: any[] = [];
@@ -95,8 +94,6 @@ const UserContextProvider: React.FC = ({ children }) => {
       setUserObj(newUserObj);
     }
   }, [data]);
-
-
 
   const userProps = {
     userObj,
