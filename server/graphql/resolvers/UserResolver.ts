@@ -16,13 +16,15 @@ export class UserResolver {
 
   @Mutation(() => User)
   async createUser(@Arg("data") data: CreateUserInput) {
+    const { user_id, user_name, email, access_token, refresh_token} = data;
+
     const user = new User();
-    user.user_id = data.user_id;
-    user.user_name = data.user_name;
-    user.user_email = data.email;
-    user.access_token = data.access_token;
-    user.refresh_token = data.refresh_token;
-    await user.save()
+    user.user_id = user_id;
+    user.user_name = user_name;
+    user.user_email = email;
+    user.access_token = access_token;
+    user.refresh_token = refresh_token;
+    await user.save();
     return user;
   }
 }
