@@ -12,7 +12,7 @@
 
 > A spotify companion & a powerful utility for sharing songs through spotify with your friends
 
-# <kbd>Dependencies<kbd>
+# <kbd>Dependencies
 
 ## -Axios
 
