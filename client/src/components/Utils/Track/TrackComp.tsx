@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
-import axios from 'axios';
-import { UserContext } from '../../../contexts/UserContext';
-import SendTrack from './buttons/SendTrack';
+import React, { useContext, useState } from "react";
+import axios from "axios";
+import { UserContext } from "../../../contexts/UserContext";
+import SendTrack from "./buttons/SendTrack";
 import {
   chakra,
   Center,
@@ -16,8 +16,8 @@ import {
   Tooltip,
   Skeleton,
   StackDivider,
-} from '@chakra-ui/react';
-import Marquee from 'react-fast-marquee'
+} from "@chakra-ui/react";
+import Marquee from "react-fast-marquee";
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
 import { MdQueueMusic } from "react-icons/md";
@@ -25,43 +25,22 @@ import AddToPlaylist from "./buttons/AddToPlaylist";
 import PlayNow from "./buttons/PlayNow";
 
 const TrackComp = (props: any) => {
-
   const [imgLoaded, setImgLoaded] = useState(false);
   const { userObj, userPlaylists } = useContext(UserContext);
-  const {
-    album_art,
-    track_title,
-    artists,
-    album_title,
-    track_uri,
-    user_id
-  } = props.track;
+  const { album_art, track_title, artists, album_title, track_uri, user_id } =
+    props.track;
 
-  // const list = artists.map((artist: any, i: number) => {
-  //   if (i === artists.length - 1) {
-  //     return (
-  //       <Text key={i}>
-  //         {artist}
-  //       </Text>
-  //     );
-  //   }
-  //   return (
-  //     <Text key={i}>
-  //       {artist},{'  '}
-  //     </Text >
-  //   );
-  // })
+  const bg = useColorModeValue("brand.50", "brand.900");
+  const dividerColor = useColorModeValue("brand.900", "brand.50");
 
-  const bg = useColorModeValue('brand.50', 'brand.900');
-  const dividerColor = useColorModeValue('brand.900', 'brand.50');
-  let str = ''
+  let str = "";
   artists.map((artist: any, i: number) => {
     if (i === artists.length - 1) {
-      return (str += `  ${artist}  `)
+      return (str += `  ${artist}  `);
     }
-    return (str += `  ${artist},  `)
-  })
-  console.log(str);
+    return (str += `  ${artist},  `);
+  });
+
   const addToQueue = () => {
     axios
       .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
@@ -70,7 +49,7 @@ const TrackComp = (props: any) => {
   };
 
   return (
-    <chakra.div bg={bg} h='auto' borderRadius='2vh' m={2}>
+    <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
       <Flex mx={5} p={4}>
         <Center>
           <Box>
@@ -78,16 +57,16 @@ const TrackComp = (props: any) => {
               <Image
                 aspect-ratio={1}
                 m={2}
-                minW='120px'
-                minH='120px'
-                boxSize='120px'
-                float='left'
-                fit='contain'
+                minW="120px"
+                minH="120px"
+                boxSize="120px"
+                float="left"
+                fit="contain"
                 onLoad={() => {
                   setImgLoaded(true);
                 }}
                 src={album_art}
-                alt='Album Cover'
+                alt="Album Cover"
               />
             </Skeleton>
           </Box>
@@ -95,44 +74,55 @@ const TrackComp = (props: any) => {
         <Center>
           <Stack
             divider={<StackDivider borderColor={dividerColor} />}
-            padding={2} borderRadius='15px' m={2} mr={4}>
-            <Flex alignItems='center' >
-              {/* <chakra.div mr={2}> */}
+            padding={2}
+            borderRadius="15px"
+            m={2}
+            mr={4}
+          >
+            <Flex alignItems="center">
               <BiHeadphone />
-              {/* </chakra.div> */}
-              <Text >{track_title}</Text>
+              <Text>{track_title}</Text>
             </Flex>
             <chakra.div>
-              <Flex alignItems='center' >
-                {/* <chakra.div mr={2}> */}
+              <Flex alignItems="center">
                 <BsPerson />
-                {/* </chakra.div> */}
-                <chakra.div >
-                <Marquee
-                      gradient={false} pauseOnHover={true} pauseOnClick={true}>{str}</Marquee>
+                <chakra.div>
+                  <Marquee
+                    gradient={false}
+                    pauseOnHover={true}
+                    pauseOnClick={true}
+                  >
+                    {str}
+                  </Marquee>
                 </chakra.div>
               </Flex>
             </chakra.div>
-            <Flex alignItems='center' >
-              {/* <chakra.div mr={2}> */}
+            <Flex alignItems="center">
               <BiAlbum />
-              {/* </chakra.div> */}
-              <Text >{album_title}</Text>
+              <Text>{album_title}</Text>
             </Flex>
           </Stack>
         </Center>
         <Spacer />
         <Stack>
-          <Tooltip placement='left' label='Add to Queue'>
-            <Button variant='ghost' onClick={addToQueue}>
+          <Tooltip placement="left" label="Add to Queue">
+            <Button variant="ghost" onClick={addToQueue}>
               <MdQueueMusic />
             </Button>
           </Tooltip>
           <SendTrack track={props.track} />
           {userPlaylists && (
-            <AddToPlaylist user_id={user_id} playlists={userPlaylists} trackUri={track_uri} />
+            <AddToPlaylist
+              user_id={user_id}
+              playlists={userPlaylists}
+              trackUri={track_uri}
+            />
           )}
-          <PlayNow user_id={userObj.user_id} friend_id={user_id} track_uri={track_uri} />
+          <PlayNow
+            user_id={userObj.user_id}
+            friend_id={user_id}
+            track_uri={track_uri}
+          />
         </Stack>
       </Flex>
     </chakra.div>
