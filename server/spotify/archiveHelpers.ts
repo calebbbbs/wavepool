@@ -4,25 +4,26 @@ import HistoryArtist from "../db/entities/HistoryArtist";
 import HistoryTrack from "../db/entities/HistoryTrack";
 import HistoryGenre from "../db/entities/HistoryGenre";
 import User from "../db/entities/User";
+import { Response, TrackObjectSimplified, PlayHistoryObject } from './spotifyInterfaces'
 
-const archiveHistory = async (data: any, user_id: string, access_token: string) => {
+const archiveHistory = async (data: Response<any>, user_id: string, access_token: string) => {
   try {
     const { items } =  data.body;
-    return Promise.all(items.map((trackObj: any) => {
+    return Promise.all(items.map((trackObj: PlayHistoryObject) => {
         return createHistoryTrack(trackObj, user_id)
-      }
-    )).then((tracks) => {
+    }
+    )).then((tracks: Array<any>) => {
      return getMultipleArtistData(tracks, access_token);
-    }).then((tracks) => {
+    }).then((tracks: Array<any>) => {
       return getMultipleTrackData(tracks, access_token);
-    }).then((tracks) => {
+    }).then((tracks: Array<any>) => {
       return Promise.all(tracks.map((track: any) => {
         return updateHistoryTrack(track, user_id)
       }))
-    }).then((tracks) => {
+    }).then((tracks: Array<any>) => {
       return createHistoryArtist(tracks, user_id);
       
-    }).then((tracks) => {
+    }).then((tracks: Array<any>) => {
       return createHistoryGenre(tracks, user_id);
     });
   } catch (err) {
@@ -31,16 +32,16 @@ const archiveHistory = async (data: any, user_id: string, access_token: string) 
   return;
 }
 
-const getMultipleArtistData = async (tracks: any, access_token: string) => {
+const getMultipleArtistData = async (tracks: Array<TrackObjectSimplified>, access_token: string) => {
   const artistIds: Array<string> = [];
-  tracks.forEach((track: any) => {
+  tracks.forEach((track: TrackObjectSimplified) => {
     if(track){
       artistIds.push(track.artists[0].id);
     }
   });
 
   if(artistIds.length > 0) {
-    const urlIds = artistIds.join(',');
+    const urlIds: string = artistIds.join(',');
     return await axios({
       url: `https://api.spotify.com/v1/artists?ids=${urlIds}`,
       method: "get",
@@ -49,8 +50,10 @@ const getMultipleArtistData = async (tracks: any, access_token: string) => {
       }
     }).then(({data}) => {
       tracks.forEach((track: any, index: number) => {
-        track.artists[0].genres = data.artists[index].genres;
-        track.artists[0].image = data.artists[index].images[1];
+        if(track) {
+          track.artists[0].genres = data.artists[index].genres;
+          track.artists[0].image = data.artists[index].images[1];
+        }
       });
       return tracks;
     });
@@ -58,7 +61,7 @@ const getMultipleArtistData = async (tracks: any, access_token: string) => {
   return tracks;
 };
 
-const getMultipleTrackData = async (tracks: any, access_token: string) => {
+const getMultipleTrackData = async (tracks: Array<TrackObjectSimplified>, access_token: string) => {
   const trackIds: Array<string> = [];
   tracks.forEach((track: any) => {
     if(track){
@@ -67,7 +70,7 @@ const getMultipleTrackData = async (tracks: any, access_token: string) => {
   });
 
   if(trackIds.length > 0) {
-    const urlIds = trackIds.join(',');
+    const urlIds: string = trackIds.join(',');
     return await axios({
       url: `https://api.spotify.com/v1/audio-features?ids=${urlIds}`,
       method: "get",
@@ -77,12 +80,14 @@ const getMultipleTrackData = async (tracks: any, access_token: string) => {
     }).then(({data}) => {
       const { audio_features } = data;
       tracks.forEach((track: any, index: number) => {
-        track.features = {};
-        track.features.danceability = audio_features[index].danceability;
-        track.features.energy = audio_features[index].energy;
-        track.features.loudness = audio_features[index].loudness;
-        track.features.acousticness = audio_features[index].acousticness;
-        track.features.instrumentalness = audio_features[index].instrumentalness;
+        if(track) {
+          track.features = {};
+          track.features.danceability = audio_features[index].danceability;
+          track.features.energy = audio_features[index].energy;
+          track.features.loudness = audio_features[index].loudness;
+          track.features.acousticness = audio_features[index].acousticness;
+          track.features.instrumentalness = audio_features[index].instrumentalness;
+        }
       });
       return tracks;
     });
@@ -102,19 +107,19 @@ const getArtistData = async (artist_uri: string, access_token: string) => {
   }).catch(error => console.log(error));
 };
 
-const createHistoryTrack = async (trackObj: any, user_id: string) => {
+const createHistoryTrack = async (trackObj: PlayHistoryObject, user_id: string) => {
   const { played_at, track } = trackObj;
   const { name, uri, album } = track;
 
   const historyTrack = await HistoryTrack.findOne({where:{user_id: user_id, played_at: played_at, track_title: name}});
   if(historyTrack === undefined) {
-    const artists = track.album.artists.map((artist: any) => {
+    const artists: Array<string> = track.album.artists.map((artist: any) => {
       return artist.name;
     });
 
     track.played_at = played_at;
 
-    const newTrack = new HistoryTrack();
+    const newTrack: HistoryTrack | undefined = new HistoryTrack();
     newTrack.user_id = user_id;
     newTrack.track_title = name;
     newTrack.played_at = played_at;
@@ -139,7 +144,7 @@ const updateHistoryTrack = async (track: any, user_id: string) => {
   if(track) {
     const { name, played_at, features } = track;
     const { danceability, energy, loudness, acousticness, instrumentalness} = features
-    const historyTrack = await HistoryTrack.findOne({where:{user_id: user_id, played_at: played_at, track_title: name}});
+    const historyTrack: HistoryTrack | undefined = await HistoryTrack.findOne({where:{user_id: user_id, played_at: played_at, track_title: name}});
     if(historyTrack){
       historyTrack.danceability = danceability;
       historyTrack.energy = energy;
@@ -189,7 +194,7 @@ const createHistoryArtist = async (tracks: Array<any>, user_id: string) => {
 
 const createArtist = async(artistObj: any, user_id: string) => {
   const { artist_uri, artist_name, count, time_listened, is_explicit, image_url } = artistObj;
-  let historyArtist = await HistoryArtist.findOne({where:{user_id: user_id, artist_name: artist_name}});
+  let historyArtist: HistoryArtist | undefined = await HistoryArtist.findOne({where:{user_id: user_id, artist_name: artist_name}});
   if(historyArtist) {
     console.log(user_id);
     console.log(artist_name);
@@ -203,7 +208,7 @@ const createArtist = async(artistObj: any, user_id: string) => {
       .where("user_id = :user_id AND artist_name = :artist_name", {user_id: user_id, artist_name: artist_name})
       .execute();
   } else {
-    let newArtist = new HistoryArtist();
+    let newArtist: HistoryArtist = new HistoryArtist();
     newArtist.artist_name = artist_name;
     newArtist.artist_uri = artist_uri;
     newArtist.user_id = user_id;
@@ -221,13 +226,13 @@ const createArtist = async(artistObj: any, user_id: string) => {
 }
 
 const createHistoryGenre = async (tracks: Array<any>, user_id: string) => {
-  let genreArray: Array<any> = [];
+  let genreArray: Array<Array<string>> = [];
   tracks.forEach((track) => {
     if(track){
       genreArray.push(track.artists[0].genres)
     }
   });
-  const flatGenres = genreArray.flat();
+  const flatGenres: Array<string> = genreArray.flat();
 
   let genreObj: any = {};
   flatGenres.forEach((genre) => {
@@ -256,7 +261,7 @@ const createHistoryGenre = async (tracks: Array<any>, user_id: string) => {
 
 const createGenre = async(genreObj: any, user_id: string) => {
   const { genre, count } = genreObj;
-  let historyGenre = await HistoryGenre.findOne({where:{user_id: user_id, genre: genre}});
+  let historyGenre: HistoryGenre | undefined = await HistoryGenre.findOne({where:{user_id: user_id, genre: genre}});
   if(historyGenre) {
     await getConnection()
       .createQueryBuilder()
@@ -265,7 +270,7 @@ const createGenre = async(genreObj: any, user_id: string) => {
       .where("user_id = :user_id AND genre = :genre", {user_id: user_id, genre: genre})
       .execute();
   } else {
-    let newGenre = new HistoryGenre();
+    let newGenre: HistoryGenre = new HistoryGenre();
     newGenre.genre = genre;
     newGenre.user_id = user_id;
     newGenre.count = count;
@@ -279,7 +284,7 @@ const createGenre = async(genreObj: any, user_id: string) => {
 }
 
 const getTrackFeature = async (track_uri: string, access_token: string) => {
-  const track_id = track_uri.split(':')[2];
+  const track_id: string = track_uri.split(':')[2];
   return await axios({
     url: `https://api.spotify.com/v1/audio-features/${track_id}`,
     method: "get",

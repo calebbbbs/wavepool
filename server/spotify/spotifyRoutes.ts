@@ -36,7 +36,10 @@ spotifyRouter.get(
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
       return getUsersCurrentPlayback(user.access_token,).then((data: any) => {
-        return res.send(data.data);
+        if(data) {
+          return res.send(data.data);
+        }
+        return res.sendStatus(400);
       });
     } else {
       return res.sendStatus(404);
