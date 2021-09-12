@@ -38,33 +38,28 @@ export const AudioPlayerMobile = () => {
     return () => clearInterval(interval);
   }, []);
 
-  if(currPlayback.item === null){
-    return (<div></div>)
+  if (currPlayback.item === null) {
+    return <div></div>;
   }
 
-  let str = ''
-  currPlayback.item.artists.map(
-      (artist: any, i: number) => {
-        if (i === currPlayback.item.artists.length - 1) {
-          return (
-           str += artist.name
-          );
-        }
-        return (
-          str += `${artist.name}, `
-        );
-      }
-    );
+  let str = "";
+  currPlayback.item.artists.map((artist: any, i: number) => {
+    if (i === currPlayback.item.artists.length - 1) {
+      return (str += artist.name);
+    }
+    return (str += `${artist.name}, `);
+  });
 
   return (
     <>
-        <Button
-          display={{ base:"inline-flex", md: "none" }}
-          variant="ghost"
-          onClick={onOpen}
-        >
-          <BsMusicNoteBeamed/>Audio Controls
-        </Button>
+      <Button
+        display={{ base: "inline-flex", md: "none" }}
+        variant="ghost"
+        onClick={onOpen}
+      >
+        <BsMusicNoteBeamed />
+        Audio Controls
+      </Button>
       <Drawer size="xs" isOpen={isOpen} placement="bottom" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent bg={bg}>
@@ -89,20 +84,21 @@ export const AudioPlayerMobile = () => {
                 <Stack>
                   <Flex alignItems="center">
                     <BiHeadphone />
-                    <Text > {currPlayback.item.name}</Text>
+                    <Text> {currPlayback.item.name}</Text>
                   </Flex>
                   <Flex alignItems="center">
-                      <BsPerson/>
-                      <Marquee
-                      gradient={false} pauseOnHover={true} pauseOnClick={true}>
+                    <BsPerson />
+                    <Marquee
+                      gradient={false}
+                      pauseOnHover={true}
+                      pauseOnClick={true}
+                    >
                       {str}
                     </Marquee>
                   </Flex>
                   <Flex alignItems="center">
-                      <BiAlbum/>
-                    <Text >
-                     {currPlayback.item.album.name}
-                    </Text>
+                    <BiAlbum />
+                    <Text>{currPlayback.item.album.name}</Text>
                   </Flex>
                 </Stack>
                 <TransportControls />

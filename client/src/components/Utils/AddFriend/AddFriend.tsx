@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from "react";
 import {
   Modal,
   useDisclosure,
@@ -12,11 +12,11 @@ import {
   ModalCloseButton,
   useToast,
   useColorModeValue,
-} from '@chakra-ui/react';
-import { useMutation, gql } from '@apollo/client';
-import { AddIcon } from '@chakra-ui/icons';
-import { UserContext } from '../../../contexts/UserContext';
-import SocketContext from '../../Main/SocketContext';
+} from "@chakra-ui/react";
+import { useMutation, gql } from "@apollo/client";
+import { AddIcon } from "@chakra-ui/icons";
+import { UserContext } from "../../../contexts/UserContext";
+import SocketContext from "../../../contexts/SocketContext";
 
 const CREATE_FRIEND = gql`
   mutation Mutation($createFriendData: CreateFriendInput!) {
@@ -27,78 +27,75 @@ const CREATE_FRIEND = gql`
 `;
 
 const AddFriend = () => {
-  const toast = useToast()
+  const toast = useToast();
   const [createFriend, { data, error }] = useMutation(CREATE_FRIEND);
   const { userObj } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [friendInput, setFriendInput] = useState('');
-  const bg = useColorModeValue('brand.100', 'brand.800');
+  const [friendInput, setFriendInput] = useState("");
+  const bg = useColorModeValue("brand.100", "brand.800");
   const { socket } = useContext(SocketContext);
-  const friendNotif = (data: any) =>{
-    socket.emit('notification', data);
-  }
-  useEffect(() =>{
- 
-    if(data && !error){
-      if(data.createFriend.user_id === userObj.user_id){
+  const friendNotif = (data: any) => {
+    socket.emit("notification", data);
+  };
+  useEffect(() => {
+    if (data && !error) {
+      if (data.createFriend.user_id === userObj.user_id) {
         toast({
           title: `This Person is Already Your Friend`,
           status: "error",
           isClosable: true,
-        })
+        });
       } else {
-      const temp = {
-        userId: userObj.user_name,
-        friendId: data.createFriend.user_id,
-        action: 'New Friend Request',
-        message: `${userObj.user_name} sent you a Friend Request!`
-      };
-      friendNotif(temp);
+        const temp = {
+          userId: userObj.user_name,
+          friendId: data.createFriend.user_id,
+          action: "New Friend Request",
+          message: `${userObj.user_name} sent you a Friend Request!`,
+        };
+        friendNotif(temp);
+      }
     }
-  }
   }, [JSON.stringify(data)]);
 
   useEffect(() => {
-    if(error){
+    if (error) {
       toast({
         title: `User Not Found`,
         status: "error",
         isClosable: true,
-      })
+      });
     }
-  }, [error])
+  }, [error]);
 
   return (
     <>
-        <Button
-          variant="ghost"
-          aria-label="friend search"
-          onClick={onOpen}
-        ><AddIcon />Add New Friend </Button>
-
+      <Button variant="ghost" aria-label="friend search" onClick={onOpen}>
+        <AddIcon />
+        Add New Friend{" "}
+      </Button>
 
       <Modal
-        scrollBehavior='inside'
+        scrollBehavior="inside"
         onClose={onClose}
         isOpen={isOpen}
-        motionPreset='slideInBottom'
-        size='3xl'
-        colorScheme='brand'
+        motionPreset="slideInBottom"
+        size="3xl"
+        colorScheme="brand"
       >
         <ModalOverlay />
         <ModalContent bg={bg}>
           <ModalHeader>Add Friend</ModalHeader>
           <ModalBody
             css={{
-              '&::-webkit-scrollbar': {
-                width: '4px',
+              "&::-webkit-scrollbar": {
+                width: "4px",
               },
-              '&::-webkit-scrollbar-track': {
-                width: '6px',
+              "&::-webkit-scrollbar-track": {
+                width: "6px",
               },
-              '&::-webkit-scrollbar-thumb': {
-                background: useColorModeValue('brand.400', 'brand.900'),
-                borderRadius: '24px',
+              "&::-webkit-scrollbar-thumb": {
+                background: useColorModeValue("brand.400", "brand.900"),
+                borderRadius: "24px",
               },
             }}
           >
