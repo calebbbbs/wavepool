@@ -10,6 +10,7 @@ import {
 import { UserContext } from "../../../contexts/UserContext";
 import FCListItem from "./FCListItem";
 // import FriendStat from "../../Nav/FriendStat";
+import FriendScore from "../../Chartjs/FriendScore";
 
 const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
@@ -46,25 +47,30 @@ const RecommendedTracks = () => {
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
         maxW="2xl"
-      >
-        <Box mt={2}
-        >
-          <Link
-            color={useColorModeValue('brand.700', 'white')}
-            fontWeight='700'
-            _hover={{
-              color: useColorModeValue("brand.600", "brand.200"),
-              textDecor: "underline",
-            }}
+      >  
+          <Box mt={2}
           >
-            Recommended
-          </Link>
-          <div>
-            <Accordion minW="300" allowMultiple allowToggle>
-              {list}
-            </Accordion>
-          </div>
-        </Box>
+            
+            <Link
+              color={useColorModeValue('brand.700', 'white')}
+              fontWeight='700'
+              _hover={{
+                color: useColorModeValue("brand.600", "brand.200"),
+                textDecor: "underline",
+              }}
+            >
+              Recommended
+            </Link>
+            <Flex>
+              <FriendScore />
+              <div>
+                <Accordion minW="300" allowMultiple allowToggle>
+                  {list}
+                </Accordion>
+              </div>
+            </Flex>
+          </Box>
+        
       </Box>
     </Flex>
   );

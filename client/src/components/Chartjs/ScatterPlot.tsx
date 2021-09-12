@@ -38,21 +38,13 @@ const options = {
       },
     ],
   },
+  animation: {
+    duration: 0
+  }
 };
 
 const ScatterChart = () => (
   <>
-    <div className='header'>
-      <h1 className='title'>Scatter Chart</h1>
-      <div className='links'>
-        <a
-          className='btn btn-gh'
-          href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Scatter.js'
-        >
-          Github Source
-        </a>
-      </div>
-    </div>
     <Scatter data={data} options={options} />
   </>
 );

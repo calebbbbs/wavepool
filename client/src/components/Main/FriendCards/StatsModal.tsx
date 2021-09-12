@@ -15,16 +15,18 @@ import {
   ModalCloseButton,
   Button,
   Tooltip,
-  Flex,
+  SimpleGrid,
   useDisclosure,
   useColorModeValue,
+  Flex,
+  Container
 } from "@chakra-ui/react";
 
 import { AiOutlineBarChart } from "react-icons/ai";
 
 const StatsModal = (props: any) => {
   const { onOpen, isOpen, onClose } = useDisclosure();
-  const bg = useColorModeValue("brand.200", "brand.800");
+  const bg = useColorModeValue("brand.100", "brand.800");
 
   return (
     <>
@@ -37,16 +39,23 @@ const StatsModal = (props: any) => {
       </Tooltip>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bg={bg}>
+        <ModalContent bg={bg}  minW="900px">
           <ModalHeader>Charts & Stuff</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Flex>
-              <h1>Friend Score: {Math.round(props.friendScore)}</h1>
-              <GroupedBar />
-              <PieChart />
-              <ScatterChart />
-              <Polar />
+              <SimpleGrid columns={1} spacing={50} maxW="1000px">
+                <Container>
+                  <PieChart />
+                  <PieChart />
+                  <PieChart />
+                </Container>
+              </SimpleGrid>
+              <SimpleGrid columns={1} spacing={50} maxW="1000px">
+                <GroupedBar />
+                <ScatterChart />
+                <Polar />
+              </SimpleGrid>
             </Flex>
           </ModalBody>
 

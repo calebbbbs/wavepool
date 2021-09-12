@@ -32,13 +32,13 @@ const options = {
       },
     ],
   },
+  animation: {
+    duration: 0
+  }
 };
 
 const GroupedBar = () => (
   <>
-    <div className='header'>
-      <h1 className='title'>Grouped Bar Chart</h1>
-    </div>
     <Bar data={data} options={options} />
   </>
 );
