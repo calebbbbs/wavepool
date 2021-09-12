@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import { UserContext } from '../../../contexts/UserContext';
 import SendTrack from './buttons/SendTrack';
 import {
@@ -61,12 +61,11 @@ const TrackComp = (props: any) => {
     }
     return (str += `  ${artist},  `)
   })
-  console.log(str);
   const addToQueue = () => {
     axios
       .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
       .then((data) => data)
-      .catch((err) => console.error(err));
+      .catch((error: AxiosError) => console.log('Error addToQueue in TrackComp.tsx', error.response?.data));
   };
 
   return (

@@ -34,11 +34,9 @@ const RecommendedTracks = () => {
   });
 
   return (
-    <Flex 
-    minX="300px"
+    <Flex
     alignItems="center" justifyContent="center">
       <Box
-        minX="300px"
         mx="auto"
         px={8}
         py={4}

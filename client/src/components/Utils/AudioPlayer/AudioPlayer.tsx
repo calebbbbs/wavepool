@@ -47,7 +47,6 @@ currPlayback.item.artists.map(
   );
 useEffect(() => {
 if(data && !error){
-  console.log(data);
   const colors = {
     50: data.lightVibrant,
     100: data.lightMuted,
@@ -78,7 +77,7 @@ if(data && !error){
                     src={currPlayback.item.album.images[2].url}
                   />
                 </Center>
-                <Stack 
+                <Stack
                 justifyContent="space-between"
                 spacing={0}
                 divider={<StackDivider borderColor={bg} />}>

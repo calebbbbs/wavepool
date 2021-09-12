@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import { Input, Flex, useColorModeValue, Button } from "@chakra-ui/react";
 
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 
 const querySpotify = (query: string, user_id: string) => {
-  return axios.get(`/spotify/query/${user_id}/${query}`).then((data) => {
-    return data.data;
-  });
+  return axios.get(`/spotify/query/${user_id}/${query}`).then(({data}) => {
+    return data;
+  }).catch((error: AxiosError) => console.log('Error from querySpotify, SearchInput.tsx', error.response?.data));
 };
 
 

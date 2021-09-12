@@ -21,27 +21,27 @@ const UserContextProvider: React.FC = ({ children }) => {
   const getRecentlyPlayed = () => {
 
     axios.get(`/spotify/getRecentlyPlayed/${userObj.user_id}`).then(
-      function (data: any) {
+      function ({data}) {
         const res: any[] = [];
-        data.data.body.items.forEach((item: any) => {
+        data.body.items.forEach((item: any) => {
           return res.push(item.track);
         });
         return setRecentPlays(res);
       },
-      function (err) {
-        console.log("Something went wrong!", err);
+      function (error: AxiosError) {
+        console.log('Error from get/spotify/getRecentlyPlayed', error.response?.data);
       }
     );
   };
 
   const getUser = () => {
-    return axios.get<any>("/getUser").then((res) => {
-      if (res.data) {
-        if (Object.keys(res.data).length === 0) {
+    return axios.get<any>("/getUser").then(({data}) => {
+      if (data) {
+        if (Object.keys(data).length === 0) {
           return;
         }
         getUserData({
-          variables: { getUserUserId: res.data.user_id },
+          variables: { getUserUserId: data.user_id },
         });
         setIsLoggedIn(true);
         if (userObj) {
@@ -55,23 +55,23 @@ const UserContextProvider: React.FC = ({ children }) => {
   const getUsersCurrentPlayback = () => {
     return axios
       .get<any>(`/spotify/currPlayback/${userObj.user_id}`)
-      .then((response) => {
-        setCurrPlayback(response.data);
-        setIsPlaying(response.data.is_playing);
+      .then(({data}) => {
+        setCurrPlayback(data);
+        setIsPlaying(data.is_playing);
       })
       .catch((error: AxiosError) => {
-        console.log(error);
+        console.log('Error from getUsersCurrentPlayback UserContext', error.response?.data);
       });
   };
 
   const getUserPlaylists = () => {
     axios
       .get(`/spotify/userPlaylists/${userObj.user_id}`)
-      .then((data: any) => {
-        return setUserPlaylists(data.data);
+      .then(({data}) => {
+        return setUserPlaylists(data);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((error: AxiosError) => {
+        console.log('Error from getUserPlaylists UserContext', error.response?.data);
       });
   };
 

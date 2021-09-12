@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import { UserContext } from '../../../../contexts/UserContext';
 import { useMutation, gql } from '@apollo/client';
 import {
@@ -53,7 +53,8 @@ const AddToPlaylist = (props: any) => {
             )
             .then((data: any) => {
               onClose();
-              data});
+              data})
+              .catch((error: AxiosError) => console.log('Error from axios.get/spotify/addToPlaylist from AddToPlaylist.tsx', error.response?.data));
         }}
         key={i}
       >

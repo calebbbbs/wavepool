@@ -58,13 +58,6 @@ const FCListItem = (props: any) => {
               <Flex>
                 <chakra.div>{props.friendName}</chakra.div>
                 <Spacer />
-                {props.friendStatus === false && (
-                  <FriendStat
-                    friend_name={props.friendName}
-                    friend_id={props.friendId}
-                    friend_status={props.friend_status}
-                  />
-                )}
                 {props.friendStatus === true && (
                   <Badge colorscheme='green' float='right'>
                     {list.length.toString()}
@@ -74,6 +67,13 @@ const FCListItem = (props: any) => {
             </Box>
             <AccordionIcon />
           </AccordionButton>
+          {props.friendStatus === false && (
+            <FriendStat
+              friend_name={props.friendName}
+              friend_id={props.friendId}
+              friend_status={props.friend_status}
+            />
+          )}
         </h2>
         <AccordionPanel>
           <RecommendedTracksList
