@@ -3,6 +3,9 @@ import { Entity, PrimaryColumn, Column, BaseEntity, OneToMany } from 'typeorm';
 import { ObjectType, Field, ID } from "type-graphql";
 import Friend from './Friend';
 import RecommendedTrack from './RecommendedTrack';
+import HistoryGenre from './HistoryGenre';
+import HistoryTrack from './HistoryTrack';
+import HistoryArtist from './HistoryArtist';
 
 
 @Entity()
@@ -39,4 +42,16 @@ export default class User extends BaseEntity {
   @Field(() => [RecommendedTrack], {nullable: true})
   @OneToMany(() => RecommendedTrack, (recommendedTrack: RecommendedTrack) => recommendedTrack.user)
   recommendedTracks!: Promise<RecommendedTrack[]>;
+
+  @Field(() => [HistoryGenre], {nullable: true})
+  @OneToMany(() => HistoryGenre, (historyGenre: HistoryGenre) => historyGenre.user)
+  historyGenres!: Promise<HistoryGenre[] | undefined>;
+
+  @Field(() => [HistoryTrack], {nullable: true})
+  @OneToMany(() => HistoryTrack, (historyTrack: HistoryTrack) => historyTrack.user)
+  historyTracks!: Promise<HistoryTrack[] | undefined>;
+
+  @Field(() => [HistoryArtist], {nullable: true})
+  @OneToMany(() => HistoryArtist, (historyArtist: HistoryArtist) => historyArtist.user)
+  historyArtists!: Promise<HistoryArtist[] | undefined>;
 }
