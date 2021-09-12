@@ -1,10 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Flex, Box, useColorModeValue, Link, Tooltip } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import Pagination from "../../Utils/Pagination";
+import { Flex, Box, Image, useColorModeValue, Link } from "@chakra-ui/react";
 import { UserContext } from "../../../contexts/UserContext";
 import RecentlyPlayedList from "./RecentlyPlayedList";
 export const RecentlyPlayed = () => {
-  const [seeMore, setSeeMore] = useState<boolean>(false);
   const { recentPlays, userObj, getRecentlyPlayed } = useContext(UserContext);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -12,10 +11,27 @@ export const RecentlyPlayed = () => {
     }, 60000);
     return () => clearInterval(interval);
   }, []);
+
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [tracksPerPage] = useState<number>(2);
+  const [currentPosts, setCurrentPosts] = useState<any>([]);
+  const indexOfLastPost = currentPage * tracksPerPage;
+  const indexOfFirstPost = indexOfLastPost - tracksPerPage;
+  useEffect(() => {
+    if(recentPlays){
+    setCurrentPosts(recentPlays.slice(indexOfFirstPost, indexOfLastPost));
+    }
+  }, [JSON.stringify(recentPlays), indexOfLastPost])
+  const paginate = (pageNumber: number) => {
+      setCurrentPage(pageNumber);
+    }
+
+
   return (
-    <Flex mt={8} p={50} w="full" alignItems="center" justifyContent="center">
+    <Flex mt={8} w="full" alignItems="center" justifyContent="center">
       <Box
-        mx="auto"
+        // mx="auto"
         px={8}
         py={4}
         rounded="lg"
@@ -36,34 +52,22 @@ export const RecentlyPlayed = () => {
           </Link>
           {recentPlays && (
             <div>
-              {seeMore ? (
-                <RecentlyPlayedList recentPlays={recentPlays.slice(0, 5)} />
-              ) : (
-                <RecentlyPlayedList recentPlays={recentPlays.slice(0, 2)} />
-              )}
+              
+                <RecentlyPlayedList recentPlays={currentPosts} />
+                <Pagination postsPerPage={tracksPerPage} totalPosts={recentPlays.length} paginate={paginate}/>
             </div>
           )}
         </Box>
 
         <Flex justifyContent="space-between" alignItems="center" mt={4}>
-          <Link
-            _hover={{ textDecor: "underline" }}
-            onClick={() => {
-              setSeeMore(!seeMore);
-            }}
-          >
-            {seeMore ? (
-              <Tooltip placement="right" label="See Less">
-                <ChevronUpIcon w={6} h={6} />
-              </Tooltip>
-            ) : (
-              <Tooltip placement="right" label="See More">
-                <ChevronDownIcon w={6} h={6} />
-              </Tooltip>
-            )}
-          </Link>
-
           <Flex alignItems="center">
+          {userObj.photo !== "no photo" && <Image
+                   boxSize="2rem"
+                   borderRadius="full"
+                   src={userObj.photo}
+                   alt="Profile Pic"
+                   mr="12px"
+                 /> }
             <Link
               color={useColorModeValue("gray.700", "gray.200")}
               fontWeight="700"

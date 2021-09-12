@@ -1,52 +1,40 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import {
-  Tooltip,
   Flex,
   chakra,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  MenuGroup,
+  MenuDivider,
   useColorMode,
   Button,
-  HStack,
-  Box,
+  Image,
   IconButton,
   Link,
   useColorModeValue,
-  VisuallyHidden,
-  useDisclosure,
-  CloseButton,
-  // mergeThemeOverride,
-  // extendTheme,
 } from "@chakra-ui/react";
 
-import { AiOutlineMenu } from "react-icons/ai";
+import { HamburgerIcon } from "@chakra-ui/icons";
+
 import { BiLogOut } from "react-icons/bi";
 import { SunIcon, MoonIcon, SettingsIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
-// import customTheme from '../../overrides'
-// import theme from "../../theme";
 import AudioPlayer from "../Utils/AudioPlayer/AudioPlayer";
-import AudioPlayerMobile from "../Utils/AudioPlayer/AudioPlayerMobile";
 import Search from "../Utils/Search/Search";
-
 import AddFriend from "../Utils/AddFriend/AddFriend";
-
 import CreatePlaylist from "./CreatePlaylist";
+import AudioPlayerMobile from "../Utils/AudioPlayer/AudioPlayerMobile";
 
 const Nav = (props: any) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isLoggedIn, currPlayback }: any = useContext(UserContext);
-  const { isOpen, onClose, onOpen } = useDisclosure();
-
+  const { isLoggedIn, currPlayback, userObj }: any = useContext(UserContext);
   return (
     <>
-      <chakra.header
-        zIndex="2"
-        bg="blackAlpha.50"
-        w="full"
-        px={{ base: 2, sm: 4 }}
-      >
-
+      <chakra.header>
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
-          <Flex>
+          <Flex m={4}>
             <chakra.a
               href="/"
               title="Choc Home Page"
@@ -54,96 +42,75 @@ const Nav = (props: any) => {
               alignItems="center"
             >
               🌊
-              <VisuallyHidden>WavePool</VisuallyHidden>
             </chakra.a>
             <chakra.h1 textStyle="h1.xl" fontWeight="medium" ml="2">
               WavePool
             </chakra.h1>
           </Flex>
-          {currPlayback && <AudioPlayer />}
-          <HStack display="flex" alignItems="center" spacing={1}>
-            <HStack
-              spacing={1}
-              mr={1}
-              color="brand.500"
-              display={{ base: "none", md: "inline-flex" }}
-            >
-              <Tooltip label="Toggle Color Mode">
-                <Button variant="ghost" onClick={toggleColorMode}>
-                  {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-                </Button>
-              </Tooltip>
-              <Tooltip label="Adjust Text Size">
-                <Button variant="ghost" onClick={props.toggleFont}>
-                  <SettingsIcon/>
-                  </Button>
-              </Tooltip>
-              {!isLoggedIn ? (
-                <div></div>
-              ) : (
+          {currPlayback && <AudioPlayer changeColorTheme={props.changeColorTheme}/>}
+          <Menu>
+            <MenuButton
+              m={4}
+              as={IconButton}
+              aria-label="Options"
+              icon={<HamburgerIcon />}
+              variant="ghost"
+            />
+            <MenuList bg={useColorModeValue("brand.50", "brand.900")} zIndex={2}>
+              <MenuGroup>
+              {isLoggedIn && (
                 <chakra.div>
-                  <Search />
-                  <AddFriend />
-                  <CreatePlaylist />
-                  <Link href="/logout">
-                    <Tooltip label="Log Out">
-                      <Button variant="ghost">
-                        <BiLogOut size={25} />
-                      </Button>
-                    </Tooltip>
-                  </Link>
+                  <MenuItem>
+                  {userObj.photo !== "no photo" && <Image
+                   boxSize="2rem"
+                   borderRadius="full"
+                   src={userObj.photo}
+                   alt="Profile Pic"
+                   mr="12px"
+                 /> }{userObj.user_name}
+                  </MenuItem>
+                  <MenuItem>
+                    <Search />
+                  </MenuItem>
+                  <MenuItem>
+                    <AddFriend />
+                  </MenuItem>
+                  <MenuItem>
+                    <CreatePlaylist />
+                  </MenuItem>
+                  <MenuItem display={{ base:"inline-flex", md: "none" }}>
+                    {currPlayback && <AudioPlayerMobile/>}
+                  </MenuItem>
                 </chakra.div>
               )}
-            </HStack>
-            <Box display={{ base: "inline-flex", md: "none" }}>
-              <IconButton
-                display={{ base: "flex", md: "none" }}
-                aria-label="Open menu"
-                fontSize="20px"
-                color={useColorModeValue("gray.800", "inherit")}
-                variant="ghost"
-                icon={<AiOutlineMenu />}
-                onClick={onOpen}
-              />
-              <Flex
-                pos="absolute"
-                top={0}
-                right={0}
-                display={isOpen ? "flex" : "none"}
-                flexDirection="row"
-                p={2}
-                pb={4}
-                m={2}
-                mr={6}
-                spacing={3}
-                rounded="sm"
-              >
-                <CloseButton m={4} aria-label="Close menu" onClick={onClose} />
-                {currPlayback && <AudioPlayerMobile />}
-                <Tooltip label="Toggle Color Mode">
-                  <Button m={4} variant="ghost" onClick={toggleColorMode}>
-                    {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-                  </Button>
-                </Tooltip>
-                {!isLoggedIn ? (
-                  <div></div>
-                ) : (
-                  <chakra.div>
-                    <Search />
-                    <AddFriend />
-                    <CreatePlaylist />
-                    <Tooltip label="Log Out">
-                      <Link href="/logout">
-                        <Button variant="ghost">
-                          <BiLogOut size={25} />
-                        </Button>
-                      </Link>
-                    </Tooltip>
-                  </chakra.div>
-                )}
-              </Flex>
-            </Box>
-          </HStack>
+              </MenuGroup>
+              <MenuDivider />
+              <MenuGroup>
+              <MenuItem onClick={props.toggleFont}>
+                <Button variant="ghost">
+                  <SettingsIcon />
+                  Toggle Accessibility Mode{" "}
+                </Button>
+              </MenuItem>
+              <MenuItem onClick={toggleColorMode}>
+                <Button variant="ghost">
+                  {colorMode === "light" ? <MoonIcon /> : <SunIcon />}Change
+                  Color Mode{" "}
+                </Button>
+              </MenuItem>
+              {isLoggedIn && (
+                <MenuItem>
+                  {" "}
+                  <Link href="/logout">
+                    <Button variant="ghost">
+                      <BiLogOut size={25} /> Log Out
+                    </Button>
+                  </Link>
+                </MenuItem>
+              )}
+              </MenuGroup>
+            </MenuList>
+          </Menu>
         </Flex>
       </chakra.header>
     </>

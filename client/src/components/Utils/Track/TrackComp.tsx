@@ -15,8 +15,9 @@ import {
   useColorModeValue,
   Tooltip,
   Skeleton,
+  StackDivider,
 } from '@chakra-ui/react';
-
+import Marquee from 'react-fast-marquee'
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
 import { MdQueueMusic } from "react-icons/md";
@@ -36,8 +37,31 @@ const TrackComp = (props: any) => {
     user_id
   } = props.track;
 
-  const bg = useColorModeValue('brand.50', 'brand.900');
+  // const list = artists.map((artist: any, i: number) => {
+  //   if (i === artists.length - 1) {
+  //     return (
+  //       <Text key={i}>
+  //         {artist}
+  //       </Text>
+  //     );
+  //   }
+  //   return (
+  //     <Text key={i}>
+  //       {artist},{'  '}
+  //     </Text >
+  //   );
+  // })
 
+  const bg = useColorModeValue('brand.50', 'brand.900');
+  const dividerColor = useColorModeValue('brand.900', 'brand.50');
+  let str = ''
+  artists.map((artist: any, i: number) => {
+    if (i === artists.length - 1) {
+      return (str += `  ${artist}  `)
+    }
+    return (str += `  ${artist},  `)
+  })
+  console.log(str);
   const addToQueue = () => {
     axios
       .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
@@ -69,43 +93,32 @@ const TrackComp = (props: any) => {
           </Box>
         </Center>
         <Center>
-          <Stack padding={2} borderRadius='15px' m={2} mr={4}>
-            <Flex alignItems='center' minW='200px'>
-              <chakra.div mr={2}>
-                <BiHeadphone />
-              </chakra.div>
-              <Text fontSize='md'>{track_title}</Text>
+          <Stack
+            divider={<StackDivider borderColor={dividerColor} />}
+            padding={2} borderRadius='15px' m={2} mr={4}>
+            <Flex alignItems='center' >
+              {/* <chakra.div mr={2}> */}
+              <BiHeadphone />
+              {/* </chakra.div> */}
+              <Text >{track_title}</Text>
             </Flex>
             <chakra.div>
-              <Flex alignItems='center' minW='200px'>
-                <chakra.div mr={2}>
-                  <BsPerson />
-                </chakra.div>
-                <chakra.div maxW={'150px'}>
-                {artists.map((artist: any, i: number) => {
-                  if (i === artists.length - 1) {
-                    return (
-                      <chakra.p key={i} fontSize='md'>
-                        {artist}
-                      </chakra.p>
-                    );
-                  }
-                  return (
-                    <Text key={i} fontSize='md'>
-                      {artist},{'  '}
-                    </Text>
-                  );
-                })}
+              <Flex alignItems='center' >
+                {/* <chakra.div mr={2}> */}
+                <BsPerson />
+                {/* </chakra.div> */}
+                <chakra.div >
+                <Marquee
+                      gradient={false} pauseOnHover={true} pauseOnClick={true}>{str}</Marquee>
                 </chakra.div>
               </Flex>
             </chakra.div>
-            <Flex alignItems='center' minW='200px'>
-              <chakra.div mr={2}>
-                <BiAlbum />
-              </chakra.div>
-              <Text fontSize='md'>{album_title}</Text>
+            <Flex alignItems='center' >
+              {/* <chakra.div mr={2}> */}
+              <BiAlbum />
+              {/* </chakra.div> */}
+              <Text >{album_title}</Text>
             </Flex>
-            <hr></hr>
           </Stack>
         </Center>
         <Spacer />

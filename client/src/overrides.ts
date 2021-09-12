@@ -22,9 +22,6 @@ const styles = {
       borderColor: mode("gray.200", "whiteAlpha.300")(props),
       wordWrap: "break-word",
     },
-    // ":root":{
-    //   fontSize: "3xl"
-    // },
     a: {
       color: mode("teal.300", "teal.500")(props),
     },
@@ -35,17 +32,20 @@ const styles = {
       fontSize: "4xl",
     },
     p: {
-      fontSize: "xl",
+      fontSize: "3xl",
     },
     div: {
       fontSize: "3xl",
     },
     VStack: {
-      fontSize: "xl",
+      fontSize: "3xl",
     },
     Text: {
       fontSize: "4xl",
     },
+    ":root": {
+      fontSize: "20px"
+    }
   }),
 };
 

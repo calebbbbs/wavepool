@@ -10,9 +10,8 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  IconButton,
+  Button,
   useColorModeValue,
-  Tooltip,
 } from "@chakra-ui/react";
 
 import { SearchIcon } from "@chakra-ui/icons";
@@ -25,16 +24,15 @@ function Search() {
   const [trackList, setTrackList] = useState([]);
   const { userObj } = useContext(UserContext);
   const bg = useColorModeValue("brand.100", "brand.800");
+
   return (
     <>
-      <Tooltip label="Search">
-        <IconButton
+        <Button
           variant="ghost"
           aria-label="spotify search"
           onClick={onOpen}
-          icon={<SearchIcon />}
-        ></IconButton>
-      </Tooltip>
+        > <SearchIcon/>Search Spotify</Button>
+
 
       <Modal
         scrollBehavior="inside"
