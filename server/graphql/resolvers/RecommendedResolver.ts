@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import { getConnection } from "typeorm";
 import { CreateRecommendedInput, RemoveRecommendedInput, TrackRespondedInput } from '../inputs'
-import { getArtistData } from '../../spotify/helpers'
+import { getArtistData } from '../../spotify/archiveHelpers'
 import RecommendedTrack from "../../db/entities/RecommendedTrack";
 import RecommendedGenre from "../../db/entities/RecommendedGenre";
 import User from '../../db/entities/User';
@@ -31,6 +31,7 @@ export class RecommendedResolver {
         const artist_id = artist_uri.split(':')[2];
         const genres = await getArtistData(artist_id, user.access_token);
         genres.forEach((genre: string) => {
+
           let contains = false;
           recommendedGenres.forEach((recGenre: RecommendedGenre) => {
             if(genre === recGenre.genre) {
@@ -42,6 +43,7 @@ export class RecommendedResolver {
           if(!contains) {
             createGenre(friendship.id, genre);
           }
+          
         });
 
         track.user_id = user_id;
