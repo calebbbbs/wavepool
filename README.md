@@ -14,7 +14,11 @@
 
 # Getting Started
 
- Register your app with Spotify in their [Developers Console](https://developer.spotify.com/dashboard/applications). Once you have registered your app you will be allotted a CLIENT ID and CLIENT SECRET from Spotify. This is how you will interact with Spotify's servers for actions such as authentication.
+ Register your app with Spotify in their [Developers Console](https://developer.spotify.com/dashboard/applications).
+
+ ![Imgur](https://imgur.com/SqONWA9)
+
+ Once you have registered your app you will be allotted a CLIENT ID and CLIENT SECRET from Spotify. This is how you will interact with Spotify's servers for actions such as authentication.
 
  Once you have received the CLIENT ID and SECRET, create a `.env` file store them inside of it based upon the `env.example` file we have provided.
 
