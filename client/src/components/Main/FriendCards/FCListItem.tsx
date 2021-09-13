@@ -20,6 +20,8 @@ import RecommendedTracksList from "./RecomendedTracksList";
 import StatsModal from "./StatsModal";
 import { UserContext } from "../../../contexts/UserContext";
 import { ImRadioChecked, ImRadioUnchecked } from "react-icons/im";
+import FriendScore from "../../Chartjs/FriendScore";
+
 const FCListItem = (props: any) => {
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
     return (
@@ -55,7 +57,11 @@ const FCListItem = (props: any) => {
               flex='1'
               textAlign='left'
             >
-              <Flex>
+              <Flex
+              //alignitems="center"
+              //alignContent="center"
+              >
+                <FriendScore />
                 <chakra.div>{props.friendName}</chakra.div>
                 <Spacer />
                 {props.friendStatus === false && (

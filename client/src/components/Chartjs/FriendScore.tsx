@@ -39,11 +39,12 @@ const options = {
 const FriendScore = () => {
   return(
     <Box 
+      
       maxW="100px" 
       maxH="100px"
       color={useColorModeValue('brand.700', 'white')}
-        fontWeight='700'
-        fontSize='10px'
+      fontWeight='700'
+      fontSize='10px'
     >
       Friend score: 96%
       <Pie 

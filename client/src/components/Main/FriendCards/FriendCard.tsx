@@ -10,7 +10,7 @@ import {
 import { UserContext } from "../../../contexts/UserContext";
 import FCListItem from "./FCListItem";
 // import FriendStat from "../../Nav/FriendStat";
-import FriendScore from "../../Chartjs/FriendScore";
+
 
 const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
@@ -61,14 +61,12 @@ const RecommendedTracks = () => {
             >
               Recommended
             </Link>
-            <Flex>
-              <FriendScore />
               <div>
                 <Accordion minW="300" allowMultiple allowToggle>
                   {list}
                 </Accordion>
               </div>
-            </Flex>
+
           </Box>
         
       </Box>

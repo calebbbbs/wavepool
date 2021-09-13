@@ -196,8 +196,6 @@ const createArtist = async(artistObj: any, user_id: string) => {
   const { artist_uri, artist_name, count, time_listened, is_explicit, image_url } = artistObj;
   let historyArtist: HistoryArtist | undefined = await HistoryArtist.findOne({where:{user_id: user_id, artist_name: artist_name}});
   if(historyArtist) {
-    console.log(user_id);
-    console.log(artist_name);
       await getConnection()
       .createQueryBuilder()
       .update(HistoryArtist)

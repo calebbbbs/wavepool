@@ -15,6 +15,7 @@ query Query($getUserUserId: String!) {
       friend_status
       friend_score
       number_of_songs
+      number_of_likes
       recommendedGenres{
         genre
         count
