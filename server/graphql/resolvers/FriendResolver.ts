@@ -29,6 +29,7 @@ export class FriendResolver {
     // }
     newFriend.friend_score = 0;
     newFriend.number_of_songs = 0;
+    newFriend.number_of_likes = 0;
     await newFriend.save();
 
     await getConnection()
@@ -58,6 +59,7 @@ export class FriendResolver {
       newFriend.friend_id = friendData.user_id;
       newFriend.friend_score = 0;
       newFriend.number_of_songs = 0;
+      newFriend.number_of_likes = 0;
       await newFriend.save();
 
       await getConnection()
@@ -92,6 +94,7 @@ export class FriendResolver {
         friendship.friend_score += 5;
       } else if(action === 'like') {
         friendship.friend_score += 10;
+        friendship.number_of_likes += 1;
       } else if(action === 'dislike') {
         friendship.friend_score -= 10;
       }

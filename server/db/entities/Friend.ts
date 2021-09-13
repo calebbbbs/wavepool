@@ -41,6 +41,10 @@ export default class Friend extends BaseEntity {
 
   @Field(() => Number)
   @Column()
+  number_of_likes: number;
+
+  @Field(() => Number)
+  @Column()
   number_of_songs: number;
 
   @Field(() => [RecommendedGenre], {nullable: true})
