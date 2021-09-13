@@ -34,7 +34,7 @@ const StatsModal = (props: any) => {
     <>
       <Tooltip label="Charts & Stats">
         <Button variant="ghost" onClick={() => {
-          onOpen
+          onOpen();
           setGraphUserId("124641024");
         }
           }>
