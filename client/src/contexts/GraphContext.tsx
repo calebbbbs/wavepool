@@ -12,8 +12,9 @@ const GraphContextProvider: React.FC = ({ children }) => {
   //if (error) console.warn(error);
 
   const getGraphData = (user_id: String) => {
-    return axios.get<any>("/user/analtics/${user_id}")
-      .then((data: any) => {
+    console.log(user_id)
+    return axios.get<any>(`/user/analytics/${user_id}`)
+      .then(({data}) => {
         console.log(data);
         setUserStats(data);
       })

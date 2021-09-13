@@ -9,6 +9,7 @@ userRouter.get(
   '/analytics/:user_id',
   async (req: Request, res: Response) => {
     const { user_id } = req.params;
+    console.log(user_id);
     let analyticsResponse: any = {};
     const historyGenres = await HistoryGenre.find({
       where: {user_id: user_id},

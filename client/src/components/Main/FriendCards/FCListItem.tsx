@@ -58,8 +58,6 @@ const FCListItem = (props: any) => {
               textAlign="left"
             >
               <Flex
-              //alignitems="center"
-              //alignContent="center"
               >
                 <FriendScore />
                 <chakra.div>{props.friendName}</chakra.div>

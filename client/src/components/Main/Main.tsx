@@ -6,6 +6,7 @@ import FriendCard from "./FriendCards/FriendCard";
 import SocketContext from "../../contexts/SocketContext";
 import io from "socket.io-client";
 import { UserContext } from "../../contexts/UserContext";
+import { GraphContextProvider } from "../../contexts/GraphContext";
 
 const socket = io();
 
@@ -33,17 +34,19 @@ export const Main = (props: any) => {
   }, []);
 
   return (
-    <SocketContext.Provider value={{ socket }}>
-      <Nav
-        user={...userObj}
-        toggleFont={props.toggleFont}
-        changeColorTheme={props.changeColorTheme}
-      />
-      <SimpleGrid minChildWidth="400px" spacing="10px">
-        <RecentlyPlayed />
-        <FriendCard />
-      </SimpleGrid>
-    </SocketContext.Provider>
+    <GraphContextProvider>
+      <SocketContext.Provider value={{ socket }}>
+        <Nav
+          user={...userObj}
+          toggleFont={props.toggleFont}
+          changeColorTheme={props.changeColorTheme}
+        />
+        <SimpleGrid minChildWidth="400px" spacing="10px">
+          <RecentlyPlayed />
+          <FriendCard />
+        </SimpleGrid>
+      </SocketContext.Provider>
+    </GraphContextProvider>
   );
 };
 export default Main;

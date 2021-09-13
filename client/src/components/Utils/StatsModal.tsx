@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext }from "react";
 import GroupedBar from "../Chartjs/BarChart"
 import PieChart from '../Chartjs/PieChart'
 import ScatterChart from '../Chartjs/ScatterPlot'
 import Polar from "../Chartjs/PolarArea"
+import { GraphContext } from "../../contexts/GraphContext"
 
 import {
   Modal,
@@ -25,13 +26,18 @@ import {
 import { AiOutlineBarChart } from "react-icons/ai";
 
 const StatsModal = (props: any) => {
+  const { setGraphUserId } = useContext(GraphContext);
   const { onOpen, isOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("brand.100", "brand.800");
 
   return (
     <>
       <Tooltip label="Charts & Stats">
-        <Button variant="ghost" onClick={onOpen}>
+        <Button variant="ghost" onClick={() => {
+          onOpen
+          setGraphUserId("124641024");
+        }
+          }>
           <chakra.div minW="10px" minH="10px">
             <AiOutlineBarChart />
           </chakra.div>
