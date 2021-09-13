@@ -12,7 +12,20 @@
 
 > A spotify companion & a powerful utility for sharing songs through spotify with your friends
 
-# <kbd>Dependencies
+# Getting Started
+
+ Register your app with Spotify in their [Developers Console](https://developer.spotify.com/dashboard/applications). Once you have registered your app you will be allotted a CLIENT ID and CLIENT SECRET from Spotify. This is how you will interact with Spotify's servers for actions such as authentication.
+
+ Once you have received the CLIENT ID and SECRET, create a `.env` file store them inside of it based upon the `env.example` file we have provided.
+
+## Authentication
+
+ Using the CLIENT_ID and CLIENT_SECRET, we can now begin the process of creating an authentication strategy with Passport-Spotify. Spotify requires a callbackURL, which ends in `/spotify/callback`.
+ Scopes allow for data from spotify. Refer to [Passport-Spotify](https://github.com/JMPerez/passport-spotify) for more information.
+
+ ---
+
+# Dependencies
 
 ## -Axios
 
@@ -21,6 +34,10 @@
 ## -Chakra-UI
 
 * [Documentation](https://chakra-ui.com/)
+
+## -Chart.js
+
+* [Documentation](https://www.chartjs.org/)
 
 ## -Express
 
@@ -52,6 +69,11 @@
 * [Node.js Docs](https://nodejs.org/en/)
 * [TS-Node GitHub](https://github.com/TypeStrong/ts-node)
 
+## Passport-Spotify
+
+* [Passport Documentation](http://www.passportjs.org/packages/passport-spotify/)
+* [Passport-spotify GitHub](https://github.com/JMPerez/passport-spotify)
+
 ## -React
 
 * [Docs](https://reactjs.org/)
@@ -66,6 +88,11 @@
 
 * [Socket.io Docs](https://socket.io/docs/v4/index.html)
 * [Socket.io-client Docs](https://socket.io/docs/v4/index.html)
+
+## -Spotify
+
+* [Web-Api Reference](https://developer.spotify.com/documentation/web-api/reference/)
+* [Spotify-web-api-node GitHub](https://github.com/thelinmichael/spotify-web-api-node)
 
 ## -typeORM w/reflect-metadata
 
@@ -85,12 +112,4 @@
 
 * [Documentation](https://classic.yarnpkg.com/en/)
 
-## -Spotify
-
-* [Web-Api Reference](https://developer.spotify.com/documentation/web-api/reference/)
-* [Spotify-web-api-node GitHub](https://github.com/thelinmichael/spotify-web-api-node)
-
-## Passport-Spotify
-
-* [Passport Documentation](http://www.passportjs.org/packages/passport-spotify/)
-* [Passport-spotify GitHub](https://github.com/JMPerez/passport-spotify)
+---
