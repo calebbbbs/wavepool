@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import FriendStat from "../../Nav/FriendStat";
+import FriendStat from "../../Utils/FriendStat";
 
 import {
   AccordionItem,
@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import Pagination from "../../Utils/Pagination";
 import RecommendedTracksList from "./RecomendedTracksList";
-import StatsModal from "./StatsModal";
+import StatsModal from "../../Utils/StatsModal";
 import { UserContext } from "../../../contexts/UserContext";
 import { ImRadioChecked, ImRadioUnchecked } from "react-icons/im";
 import FriendScore from "../../Chartjs/FriendScore";
@@ -46,7 +46,7 @@ const FCListItem = (props: any) => {
   };
 
   return (
-    <Flex alignItems="center" flexDirection={{base: 'column', md: 'row'}}>
+    <Flex alignItems="center" flexDirection={{ base: "column", md: "row" }}>
       <AccordionItem>
         <h2>
           <AccordionButton>
@@ -54,8 +54,8 @@ const FCListItem = (props: any) => {
               borderRadius="15px"
               p={5}
               bg={isSelected ? bg2 : bg}
-              flex='1'
-              textAlign='left'
+              flex="1"
+              textAlign="left"
             >
               <Flex
               //alignitems="center"
@@ -72,7 +72,7 @@ const FCListItem = (props: any) => {
                   />
                 )}
                 {props.friendStatus === true && (
-                  <Badge colorscheme='green' float='right'>
+                  <Badge colorscheme="green" float="right">
                     {list.length.toString()}
                   </Badge>
                 )}
@@ -93,29 +93,29 @@ const FCListItem = (props: any) => {
           />
         </AccordionPanel>
       </AccordionItem>
-      <Flex  flexDirection={{base: 'row', md: 'row'}}>
-      <StatsModal friendScore={score} />
-      <Tooltip label={`Select ${props.friendName}`}>
-        <Button
-          variant="ghost"
-          onClick={() => {
-            setSelectedFriend([props.friendId, props.friendName]);
-          }}
-          ml={2}
-        >
-          {isSelected ? (
-            <chakra.div minW="10px" minH="10px">
-              {" "}
-              <ImRadioChecked />{" "}
-            </chakra.div>
-          ) : (
-            <chakra.div minW="10px" minH="10px">
-              {" "}
-              <ImRadioUnchecked />
-            </chakra.div>
-          )}
-        </Button>
-      </Tooltip>
+      <Flex flexDirection={{ base: "row", md: "row" }}>
+        <StatsModal friendScore={score} />
+        <Tooltip label={`Select ${props.friendName}`}>
+          <Button
+            variant="ghost"
+            onClick={() => {
+              setSelectedFriend([props.friendId, props.friendName]);
+            }}
+            ml={2}
+          >
+            {isSelected ? (
+              <chakra.div minW="10px" minH="10px">
+                {" "}
+                <ImRadioChecked />{" "}
+              </chakra.div>
+            ) : (
+              <chakra.div minW="10px" minH="10px">
+                {" "}
+                <ImRadioUnchecked />
+              </chakra.div>
+            )}
+          </Button>
+        </Tooltip>
       </Flex>
     </Flex>
   );

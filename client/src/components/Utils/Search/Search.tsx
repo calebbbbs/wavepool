@@ -27,12 +27,11 @@ function Search() {
 
   return (
     <>
-        <Button
-          variant="ghost"
-          aria-label="spotify search"
-          onClick={onOpen}
-        > <SearchIcon/>Search Spotify</Button>
-
+      <Button variant="ghost" aria-label="spotify search" onClick={onOpen}>
+        {" "}
+        <SearchIcon />
+        Search Spotify
+      </Button>
 
       <Modal
         scrollBehavior="inside"

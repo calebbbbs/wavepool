@@ -1,8 +1,8 @@
 import React from "react";
-import GroupedBar from '../../Chartjs/BarChart'
-import PieChart from '../../Chartjs/PieChart'
-import ScatterChart from '../../Chartjs/ScatterPlot'
-import Polar from "../../Chartjs/PolarArea"
+import GroupedBar from "../Chartjs/BarChart"
+import PieChart from '../Chartjs/PieChart'
+import ScatterChart from '../Chartjs/ScatterPlot'
+import Polar from "../Chartjs/PolarArea"
 
 import {
   Modal,
