@@ -42,7 +42,7 @@ const getUsersCurrentPlayback = async (access_token: string) => {
       return response;
     })
     .catch((error: AxiosError) => {
-      console.log("Error from getUsersCurrentPlayback", error);
+      console.log("Error from getUsersCurrentPlayback", error.response?.data);
     });
 };
 
@@ -54,7 +54,7 @@ const getUserPlaylists = async (access_token: string) => {
       return response.body.items;
     })
     .catch((error: AxiosError) => {
-      console.log("Error from getUserPlaylists", error);
+      console.log("Error from getUserPlaylists", error.response?.data);
     });
 };
 
@@ -71,7 +71,7 @@ const addToQueue = async (access_token: String, uri: String) => {
   await axios(toQueue)
     .then((response) => response)
     .catch((error: AxiosError) => {
-      console.log("Error from addToQueue", error);
+      console.log("Error from addToQueue", error.response?.data);
     });
 };
 
@@ -91,7 +91,7 @@ const playNow = async (access_token: string, uri: string) => {
       spotifyApi.skipToNext();
     })
     .catch((error: AxiosError) => {
-      console.log("Error from addToQueue", error);
+      console.log("Error from playNow", error.response?.data);
     });
 };
 
@@ -102,9 +102,9 @@ const querySpotify = (query: string, access_token: string) => {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },
-  }).then((data) => {
-    return data.data.tracks.items;
-  });
+  }).then(({data}) => {
+    return data.tracks.items;
+  }).catch((error: AxiosError) => console.log('Error from querySpotify', error.response?.data));
 };
 
 const addToPlaylist = async (
@@ -131,9 +131,23 @@ const createPlaylist = async (
     .createPlaylist(playlist_name, { description: playlist_desc, public: true })
     .then(
       (data) => data,
-      (err) => console.warn(err)
+      (err) => console.warn('Error from createPlaylist', err)
     );
 };
+
+// const refreshToken = async (refreshToken: string) =>{
+//   return await spotifyApi.refreshAccessToken().then(
+//     function(data) {
+//       console.log('The access token has been refreshed!');
+
+//       // Save the access token so that it's used in future calls
+//       spotifyApi.setAccessToken(data.body['access_token']);
+//     },
+//     function(err) {
+//       console.log('Could not refresh access token', err);
+//     }
+//   );
+// };
 
 // const getTrackInfo = (track_uri: string, access_token: string) => {
 //   const track_id = track_uri.split(':')[2];

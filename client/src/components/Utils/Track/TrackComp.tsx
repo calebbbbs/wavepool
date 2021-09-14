@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState} from "react";
 import axios from "axios";
 import { UserContext } from "../../../contexts/UserContext";
 import SendTrack from "./buttons/SendTrack";
@@ -16,6 +16,7 @@ import {
   Tooltip,
   Skeleton,
   StackDivider,
+  useToast
 } from "@chakra-ui/react";
 import Marquee from "react-fast-marquee";
 import { BsPerson } from "react-icons/bs";
@@ -29,6 +30,7 @@ const TrackComp = (props: any) => {
   const { userObj, userPlaylists } = useContext(UserContext);
   const { album_art, track_title, artists, album_title, track_uri, user_id } =
     props.track;
+  const toast = useToast();
 
   const bg = useColorModeValue("brand.50", "brand.900");
   const dividerColor = useColorModeValue("brand.900", "brand.50");
@@ -43,12 +45,19 @@ const TrackComp = (props: any) => {
 
   const addToQueue = () => {
     axios
-      .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
-      .then((data) => data)
-      .catch((err) => console.error(err));
-  };
+    .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
+      .then((data) => { toast({
+        title: `Song added to queue!`,
+        status: "info",
+        isClosable: true,
+      })
+      console.log(data);
+    })
+      .catch((error) => console.log('Error addToQueue in TrackComp.tsx', error));
+    };
 
-  return (
+
+    return (
     <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
       <Flex mx={5} p={4}>
         <Center>
