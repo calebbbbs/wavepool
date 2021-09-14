@@ -55,6 +55,8 @@ export const RecentlyPlayed = () => {
             <div>
               <RecentlyPlayedList recentPlays={currentPosts} />
               <Pagination
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
                 postsPerPage={tracksPerPage}
                 totalPosts={recentPlays.length}
                 paginate={paginate}

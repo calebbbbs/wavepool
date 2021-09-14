@@ -32,7 +32,8 @@ const RecommendedTracks = () => {
   });
 
   return (
-    <Flex minX="300px" alignItems="center" justifyContent="center">
+    <Flex 
+    minX="300px" alignItems="center" justifyContent="center">
       <Box
         minX="300px"
         mx="auto"
@@ -42,6 +43,7 @@ const RecommendedTracks = () => {
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
         maxW="2xl"
+        py={4}
       >  
           <Box mt={2}
           >
@@ -49,6 +51,7 @@ const RecommendedTracks = () => {
             <Link
               color={useColorModeValue("gray.700", "white")}
               fontWeight='700'
+              m={4}
               _hover={{
                 color: useColorModeValue("brand.600", "brand.200"),
                 textDecor: "underline",
