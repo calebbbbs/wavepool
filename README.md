@@ -14,18 +14,24 @@
 
 # Getting Started
 
- Register your app with Spotify in their [Developers Console](https://developer.spotify.com/dashboard/applications).
+ Register the app with Spotify in their [Developers Console](https://developer.spotify.com/dashboard/applications). Log in, and then click on My New App.
 
- ![Imgur](https://imgur.com/SqONWA9)
+ ![img](https://i.imgur.com/mfubO5Y.png)
 
- Once you have registered your app you will be allotted a CLIENT ID and CLIENT SECRET from Spotify. This is how you will interact with Spotify's servers for actions such as authentication.
+This will prompt you to enter the name and description of the app as shown below.
 
- Once you have received the CLIENT ID and SECRET, create a `.env` file store them inside of it based upon the `env.example` file we have provided.
+ ![img](https://i.imgur.com/SqONWA9.png)
+
+Once you have registered your app you will be allotted a CLIENT ID and CLIENT SECRET from Spotify. This information will be found in the app dashboard. Developers are registered for access to the app during development. Email and name will be needed, click the Users and Access button and follow the instructions.
+
+ ![img](https://imgur.com/uKmpomD.png)
+
+Create a `.env` file, and store the Client ID and Secret inside of it based upon the `env.example` file we have provided.
 
 ## Authentication
 
- Using the CLIENT_ID and CLIENT_SECRET, we can now begin the process of creating an authentication strategy with Passport-Spotify. Spotify requires a callbackURL, which ends in `/spotify/callback`.
- Scopes allow for data from spotify. Refer to [Passport-Spotify](https://github.com/JMPerez/passport-spotify) for more information.
+ Using the `CLIENT_ID` and `CLIENT_SECRET`, we can now begin the process of creating an authentication strategy with Passport-Spotify. Spotify requires a callbackURL, which ends in `/spotify/callback`.
+ Scopes allow for data from Spotify. Refer to [Passport-Spotify](https://github.com/JMPerez/passport-spotify) for more information.
 
  ---
 
