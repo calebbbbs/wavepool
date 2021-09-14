@@ -1,5 +1,5 @@
 import React, { useContext }from "react";
-//import GroupedBar from "../Chartjs/BarChart"
+import GroupedBar from "../Chartjs/BarChart"
 import PieChart from '../Chartjs/PieChart'
 //import ScatterChart from '../Chartjs/ScatterPlot'
 //import Polar from "../Chartjs/PolarArea"
@@ -25,7 +25,7 @@ import {
 import { AiOutlineBarChart } from "react-icons/ai";
 
 const StatsModal = (props: any) => {
-  const { userData, setGraphUserId } = useContext(GraphContext);
+  const { userGenres, userArtists, userFriends, setGraphUserId } = useContext(GraphContext);
   const { onOpen, isOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("brand.100", "brand.800");
   // const bg2 = useColorModeValue("brand.50", "brand.900");
@@ -44,12 +44,14 @@ const StatsModal = (props: any) => {
       </Tooltip>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bg={bg}>
+        <ModalContent bg={bg} minW="600">
           <ModalHeader>Charts & Stuff</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-              <SimpleGrid p={15} columns={2} bg='#FFFFFF' borderRadius="15px">
-                {userData && (userData.map((graphData: any, index: number) => <PieChart graphData={graphData} key={index}/>))}
+              <SimpleGrid p={15} columns={1} bg='#FFFFFF' borderRadius="15px">
+                {userGenres && (<PieChart graphData={userGenres} key={1}/>)}
+                {userArtists && (<PieChart graphData={userArtists} key={2}/>)}
+                {userFriends && (<GroupedBar graphData={userFriends} key={3}/>)}
               </SimpleGrid>
        
           </ModalBody>

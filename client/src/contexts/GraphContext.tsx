@@ -8,13 +8,19 @@ const GraphContext = React.createContext(undefined as any);
 const GraphContextProvider: React.FC = ({ children }) => {
   const [graphUserId, setGraphUserId] = useState<string>();
   const [userData, setUserData] = useState<any>();
+  const [userGenres, setUserGenres] = useState<any>();
+  const [userArtists, setUserArtists] = useState<any>();
+  const [userFriends, setUserFriends] = useState<any>();
 
   //if (error) console.warn(error);
 
   const getGraphData = async (user_id: String) => {
     return await axios.get<any>(`/user/analytics/${user_id}`)
       .then(({data}) => {
-        setUserData(data); 
+        setUserData(data);
+        setUserGenres(data[0]);
+        setUserArtists(data[1]);
+        setUserFriends(data[2]);
       })
   }
 
@@ -28,7 +34,13 @@ const GraphContextProvider: React.FC = ({ children }) => {
     userData, 
     setUserData,
     graphUserId, 
-    setGraphUserId
+    setGraphUserId,
+    userGenres, 
+    setUserGenres,
+    userArtists, 
+    setUserArtists,
+    userFriends, 
+    setUserFriends
   };
 
   return (

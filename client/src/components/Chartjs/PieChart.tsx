@@ -7,7 +7,6 @@ import { Box } from '@chakra-ui/layout';
 
 const PieChart = (props: any) => {
   const {graphData} = props;
-  console.log(graphData);
   const data = {
     labels: graphData[0],
     datasets: [
@@ -43,7 +42,7 @@ const PieChart = (props: any) => {
     }
 
   return (
-    <Box minW='300'>
+    <Box minW='500px'>
       <Pie data={data} options={options}/>
     </Box>
   )
