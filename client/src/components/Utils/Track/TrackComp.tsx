@@ -60,9 +60,9 @@ const TrackComp = (props: any) => {
               <Image
                 aspect-ratio={1}
                 m={2}
-                minW="120px"
-                minH="120px"
-                boxSize="120px"
+                minW="64px"
+                minH="64px"
+                boxSize="64px"
                 float="left"
                 fit="contain"
                 onLoad={() => {

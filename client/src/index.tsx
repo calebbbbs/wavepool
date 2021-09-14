@@ -59,19 +59,19 @@ const Index = () => {
         backgroundColor: mode("white", "black"),
       },
       Link: {
-        fontSize: "2xl",
+        fontSize: "xl",
       },
       p: {
-        fontSize: "xl",
+        fontSize: "md",
       },
       div: {
-        fontSize: "xl",
+        fontSize: "md",
       },
       VStack: {
-        fontSize: "xl",
+        fontSize: "md",
       },
       Text: {
-        fontSize: "xl",
+        fontSize: "md",
       },
     }),
   };
