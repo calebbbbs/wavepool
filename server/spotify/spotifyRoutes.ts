@@ -10,6 +10,7 @@ import {
   querySpotify,
   addToPlaylist,
   createPlaylist,
+  refreshToken,
 } from './helpers';
 
 const spotifyRouter = Router();
@@ -199,4 +200,19 @@ spotifyRouter.post('/createPlaylist/:playlist_name/:user_id', async(req: Request
     .catch((error) => console.log(error));
   }
 })
+spotifyRouter.get(
+  '/refreshToken/:refresh_token',
+  async (req: Request, res: Response) => {
+    const { user_id } = req.params;
+    const user = await User.findOne({ where: { user_id: user_id } });
+    if (user) {
+      const { refresh_token } = user;
+      return refreshToken(refresh_token)
+        .then((data) => {res.status(200).send(data); console.log(data)})
+        .catch((error) => console.log(error));
+    }
+  }
+);
+
+spotifyRouter.post('/refreshToken/:access_token')
 export default spotifyRouter;

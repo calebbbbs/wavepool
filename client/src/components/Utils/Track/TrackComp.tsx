@@ -49,6 +49,7 @@ const TrackComp = (props: any) => {
     .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
       .then((data) => { toast({
         title: `Song added to queue!`,
+        position: "top-left",
         status: "info",
         isClosable: true,
       })

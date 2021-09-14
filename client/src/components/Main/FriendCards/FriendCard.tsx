@@ -34,24 +34,18 @@ const RecommendedTracks = () => {
   return (
     <Flex  alignItems="center" justifyContent="center">
       <Box
-<<<<<<< HEAD
-        mx="auto"
-        px={8}
-        py={4}
-=======
         // mx="auto"
         // px={8}
         // py={4}
->>>>>>> 6d316547047e9c96421ca2b760441d80fa437ade
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
         // maxW="2xl"
         py={4}
-      >  
+      >
           <Box mt={2}
           >
-            
+
             <Link
               color={useColorModeValue("gray.700", "white")}
               fontWeight='700'
@@ -70,7 +64,7 @@ const RecommendedTracks = () => {
               </div>
 
           </Box>
-        
+
       </Box>
     </Flex>
   );

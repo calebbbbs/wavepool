@@ -23,6 +23,7 @@ export const Main = (props: any) => {
           toast({
             title: data.action,
             description: data.message,
+            position: "top-left",
             status: data.status || "info",
             duration: 4000,
             isClosable: true,
