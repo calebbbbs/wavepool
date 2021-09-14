@@ -34,19 +34,19 @@ export const Main = (props: any) => {
   }, []);
 
   return (
-    <GraphContextProvider>
-      <SocketContext.Provider value={{ socket }}>
-        <Nav
-          user={...userObj}
-          toggleFont={props.toggleFont}
-          changeColorTheme={props.changeColorTheme}
-        />
-        <SimpleGrid minChildWidth="400px" spacing="10px">
-          <RecentlyPlayed />
-          <FriendCard />
-        </SimpleGrid>
-      </SocketContext.Provider>
-    </GraphContextProvider>
+  <GraphContextProvider>
+    <SocketContext.Provider value={{ socket }}>
+      <Nav
+        user={...userObj}
+        toggleFont={props.toggleFont}
+        changeColorTheme={props.changeColorTheme}
+      />
+      <SimpleGrid minChildWidth="350px" spacing="10px">
+        <RecentlyPlayed />
+        <FriendCard />
+      </SimpleGrid>
+    </SocketContext.Provider>
+  </GraphContextProvider>
   );
 };
 export default Main;

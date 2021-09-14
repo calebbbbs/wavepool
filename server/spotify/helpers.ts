@@ -10,8 +10,9 @@ const spotifyApi = new SpotifyWebApi({
     `${process.env.HOST}/auth/spotify/callback`,
 });
 
-const getRecentlyPlayed = async (access_token: string, user_id: string) => {
+const getRecentlyPlayed = async (access_token: string, user_id: string, refresh_token: string) => {
   spotifyApi.setAccessToken(access_token);
+  spotifyApi.setRefreshToken(refresh_token);
   return await spotifyApi
     .getMyRecentlyPlayedTracks({
       limit: 50,
@@ -26,7 +27,7 @@ const getRecentlyPlayed = async (access_token: string, user_id: string) => {
     });
 };
 
-const getUsersCurrentPlayback = async (access_token: string) => {
+const getUsersCurrentPlayback = async (access_token: string, refresh_token: string) => {
   const getCurrentPlayback: any = {
     method: "get",
     url: "https://api.spotify.com/v1/me/player",
@@ -46,8 +47,9 @@ const getUsersCurrentPlayback = async (access_token: string) => {
     });
 };
 
-const getUserPlaylists = async (access_token: string) => {
+const getUserPlaylists = async (access_token: string, refresh_token: string) => {
   spotifyApi.setAccessToken(access_token);
+  spotifyApi.setRefreshToken(refresh_token);
   return await spotifyApi
     .getUserPlaylists()
     .then((response) => {
@@ -75,7 +77,7 @@ const addToQueue = async (access_token: String, uri: String) => {
     });
 };
 
-const playNow = async (access_token: string, uri: string) => {
+const playNow = async (access_token: string, refresh_token: string, uri: string) => {
   const toQueue: any = {
     method: "POST",
     url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
@@ -88,6 +90,7 @@ const playNow = async (access_token: string, uri: string) => {
   await axios(toQueue)
     .then((response) => {
       spotifyApi.setAccessToken(access_token);
+      spotifyApi.setRefreshToken(refresh_token);
       spotifyApi.skipToNext();
     })
     .catch((error: AxiosError) => {
@@ -95,7 +98,7 @@ const playNow = async (access_token: string, uri: string) => {
     });
 };
 
-const querySpotify = (query: string, access_token: string) => {
+const querySpotify = (query: string, refresh_token: string, access_token: string) => {
   return axios({
     url: `https://api.spotify.com/v1/search?q=${query}&type=track`,
     method: "get",
@@ -109,10 +112,12 @@ const querySpotify = (query: string, access_token: string) => {
 
 const addToPlaylist = async (
   access_token: string,
+  refresh_token: string,
   playlist_id: string,
   track_uri: string
 ) => {
   spotifyApi.setAccessToken(access_token);
+  spotifyApi.setRefreshToken(refresh_token);
   return await spotifyApi
     .addTracksToPlaylist(playlist_id, [track_uri])
     .then((data) => {
@@ -123,10 +128,12 @@ const addToPlaylist = async (
 
 const createPlaylist = async (
   access_token: string,
+  refresh_token: string,
   playlist_name: string,
   playlist_desc: string
 ) => {
   spotifyApi.setAccessToken(access_token);
+  spotifyApi.setRefreshToken(refresh_token);
   return await spotifyApi
     .createPlaylist(playlist_name, { description: playlist_desc, public: true })
     .then(

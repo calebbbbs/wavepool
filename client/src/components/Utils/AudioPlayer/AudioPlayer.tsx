@@ -44,7 +44,6 @@ export const AudioPlayer = (props: any) => {
 
   useEffect(() => {
     if (data && !error) {
-      console.log(data);
       const colors = {
         50: data.lightVibrant,
         100: data.lightMuted,
