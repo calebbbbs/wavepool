@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 import { UserContext } from "../../contexts/UserContext";
 
 import {
@@ -32,7 +32,7 @@ const CreatePlaylist = (props: any) => {
   return (
     <>
         <Button variant="ghost" onClick={onOpen}>
-        <MdPlaylistAdd size={25}/> Create New Playlist 
+        <MdPlaylistAdd size={25}/> Create New Playlist
         </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -71,7 +71,8 @@ const CreatePlaylist = (props: any) => {
                   )
                   .then((data: any) => {
                     getUserPlaylists();
-                    return data});
+                    return data})
+                    .catch((error: AxiosError) => console.log('Error from axios.post/spotify/createPlaylist CreatePlaylist', error.response?.data))
                     onClose();
               }}
             >
