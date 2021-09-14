@@ -20,6 +20,7 @@ const RecommendedTracks = () => {
     return (
       <FCListItem
         totalSongs={friend.number_of_songs}
+        numberOfLikes={friend.number_of_likes}
         friendScore={friend.friend_score}
         key={i}
         userObj={userObj}

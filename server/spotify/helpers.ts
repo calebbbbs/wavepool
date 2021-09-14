@@ -14,7 +14,7 @@ const getRecentlyPlayed = async (access_token: string, user_id: string) => {
   spotifyApi.setAccessToken(access_token);
   return await spotifyApi
     .getMyRecentlyPlayedTracks({
-      limit: 25,
+      limit: 50,
     })
     .then((data) => {
       archiveHistory(data, user_id, access_token);

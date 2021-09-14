@@ -23,7 +23,9 @@ import { ImRadioChecked, ImRadioUnchecked } from "react-icons/im";
 import FriendScore from "../../Chartjs/FriendScore";
 
 const FCListItem = (props: any) => {
-  const {user_id} = props.userObj;
+  const {user_id,  } = props.userObj;
+  const {totalSongs, numberOfLikes} = props
+  console.log(props)
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
     return (
       recTrack.friend_name === props.friendName && recTrack.in_queue === true
@@ -59,7 +61,7 @@ const FCListItem = (props: any) => {
               <Flex
               alignItems="center"
               >
-                <FriendScore/>
+                <FriendScore totalSongs={totalSongs} numberOfLikes={numberOfLikes}/>
                 <Spacer/>
                 <chakra.div>{props.friendName}</chakra.div>
                 <Spacer />

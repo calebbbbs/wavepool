@@ -12,12 +12,12 @@ const spotifyApi = new SpotifyWebApi({
 
 const getHistoryPlayed: any = async (access_token: string, user_id: string, offset: number, loop: number, next: string) => {
   let url: string = '';
-  if(loop > 10) {
+  if(loop > 1) {
     return;
   } if (!offset) {
-    url = `https://api.spotify.com/v1/me/player/recently-played?limit=25`;
+    url = `https://api.spotify.com/v1/me/player/recently-played?limit=50`;
   } else {
-    url = `https://api.spotify.com/v1/me/player/recently-played?limit=25&before=${offset}`;
+    url = `https://api.spotify.com/v1/me/player/recently-played?limit=50&before=${offset}`;
     //url = next;
   }
 
