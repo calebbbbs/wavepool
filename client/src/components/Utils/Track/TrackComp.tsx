@@ -52,17 +52,16 @@ const TrackComp = (props: any) => {
   return (
     <chakra.div bg={bg} h="auto" borderRadius="2vh"
     m={2}>
-    <Text m={2}>{props.idx}</Text>
-      <Flex p={4}>
+      <Flex p={4} flexDirection={{base: "column", md: 'row'}}>
         <Center>
           <Box>
             <Skeleton isLoaded={imgLoaded}>
               <Image
                 aspect-ratio={1}
                 m={2}
-                minW="64px"
-                minH="64px"
-                boxSize="64px"
+                minW={{base: '150px', md: '64px'}}
+                minH={{base: '150px', md: '64px'}}
+                boxSize={{base: '150px', md: '64px'}}
                 float="left"
                 fit="contain"
                 onLoad={() => {
@@ -76,11 +75,8 @@ const TrackComp = (props: any) => {
         </Center>
         <Center>
           <Stack
-          maxW='175px'
             divider={<StackDivider borderColor={dividerColor} />}
             borderRadius="15px"
-            // m={2}
-            // mr={4}
           >
             <Flex alignItems="center">
               <BiHeadphone />
@@ -91,9 +87,8 @@ const TrackComp = (props: any) => {
                 <chakra.div minW="10px">
                 <BsPerson />
                 </chakra.div>
-                <chakra.div maxW='150px'>
+                <chakra.div>
                   <Marquee
-                  
                     gradient={false}
                     pauseOnHover={true}
                     pauseOnClick={true}
@@ -110,7 +105,9 @@ const TrackComp = (props: any) => {
           </Stack>
         </Center>
         <Spacer />
-        <Stack>
+        <Flex 
+        flexDirection={{base: "row", md: 'column'}}>
+          {/* <Center> */}
           <Tooltip placement="left" label="Add to Queue">
             <Button variant="ghost" onClick={addToQueue}>
               <MdQueueMusic />
@@ -129,7 +126,8 @@ const TrackComp = (props: any) => {
             friend_id={user_id}
             track_uri={track_uri}
           />
-        </Stack>
+        {/* </Center> */}
+        </Flex>
       </Flex>
     </chakra.div>
   );

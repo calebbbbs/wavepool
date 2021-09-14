@@ -48,11 +48,35 @@ const FCListItem = (props: any) => {
 
   return (
     <Flex alignItems="center" flexDirection={{ base: "column", md: "row" }}>
-      <AccordionItem minW='auto'>
+            <Flex flexDirection={{ base: "row", md: "column" }}>
+        <StatsModal friendScore={score} />
+        <Tooltip label={`Select ${props.friendName}`}>
+          <Button
+            variant="ghost"
+            onClick={() => {
+              setSelectedFriend([props.friendId, props.friendName]);
+            }}
+            ml={2}
+          >
+            {isSelected ? (
+              <chakra.div minW="10px" minH="10px">
+                {" "}
+                <ImRadioChecked />{" "}
+              </chakra.div>
+            ) : (
+              <chakra.div minW="10px" minH="10px">
+                {" "}
+                <ImRadioUnchecked />
+              </chakra.div>
+            )}
+          </Button>
+        </Tooltip>
+      </Flex>
+      <AccordionItem>
         <h2>
           <AccordionButton>
             <Box
-              minW='300px'
+              // minW='300px'
               borderRadius="15px"
               bg={isSelected ? bg2 : bg}
             >
@@ -90,31 +114,7 @@ const FCListItem = (props: any) => {
           />
         </AccordionPanel>
       </AccordionItem>
-      <Flex flexDirection={{ base: "row", md: "row" }}>
-        <StatsModal friendScore={score} />
-        <Tooltip label={`Select ${props.friendName}`}>
-          <Button
-            variant="ghost"
-            onClick={() => {
-              setSelectedFriend([props.friendId, props.friendName]);
-            }}
-            ml={2}
-          >
-            {isSelected ? (
-              <chakra.div minW="10px" minH="10px">
-                {" "}
-                <ImRadioChecked />{" "}
-              </chakra.div>
-            ) : (
-              <chakra.div minW="10px" minH="10px">
-                {" "}
-                <ImRadioUnchecked />
-              </chakra.div>
-            )}
-          </Button>
-        </Tooltip>
-      </Flex>
-    </Flex>
+     </Flex> 
   );
 };
 

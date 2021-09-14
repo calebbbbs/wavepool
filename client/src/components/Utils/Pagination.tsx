@@ -22,7 +22,7 @@ const Pagination = (props: any) => {
         </Button>
       }
     if (currentPage >= 5 && i === 2) {
-      return <div>...</div>;
+      return <div key={number}>...</div>;
     } else if (
       // i === currentPage + 1 ||
       // i === currentPage - 3 ||
@@ -45,7 +45,7 @@ const Pagination = (props: any) => {
       );
     }
     if (currentPage <= pageNumbers.length - 4 && i === pageNumbers.length - 3) {
-      return <div>...</div>;
+      return <div key={number}>...</div>;
     }
 
     return;

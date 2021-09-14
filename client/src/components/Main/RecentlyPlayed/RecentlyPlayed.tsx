@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import Pagination from "../../Utils/Pagination";
-import { Flex, Box, Image, useColorModeValue, useBreakpointValue, Link, Center } from "@chakra-ui/react";
+import { Flex, chakra, Box, Image, useColorModeValue, useBreakpointValue, Link, Center } from "@chakra-ui/react";
 import { UserContext } from "../../../contexts/UserContext";
 import RecentlyPlayedList from "./RecentlyPlayedList";
 
@@ -13,8 +13,8 @@ export const RecentlyPlayed = () => {
     }, 60000);
     return () => clearInterval(interval);
   }, []);
-  const opts = {base: 2, sm: 3, md: 3, lg: 3, xl: 6}
-    const tracksPerPage = useBreakpointValue(opts) || 2;
+  const opts = { base: 2, sm: 3, md: 3, lg: 3, xl: 6 }
+  const tracksPerPage = useBreakpointValue(opts) || 2;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const [currentPosts, setCurrentPosts] = useState<any>([]);
@@ -31,32 +31,29 @@ export const RecentlyPlayed = () => {
   };
 
   return (
-    <Flex mt={2} width="full" alignItems="center" justifyContent="center">
+    <Flex m={4} alignItems="center" justifyContent="center">
       <Box
-        // mx="auto"
-        minW='375px'
         py={4}
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
-        // maxW="2xl"
       >
         <Box mt={2}>
           <Center>
-          <Link
-            color={useColorModeValue("gray.700", "white")}
-            fontWeight="700"
-            _hover={{
-              color: useColorModeValue("gray.600", "gray.200"),
-              textDecor: "underline",
-            }}
-          >
-            Recently Played
-          </Link>
+            <Link
+              color={useColorModeValue("gray.700", "white")}
+              fontWeight="700"
+              _hover={{
+                color: useColorModeValue("gray.600", "gray.200"),
+                textDecor: "underline",
+              }}
+            >
+              Recently Played
+            </Link>
           </Center>
-          
+
           {recentPlays && (
-            <div>
+            <chakra.div>
               <RecentlyPlayedList recentPlays={currentPosts} />
               <Pagination
                 setCurrentPage={setCurrentPage}
@@ -65,28 +62,28 @@ export const RecentlyPlayed = () => {
                 totalPosts={recentPlays.length}
                 paginate={paginate}
               />
-            </div>
+            </chakra.div>
           )}
         </Box>
 
-          <Center m={4}>
-            {userObj.photo !== "no photo" && (
-              <Image
-                boxSize="2rem"
-                borderRadius="full"
-                src={userObj.photo}
-                alt="Profile Pic"
-                mr="12px"
-              />
-            )}
-            <Link
-              color={useColorModeValue("gray.700", "gray.200")}
-              fontWeight="700"
-              cursor="pointer"
-            >
-              {userObj.user_name}
-            </Link>
-            </Center>
+        <Center m={4}>
+          {userObj.photo !== "no photo" && (
+            <Image
+              boxSize="2rem"
+              borderRadius="full"
+              src={userObj.photo}
+              alt="Profile Pic"
+              mr="12px"
+            />
+          )}
+          <Link
+            color={useColorModeValue("gray.700", "gray.200")}
+            fontWeight="700"
+            cursor="pointer"
+          >
+            {userObj.user_name}
+          </Link>
+        </Center>
       </Box>
     </Flex>
   );

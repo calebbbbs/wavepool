@@ -4,7 +4,9 @@ import {
   Flex,
   useColorModeValue,
   Box,
+  chakra,
   Link,
+  Center,
   Accordion,
 } from "@chakra-ui/react";
 
@@ -32,17 +34,16 @@ const RecommendedTracks = () => {
   });
 
   return (
-    <Flex  alignItems="center" justifyContent="center">
+    <Flex mt={2} alignItems="center" justifyContent="center">
       <Box
-        minW='375px'
+        minW='340'
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
         py={4}
       >  
-          <Box mt={2}
-          >
-            
+          <Box mt={2}>
+            <Center>
             <Link
               color={useColorModeValue("gray.700", "white")}
               fontWeight='700'
@@ -54,12 +55,12 @@ const RecommendedTracks = () => {
             >
               Recommended
             </Link>
-              <div>
-                <Accordion minW="300" allowMultiple allowToggle>
+                </Center>
+                <chakra.div>
+                <Accordion allowMultiple allowToggle>
                   {list}
                 </Accordion>
-              </div>
-
+                </chakra.div>
           </Box>
         
       </Box>
