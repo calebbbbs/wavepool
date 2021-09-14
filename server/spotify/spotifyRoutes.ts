@@ -20,7 +20,7 @@ spotifyRouter.get(
     const { user_id } = req.params;
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
-      return getRecentlyPlayed(user.access_token, user_id).then((data) => {
+      return getRecentlyPlayed(user.access_token, user_id, user.refresh_token).then((data) => {
         return res.send(data);
       });
     } else {
@@ -35,7 +35,7 @@ spotifyRouter.get(
     const { user_id } = req.params;
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
-      return getUsersCurrentPlayback(user.access_token,).then((data: any) => {
+      return getUsersCurrentPlayback(user.access_token, user.refresh_token).then((data: any) => {
         if(data) {
           return res.send(data.data);
         }
@@ -51,8 +51,9 @@ spotifyRouter.get('/next/:user_id', async (req: Request, res: Response) => {
   const { user_id } = req.params;
   const user = await User.findOne({ where: { user_id: user_id } });
   if (user) {
-    const { access_token } = user;
+    const { access_token, refresh_token } = user;
     spotifyApi.setAccessToken(access_token);
+    spotifyApi.setRefreshToken(refresh_token);
     spotifyApi.skipToNext();
     return res.sendStatus(200);
   } else {
@@ -64,8 +65,9 @@ spotifyRouter.get('/prev/:user_id', async (req: Request, res: Response) => {
   const { user_id } = req.params;
   const user = await User.findOne({ where: { user_id: user_id } });
   if (user) {
-    const { access_token } = user;
+    const { access_token, refresh_token } = user;
     spotifyApi.setAccessToken(access_token);
+    spotifyApi.setRefreshToken(refresh_token);
     spotifyApi.skipToPrevious();
     return res.sendStatus(200);
   } else {
@@ -77,8 +79,9 @@ spotifyRouter.get('/play/:user_id', async (req: Request, res: Response) => {
   const { user_id } = req.params;
   const user = await User.findOne({ where: { user_id: user_id } });
   if (user) {
-    const { access_token } = user;
+    const { access_token, refresh_token } = user;
     spotifyApi.setAccessToken(access_token);
+    spotifyApi.setRefreshToken(refresh_token);
     spotifyApi.play();
     return res.sendStatus(200);
   } else {
@@ -90,8 +93,9 @@ spotifyRouter.get('/pause/:user_id', async (req: Request, res: Response) => {
   const { user_id } = req.params;
   const user = await User.findOne({ where: { user_id: user_id } });
   if (user) {
-    const { access_token } = user;
+    const { access_token, refresh_token } = user;
     spotifyApi.setAccessToken(access_token);
+    spotifyApi.setRefreshToken(refresh_token);
     spotifyApi.pause();
     return res.sendStatus(200);
   } else {
@@ -125,10 +129,11 @@ spotifyRouter.get(
 
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
-      const { access_token } = user;
+      const { access_token, refresh_token } = user;
       return addToQueue(access_token, spotify_uri)
         .then((data) => {
-        spotifyApi.setAccessToken(access_token)
+        spotifyApi.setAccessToken(access_token);
+        spotifyApi.setRefreshToken(refresh_token);
         spotifyApi.skipToNext();
         return res.status(201).send(data)})
         .catch((error) => console.log(error));
@@ -144,8 +149,8 @@ spotifyRouter.get(
     const { user_id, query } = req.params;
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
-      const { access_token } = user;
-      return await querySpotify(query, access_token).then((data) => {
+      const { access_token, refresh_token } = user;
+      return await querySpotify(query, refresh_token, access_token).then((data) => {
         return res.send(data);
       });
     } else {
@@ -161,8 +166,8 @@ spotifyRouter.get(
     const { user_id } = req.params;
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
-      const { access_token } = user;
-      return getUserPlaylists(access_token)
+      const { access_token, refresh_token } = user;
+      return getUserPlaylists(access_token, refresh_token)
         .then((data) => res.status(200).send(data))
         .catch((error) => console.log(error));
     }
@@ -178,8 +183,8 @@ spotifyRouter.get(
 
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
-      const { access_token } = user;
-      return addToPlaylist(access_token, playlist_id, spotify_uri)
+      const { access_token, refresh_token } = user;
+      return addToPlaylist(access_token, refresh_token, playlist_id, spotify_uri)
         .then((data) => res.status(201).send(data))
         .catch((error) => console.log(error));
     } else {
@@ -193,8 +198,8 @@ spotifyRouter.post('/createPlaylist/:playlist_name/:user_id', async(req: Request
   const {playlist_desc} = req.body;
   const user = await User.findOne({where: {user_id: user_id}});
   if(user) {
-    const { access_token } = user;
-    return createPlaylist(access_token, playlist_name, playlist_desc)
+    const { access_token, refresh_token } = user;
+    return createPlaylist(access_token, refresh_token, playlist_name, playlist_desc)
     .then((data) => res.status(201).send(data))
     .catch((error) => console.log(error));
   }

@@ -52,6 +52,7 @@ const TrackComp = (props: any) => {
   return (
     <chakra.div bg={bg} h="auto" borderRadius="2vh"
     m={2}>
+    <Text m={2}>{props.idx}</Text>
       <Flex p={4}>
         <Center>
           <Box>
