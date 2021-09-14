@@ -1,6 +1,6 @@
 import React from 'react';
 import { Scatter } from 'react-chartjs-2';
-
+import { Box } from '@chakra-ui/layout';
 const rand = () => Math.round(Math.random() * 20 - 10);
 
 const data = {
@@ -29,6 +29,8 @@ const data = {
 };
 
 const options = {
+  responsive: true,
+
   scales: {
     yAxes: [
       {
@@ -44,9 +46,9 @@ const options = {
 };
 
 const ScatterChart = () => (
-  <>
+  <Box>
     <Scatter data={data} options={options} />
-  </>
+  </Box>
 );
 
 export default ScatterChart;

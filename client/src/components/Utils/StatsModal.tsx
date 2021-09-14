@@ -1,8 +1,8 @@
 import React, { useContext }from "react";
-import GroupedBar from "../Chartjs/BarChart"
+//import GroupedBar from "../Chartjs/BarChart"
 import PieChart from '../Chartjs/PieChart'
-import ScatterChart from '../Chartjs/ScatterPlot'
-import Polar from "../Chartjs/PolarArea"
+//import ScatterChart from '../Chartjs/ScatterPlot'
+//import Polar from "../Chartjs/PolarArea"
 import { GraphContext } from "../../contexts/GraphContext"
 
 import {
@@ -16,26 +16,25 @@ import {
   ModalCloseButton,
   Button,
   Tooltip,
-  SimpleGrid,
   useDisclosure,
   useColorModeValue,
-  Flex,
-  Container
+  SimpleGrid,
+
 } from "@chakra-ui/react";
 
 import { AiOutlineBarChart } from "react-icons/ai";
 
 const StatsModal = (props: any) => {
-  const { setGraphUserId } = useContext(GraphContext);
+  const { userData, setGraphUserId } = useContext(GraphContext);
   const { onOpen, isOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("brand.100", "brand.800");
-
+  // const bg2 = useColorModeValue("brand.50", "brand.900");
   return (
     <>
       <Tooltip label="Charts & Stats">
         <Button variant="ghost" onClick={() => {
-          onOpen();
           setGraphUserId("124641024");
+          onOpen();
         }
           }>
           <chakra.div minW="10px" minH="10px">
@@ -45,24 +44,14 @@ const StatsModal = (props: any) => {
       </Tooltip>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bg={bg}  minW="900px">
+        <ModalContent bg={bg}>
           <ModalHeader>Charts & Stuff</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Flex>
-              <SimpleGrid columns={1} spacing={50} maxW="1000px">
-                <Container>
-                  <PieChart />
-                  <PieChart />
-                  <PieChart />
-                </Container>
+              <SimpleGrid p={15} columns={2} bg='#FFFFFF' borderRadius="15px">
+                {userData && (userData.map((graphData: any, index: number) => <PieChart graphData={graphData} key={index}/>))}
               </SimpleGrid>
-              <SimpleGrid columns={1} spacing={50} maxW="1000px">
-                <GroupedBar />
-                <ScatterChart />
-                <Polar />
-              </SimpleGrid>
-            </Flex>
+       
           </ModalBody>
 
           <ModalFooter>

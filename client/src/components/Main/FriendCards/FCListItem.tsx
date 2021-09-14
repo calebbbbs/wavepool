@@ -52,14 +52,14 @@ const FCListItem = (props: any) => {
           <AccordionButton>
             <Box
               borderRadius="15px"
-              p={5}
               bg={isSelected ? bg2 : bg}
-              flex="1"
-              textAlign="left"
+              p={5}
             >
               <Flex
+              alignItems="center"
               >
-                <FriendScore />
+                <FriendScore/>
+                <Spacer/>
                 <chakra.div>{props.friendName}</chakra.div>
                 <Spacer />
                 {props.friendStatus === false && (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { PolarArea } from 'react-chartjs-2';
+import { Box } from '@chakra-ui/layout';
 
 const data = {
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -21,15 +22,16 @@ const data = {
 };
 
 const options = {
+  responsive: true,
   animation: {
       duration: 0
     }
   }
 
 const Polar = () => (
-  <>
+  <Box>
     <PolarArea data={data} options={options}/>
-  </>
+  </Box>
 );
 
 export default Polar;

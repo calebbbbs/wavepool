@@ -7,15 +7,14 @@ const GraphContext = React.createContext(undefined as any);
 // eslint-disable-next-line react/prop-types
 const GraphContextProvider: React.FC = ({ children }) => {
   const [graphUserId, setGraphUserId] = useState<string>();
-  const [userStats, setUserStats] = useState<any>();
+  const [userData, setUserData] = useState<any>();
 
   //if (error) console.warn(error);
 
-  const getGraphData = (user_id: String) => {
-    console.log(user_id)
-    return axios.get<any>(`/user/analytics/${user_id}`)
+  const getGraphData = async (user_id: String) => {
+    return await axios.get<any>(`/user/analytics/${user_id}`)
       .then(({data}) => {
-        setUserStats(data);
+        setUserData(data); 
       })
   }
 
@@ -23,11 +22,11 @@ const GraphContextProvider: React.FC = ({ children }) => {
     if (graphUserId) {
       getGraphData(graphUserId);
     }
-  }, [graphUserId]);
+  }, [JSON.stringify(graphUserId)]);
 
   const graphProps = {
-    userStats, 
-    setUserStats,
+    userData, 
+    setUserData,
     graphUserId, 
     setGraphUserId
   };

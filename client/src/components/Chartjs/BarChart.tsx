@@ -1,5 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import { Box } from '@chakra-ui/layout';
 
 const data = {
   labels: ['1', '2', '3', '4', '5', '6'],
@@ -23,6 +24,7 @@ const data = {
 };
 
 const options = {
+  responsive: true,
   scales: {
     yAxes: [
       {
@@ -38,9 +40,9 @@ const options = {
 };
 
 const GroupedBar = () => (
-  <>
+  <Box>
     <Bar data={data} options={options} />
-  </>
+  </Box>
 );
 
 export default GroupedBar;

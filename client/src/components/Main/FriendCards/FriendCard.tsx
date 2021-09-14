@@ -37,28 +37,30 @@ const RecommendedTracks = () => {
         minX="300px"
         mx="auto"
         px={8}
-        py={4}
+        // py={4}
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
         maxW="2xl"
-      >
-        <Box mt={2}>
-          <Link
-            color={useColorModeValue('brand.700', 'white')}
-            fontWeight='700'
-            _hover={{
-              color: useColorModeValue("brand.600", "brand.200"),
-              textDecor: "underline",
-            }}
+      >  
+          <Box mt={2}
           >
-            Recommended
-          </Link>
-            <div>
-              <Accordion minW="300" allowMultiple allowToggle>
-                {list}
-              </Accordion>
-            </div>
+            
+            <Link
+              color={useColorModeValue("gray.700", "white")}
+              fontWeight='700'
+              _hover={{
+                color: useColorModeValue("brand.600", "brand.200"),
+                textDecor: "underline",
+              }}
+            >
+              Recommended
+            </Link>
+              <div>
+                <Accordion minW="300" allowMultiple allowToggle>
+                  {list}
+                </Accordion>
+              </div>
 
           </Box>
         

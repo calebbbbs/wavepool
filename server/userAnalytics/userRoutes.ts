@@ -9,42 +9,36 @@ userRouter.get(
   '/analytics/:user_id',
   async (req: Request, res: Response) => {
     const { user_id } = req.params;
-    let analyticsResponse: any = {};
-    const historyGenres = await HistoryGenre.find({
+    let analyticsResponse: Array<Array<Array<string | number>>> = [];
+    const historyGenres: HistoryGenre[] = await HistoryGenre.find({
       where: {user_id: user_id},
       order: {count: "DESC"},
-      take: 25
+      take: 10
     })
 
-    let genres: any = {
-      genre: [],
-      count: []
-    }
+    let genres: Array<Array<string | number>> = [[],[]]
 
     historyGenres.forEach(({genre, count}) => {
-      genres.genre.push(genre);
-      genres.count.push(count);
+      genres[0].push(genre);
+      genres[1].push(count);
     });
 
-    analyticsResponse.genres = genres;
+    analyticsResponse.push(genres);
 
-    const historyArtists = await HistoryArtist.find({
+    const historyArtists: HistoryArtist[] = await HistoryArtist.find({
       where: {user_id: user_id},
       order: {count: "DESC"},
-      take: 25
+      take: 10
     })
 
-    let artists: any = {
-      artist: [],
-      count: []
-    }
+    let artists: Array<Array<string | number>> = [[],[]]
 
     historyArtists.forEach(({artist_name, count}) => {
-      artists.artist.push(artist_name);
-      artists.count.push(count);
+      artists[0].push(artist_name);
+      artists[1].push(count);
     });
 
-    analyticsResponse.artists = artists;
+    analyticsResponse.push(artists);
     return res.status(200).send(analyticsResponse);
   }
 );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
-
 import {
   Box,
   useColorModeValue,
@@ -24,41 +23,41 @@ const data = {
       borderWidth: 1,
     },
   ],
-  
+
 };
 
 const options = {
+  responsive: true,
   animation: {
     duration: 0
   },
   legend: {
-    display: false   
+    display: false
   }
 }
 
 const FriendScore = () => {
   return(
-    <Box 
-      
-      maxW="100px" 
+    <Box
+      maxW="100px"
       maxH="100px"
-      color={useColorModeValue('brand.700', 'white')}
+      color={useColorModeValue("gray.700", "white")}
       fontWeight='700'
       fontSize='10px'
     >
       Friend score: 96%
-      <Pie 
-        data={data} 
+      <Pie
+        data={data}
         options={options}
       />
       <Link
-        
+
         _hover={{
           color: useColorModeValue("brand.600", "brand.200"),
           textDecor: "underline",
         }}
       >
-        
+
       </Link>
     </Box>
   )
