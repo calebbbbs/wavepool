@@ -18,6 +18,7 @@ import {
   StackDivider,
   useToast
 } from "@chakra-ui/react";
+
 import Marquee from "react-fast-marquee";
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
@@ -56,10 +57,10 @@ const TrackComp = (props: any) => {
       .catch((error) => console.log('Error addToQueue in TrackComp.tsx', error));
     };
 
-
-    return (
-    <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
-      <Flex mx={5} p={4}>
+  return (
+    <chakra.div bg={bg} h="auto" borderRadius="2vh"
+    m={2}>
+      <Flex p={4}>
         <Center>
           <Box>
             <Skeleton isLoaded={imgLoaded}>
@@ -82,11 +83,11 @@ const TrackComp = (props: any) => {
         </Center>
         <Center>
           <Stack
+          maxW='175px'
             divider={<StackDivider borderColor={dividerColor} />}
-            padding={2}
             borderRadius="15px"
-            m={2}
-            mr={4}
+            // m={2}
+            // mr={4}
           >
             <Flex alignItems="center">
               <BiHeadphone />
@@ -94,9 +95,12 @@ const TrackComp = (props: any) => {
             </Flex>
             <chakra.div>
               <Flex alignItems="center">
+                <chakra.div minW="10px">
                 <BsPerson />
-                <chakra.div>
+                </chakra.div>
+                <chakra.div maxW='150px'>
                   <Marquee
+
                     gradient={false}
                     pauseOnHover={true}
                     pauseOnClick={true}

@@ -20,6 +20,8 @@ import RecommendedTracksList from "./RecomendedTracksList";
 import StatsModal from "../../Utils/StatsModal";
 import { UserContext } from "../../../contexts/UserContext";
 import { ImRadioChecked, ImRadioUnchecked } from "react-icons/im";
+import FriendScore from "../../Chartjs/FriendScore";
+
 const FCListItem = (props: any) => {
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
     return (
@@ -45,17 +47,18 @@ const FCListItem = (props: any) => {
 
   return (
     <Flex alignItems="center" flexDirection={{ base: "column", md: "row" }}>
-      <AccordionItem>
+      <AccordionItem maxW="auto">
         <h2>
           <AccordionButton>
             <Box
               borderRadius="15px"
-              p={5}
               bg={isSelected ? bg2 : bg}
-              flex="1"
-              textAlign="left"
             >
-              <Flex>
+              <Flex
+              alignItems="center"
+              >
+                <FriendScore/>
+                <Spacer/>
                 <chakra.div>{props.friendName}</chakra.div>
                 <Spacer />
                 {props.friendStatus === true && (

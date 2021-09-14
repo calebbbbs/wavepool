@@ -11,6 +11,7 @@ import {
 import { UserContext } from "../../../contexts/UserContext";
 import FCListItem from "./FCListItem";
 
+
 const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
   const { friends } = userObj;
@@ -31,33 +32,45 @@ const RecommendedTracks = () => {
   });
 
   return (
-    <Flex minX="300px" alignItems="center" justifyContent="center">
+    <Flex  alignItems="center" justifyContent="center">
       <Box
+<<<<<<< HEAD
         mx="auto"
         px={8}
         py={4}
+=======
+        // mx="auto"
+        // px={8}
+        // py={4}
+>>>>>>> 6d316547047e9c96421ca2b760441d80fa437ade
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
-        maxW="2xl"
-      >
-        <Box mt={2}>
-          <Link
-            color={useColorModeValue("brand.700", "white")}
-            fontWeight="700"
-            _hover={{
-              color: useColorModeValue("brand.600", "brand.200"),
-              textDecor: "underline",
-            }}
+        // maxW="2xl"
+        py={4}
+      >  
+          <Box mt={2}
           >
-            Recommended
-          </Link>
-          <div>
-            <Accordion minW="300" allowMultiple allowToggle>
-              {list}
-            </Accordion>
-          </div>
-        </Box>
+            
+            <Link
+              color={useColorModeValue("gray.700", "white")}
+              fontWeight='700'
+              m={4}
+              _hover={{
+                color: useColorModeValue("brand.600", "brand.200"),
+                textDecor: "underline",
+              }}
+            >
+              Recommended
+            </Link>
+              <div>
+                <Accordion minW="300" allowMultiple allowToggle>
+                  {list}
+                </Accordion>
+              </div>
+
+          </Box>
+        
       </Box>
     </Flex>
   );

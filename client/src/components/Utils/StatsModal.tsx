@@ -1,4 +1,8 @@
 import React from "react";
+import GroupedBar from '../Chartjs/BarChart'
+import PieChart from '../Chartjs/PieChart'
+import ScatterChart from '../Chartjs/ScatterPlot'
+import Polar from "../Chartjs/PolarArea"
 
 import {
   Modal,
@@ -13,13 +17,15 @@ import {
   Tooltip,
   useDisclosure,
   useColorModeValue,
+  SimpleGrid
 } from "@chakra-ui/react";
 
 import { AiOutlineBarChart } from "react-icons/ai";
 
 const StatsModal = (props: any) => {
   const { onOpen, isOpen, onClose } = useDisclosure();
-  const bg = useColorModeValue("brand.200", "brand.800");
+  const bg = useColorModeValue("brand.100", "brand.800");
+  // const bg2 = useColorModeValue("brand.50", "brand.900");
   return (
     <>
       <Tooltip label="Charts & Stats">
@@ -35,9 +41,15 @@ const StatsModal = (props: any) => {
           <ModalHeader>Charts & Stuff</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-
-            <h1>Friend Score: {Math.round(props.friendScore)}</h1>
-
+              <SimpleGrid p={4} columns={2} bg='#FFFFFF' borderRadius="15px">
+                  <PieChart />
+                  <PieChart />
+                  <PieChart />
+                <GroupedBar />
+                <ScatterChart />
+                <Polar />
+              </SimpleGrid>
+       
           </ModalBody>
 
           <ModalFooter>

@@ -39,7 +39,7 @@ export const Main = (props: any) => {
         toggleFont={props.toggleFont}
         changeColorTheme={props.changeColorTheme}
       />
-      <SimpleGrid minChildWidth="400px" spacing="10px">
+      <SimpleGrid minChildWidth="350px" spacing="10px">
         <RecentlyPlayed />
         <FriendCard />
       </SimpleGrid>
