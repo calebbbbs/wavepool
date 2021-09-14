@@ -47,13 +47,12 @@ const FCListItem = (props: any) => {
 
   return (
     <Flex alignItems="center" flexDirection={{ base: "column", md: "row" }}>
-      <AccordionItem>
+      <AccordionItem maxW="auto">
         <h2>
           <AccordionButton>
             <Box
               borderRadius="15px"
               bg={isSelected ? bg2 : bg}
-              p={5}
             >
               <Flex
               alignItems="center"

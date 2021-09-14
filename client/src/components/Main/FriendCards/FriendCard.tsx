@@ -32,17 +32,15 @@ const RecommendedTracks = () => {
   });
 
   return (
-    <Flex 
-    minX="300px" alignItems="center" justifyContent="center">
+    <Flex  alignItems="center" justifyContent="center">
       <Box
-        minX="300px"
-        mx="auto"
-        px={8}
+        // mx="auto"
+        // px={8}
         // py={4}
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
-        maxW="2xl"
+        // maxW="2xl"
         py={4}
       >  
           <Box mt={2}

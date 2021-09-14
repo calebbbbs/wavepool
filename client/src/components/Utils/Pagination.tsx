@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, HStack, Center } from "@chakra-ui/react";
+import { Button, Flex, Center } from "@chakra-ui/react";
 const Pagination = (props: any) => {
   const { postsPerPage, setCurrentPage, totalPosts, paginate, currentPage } =
     props;
@@ -25,8 +25,8 @@ const Pagination = (props: any) => {
     if (currentPage >= 5 && i === 2) {
       return <div>...</div>;
     } else if (
-      i === currentPage + 1 ||
-      i === currentPage - 3 ||
+      // i === currentPage + 1 ||
+      // i === currentPage - 3 ||
     //   i === currentPage + 2 ||
       i === currentPage - 2 ||
       i === currentPage ||
@@ -53,20 +53,22 @@ const Pagination = (props: any) => {
   });
 
   return (
-    <Center maxW="auto">
-      <HStack>
-       {pageNumbers.length >= 5 && <Button onClick={() => {
+    <Center>
+      <Flex>
+       {pageNumbers.length >= 5 && <Button 
+       onClick={() => {
             if(currentPage > 0){
             setCurrentPage(currentPage - 1)
             }
         }}>Prev</Button>}
         {list}
-        {pageNumbers.length >= 5 && <Button onClick={() => {
+        {pageNumbers.length >= 5 && <Button 
+        onClick={() => {
                         if(currentPage < pageNumbers.length){
                             setCurrentPage(currentPage + 1)
                             }
         }}>Next</Button>}
-      </HStack>
+      </Flex>
     </Center>
   );
 };

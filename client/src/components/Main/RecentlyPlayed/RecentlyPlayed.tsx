@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import Pagination from "../../Utils/Pagination";
-import { Flex, Box, Image, useColorModeValue, Link } from "@chakra-ui/react";
+import { Flex, Box, Image, useColorModeValue, useBreakpointValue, Link, Center } from "@chakra-ui/react";
 import { UserContext } from "../../../contexts/UserContext";
 import RecentlyPlayedList from "./RecentlyPlayedList";
 
@@ -13,9 +13,10 @@ export const RecentlyPlayed = () => {
     }, 60000);
     return () => clearInterval(interval);
   }, []);
-
+  const opts = {base: 2, md: 3}
+    const tracksPerPage = useBreakpointValue(opts) || 2;
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [tracksPerPage] = useState<number>(2);
+
   const [currentPosts, setCurrentPosts] = useState<any>([]);
   const indexOfLastPost = currentPage * tracksPerPage;
   const indexOfFirstPost = indexOfLastPost - tracksPerPage;
@@ -30,17 +31,17 @@ export const RecentlyPlayed = () => {
   };
 
   return (
-    <Flex mt={8} w="full" alignItems="center" justifyContent="center">
+    <Flex mt={8} width="full" alignItems="center" justifyContent="center">
       <Box
         // mx="auto"
-        px={8}
         py={4}
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
-        maxW="2xl"
+        // maxW="2xl"
       >
         <Box mt={2}>
+          <Center>
           <Link
             color={useColorModeValue("gray.700", "white")}
             fontWeight="700"
@@ -51,13 +52,15 @@ export const RecentlyPlayed = () => {
           >
             Recently Played
           </Link>
+          </Center>
+          
           {recentPlays && (
             <div>
               <RecentlyPlayedList recentPlays={currentPosts} />
               <Pagination
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
-                postsPerPage={tracksPerPage}
+                postsPerPage={tracksPerPage || 2}
                 totalPosts={recentPlays.length}
                 paginate={paginate}
               />
@@ -65,8 +68,7 @@ export const RecentlyPlayed = () => {
           )}
         </Box>
 
-        <Flex justifyContent="space-between" alignItems="center" mt={4}>
-          <Flex alignItems="center">
+          <Center m={4}>
             {userObj.photo !== "no photo" && (
               <Image
                 boxSize="2rem"
@@ -83,8 +85,7 @@ export const RecentlyPlayed = () => {
             >
               {userObj.user_name}
             </Link>
-          </Flex>
-        </Flex>
+            </Center>
       </Box>
     </Flex>
   );

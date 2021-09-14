@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import Marquee from "react-fast-marquee";
 import {
-  HStack,
+  VStack,
   Image,
   Text,
   Stack,
@@ -66,7 +66,7 @@ export const AudioPlayerMobile = () => {
           <DrawerCloseButton />
           <DrawerBody>
             <Center>
-              <HStack
+              <VStack
                 alignContent="center"
                 alignItems="center"
                 my="auto"
@@ -102,7 +102,7 @@ export const AudioPlayerMobile = () => {
                   </Flex>
                 </Stack>
                 <TransportControls />
-              </HStack>
+              </VStack>
             </Center>
           </DrawerBody>
         </DrawerContent>
