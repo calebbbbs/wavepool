@@ -43,7 +43,7 @@ export class RecommendedResolver {
           if(!contains) {
             createGenre(friendship.id, genre);
           }
-          
+
         });
 
         track.user_id = user_id;
@@ -61,6 +61,23 @@ export class RecommendedResolver {
         await track.save()
       }
     }
+    // if(friendship && user && friend && track){
+    //   friendship.number_of_songs++;
+    //   await friendship.save();
+    //   track.user_id = friend_id;
+    //     track.friend_id = user_id;
+    //     track.friend_name = user.user_name;
+    //     track.track_title = track_title;
+    //     track.track_uri = track_uri;
+    //     track.artists = artists;
+    //     track.album_title = album_title;
+    //     track.album_art = album_art;
+    //     track.album_uri = album_uri;
+    //     track.in_queue = true;
+    //     track.been_liked = false;
+    //     track.comment_text = '';
+    //     await track.save()
+    // }
 
     await getConnection()
       .createQueryBuilder()
