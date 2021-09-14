@@ -1,8 +1,10 @@
 import { Router } from 'express';
 import { Request, Response } from 'express-serve-static-core';
+import getHistoryPlayed from './seedFunction'
 import HistoryArtist from '../db/entities/HistoryArtist';
 import HistoryGenre from '../db/entities/HistoryGenre';
 import Friend from '../db/entities/Friend';
+import User from '../db/entities/User'
 
 const userRouter = Router();
 
@@ -61,5 +63,19 @@ userRouter.get(
     return res.status(200).send(analyticsResponse);
   }
 );
+
+userRouter.get(
+  '/history/:user_id',
+  async (req: Request, res: Response) => {
+    const { user_id } = req.params;
+    const user = await User.findOne({where: {user_id: user_id}});
+    if(user) {
+      await getHistoryPlayed(user.access_token, user_id, 0, 0);
+    }
+    return res.sendStatus(200);
+  }
+);
+
+
 
 export default userRouter;

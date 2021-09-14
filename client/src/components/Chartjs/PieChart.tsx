@@ -14,20 +14,28 @@ const PieChart = (props: any) => {
         label: '# of Votes',
         data: graphData[1],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 0, 0, 0.7)',
+          'rgba(255, 0, 38, 0.7)',
+          'rgba(255, 0, 63, 0.7)',
+          'rgba(255, 0, 88, 0.7)',
+          'rgba(255, 0, 114, 0.7)',
+          'rgba(244, 0, 143, 0.7)',
+          'rgba(222, 0, 173, 0.6)',
+          'rgba(190, 0, 202, 0.5)',
+          'rgba(142, 0, 230, 0.4)',
+          'rgba(33, 0, 255, 0.4)',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
+          'rgba(255, 0, 0, 1)',
+          'rgba(255, 0, 38, 1)',
+          'rgba(255, 0, 63, 1)',
+          'rgba(255, 0, 88, 1)',
+          'rgba(255, 0, 114, 1)',
+          'rgba(244, 0, 143, 1)',
+          'rgba(222, 0, 173, 1)',
+          'rgba(190, 0, 202, 0.7)',
+          'rgba(142, 0, 230, 0.6)',
+          'rgba(33, 0, 255, 0.1)',
         ],
         borderWidth: 1,
       },
@@ -42,7 +50,7 @@ const PieChart = (props: any) => {
     }
 
   return (
-    <Box minW='500px'>
+    <Box minW='500px' marginBottom="30px">
       <Pie data={data} options={options}/>
     </Box>
   )

@@ -25,6 +25,7 @@ import {
 import { AiOutlineBarChart } from "react-icons/ai";
 
 const StatsModal = (props: any) => {
+  const { user_id } = props;
   const { userGenres, userArtists, userFriends, setGraphUserId } = useContext(GraphContext);
   const { onOpen, isOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("brand.100", "brand.800");
@@ -33,7 +34,7 @@ const StatsModal = (props: any) => {
     <>
       <Tooltip label="Charts & Stats">
         <Button variant="ghost" onClick={() => {
-          setGraphUserId("124641024");
+          setGraphUserId(user_id);
           onOpen();
         }
           }>

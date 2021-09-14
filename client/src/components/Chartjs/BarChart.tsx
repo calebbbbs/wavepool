@@ -10,12 +10,14 @@ const GroupedBar = (props: any) => {
       {
         label: '# of dislikes',
         data: graphData[1],
-        backgroundColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 0, 0, 0.7)',
+        borderColor: 'rgba(255, 0, 0, 1)',
       },
       {
         label: '# of likes',
         data: graphData[2],
-        backgroundColor: 'rgb(54, 162, 235)',
+        backgroundColor: 'rgba(33, 0, 255, 0.4)',
+        borderColor: 'rgba(33, 0, 255, 0.1)',
       },
     ],
   };
