@@ -116,6 +116,8 @@ const FCListItem = (props: any) => {
             recommendedTracks={currentPosts}
           />
           <Pagination
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
             postsPerPage={tracksPerPage}
             totalPosts={list.length}
             paginate={paginate}
