@@ -28,7 +28,7 @@ import PlayNow from "./buttons/PlayNow";
 
 const TrackComp = (props: any) => {
   const [imgLoaded, setImgLoaded] = useState(false);
-  const { userObj, userPlaylists } = useContext(UserContext);
+  const { userObj, userPlaylists, currPlayback } = useContext(UserContext);
   const { album_art, track_title, artists, album_title, track_uri, user_id } =
     props.track;
   const toast = useToast();
@@ -118,9 +118,9 @@ const TrackComp = (props: any) => {
         <Flex
         flexDirection={{base: "row", md: 'column'}}>
           <Tooltip placement="left" label="Add to Queue">
-            <Button variant="ghost" onClick={addToQueue}>
+            {currPlayback && <Button variant="ghost" onClick={addToQueue}>
               <MdQueueMusic />
-            </Button>
+            </Button>}
           </Tooltip>
           <SendTrack track={props.track} />
           {userPlaylists && (
