@@ -59,7 +59,6 @@ userRouter.get(
     });
 
     analyticsResponse.push(friends);
-    console.log(analyticsResponse)
     return res.status(200).send(analyticsResponse);
   }
 );

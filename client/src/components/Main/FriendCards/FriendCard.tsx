@@ -35,7 +35,7 @@ const RecommendedTracks = () => {
   });
 
   return (
-    <Flex mt={2} alignItems="center" justifyContent="center">
+    <Flex mt={2} alignItems="center" justifyContent="center"> 
       <Box
         minW='340'
         rounded="lg"

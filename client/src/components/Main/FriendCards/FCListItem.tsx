@@ -23,8 +23,7 @@ import { ImRadioChecked, ImRadioUnchecked } from "react-icons/im";
 import FriendScore from "../../Chartjs/FriendScore";
 
 const FCListItem = (props: any) => {
-  const {totalSongs, numberOfLikes, friendId} = props
-  console.log(props)
+  const {totalSongs, numberOfLikes, friendId, friendName} = props
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
     return (
       recTrack.friend_name === props.friendName && recTrack.in_queue === true
@@ -51,7 +50,7 @@ const FCListItem = (props: any) => {
   return (
     <Flex alignItems="center" flexDirection={{ base: "column", md: "row" }}>
             <Flex flexDirection={{ base: "row", md: "column" }}>
-        <StatsModal friendScore={score} user_id={friendId}/>
+        <StatsModal friendScore={score} user_id={friendId} userName={friendName}/>
         <Tooltip label={`Select ${props.friendName}`}>
           <Button
             variant="ghost"
