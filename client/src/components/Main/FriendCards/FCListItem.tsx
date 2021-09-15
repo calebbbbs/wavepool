@@ -23,6 +23,9 @@ import { ImRadioChecked, ImRadioUnchecked } from "react-icons/im";
 import FriendScore from "../../Chartjs/FriendScore";
 
 const FCListItem = (props: any) => {
+  const {user_id,  } = props.userObj;
+  const {totalSongs, numberOfLikes} = props
+  console.log(props)
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
     return (
       recTrack.friend_name === props.friendName && recTrack.in_queue === true
@@ -48,18 +51,42 @@ const FCListItem = (props: any) => {
 
   return (
     <Flex alignItems="center" flexDirection={{ base: "column", md: "row" }}>
-      <AccordionItem minW='auto'>
+            <Flex flexDirection={{ base: "row", md: "column" }}>
+        <StatsModal friendScore={score} user_id={user_id}/>
+        <Tooltip label={`Select ${props.friendName}`}>
+          <Button
+            variant="ghost"
+            onClick={() => {
+              setSelectedFriend([props.friendId, props.friendName]);
+            }}
+            ml={2}
+          >
+            {isSelected ? (
+              <chakra.div minW="10px" minH="10px">
+                {" "}
+                <ImRadioChecked />{" "}
+              </chakra.div>
+            ) : (
+              <chakra.div minW="10px" minH="10px">
+                {" "}
+                <ImRadioUnchecked />
+              </chakra.div>
+            )}
+          </Button>
+        </Tooltip>
+      </Flex>
+      <AccordionItem>
         <h2>
           <AccordionButton>
             <Box
-              minW='300px'
+              // minW='300px'
               borderRadius="15px"
               bg={isSelected ? bg2 : bg}
             >
               <Flex
               alignItems="center"
               >
-                <FriendScore/>
+                <FriendScore totalSongs={totalSongs} numberOfLikes={numberOfLikes}/>
                 <chakra.div>{props.friendName}</chakra.div>
                 {props.friendStatus === false && (
                   <FriendStat
@@ -97,31 +124,7 @@ const FCListItem = (props: any) => {
           />
         </AccordionPanel>
       </AccordionItem>
-      <Flex flexDirection={{ base: "row", md: "row" }}>
-        <StatsModal friendScore={score} />
-        <Tooltip label={`Select ${props.friendName}`}>
-          <Button
-            variant="ghost"
-            onClick={() => {
-              setSelectedFriend([props.friendId, props.friendName]);
-            }}
-            ml={2}
-          >
-            {isSelected ? (
-              <chakra.div minW="10px" minH="10px">
-                {" "}
-                <ImRadioChecked />{" "}
-              </chakra.div>
-            ) : (
-              <chakra.div minW="10px" minH="10px">
-                {" "}
-                <ImRadioUnchecked />
-              </chakra.div>
-            )}
-          </Button>
-        </Tooltip>
-      </Flex>
-    </Flex>
+     </Flex> 
   );
 };
 

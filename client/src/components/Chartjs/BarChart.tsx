@@ -2,47 +2,47 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Box } from '@chakra-ui/layout';
 
-const data = {
-  labels: ['1', '2', '3', '4', '5', '6'],
-  datasets: [
-    {
-      label: '# of Red Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: 'rgb(255, 99, 132)',
-    },
-    {
-      label: '# of Blue Votes',
-      data: [2, 3, 20, 5, 1, 4],
-      backgroundColor: 'rgb(54, 162, 235)',
-    },
-    {
-      label: '# of Green Votes',
-      data: [3, 10, 13, 15, 22, 30],
-      backgroundColor: 'rgb(75, 192, 192)',
-    },
-  ],
-};
-
-const options = {
-  responsive: true,
-  scales: {
-    yAxes: [
+const GroupedBar = (props: any) => {
+  const { graphData } = props;
+  const data = {
+    labels: graphData[0],
+    datasets: [
       {
-        ticks: {
-          beginAtZero: true,
-        },
+        label: '# of dislikes',
+        data: graphData[1],
+        backgroundColor: 'rgba(255, 0, 0, 0.7)',
+        borderColor: 'rgba(255, 0, 0, 1)',
+      },
+      {
+        label: '# of likes',
+        data: graphData[2],
+        backgroundColor: 'rgba(33, 0, 255, 0.4)',
+        borderColor: 'rgba(33, 0, 255, 0.1)',
       },
     ],
-  },
-  animation: {
-    duration: 0
-  }
-};
+  };
 
-const GroupedBar = () => (
+  const options = {
+    responsive: true,
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+    animation: {
+      duration: 0
+    }
+  };
+  
+  return (
   <Box>
     <Bar data={data} options={options} />
   </Box>
-);
+)
+};
 
 export default GroupedBar;

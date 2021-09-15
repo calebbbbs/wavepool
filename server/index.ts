@@ -7,6 +7,7 @@ import typeOrmConfig from '../server/db/dbConfig';
 import User from './db/entities/User';
 
 import spotifyRouter from './spotify/spotifyRoutes';
+import userRouter from './userAnalytics/userRoutes';
 require('dotenv').config();
 
 const session = require('express-session');
@@ -175,6 +176,7 @@ async function startServer() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(CLIENT_PATH));
+  app.use('/user', userRouter);
   app.use('/spotify', spotifyRouter);
 
   server.applyMiddleware({ app });

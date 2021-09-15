@@ -2,7 +2,7 @@ import React from 'react'
 
 import TrackComp from '../../Utils/Track/TrackComp';
 import type {Track} from '../../../types'
-import {SimpleGrid, chakra} from '@chakra-ui/react'
+import {SimpleGrid} from '@chakra-ui/react'
 const RecentlyPlayedList = (props: any) => {
 
 const list = props.recentPlays.map((e: any, i: Number) => {
@@ -20,11 +20,10 @@ const track: Track = {
     track_uri: e.uri,
     artist_uri: e.artists[0].uri
 }
-    return <chakra.div><TrackComp track={track} key={i} idx={i}/></chakra.div>
+    return <TrackComp  key={i} track={track}/>
   })
     return (
         <SimpleGrid 
-        m={{base: 0, sm: 1, md: 4, lg: 6, xl: 10}}
         columns={{base:1, sm: 1, md: 1, lg: 1, xl: 2}}>
             {list}
         </SimpleGrid>

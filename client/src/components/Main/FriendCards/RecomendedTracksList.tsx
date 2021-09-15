@@ -71,8 +71,9 @@ useEffect(() =>{
     return (
       <chakra.div 
       borderRadius='2vh'
-      mb={2}
-      maxW='350px' bg={bg} key={i}>
+      mb={4}
+      minW='345px'
+      maxW={{base: '350px', md: '400px', xl: '500px'}} bg={bg} key={i}>
         <Flex
         >
         <Button
@@ -176,7 +177,9 @@ useEffect(() =>{
   });
 
 
-  return <SimpleGrid columns={{base:1, md:1, lg: 1, xl: 2}}>
+  return <SimpleGrid 
+  spacing='40px'
+  columns={{base:1, md:1, lg: 1, xl: 1}}>
     {list}</SimpleGrid>;
 };
 
