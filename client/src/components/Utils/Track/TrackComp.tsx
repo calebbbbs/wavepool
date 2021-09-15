@@ -117,11 +117,11 @@ const TrackComp = (props: any) => {
         <Center>
         <Flex
         flexDirection={{base: "row", md: 'column'}}>
-          <Tooltip placement="left" label="Add to Queue">
-            {currPlayback && <Button variant="ghost" onClick={addToQueue}>
+         {currPlayback  && <Tooltip placement="left" label="Add to Queue">
+            <Button variant="ghost" onClick={addToQueue}>
               <MdQueueMusic />
-            </Button>}
-          </Tooltip>
+            </Button>
+          </Tooltip>}
           <SendTrack track={props.track} />
           {userPlaylists && (
             <AddToPlaylist
