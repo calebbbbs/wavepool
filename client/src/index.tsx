@@ -62,16 +62,16 @@ const Index = () => {
         fontSize: "xl",
       },
       p: {
-        fontSize: "lg",
+        fontSize: "md",
       },
       div: {
-        fontSize: "lg",
+        fontSize: "md",
       },
       VStack: {
-        fontSize: "lg",
+        fontSize: "md",
       },
       Text: {
-        fontSize: "lg",
+        fontSize: "md",
       },
     }),
   };

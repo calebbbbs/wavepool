@@ -5,6 +5,7 @@ import {
   Center,
   useColorModeValue,
   Tooltip,
+  SimpleGrid,
   Flex,
   Spacer
 } from "@chakra-ui/react";
@@ -68,7 +69,10 @@ useEffect(() =>{
   }
   const list = props.recommendedTracks.map((e: any, i: number) => {
     return (
-      <chakra.div maxW='350px' bg={bg} key={i}>
+      <chakra.div 
+      borderRadius='2vh'
+      mb={2}
+      maxW='350px' bg={bg} key={i}>
         <Flex
         >
         <Button
@@ -172,8 +176,8 @@ useEffect(() =>{
   });
 
 
-  return <div>
-    {list}</div>;
+  return <SimpleGrid columns={{base:1, md:1, lg: 1, xl: 2}}>
+    {list}</SimpleGrid>;
 };
 
 export default RecommendedTracksList;

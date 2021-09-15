@@ -13,7 +13,7 @@ export const RecentlyPlayed = () => {
     }, 60000);
     return () => clearInterval(interval);
   }, []);
-  const opts = {base: 2, md: 3}
+  const opts = {base: 2, sm: 3, md: 3, lg: 3, xl: 6}
     const tracksPerPage = useBreakpointValue(opts) || 2;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -31,9 +31,10 @@ export const RecentlyPlayed = () => {
   };
 
   return (
-    <Flex mt={8} width="full" alignItems="center" justifyContent="center">
+    <Flex mt={2} width="full" alignItems="center" justifyContent="center">
       <Box
         // mx="auto"
+        minW='375px'
         py={4}
         rounded="lg"
         shadow="lg"

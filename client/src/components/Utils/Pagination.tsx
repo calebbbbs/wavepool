@@ -9,7 +9,6 @@ const Pagination = (props: any) => {
     pageNumbers.push(i);
   }
 
-  console.log(pageNumbers);
   const list = pageNumbers.map((number: number, i: number) => {
       if(i === currentPage - 1){
           return <Button

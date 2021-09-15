@@ -12,7 +12,7 @@ import {
   Button,
   Badge,
   Flex,
-  Spacer,
+  useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
 import Pagination from "../../Utils/Pagination";
@@ -35,7 +35,8 @@ const FCListItem = (props: any) => {
   const bg2 = useColorModeValue("brand.200", "brand.700");
   const score = props.friendScore / props.totalSongs;
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [tracksPerPage] = useState<number>(2);
+  const opts = {base: 2, sm: 3, md: 3, lg: 3, xl: 6}
+    const tracksPerPage = useBreakpointValue(opts) || 2;
 
   const indexOfLastPost = currentPage * tracksPerPage;
   const indexOfFirstPost = indexOfLastPost - tracksPerPage;
@@ -47,10 +48,11 @@ const FCListItem = (props: any) => {
 
   return (
     <Flex alignItems="center" flexDirection={{ base: "column", md: "row" }}>
-      <AccordionItem maxW="auto">
+      <AccordionItem minW='auto'>
         <h2>
           <AccordionButton>
             <Box
+              minW='300px'
               borderRadius="15px"
               bg={isSelected ? bg2 : bg}
             >
@@ -58,9 +60,14 @@ const FCListItem = (props: any) => {
               alignItems="center"
               >
                 <FriendScore/>
-                <Spacer/>
                 <chakra.div>{props.friendName}</chakra.div>
-                <Spacer />
+                {props.friendStatus === false && (
+                  <FriendStat
+                    friend_name={props.friendName}
+                    friend_id={props.friendId}
+                    friend_status={props.friend_status}
+                  />
+                )}
                 {props.friendStatus === true && (
                   <Badge colorscheme="green" float="right">
                     {list.length.toString()}
