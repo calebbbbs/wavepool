@@ -139,14 +139,12 @@ spotifyRouter.get(
     const user = await User.findOne({ where: { user_id: user_id } });
     if (user) {
       const { access_token, refresh_token } = user;
-      return addToQueue(access_token, spotify_uri)
-        .then((data) => {
-          spotifyApi.setAccessToken(access_token);
-          spotifyApi.setRefreshToken(refresh_token);
-          spotifyApi.skipToNext();
-          return res.status(201).send(data);
-        })
-        .catch((error) => console.log(error));
+      return addToQueue(access_token, spotify_uri).then((data) => {
+        spotifyApi.setAccessToken(access_token);
+        spotifyApi.setRefreshToken(refresh_token);
+        spotifyApi.skipToNext();
+        return res.status(201).send(data);
+      });
     } else {
       return res.sendStatus(404);
     }
@@ -162,7 +160,7 @@ spotifyRouter.get(
       const { access_token, refresh_token } = user;
       return await querySpotify(query, refresh_token, access_token).then(
         (data) => {
-          return res.send(data);
+          return res.status(200).send(data);
         }
       );
     } else {
@@ -180,7 +178,11 @@ spotifyRouter.get(
       const { access_token, refresh_token } = user;
       return getUserPlaylists(access_token, refresh_token)
         .then((data) => res.status(200).send(data))
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          return res.sendStatus(400);
+        });
+    } else {
+      return res.sendStatus(404);
     }
   }
 );

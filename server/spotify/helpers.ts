@@ -43,8 +43,8 @@ const getRecentlyPlayed = async (access_token: string, user_id: string, refresh_
       return data;
     })
     .catch((error) => {
-      console.log("Error from getRecentlyPlayed", error);
-      if(error){
+      console.log("Error from getRecentlyPlayed");
+      if(error.status === 401){
         refreshToken(user_id)
       }
     });
@@ -65,9 +65,9 @@ const getUsersCurrentPlayback = async (access_token: string, refresh_token: stri
     .then((response) => {
       return response;
     })
-    .catch((error: AxiosError) => {
-      console.log("Error from getUsersCurrentPlayback", error.response?.data);
-      if(error){
+    .catch((error) => {
+      console.log("Error from getUsersCurrentPlayback");
+      if(error.status === 401){
         refreshToken(user_id)
       }
     });
