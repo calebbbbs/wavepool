@@ -4,12 +4,15 @@ import {
   Flex,
   useColorModeValue,
   Box,
+  chakra,
   Link,
+  Center,
   Accordion,
 } from "@chakra-ui/react";
 
 import { UserContext } from "../../../contexts/UserContext";
 import FCListItem from "./FCListItem";
+
 
 const RecommendedTracks = () => {
   const { userObj } = useContext(UserContext);
@@ -19,6 +22,7 @@ const RecommendedTracks = () => {
     return (
       <FCListItem
         totalSongs={friend.number_of_songs}
+        numberOfLikes={friend.number_of_likes}
         friendScore={friend.friend_score}
         key={i}
         userObj={userObj}
@@ -31,33 +35,35 @@ const RecommendedTracks = () => {
   });
 
   return (
-    <Flex minX="300px" alignItems="center" justifyContent="center">
+    <Flex mt={2} alignItems="center" justifyContent="center">
       <Box
-        mx="auto"
-        px={8}
-        py={4}
+        minW='340'
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
-        maxW="2xl"
-      >
-        <Box mt={2}>
-          <Link
-            color={useColorModeValue("brand.700", "white")}
-            fontWeight="700"
-            _hover={{
-              color: useColorModeValue("brand.600", "brand.200"),
-              textDecor: "underline",
-            }}
-          >
-            Recommended
-          </Link>
-          <div>
-            <Accordion minW="300" allowMultiple allowToggle>
-              {list}
-            </Accordion>
-          </div>
-        </Box>
+        py={4}
+      >  
+          <Box mt={2}>
+            <Center>
+            <Link
+              color={useColorModeValue("gray.700", "white")}
+              fontWeight='700'
+              m={4}
+              _hover={{
+                color: useColorModeValue("brand.600", "brand.200"),
+                textDecor: "underline",
+              }}
+            >
+              Recommended
+            </Link>
+                </Center>
+                <chakra.div>
+                <Accordion allowMultiple allowToggle>
+                  {list}
+                </Accordion>
+                </chakra.div>
+          </Box>
+        
       </Box>
     </Flex>
   );

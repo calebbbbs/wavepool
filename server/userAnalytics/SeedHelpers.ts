@@ -4,16 +4,23 @@ import HistoryArtist from "../db/entities/HistoryArtist";
 import HistoryTrack from "../db/entities/HistoryTrack";
 import HistoryGenre from "../db/entities/HistoryGenre";
 import User from "../db/entities/User";
-import { Response, TrackObjectSimplified, PlayHistoryObject } from './spotifyInterfaces'
+import { TrackObjectSimplified, PlayHistoryObject } from '../spotify/spotifyInterfaces'
 
-const archiveHistory = async (data: Response<any>, user_id: string, access_token: string) => {
+const archiveHistory = async (data: any, user_id: string, access_token: string) => {
   try {
-    const { items } =  data.body;
+    const { items } =  data.data;
     return Promise.all(items.map((trackObj: PlayHistoryObject) => {
         return createHistoryTrack(trackObj, user_id)
     }
     )).then((tracks: Array<any>) => {
-     return getMultipleArtistData(tracks, access_token);
+      const newTracks: Array<any> = [];
+      tracks.forEach((track: any) => {
+        if(track !== undefined) {
+          newTracks.push(track);
+        }
+      });
+      console.log(newTracks.length);
+     return getMultipleArtistData(newTracks, access_token);
     }).then((tracks: Array<any>) => {
       return getMultipleTrackData(tracks, access_token);
     }).then((tracks: Array<any>) => {
@@ -39,7 +46,6 @@ const getMultipleArtistData = async (tracks: Array<TrackObjectSimplified>, acces
       artistIds.push(track.artists[0].id);
     }
   });
-
   if(artistIds.length > 0) {
     const urlIds: string = artistIds.join(',');
     return await axios({
@@ -50,11 +56,14 @@ const getMultipleArtistData = async (tracks: Array<TrackObjectSimplified>, acces
       }
     }).then(({data}) => {
       tracks.forEach((track: any, index: number) => {
-        if(track) {
+        if(track && data.artists[index].genres) {
           track.artists[0].genres = data.artists[index].genres;
           track.artists[0].image = data.artists[index].images[1];
         }
       });
+      return tracks;
+    }).catch((err: any) => {
+      console.error(err)
       return tracks;
     });
   }

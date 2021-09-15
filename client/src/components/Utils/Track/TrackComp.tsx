@@ -18,6 +18,7 @@ import {
   StackDivider,
   useToast
 } from "@chakra-ui/react";
+
 import Marquee from "react-fast-marquee";
 import { BsPerson } from "react-icons/bs";
 import { BiHeadphone, BiAlbum } from "react-icons/bi";
@@ -56,19 +57,19 @@ const TrackComp = (props: any) => {
       .catch((error) => console.log('Error addToQueue in TrackComp.tsx', error));
     };
 
-
-    return (
-    <chakra.div bg={bg} h="auto" borderRadius="2vh" m={2}>
-      <Flex mx={5} p={4}>
+  return (
+    <chakra.div bg={bg} h="auto" borderRadius="2vh"
+    m={2}>
+      <Flex p={4} flexDirection={{base: "column", md: 'row'}}>
         <Center>
           <Box>
             <Skeleton isLoaded={imgLoaded}>
               <Image
                 aspect-ratio={1}
                 m={2}
-                minW="120px"
-                minH="120px"
-                boxSize="120px"
+                minW={{base: '150px', md: '64px'}}
+                minH={{base: '150px', md: '64px'}}
+                boxSize={{base: '150px', md: '64px'}}
                 float="left"
                 fit="contain"
                 onLoad={() => {
@@ -83,10 +84,7 @@ const TrackComp = (props: any) => {
         <Center>
           <Stack
             divider={<StackDivider borderColor={dividerColor} />}
-            padding={2}
             borderRadius="15px"
-            m={2}
-            mr={4}
           >
             <Flex alignItems="center">
               <BiHeadphone />
@@ -94,7 +92,9 @@ const TrackComp = (props: any) => {
             </Flex>
             <chakra.div>
               <Flex alignItems="center">
+                <chakra.div minW="10px">
                 <BsPerson />
+                </chakra.div>
                 <chakra.div>
                   <Marquee
                     gradient={false}
@@ -113,7 +113,9 @@ const TrackComp = (props: any) => {
           </Stack>
         </Center>
         <Spacer />
-        <Stack>
+        <Flex 
+        flexDirection={{base: "row", md: 'column'}}>
+          {/* <Center> */}
           <Tooltip placement="left" label="Add to Queue">
             <Button variant="ghost" onClick={addToQueue}>
               <MdQueueMusic />
@@ -132,7 +134,8 @@ const TrackComp = (props: any) => {
             friend_id={user_id}
             track_uri={track_uri}
           />
-        </Stack>
+        {/* </Center> */}
+        </Flex>
       </Flex>
     </chakra.div>
   );
