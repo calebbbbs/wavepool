@@ -56,7 +56,7 @@ const Pagination = (props: any) => {
       <Flex>
        {pageNumbers.length >= 5 && <Button 
        onClick={() => {
-            if(currentPage > 0){
+            if(currentPage > 1){
             setCurrentPage(currentPage - 1)
             }
         }}>Prev</Button>}

@@ -3,6 +3,7 @@ import Pagination from "../../Utils/Pagination";
 import { Flex, chakra, Box, Image, useColorModeValue, useBreakpointValue, Link, Center } from "@chakra-ui/react";
 import { UserContext } from "../../../contexts/UserContext";
 import RecentlyPlayedList from "./RecentlyPlayedList";
+import StatsModal from "../../Utils/StatsModal";
 
 export const RecentlyPlayed = () => {
   const { recentPlays, userObj, getRecentlyPlayed } = useContext(UserContext);
@@ -83,6 +84,7 @@ export const RecentlyPlayed = () => {
           >
             {userObj.user_name}
           </Link>
+          <StatsModal user_id={userObj.user_id}/>
         </Center>
       </Box>
     </Flex>

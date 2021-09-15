@@ -26,6 +26,7 @@ import { AiOutlineBarChart } from "react-icons/ai";
 
 const StatsModal = (props: any) => {
   const { user_id } = props;
+  console.log(user_id)
   const { userGenres, userArtists, userFriends, setGraphUserId } = useContext(GraphContext);
   const { onOpen, isOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("brand.100", "brand.800");

@@ -47,6 +47,7 @@ const FriendScore = (props: any) => {
       maxW="100px"
       maxH="100px"
       color={useColorModeValue("gray.700", "white")}
+      mb="25px"
       
     >
       {
