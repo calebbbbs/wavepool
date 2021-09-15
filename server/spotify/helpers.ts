@@ -95,9 +95,11 @@ const addToQueue = async (access_token: string, uri: string) => {
     },
   };
   await axios(toQueue)
-    .then((response) => response)
-    .catch((error: AxiosError) => {
-      console.log("Error from addToQueue", error);
+    .then((response) => {
+      return response
+    })
+    .catch(() => {
+     return;
     });
 };
 
@@ -115,7 +117,7 @@ const playNow = async (access_token: string, refresh_token: string, uri: string)
     .then((response) => {
       spotifyApi.setAccessToken(access_token);
       spotifyApi.setRefreshToken(refresh_token);
-      spotifyApi.skipToNext();
+      spotifyApi.skipToNext().then().catch(error => console.log(error));
     })
     .catch((error: AxiosError) => {
       console.log("Error from playNow", error);
