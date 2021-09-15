@@ -29,7 +29,6 @@ const archiveHistory = async (data: any, user_id: string, access_token: string) 
       }))
     }).then((tracks: Array<any>) => {
       return createHistoryArtist(tracks, user_id);
-      
     }).then((tracks: Array<any>) => {
       return createHistoryGenre(tracks, user_id);
     });

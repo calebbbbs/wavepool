@@ -77,7 +77,7 @@ const FCListItem = (props: any) => {
         <h2>
           <AccordionButton>
             <Box
-              // minW='300px'
+              minW='350px'
               borderRadius="15px"
               bg={isSelected ? bg2 : bg}
             >
