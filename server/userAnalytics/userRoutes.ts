@@ -13,7 +13,7 @@ userRouter.get(
   async (req: Request, res: Response) => {
     const { user_id } = req.params;
     let analyticsResponse: Array<Array<Array<string | number>>> = [];
-    
+
     const historyGenres: HistoryGenre[] = await HistoryGenre.find({
       where: {user_id: user_id},
       order: {count: "DESC"},
@@ -59,7 +59,6 @@ userRouter.get(
     });
 
     analyticsResponse.push(friends);
-    console.log(analyticsResponse)
     return res.status(200).send(analyticsResponse);
   }
 );

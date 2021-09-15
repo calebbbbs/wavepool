@@ -55,6 +55,7 @@ const AddToPlaylist = (props: any) => {
             )
             .then((data: any) => { toast({
               title: `Song added to Playlist!`,
+              position: 'top-left',
               status: "info",
               isClosable: true,
             })

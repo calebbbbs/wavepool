@@ -42,7 +42,7 @@ const RecommendedTracks = () => {
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
         py={4}
-      >  
+      >
           <Box mt={2}>
             <Center>
             <Link
@@ -63,7 +63,7 @@ const RecommendedTracks = () => {
                 </Accordion>
                 </chakra.div>
           </Box>
-        
+
       </Box>
     </Flex>
   );

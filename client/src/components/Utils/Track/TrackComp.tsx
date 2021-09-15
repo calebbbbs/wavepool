@@ -49,6 +49,7 @@ const TrackComp = (props: any) => {
     .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
       .then((data) => { toast({
         title: `Song added to queue!`,
+        position: "top-left",
         status: "info",
         isClosable: true,
       })
@@ -113,7 +114,7 @@ const TrackComp = (props: any) => {
           </Stack>
         </Center>
         <Spacer />
-        <Flex 
+        <Flex
         flexDirection={{base: "row", md: 'column'}}>
           {/* <Center> */}
           <Tooltip placement="left" label="Add to Queue">

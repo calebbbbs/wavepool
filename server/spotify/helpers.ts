@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 import { archiveHistory } from "./archiveHelpers";
-
+import User from '../db/entities/User';
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
@@ -9,6 +9,26 @@ const spotifyApi = new SpotifyWebApi({
   redirectUri:
     `${process.env.HOST}/auth/spotify/callback`,
 });
+
+const refreshToken = async (user_id: string) =>{
+  return await spotifyApi.refreshAccessToken().then(
+   async (data) => {
+      console.log('The access token has been refreshed!', data);
+      const user = await User.findOne({ where: { user_id: user_id } })
+      if(user){
+      user.access_token = data.body['access_token'];
+      await user.save();
+      // Save the access token so that it's used in future calls
+      spotifyApi.setAccessToken(data.body['access_token']);
+      }
+      return;
+    },
+    (err) =>{
+      console.log('Could not refresh access token', err);
+    }
+  );
+};
+
 
 const getRecentlyPlayed = async (access_token: string, user_id: string, refresh_token: string) => {
   spotifyApi.setAccessToken(access_token);
@@ -23,11 +43,14 @@ const getRecentlyPlayed = async (access_token: string, user_id: string, refresh_
       return data;
     })
     .catch((error) => {
-      console.log("Error from getRecentlyPlayed", error);
+      console.log("Error from getRecentlyPlayed");
+      if(error.status === 401){
+        refreshToken(user_id)
+      }
     });
 };
 
-const getUsersCurrentPlayback = async (access_token: string, refresh_token: string) => {
+const getUsersCurrentPlayback = async (access_token: string, refresh_token: string, user_id: string) => {
   const getCurrentPlayback: any = {
     method: "get",
     url: "https://api.spotify.com/v1/me/player",
@@ -42,8 +65,11 @@ const getUsersCurrentPlayback = async (access_token: string, refresh_token: stri
     .then((response) => {
       return response;
     })
-    .catch((error: AxiosError) => {
-      console.log("Error from getUsersCurrentPlayback", error.response?.data);
+    .catch((error) => {
+      console.log("Error from getUsersCurrentPlayback");
+      if(error.status === 401){
+        refreshToken(user_id)
+      }
     });
 };
 
@@ -60,7 +86,7 @@ const getUserPlaylists = async (access_token: string, refresh_token: string) => 
     });
 };
 
-const addToQueue = async (access_token: String, uri: String) => {
+const addToQueue = async (access_token: string, uri: string) => {
   const toQueue: any = {
     method: "POST",
     url: `https://api.spotify.com/v1/me/player/queue?uri=${uri}`,
@@ -74,6 +100,9 @@ const addToQueue = async (access_token: String, uri: String) => {
     .then((response) => response)
     .catch((error: AxiosError) => {
       console.log("Error from addToQueue", error.response?.data);
+      // if(error){
+      //   refreshToken(access_token)
+      // }
     });
 };
 
@@ -95,6 +124,9 @@ const playNow = async (access_token: string, refresh_token: string, uri: string)
     })
     .catch((error: AxiosError) => {
       console.log("Error from playNow", error.response?.data);
+      // if(error){
+      //   refreshToken(access_token)
+      // }
     });
 };
 
@@ -107,7 +139,11 @@ const querySpotify = (query: string, refresh_token: string, access_token: string
     },
   }).then(({data}) => {
     return data.tracks.items;
-  }).catch((error: AxiosError) => console.log('Error from querySpotify', error.response?.data));
+  }).catch((error: AxiosError) => {console.log('Error from querySpotify', error.response?.data)
+  // if(error){
+  //   refreshToken(access_token)
+  // }
+  });
 };
 
 const addToPlaylist = async (
@@ -123,7 +159,11 @@ const addToPlaylist = async (
     .then((data) => {
       return data;
     })
-    .catch((err) => console.log(err));
+    .catch((error) => {console.log(error);
+      // if(error){
+      //   refreshToken(access_token)
+      // }
+    });
 };
 
 const createPlaylist = async (
@@ -138,23 +178,14 @@ const createPlaylist = async (
     .createPlaylist(playlist_name, { description: playlist_desc, public: true })
     .then(
       (data) => data,
-      (err) => console.warn('Error from createPlaylist', err)
-    );
+      (error) => {console.warn('Error from createPlaylist', error);
+      // if(error){
+      //   refreshToken(access_token)
+      // }
+      });
 };
 
-// const refreshToken = async (refreshToken: string) =>{
-//   return await spotifyApi.refreshAccessToken().then(
-//     function(data) {
-//       console.log('The access token has been refreshed!');
 
-//       // Save the access token so that it's used in future calls
-//       spotifyApi.setAccessToken(data.body['access_token']);
-//     },
-//     function(err) {
-//       console.log('Could not refresh access token', err);
-//     }
-//   );
-// };
 
 // const getTrackInfo = (track_uri: string, access_token: string) => {
 //   const track_id = track_uri.split(':')[2];
@@ -184,6 +215,7 @@ const createPlaylist = async (
 
 export {
   spotifyApi,
+  refreshToken,
   getRecentlyPlayed,
   getUsersCurrentPlayback,
   addToQueue,

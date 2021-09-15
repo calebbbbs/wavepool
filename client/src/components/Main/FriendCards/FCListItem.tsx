@@ -24,7 +24,6 @@ import FriendScore from "../../Chartjs/FriendScore";
 
 const FCListItem = (props: any) => {
   const {totalSongs, numberOfLikes, friendId} = props
-  console.log(props)
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
     return (
       recTrack.friend_name === props.friendName && recTrack.in_queue === true
@@ -123,7 +122,7 @@ const FCListItem = (props: any) => {
           />
         </AccordionPanel>
       </AccordionItem>
-     </Flex> 
+     </Flex>
   );
 };
 
