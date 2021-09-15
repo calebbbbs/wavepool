@@ -13,7 +13,13 @@ const archiveHistory = async (data: Response<any>, user_id: string, access_token
         return createHistoryTrack(trackObj, user_id)
     }
     )).then((tracks: Array<any>) => {
-     return getMultipleArtistData(tracks, access_token);
+      const newTracks: Array<any> = [];
+      tracks.forEach((track: any) => {
+        if(track !== undefined) {
+          newTracks.push(track);
+        }
+      });
+     return getMultipleArtistData(newTracks, access_token);
     }).then((tracks: Array<any>) => {
       return getMultipleTrackData(tracks, access_token);
     }).then((tracks: Array<any>) => {

@@ -25,7 +25,8 @@ import {
 import { AiOutlineBarChart } from "react-icons/ai";
 
 const StatsModal = (props: any) => {
-  const { user_id } = props;
+  const { user_id, userName} = props;
+
   const { userGenres, userArtists, userFriends, setGraphUserId } = useContext(GraphContext);
   const { onOpen, isOpen, onClose } = useDisclosure();
   const bg = useColorModeValue("brand.100", "brand.800");
@@ -50,9 +51,9 @@ const StatsModal = (props: any) => {
           <ModalCloseButton />
           <ModalBody>
               <SimpleGrid p={15} columns={1} bg='#FFFFFF' borderRadius="15px">
-                {userGenres && (<PieChart graphData={userGenres} key={1}/>)}
-                {userArtists && (<PieChart graphData={userArtists} key={2}/>)}
-                {userFriends && (<GroupedBar graphData={userFriends} key={3}/>)}
+                {userGenres && (<PieChart graphData={userGenres} graphName={'genres'} userName={userName} key={1}/>)}
+                {userArtists && (<PieChart graphData={userArtists} graphName={'artists'} userName={userName} key={2}/>)}
+                {userFriends && (<GroupedBar graphData={userFriends} graphName={'friends'} userName={userName} key={3}/>)}
               </SimpleGrid>
 
           </ModalBody>
