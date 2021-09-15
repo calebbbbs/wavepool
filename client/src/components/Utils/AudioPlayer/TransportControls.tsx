@@ -19,7 +19,7 @@ export const TransportControls = () => {
             //axios get previous
             await axios.get(`/spotify/prev/${userObj.user_id}`);
             await new Promise(resolve => setTimeout(resolve => {
-              getUsersCurrentPlayback(userObj.user_id);
+             getUsersCurrentPlayback(userObj.user_id);
             }, 0));
           }}
         >

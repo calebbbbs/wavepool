@@ -24,6 +24,7 @@ import FriendScore from "../../Chartjs/FriendScore";
 
 const FCListItem = (props: any) => {
   const {totalSongs, numberOfLikes, friendId, friendName} = props
+
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {
     return (
       recTrack.friend_name === props.friendName && recTrack.in_queue === true
@@ -77,7 +78,7 @@ const FCListItem = (props: any) => {
         <h2>
           <AccordionButton>
             <Box
-              // minW='300px'
+              minW='350px'
               borderRadius="15px"
               bg={isSelected ? bg2 : bg}
             >
@@ -116,13 +117,15 @@ const FCListItem = (props: any) => {
             recommendedTracks={currentPosts}
           />
           <Pagination
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
             postsPerPage={tracksPerPage}
             totalPosts={list.length}
             paginate={paginate}
           />
         </AccordionPanel>
       </AccordionItem>
-     </Flex> 
+     </Flex>
   );
 };
 
