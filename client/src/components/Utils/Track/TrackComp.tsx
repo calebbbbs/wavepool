@@ -28,7 +28,7 @@ import PlayNow from "./buttons/PlayNow";
 
 const TrackComp = (props: any) => {
   const [imgLoaded, setImgLoaded] = useState(false);
-  const { userObj, userPlaylists } = useContext(UserContext);
+  const { userObj, userPlaylists, currPlayback } = useContext(UserContext);
   const { album_art, track_title, artists, album_title, track_uri, user_id } =
     props.track;
   const toast = useToast();
@@ -53,7 +53,7 @@ const TrackComp = (props: any) => {
         status: "info",
         isClosable: true,
       })
-      console.log(data);
+      return data;
     })
       .catch((error) => console.log('Error addToQueue in TrackComp.tsx', error));
     };
@@ -114,14 +114,14 @@ const TrackComp = (props: any) => {
           </Stack>
         </Center>
         <Spacer />
+        <Center>
         <Flex
         flexDirection={{base: "row", md: 'column'}}>
-          {/* <Center> */}
-          <Tooltip placement="left" label="Add to Queue">
+         {currPlayback  && <Tooltip placement="left" label="Add to Queue">
             <Button variant="ghost" onClick={addToQueue}>
               <MdQueueMusic />
             </Button>
-          </Tooltip>
+          </Tooltip>}
           <SendTrack track={props.track} />
           {userPlaylists && (
             <AddToPlaylist
@@ -135,8 +135,8 @@ const TrackComp = (props: any) => {
             friend_id={user_id}
             track_uri={track_uri}
           />
-        {/* </Center> */}
         </Flex>
+        </Center>
       </Flex>
     </chakra.div>
   );

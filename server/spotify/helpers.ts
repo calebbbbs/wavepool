@@ -18,7 +18,6 @@ const refreshToken = async (user_id: string) =>{
       if(user){
       user.access_token = data.body['access_token'];
       await user.save();
-      // Save the access token so that it's used in future calls
       spotifyApi.setAccessToken(data.body['access_token']);
       }
       return;
@@ -39,7 +38,6 @@ const getRecentlyPlayed = async (access_token: string, user_id: string, refresh_
     })
     .then((data) => {
       archiveHistory(data, user_id, access_token);
-      // Output items
       return data;
     })
     .catch((error) => {
@@ -82,7 +80,7 @@ const getUserPlaylists = async (access_token: string, refresh_token: string) => 
       return response.body.items;
     })
     .catch((error: AxiosError) => {
-      console.log("Error from getUserPlaylists", error.response?.data);
+      console.log("Error from getUserPlaylists", error);
     });
 };
 
@@ -97,12 +95,11 @@ const addToQueue = async (access_token: string, uri: string) => {
     },
   };
   await axios(toQueue)
-    .then((response) => response)
-    .catch((error: AxiosError) => {
-      console.log("Error from addToQueue", error.response?.data);
-      // if(error){
-      //   refreshToken(access_token)
-      // }
+    .then((response) => {
+      return response
+    })
+    .catch(() => {
+     return;
     });
 };
 
@@ -120,13 +117,10 @@ const playNow = async (access_token: string, refresh_token: string, uri: string)
     .then((response) => {
       spotifyApi.setAccessToken(access_token);
       spotifyApi.setRefreshToken(refresh_token);
-      spotifyApi.skipToNext();
+      spotifyApi.skipToNext().then().catch(error => console.log(error));
     })
     .catch((error: AxiosError) => {
-      console.log("Error from playNow", error.response?.data);
-      // if(error){
-      //   refreshToken(access_token)
-      // }
+      console.log("Error from playNow", error);
     });
 };
 
@@ -139,10 +133,7 @@ const querySpotify = (query: string, refresh_token: string, access_token: string
     },
   }).then(({data}) => {
     return data.tracks.items;
-  }).catch((error: AxiosError) => {console.log('Error from querySpotify', error.response?.data)
-  // if(error){
-  //   refreshToken(access_token)
-  // }
+  }).catch((error: AxiosError) => {console.log('Error from querySpotify', error)
   });
 };
 
@@ -160,9 +151,6 @@ const addToPlaylist = async (
       return data;
     })
     .catch((error) => {console.log(error);
-      // if(error){
-      //   refreshToken(access_token)
-      // }
     });
 };
 
@@ -179,9 +167,6 @@ const createPlaylist = async (
     .then(
       (data) => data,
       (error) => {console.warn('Error from createPlaylist', error);
-      // if(error){
-      //   refreshToken(access_token)
-      // }
       });
 };
 

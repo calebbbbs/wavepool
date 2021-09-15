@@ -77,7 +77,7 @@ const FCListItem = (props: any) => {
         <h2>
           <AccordionButton>
             <Box
-              // minW='300px'
+              minW='350px'
               borderRadius="15px"
               bg={isSelected ? bg2 : bg}
             >
@@ -116,6 +116,8 @@ const FCListItem = (props: any) => {
             recommendedTracks={currentPosts}
           />
           <Pagination
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
             postsPerPage={tracksPerPage}
             totalPosts={list.length}
             paginate={paginate}

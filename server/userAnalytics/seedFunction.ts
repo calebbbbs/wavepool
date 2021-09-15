@@ -1,5 +1,5 @@
 import SpotifyWebApi from "spotify-web-api-node";
-import { archiveHistory } from "./Seedhelpers";
+import { archiveHistory } from "./SeedHelpers"
 import axios from "axios";
 
 
