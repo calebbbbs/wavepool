@@ -7,6 +7,7 @@ import StatsModal from "../../Utils/StatsModal";
 
 export const RecentlyPlayed = () => {
   const { recentPlays, userObj, getRecentlyPlayed } = useContext(UserContext);
+  const {user_name} = userObj;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -84,7 +85,7 @@ export const RecentlyPlayed = () => {
           >
             {userObj.user_name}
           </Link>
-          <StatsModal user_id={userObj.user_id}/>
+          <StatsModal user_id={userObj.user_id} userName={user_name} />
         </Center>
       </Box>
     </Flex>
