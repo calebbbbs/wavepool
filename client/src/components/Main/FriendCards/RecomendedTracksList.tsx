@@ -68,7 +68,7 @@ useEffect(() =>{
   }
   const list = props.recommendedTracks.map((e: any, i: number) => {
     return (
-      <chakra.div bg={bg} key={i}>
+      <chakra.div bg={bg} key={i} borderRadius='2vh'>
         <Flex
         >
         <Button
