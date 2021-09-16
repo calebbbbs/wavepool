@@ -42,7 +42,7 @@ const getRecentlyPlayed = async (access_token: string, user_id: string, refresh_
     })
     .catch((error) => {
       console.log("Error from getRecentlyPlayed");
-      if(error.status === 401){
+      if(error){
         refreshToken(user_id)
       }
     });
@@ -65,7 +65,7 @@ const getUsersCurrentPlayback = async (access_token: string, refresh_token: stri
     })
     .catch((error) => {
       console.log("Error from getUsersCurrentPlayback");
-      if(error.status === 401){
+      if(error){
         refreshToken(user_id)
       }
     });
