@@ -10,7 +10,7 @@
 
 ```
 
-> A spotify companion & a powerful utility for sharing songs through spotify with your friends
+> A Spotify companion app to bring the community aspect back to Spotify. Share music with friends, add recommendations to your queue and so much more. The songs your recommend will dictate your score, so break out those deep cuts for your friends to explore.
 
 # Getting Started
 
