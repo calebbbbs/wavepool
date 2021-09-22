@@ -17,6 +17,15 @@ mutation ConfirmFriendMutation($confirmFriendData: ConfirmFriendInput!) {
 }
 `;
 
+// const SAVE_NOTIFS = gql`
+//   mutation ReceiveNotificationMutation($receiveNotificationData: ReceiveNotificationMutation!){
+//     ReceiveNotification(data: $$receiveNotificationData) {
+//       user_id
+//       friend_id
+//     }
+//   }
+// `;
+
 const FriendStat = (props: any) => {
 const { friend_id } = props;
 const [ confirmFriend ] = useMutation(CONFIRM_FRIEND);
