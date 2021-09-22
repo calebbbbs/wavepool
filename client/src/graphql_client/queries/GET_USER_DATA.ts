@@ -6,6 +6,7 @@ query Query($getUserUserId: String!) {
     user_id
     user_name
     user_email
+    photo
     friends {
       user_id
       id
@@ -14,6 +15,7 @@ query Query($getUserUserId: String!) {
       friend_status
       friend_score
       number_of_songs
+      number_of_likes
       recommendedGenres{
         genre
         count

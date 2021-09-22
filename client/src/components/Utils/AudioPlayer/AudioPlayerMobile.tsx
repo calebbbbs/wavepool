@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 // import { BsMusicNoteBeamed } from 'react-icons/bs'
 import { UserContext } from "../../../contexts/UserContext";
+import Marquee from "react-fast-marquee";
 import {
-  chakra,
   VStack,
   Image,
   Text,
@@ -17,7 +17,6 @@ import {
   DrawerCloseButton,
   useDisclosure,
   useColorModeValue,
-  Tooltip,
 } from "@chakra-ui/react";
 
 import { BsPerson } from "react-icons/bs";
@@ -39,18 +38,28 @@ export const AudioPlayerMobile = () => {
     return () => clearInterval(interval);
   }, []);
 
+  if (currPlayback.item === null) {
+    return <div></div>;
+  }
+
+  let str = "";
+  currPlayback.item.artists.map((artist: any, i: number) => {
+    if (i === currPlayback.item.artists.length - 1) {
+      return (str += artist.name);
+    }
+    return (str += `${artist.name}, `);
+  });
+
   return (
     <>
-      <Tooltip label="Spotify Controls">
-        <Button
-          display={{ base: "inline-flex", md: "none" }}
-          m={4}
-          variant="ghost"
-          onClick={onOpen}
-        >
-          <BsMusicNoteBeamed />
-        </Button>
-      </Tooltip>
+      <Button
+        display={{ base: "inline-flex", md: "none" }}
+        variant="ghost"
+        onClick={onOpen}
+      >
+        <BsMusicNoteBeamed />
+        Audio Controls
+      </Button>
       <Drawer size="xs" isOpen={isOpen} placement="bottom" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent bg={bg}>
@@ -75,30 +84,21 @@ export const AudioPlayerMobile = () => {
                 <Stack>
                   <Flex alignItems="center">
                     <BiHeadphone />
-                    <Text > {currPlayback.item.name}</Text>
+                    <Text> {currPlayback.item.name}</Text>
                   </Flex>
                   <Flex alignItems="center">
-                      <BsPerson/>
-                    <chakra.div >
-                      {currPlayback.item.artists.map(
-                        (artist: any, i: number) => {
-                          if (i === currPlayback.item.artists.length - 1) {
-                            return (
-                              <chakra.span key={i}>{artist.name}</chakra.span>
-                            );
-                          }
-                          return (
-                            <chakra.span key={i}>{artist.name}, </chakra.span>
-                          );
-                        }
-                      )}
-                    </chakra.div>
+                    <BsPerson />
+                    <Marquee
+                      gradient={false}
+                      pauseOnHover={true}
+                      pauseOnClick={true}
+                    >
+                      {str}
+                    </Marquee>
                   </Flex>
                   <Flex alignItems="center">
-                      <BiAlbum/>
-                    <Text >
-                     {currPlayback.item.album.name}
-                    </Text>
+                    <BiAlbum />
+                    <Text>{currPlayback.item.album.name}</Text>
                   </Flex>
                 </Stack>
                 <TransportControls />

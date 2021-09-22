@@ -1,78 +1,92 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Flex, Box, useColorModeValue, Link, Tooltip } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
+import Pagination from "../../Utils/Pagination";
+import { Flex, chakra, Box, Image, useColorModeValue, useBreakpointValue, Link, Center } from "@chakra-ui/react";
 import { UserContext } from "../../../contexts/UserContext";
 import RecentlyPlayedList from "./RecentlyPlayedList";
+import StatsModal from "../../Utils/StatsModal";
+
 export const RecentlyPlayed = () => {
-  const [seeMore, setSeeMore] = useState<boolean>(false);
   const { recentPlays, userObj, getRecentlyPlayed } = useContext(UserContext);
+  const {user_name} = userObj;
+
   useEffect(() => {
     const interval = setInterval(() => {
       getRecentlyPlayed();
     }, 60000);
     return () => clearInterval(interval);
   }, []);
+  const opts = { base: 2, sm: 3, md: 3, lg: 3, xl: 6 }
+  const tracksPerPage = useBreakpointValue(opts) || 2;
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const [currentPosts, setCurrentPosts] = useState<any>([]);
+  const indexOfLastPost = currentPage * tracksPerPage;
+  const indexOfFirstPost = indexOfLastPost - tracksPerPage;
+
+  useEffect(() => {
+    if (recentPlays) {
+      setCurrentPosts(recentPlays.slice(indexOfFirstPost, indexOfLastPost));
+    }
+  }, [JSON.stringify(recentPlays), indexOfLastPost]);
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
-    <Flex mt={8} p={50} w="full" alignItems="center" justifyContent="center">
+    <Flex m={4} alignItems="center" justifyContent="center">
       <Box
-        mx="auto"
-        px={8}
         py={4}
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
-        maxW="2xl"
       >
         <Box mt={2}>
-          <Link
-            color={useColorModeValue("gray.700", "white")}
-            fontWeight="700"
-            _hover={{
-              color: useColorModeValue("gray.600", "gray.200"),
-              textDecor: "underline",
-            }}
-          >
-            Recently Played
-          </Link>
+          <Center>
+            <Link
+              color={useColorModeValue("gray.700", "white")}
+              fontWeight="700"
+              _hover={{
+                color: useColorModeValue("gray.600", "gray.200"),
+                textDecor: "underline",
+              }}
+            >
+              Recently Played
+            </Link>
+          </Center>
+
           {recentPlays && (
-            <div>
-              {seeMore ? (
-                <RecentlyPlayedList recentPlays={recentPlays.slice(0, 5)} />
-              ) : (
-                <RecentlyPlayedList recentPlays={recentPlays.slice(0, 2)} />
-              )}
-            </div>
+            <chakra.div>
+              <RecentlyPlayedList recentPlays={currentPosts} />
+              <Pagination
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+                postsPerPage={tracksPerPage || 2}
+                totalPosts={recentPlays.length}
+                paginate={paginate}
+              />
+            </chakra.div>
           )}
         </Box>
 
-        <Flex justifyContent="space-between" alignItems="center" mt={4}>
+        <Center m={4}>
+          {userObj.photo !== "no photo" && (
+            <Image
+              boxSize="2rem"
+              borderRadius="full"
+              src={userObj.photo}
+              alt="Profile Pic"
+              mr="12px"
+            />
+          )}
           <Link
-            _hover={{ textDecor: "underline" }}
-            onClick={() => {
-              setSeeMore(!seeMore);
-            }}
+            color={useColorModeValue("gray.700", "gray.200")}
+            fontWeight="700"
+            cursor="pointer"
           >
-            {seeMore ? (
-              <Tooltip placement="right" label="See Less">
-                <ChevronUpIcon w={6} h={6} />
-              </Tooltip>
-            ) : (
-              <Tooltip placement="right" label="See More">
-                <ChevronDownIcon w={6} h={6} />
-              </Tooltip>
-            )}
+            {userObj.user_name}
           </Link>
-
-          <Flex alignItems="center">
-            <Link
-              color={useColorModeValue("gray.700", "gray.200")}
-              fontWeight="700"
-              cursor="pointer"
-            >
-              {userObj.user_name}
-            </Link>
-          </Flex>
-        </Flex>
+          <StatsModal user_id={userObj.user_id} userName={user_name} />
+        </Center>
       </Box>
     </Flex>
   );

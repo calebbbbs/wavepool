@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 import { UserContext } from "../../contexts/UserContext";
 
 import {
   Button,
   Input,
   Textarea,
-  Tooltip,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -32,11 +31,9 @@ const CreatePlaylist = (props: any) => {
 
   return (
     <>
-      <Tooltip label="Create Playlist" placement="bottom">
         <Button variant="ghost" onClick={onOpen}>
-          <MdPlaylistAdd size={25}/>
+        <MdPlaylistAdd size={25}/> Create New Playlist
         </Button>
-      </Tooltip>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent
@@ -74,7 +71,8 @@ const CreatePlaylist = (props: any) => {
                   )
                   .then((data: any) => {
                     getUserPlaylists();
-                    return data});
+                    return data})
+                    .catch((error: AxiosError) => console.log('Error from axios.post/spotify/createPlaylist CreatePlaylist', error.response?.data))
                     onClose();
               }}
             >

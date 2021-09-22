@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useState } from "react";
+// import {refreshToken} from '../../../server/spotify/helpers'
 import { useLazyQuery } from "@apollo/client";
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosError } from "axios";
 import GET_USER_DATA from "../graphql_client/queries/GET_USER_DATA";
-
 const UserContext = React.createContext(undefined as any);
 
 // eslint-disable-next-line react/prop-types
@@ -19,32 +19,28 @@ const UserContextProvider: React.FC = ({ children }) => {
 
   if (error) console.warn(error);
   const getRecentlyPlayed = () => {
-    const reqConfig: AxiosRequestConfig = {
-      method: "get",
-      url: `http://localhost:4000/spotify/getRecentlyPlayed/${userObj.user_id}`,
-    };
-    axios(reqConfig).then(
-      function (data: any) {
+    axios.get(`/spotify/getRecentlyPlayed/${userObj.user_id}`).then(
+      function ({data}) {
         const res: any[] = [];
-        data.data.body.items.forEach((item: any) => {
+        data.body.items.forEach((item: any) => {
           return res.push(item.track);
         });
         return setRecentPlays(res);
       },
-      function (err) {
-        console.log("Something went wrong!", err);
+      function (error: AxiosError) {
+        console.log('Error from get/spotify/getRecentlyPlayed', error.response?.data);
       }
     );
   };
 
   const getUser = () => {
-    return axios.get<any>("/getUser").then((res) => {
-      if (res.data) {
-        if (Object.keys(res.data).length === 0) {
+    return axios.get<any>("/getUser").then(({data}) => {
+      if (data) {
+        if (Object.keys(data).length === 0) {
           return;
         }
         getUserData({
-          variables: { getUserUserId: res.data.user_id },
+          variables: { getUserUserId: data.user_id },
         });
         setIsLoggedIn(true);
         if (userObj) {
@@ -58,23 +54,23 @@ const UserContextProvider: React.FC = ({ children }) => {
   const getUsersCurrentPlayback = () => {
     return axios
       .get<any>(`/spotify/currPlayback/${userObj.user_id}`)
-      .then((response) => {
-        setCurrPlayback(response.data);
-        setIsPlaying(response.data.is_playing);
+      .then(({data}) => {
+        setCurrPlayback(data);
+        setIsPlaying(data.is_playing);
       })
       .catch((error: AxiosError) => {
-        console.log(error);
+        console.log('Error from getUsersCurrentPlayback UserContext', error.response?.data);
       });
   };
 
   const getUserPlaylists = () => {
     axios
       .get(`/spotify/userPlaylists/${userObj.user_id}`)
-      .then((data: any) => {
-        return setUserPlaylists(data.data);
+      .then(({data}) => {
+        return setUserPlaylists(data);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((error: AxiosError) => {
+        console.log('Error from getUserPlaylists UserContext', error.response?.data);
       });
   };
 

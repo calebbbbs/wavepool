@@ -7,6 +7,7 @@ import typeOrmConfig from '../server/db/dbConfig';
 import User from './db/entities/User';
 
 import spotifyRouter from './spotify/spotifyRoutes';
+import userRouter from './userAnalytics/userRoutes';
 require('dotenv').config();
 
 const session = require('express-session');
@@ -81,7 +82,11 @@ async function startServer() {
         user.user_email = profile._json.email;
         user.access_token = accessToken;
         user.refresh_token = refreshToken;
-        //user.photo = profile.photos[0].value || null;
+        if(profile._json.images && profile._json.images[0] && profile._json.images[0].url){
+        user.photo = profile._json.images[0].url
+        } else {
+          user.photo = 'no photo'
+        }
         await user.save()
         process.nextTick(() => {
           done(null, user);
@@ -171,6 +176,7 @@ async function startServer() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(express.static(CLIENT_PATH));
+  app.use('/user', userRouter);
   app.use('/spotify', spotifyRouter);
 
   server.applyMiddleware({ app });

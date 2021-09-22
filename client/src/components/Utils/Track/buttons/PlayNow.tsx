@@ -18,7 +18,10 @@ mutation UpdateFriendshipMutation(
 
 const PlayNow = (props: any) => {
   const [updateFriendship] = useMutation(UPDATE_FRIENDSHIP);
-  const { userObj } = useContext(UserContext);
+  const { userObj, currPlayback } = useContext(UserContext);
+
+  if(!currPlayback){return (<></>)}
+
   return (
     <Tooltip placement='left' label='Play Now'>
       <Button

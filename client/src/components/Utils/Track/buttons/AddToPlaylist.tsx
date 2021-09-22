@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import { UserContext } from '../../../../contexts/UserContext';
 import { useMutation, gql } from '@apollo/client';
 import {
@@ -16,6 +16,7 @@ import {
   DrawerCloseButton,
   DrawerFooter,
   Tooltip,
+  useToast
 } from '@chakra-ui/react';
 
 import { AddIcon } from '@chakra-ui/icons';
@@ -31,6 +32,7 @@ const AddToPlaylist = (props: any) => {
   const {isOpen, onOpen, onClose} = useDisclosure();
   const { userObj, getUserPlaylists } = useContext(UserContext);
   const [updateFriendship] = useMutation(UPDATE_FRIENDSHIP);
+  const toast = useToast();
   const bg = useColorModeValue('brand.50', 'brand.900');
   const list = props.playlists.map((playlist: any, i: number) => {
     return (
@@ -51,9 +53,15 @@ const AddToPlaylist = (props: any) => {
             .get(
               `/spotify/addToPlaylist/${userObj.user_id}/${playlist.id}/${props.trackUri}`
             )
-            .then((data: any) => {
+            .then((data: any) => { toast({
+              title: `Song added to Playlist!`,
+              position: 'top-left',
+              status: "info",
+              isClosable: true,
+            })
               onClose();
-              data});
+              data})
+              .catch((error: AxiosError) => console.log('Error from axios.get/spotify/addToPlaylist from AddToPlaylist.tsx', error.response?.data));
         }}
         key={i}
       >
