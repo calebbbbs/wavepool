@@ -32,6 +32,7 @@ import {
   UserResolver,
   FriendResolver,
   RecommendedResolver,
+  NotificationResolver,
 } from './graphql/resolvers';
 
 const options: cors.CorsOptions = {
@@ -41,7 +42,7 @@ const options: cors.CorsOptions = {
 async function startServer() {
   await createConnection(typeOrmConfig).catch((err) => console.log(err));
   const schema = await buildSchema({
-    resolvers: [UserResolver, FriendResolver, RecommendedResolver],
+    resolvers: [UserResolver, FriendResolver, RecommendedResolver, NotificationResolver],
   });
   const server = new ApolloServer({ schema });
   const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;

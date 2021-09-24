@@ -43,9 +43,15 @@ const TRACK_RESPONDED = gql`
 
 const CREATE_NOTIFICATION = gql`
   mutation CreateNotificationMutation($createNotificationData: CreateNotificationInput!) {
-  createNotification(data: $createNotificationData)
-}
-`;
+    createNotification(data: $createNotificationData) {
+    user_id
+    friend_id
+    action
+    message
+    created_at
+    }
+  }
+  `;
 
 const RecommendedTracksList = (props: any) => {
   const { refetch, userObj } = useContext(UserContext);

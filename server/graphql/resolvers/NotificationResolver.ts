@@ -1,12 +1,6 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 // import { getConnection } from "typeorm";
 import { CreateNotificationInput } from "../inputs/CreateNotificationInput";
-// import { CreateNotificationInput } from '../inputs'
-// import { getArtistData } from '../../spotify/archiveHelpers'
-// import RecommendedTrack from "../../db/entities/RecommendedTrack";
-// import RecommendedGenre from "../../db/entities/RecommendedGenre";
-// import User from '../../db/entities/User';
-// import Friend from '../../db/entities/Friend';
 import Notification from "../../db/entities/Notification";
 // import User from "../../db/entities/User";
 
