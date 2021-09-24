@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 
 import { HamburgerIcon } from "@chakra-ui/icons";
-
+import NotifMenu from "./NotifMenu";
 import { BiLogOut } from "react-icons/bi";
 import { SunIcon, MoonIcon, SettingsIcon } from "@chakra-ui/icons";
 import { UserContext } from "../../contexts/UserContext";
@@ -34,6 +34,7 @@ const Nav = (props: any) => {
     <>
       <chakra.header>
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
+
           <Flex m={4}>
             <chakra.a
               href="/"
@@ -50,7 +51,9 @@ const Nav = (props: any) => {
           {currPlayback && (
             <AudioPlayer changeColorTheme={props.changeColorTheme} />
           )}
-          <Menu>
+          <Flex>
+           <NotifMenu />
+            <Menu>
             <MenuButton
               m={4}
               as={IconButton}
@@ -119,6 +122,7 @@ const Nav = (props: any) => {
               </MenuGroup>
             </MenuList>
           </Menu>
+          </Flex>
         </Flex>
       </chakra.header>
     </>

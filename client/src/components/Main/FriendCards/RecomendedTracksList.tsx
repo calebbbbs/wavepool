@@ -19,6 +19,7 @@ import { gql, useMutation } from "@apollo/client";
 import SocketContext from '../../../contexts/SocketContext'
 
 
+
 const REMOVE_REC = gql`
   mutation RemoveRecommendedMutation(
     $removeRecommendedData: RemoveRecommendedInput!
@@ -40,14 +41,22 @@ const TRACK_RESPONDED = gql`
   }
 `;
 
+const CREATE_NOTIFICATION = gql`
+  mutation CreateNotificationMutation($createNotificationData: CreateNotificationInput!) {
+  createNotification(data: $createNotificationData)
+}
+`;
+
 const RecommendedTracksList = (props: any) => {
   const { refetch, userObj } = useContext(UserContext);
   const [removeRec] = useMutation(REMOVE_REC);
   const [updateFriendship, {data}] = useMutation(UPDATE_FRIENDSHIP);
   const [trackResponded, trackRespondedReturn] = useMutation(TRACK_RESPONDED);
+  const [createNotification] = useMutation(CREATE_NOTIFICATION)
   const bg = useColorModeValue("brand.50", "brand.900");
   const { socket } = useContext(SocketContext);
   const [temp, setTemp] = useState<any>({});
+
 useEffect(() =>{
   if(data){
     refetch();
@@ -124,6 +133,17 @@ useEffect(() =>{
                     action: "👍 Liked Track!",
                     message: `${userObj.user_name} liked ${e.track_title} by ${e.artists[0]}`,
                   })
+                  createNotification({
+                    variables: {
+                      createNotificationData: {
+                        user_id: e.friend_id,
+                        friend_id: e.user_id,
+                        action: "Liked Track!",
+                        message: `${userObj.user_name} liked ${e.track_title} by ${e.artists[0]}`,
+                        created_at: new Date().toString(),
+                      },
+                    },
+                  });
                 }
               }
               >
@@ -158,6 +178,34 @@ useEffect(() =>{
                   status: 'warning',
                   action: "👎 Disliked Track!",
                   message: `${userObj.user_name} disliked ${e.track_title} by ${e.artists[0]}`,
+                });
+
+                console.log(e.friend_id)
+                console.log(e.user_id)
+                console.log(`${userObj.user_name} disliked ${e.track_title} by ${e.artists[0]}`)
+                console.log(new Date().toString());
+                // const now =  new Date().toString();
+                // createNotification({
+                //   variables: {
+                //     createNotificationData: {
+                //       user_id: e.friend_id,
+                //       friend_id: e.user_id,
+                //       action: "Disiked Track!",
+                //       message: `${userObj.user_name} disliked ${e.track_title} by ${e.artists[0]}`,
+                //       created_at: new Date().toString(),
+                //     },
+                //   },
+                // });
+                createNotification({
+                  variables: {
+                    createNotificationData: {
+                      user_id: e.friend_id,
+                      friend_id: e.user_id,
+                      action: "Disiked Track!",
+                      message: `${userObj.user_name} disliked ${e.track_title} by ${e.artists[0]}`,
+                      created_at: new Date().toString(),
+                    },
+                  },
                 });
               }}
             >

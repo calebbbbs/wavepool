@@ -6,6 +6,7 @@ import RecommendedTrack from './RecommendedTrack';
 import HistoryGenre from './HistoryGenre';
 import HistoryTrack from './HistoryTrack';
 import HistoryArtist from './HistoryArtist';
+import Notification from './Notification';
 
 
 @Entity()
@@ -31,6 +32,9 @@ export default class User extends BaseEntity {
   @Column()
   refresh_token: string;
 
+  // @Field(() => Boolean)
+  // isLoggedIn: boolean;
+
   @Field(() => [Friend], {nullable: true})
   @OneToMany(() => Friend, (friend: Friend) => friend.user)
   friends!: Promise<Friend[]>;
@@ -42,6 +46,10 @@ export default class User extends BaseEntity {
   @Field(() => [RecommendedTrack], {nullable: true})
   @OneToMany(() => RecommendedTrack, (recommendedTrack: RecommendedTrack) => recommendedTrack.user)
   recommendedTracks!: Promise<RecommendedTrack[]>;
+
+  @Field(() => [Notification], {nullable: true})
+  @OneToMany(() => Notification, (notification: Notification) => notification.user)
+  notifications!: Promise<Notification[] | undefined>;
 
   @Field(() => [HistoryGenre], {nullable: true})
   @OneToMany(() => HistoryGenre, (historyGenre: HistoryGenre) => historyGenre.user)
