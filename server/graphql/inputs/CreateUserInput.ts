@@ -16,4 +16,7 @@ export class CreateUserInput {
 
   @Field()
   refresh_token: string;
+
+  // @Field()
+  // logged_in: boolean;
 }

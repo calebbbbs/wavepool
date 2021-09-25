@@ -4,8 +4,7 @@ import { useMutation, gql } from "@apollo/client";
 import { UserContext } from "../../contexts/UserContext";
 import { CheckIcon, DeleteIcon } from "@chakra-ui/icons";
 import SocketContext from "../../contexts/SocketContext";
-import moment from 'moment'
-let now = moment().startOf('hour').fromNow();
+
 
 const CONFIRM_FRIEND = gql`
   mutation ConfirmFriendMutation($confirmFriendData: ConfirmFriendInput!) {
@@ -26,22 +25,23 @@ const DENY_FRIEND = gql`
 `;
 
 const CREATE_NOTIFICATION = gql`
-  mutation Mutation($createNotificationData: CreateNotificationInput!){
+  mutation CreateNotificationMutation($createNotificationData: CreateNotificationInput!) {
     createNotification(data: $createNotificationData) {
-      user_id
-      friend_id
-      action
-      message
-      created_at
+    user_id
+    friend_id
+    action
+    message
+    created_at
+    viewed
     }
   }
-`;
+  `;
 
 const FriendStat = (props: any) => {
   const { friend_id } = props;
   const [confirmFriend] = useMutation(CONFIRM_FRIEND);
   const [denyFriend] = useMutation(DENY_FRIEND);
-  const [createNotification] = useMutation(CREATE_NOTIFICATION)
+  const [createNotification] = useMutation(CREATE_NOTIFICATION);
   const { userObj, refetch } = useContext(UserContext);
   const { socket } = useContext(SocketContext);
 
@@ -80,11 +80,12 @@ const FriendStat = (props: any) => {
           createNotification({
             variables: {
               createNotificationData: {
-                userId: userObj.user_name,
-                friendId: friend_id,
+                user_id: userObj.user_name,
+                friend_id: friend_id,
                 action: "New Friend!",
                 message: `${userObj.user_name} accepted your friend request!`,
-                created_at: now,
+                created_at: new Date().toString(),
+                viewed: false
               },
             },
           });
@@ -119,11 +120,12 @@ const FriendStat = (props: any) => {
           createNotification({
             variables: {
               createNotificationData: {
-                userId: userObj.user_name,
-                friendId: friend_id,
+                user_id: userObj.user_name,
+                friend_id: friend_id,
                 action: "Denied Friend Request",
                 message: `${userObj.user_name} denied your friend request.`,
-                created_at: now,
+                created_at: new Date().toString(),
+                viewed: false
               },
             },
           });

@@ -9,6 +9,7 @@ import {
   MenuDivider,
   IconButton,
   useColorModeValue,
+  Flex
 } from '@chakra-ui/react';
 
 import { UserContext } from '../../contexts/UserContext';
@@ -20,9 +21,10 @@ const NotifMenu = (props: any) => {
 
   const list = userObj.notifications.map((e: any, i: number) => {
     return <MenuItem key={i}>{e.message}</MenuItem>;
-  });
+  }).reverse();
     return (
       <Menu>
+
         <MenuButton
           m={4}
           as={IconButton}
@@ -32,13 +34,17 @@ const NotifMenu = (props: any) => {
         />
         <MenuList bg={useColorModeValue('brand.50', 'brand.900')} zIndex={2}>
           <MenuGroup>
+            <Flex>
+            <chakra.div m={2}>Notifications</chakra.div>
+            </Flex>
+            <MenuDivider />
             {isLoggedIn && (
               <chakra.div>
                 {list}
               </chakra.div>
             )}
           </MenuGroup>
-          <MenuDivider />
+          {/* <MenuDivider /> */}
           <MenuGroup></MenuGroup>
         </MenuList>
       </Menu>

@@ -9,4 +9,5 @@ export class CreateFriendInput {
 
   @Field()
   friend_status: boolean;
+
 }

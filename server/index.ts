@@ -83,6 +83,7 @@ async function startServer() {
         user.user_email = profile._json.email;
         user.access_token = accessToken;
         user.refresh_token = refreshToken;
+        // user.logged_in = false;
         if(profile._json.images && profile._json.images[0] && profile._json.images[0].url){
         user.photo = profile._json.images[0].url
         } else {
@@ -161,6 +162,8 @@ async function startServer() {
   );
 
   app.get('/logout', function (req: Request, res: Response) {
+    // const user: any = {...req.user};
+    // user.logged_in = false;
     req.logout();
     res.redirect('/');
   });
@@ -169,6 +172,7 @@ async function startServer() {
     const user: any = { ...req.user };
     delete user.access_token;
     delete user.refresh_token;
+    // user.logged_in = true;
     return res.send(user);
   });
 

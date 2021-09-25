@@ -30,6 +30,10 @@ export default class Notification extends BaseEntity {
   @Column()
   created_at: string;
 
+  @Field(() => Boolean)
+  @Column({nullable: true})
+  viewed: boolean;
+
   @Field(() => User)
   @ManyToOne(() => User, (user: User) => user.notifications,
   {cascade: true})

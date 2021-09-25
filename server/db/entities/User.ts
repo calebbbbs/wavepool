@@ -32,8 +32,9 @@ export default class User extends BaseEntity {
   @Column()
   refresh_token: string;
 
-  // @Field(() => Boolean)
-  // isLoggedIn: boolean;
+  @Field(() => Boolean)
+  @Column({nullable: true})
+  logged_in: boolean;
 
   @Field(() => [Friend], {nullable: true})
   @OneToMany(() => Friend, (friend: Friend) => friend.user)

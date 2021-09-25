@@ -6,6 +6,7 @@ query Query($getUserUserId: String!) {
     user_id
     user_name
     user_email
+    # logged_in
     photo
     friends {
       user_id
@@ -16,6 +17,7 @@ query Query($getUserUserId: String!) {
       friend_score
       number_of_songs
       number_of_likes
+      # logged_in
       recommendedGenres{
         genre
         count
@@ -34,13 +36,14 @@ query Query($getUserUserId: String!) {
       album_art
       been_liked
     }
-  notifications {
+    notifications {
     user_id
     friend_id
     action
     message
     created_at
-  }
+    # viewed
+    }
   }
 }
 `;

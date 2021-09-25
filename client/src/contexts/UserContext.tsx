@@ -78,6 +78,7 @@ const UserContextProvider: React.FC = ({ children }) => {
     getUser();
 
     if (userObj) {
+      // console.log(userObj.logged_in);
       getRecentlyPlayed();
       getUserPlaylists();
     }

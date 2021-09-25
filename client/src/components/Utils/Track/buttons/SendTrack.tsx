@@ -30,24 +30,25 @@ const RECOMMEND_TRACK = gql`
   }
 `;
 
-// const CREATE_NOTIFICATION = gql`
-//   mutation Mutation($createNotificationData: CreateNotificationInput!){
-//     createNotification(data: $createNotificationData) {
-//       user_id
-//       friend_id
-//       action
-//       message
-//       created_at
-//     }
-//   }
-// `;
+const CREATE_NOTIFICATION = gql`
+  mutation CreateNotificationMutation($createNotificationData: CreateNotificationInput!) {
+    createNotification(data: $createNotificationData) {
+    user_id
+    friend_id
+    action
+    message
+    created_at
+    viewed
+    }
+  }
+  `;
 
 const SendTrack = (props: any) => {
   const bg = useColorModeValue("brand.50", "brand.900");
   const { selectedFriend, userObj } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [recommendTrack, { error, data }] = useMutation(RECOMMEND_TRACK);
-  // const [createNotification] = useMutation(CREATE_NOTIFICATION)
+  const [createNotification] = useMutation(CREATE_NOTIFICATION);
   const { socket } = useContext(SocketContext);
   if (error) {
     console.log(error);
@@ -113,17 +114,18 @@ const SendTrack = (props: any) => {
                     },
                   },
                 });
-                // createNotification({
-                //   variables: {
-                //     createNotificationData: {
-                //       user_id: userObj.user_name,
-                //       friend_id: selectedFriend[0],
-                //       action: "New Track!",
-                //       message: `${userObj.user_name} sent you a track!`,
-                //       created_at: moment(),
-                //     },
-                //   },
-                // });
+                createNotification({
+                  variables: {
+                    createNotificationData: {
+                      user_id: userObj.user_name,
+                      friend_id: selectedFriend[0],
+                      action: "New Track!",
+                      message: `${userObj.user_name} sent you a track!`,
+                      created_at: new Date().toString(),
+                      viewed: false,
+                    },
+                  },
+                });
                 onClose();
               }}
             >

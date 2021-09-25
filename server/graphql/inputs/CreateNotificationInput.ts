@@ -17,4 +17,7 @@ export class CreateNotificationInput {
 
   @Field()
   created_at: string;
+
+  @Field()
+  viewed: boolean;
 }

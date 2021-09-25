@@ -49,6 +49,7 @@ const CREATE_NOTIFICATION = gql`
     action
     message
     created_at
+    viewed
     }
   }
   `;
@@ -59,7 +60,7 @@ const RecommendedTracksList = (props: any) => {
   const [removeRec] = useMutation(REMOVE_REC);
   const [updateFriendship, {data}] = useMutation(UPDATE_FRIENDSHIP);
   const [trackResponded, trackRespondedReturn] = useMutation(TRACK_RESPONDED);
-  const [createNotification] = useMutation(CREATE_NOTIFICATION)
+  const [createNotification] = useMutation(CREATE_NOTIFICATION);
   const bg = useColorModeValue("brand.50", "brand.900");
   const { socket } = useContext(SocketContext);
   const [temp, setTemp] = useState<any>({});
@@ -148,6 +149,7 @@ useEffect(() =>{
                         action: "Liked Track!",
                         message: `${userObj.user_name} liked ${e.track_title} by ${e.artists[0]}`,
                         created_at: new Date().toString(),
+                        viewed: false
                       },
                     },
                   });
@@ -211,6 +213,7 @@ useEffect(() =>{
                       action: "Disiked Track!",
                       message: `${userObj.user_name} disliked ${e.track_title} by ${e.artists[0]}`,
                       created_at: new Date().toString(),
+                      viewed: false
                     },
                   },
                 });
