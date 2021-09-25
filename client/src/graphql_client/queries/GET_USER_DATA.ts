@@ -34,6 +34,13 @@ query Query($getUserUserId: String!) {
       album_art
       been_liked
     }
+  notifications {
+    user_id
+    friend_id
+    action
+    message
+    created_at
+  }
   }
 }
 `;

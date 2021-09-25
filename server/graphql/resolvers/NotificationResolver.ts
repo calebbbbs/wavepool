@@ -1,8 +1,8 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
-// import { getConnection } from "typeorm";
+import { getConnection } from "typeorm";
 import { CreateNotificationInput } from "../inputs/CreateNotificationInput";
 import Notification from "../../db/entities/Notification";
-// import User from "../../db/entities/User";
+import User from "../../db/entities/User";
 
 @Resolver()
 export class NotificationResolver {
@@ -22,6 +22,12 @@ export class NotificationResolver {
     notification.created_at = created_at;
     console.log(notification);
     await notification.save();
+
+    await getConnection()
+    .createQueryBuilder()
+    .relation(User, "notifications")
+    .of(friend_id)
+    .add(notification);
     return notification;
   }
 

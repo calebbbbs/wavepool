@@ -3,7 +3,7 @@ import {
   chakra,
   Menu,
   MenuButton,
-  // MenuItem,
+  MenuItem,
   MenuList,
   MenuGroup,
   MenuDivider,
@@ -17,7 +17,11 @@ import { BiBell } from "react-icons/bi";
 
 
 const NotifMenu = (props: any) => {
-  const { isLoggedIn }: any = useContext(UserContext);
+  const { isLoggedIn}: any = useContext(UserContext);
+
+  // const list = props.notifications.map((e: any, i: Number) => {
+  //   console.log(e);
+  // })
 
 return(
 <Menu>
@@ -35,7 +39,10 @@ return(
   <MenuGroup>
     {isLoggedIn && (
       <chakra.div>
-        {/* <MenuItem>
+        <MenuItem>
+        {/* {list} */}
+        </MenuItem>
+        <MenuItem>
         </MenuItem>
         <MenuItem>
 
@@ -44,10 +51,7 @@ return(
 
         </MenuItem>
         <MenuItem>
-
         </MenuItem>
-        <MenuItem>
-        </MenuItem> */}
       </chakra.div>
     )}
   </MenuGroup>

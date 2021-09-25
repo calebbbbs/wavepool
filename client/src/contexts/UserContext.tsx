@@ -85,6 +85,7 @@ const UserContextProvider: React.FC = ({ children }) => {
 
   React.useEffect(() => {
     if (data) {
+      console.log(data);
       const newUserObj = { ...data.getUser };
       newUserObj.recommendedTracks = data.getUser.recommendedTracks.filter(
         (e: any) => {
