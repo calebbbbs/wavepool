@@ -54,6 +54,7 @@ const CREATE_NOTIFICATION = gql`
   `;
 
 const RecommendedTracksList = (props: any) => {
+  // console.log('line 57 recommendedTracksList props', props);
   const { refetch, userObj } = useContext(UserContext);
   const [removeRec] = useMutation(REMOVE_REC);
   const [updateFriendship, {data}] = useMutation(UPDATE_FRIENDSHIP);
