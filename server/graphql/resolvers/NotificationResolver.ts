@@ -1,6 +1,7 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import { getConnection } from "typeorm";
 import { CreateNotificationInput } from "../inputs/CreateNotificationInput";
+import {RemoveNotificationInput} from "../inputs/RemoveNotificationInput";
 import Notification from "../../db/entities/Notification";
 import User from "../../db/entities/User";
 
@@ -32,14 +33,14 @@ export class NotificationResolver {
     return notification;
   }
 
-  // @Mutation(() => Boolean)
-  // async RemoveRecommended(@Arg("data") data: RemoveNotificationInput) {
-  //   const { user_id, track_title } = data;
-  //   const recommended = await RecommendedTrack.findOne({where: {user_id: user_id, track_title: track_title}});
-  //   if(!recommended) { return false }
-  //   recommended.in_queue = false;
-  //   recommended.save();
-  //   // await recommended.remove();
-  //   return true;
-  // }
+  @Mutation(() => Boolean)
+  async removeNotification(@Arg("data") data: RemoveNotificationInput) {
+    const { created_at, user_id } = data;
+    const notification = await Notification.findOne({where: {created_at: created_at, user_id: user_id}});
+    if(!notification) { return false }
+    notification.viewed = true;
+    notification.save();
+    // await recommended.remove();
+    return true;
+  }
 }

@@ -54,6 +54,15 @@ const CREATE_NOTIFICATION = gql`
   }
   `;
 
+  // const REMOVE_NOTIFICATION = gql`
+  // mutation RemoveNotificationMutation($removeNotificationData: CreateNotificationInput!){
+  //   removeNotification(data: $removeNotificationData) {
+  //     user_id
+  //     message
+  //   }
+  // }
+  // `
+
 const RecommendedTracksList = (props: any) => {
   // console.log('line 57 recommendedTracksList props', props);
   const { refetch, userObj } = useContext(UserContext);
@@ -61,6 +70,7 @@ const RecommendedTracksList = (props: any) => {
   const [updateFriendship, {data}] = useMutation(UPDATE_FRIENDSHIP);
   const [trackResponded, trackRespondedReturn] = useMutation(TRACK_RESPONDED);
   const [createNotification] = useMutation(CREATE_NOTIFICATION);
+  // const [removeNotification] = useMutation(REMOVE_NOTIFICATION);
   const bg = useColorModeValue("brand.50", "brand.900");
   const { socket } = useContext(SocketContext);
   const [temp, setTemp] = useState<any>({});

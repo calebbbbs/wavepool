@@ -12,7 +12,7 @@ export default class Notification extends BaseEntity {
 
   @Column()
   @Field(() => ID)
-  user_id: String;
+  user_id: string;
 
   @Field(() => String)
   @Column()

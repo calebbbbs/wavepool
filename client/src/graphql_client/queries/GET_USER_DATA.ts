@@ -37,12 +37,13 @@ query Query($getUserUserId: String!) {
       been_liked
     }
     notifications {
+    id
     user_id
     friend_id
     action
     message
     created_at
-    # viewed
+    viewed
     }
   }
 }

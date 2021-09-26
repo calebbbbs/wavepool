@@ -79,7 +79,7 @@ const AddFriend = () => {
         createNotification({
           variables: {
             createNotificationData: {
-              user_id: userObj.user_id,
+              user_id: userObj.user_name,
               friend_id: data.createFriend.user_id,
               action: "New Friend Request",
               message: `${userObj.user_name} sent you a Friend Request!`,

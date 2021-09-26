@@ -97,11 +97,18 @@ const UserContextProvider: React.FC = ({ children }) => {
     }
   }, [data]);
 
-  // React.useEffect(() =>{
-  //   if(data){
-
-  //   }
-  // })
+  React.useEffect(() => {
+    if (data) {
+      console.log(data);
+      const newUserObj = { ...data.getUser };
+      newUserObj.notifications = data.getUser.notifications.filter(
+        (e: any) => {
+          return e.viewed === false;
+        }
+      );
+      setUserObj(newUserObj);
+    }
+  }, [data]);
 
   const userProps = {
     userObj,
