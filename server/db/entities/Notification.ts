@@ -1,4 +1,10 @@
-import { Entity, Column, BaseEntity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+} from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 // import Friend from './Friend';
 import User from './User';
@@ -28,14 +34,17 @@ export default class Notification extends BaseEntity {
 
   @Field(() => String)
   @Column()
-  created_at: string;
+  timestampp: string;
 
   @Field(() => Boolean)
-  @Column({nullable: true})
+  @Column({ nullable: true })
   viewed: boolean;
 
+  @Field(() => String)
+  @Column({ nullable: true })
+  photo?: string;
+
   @Field(() => User)
-  @ManyToOne(() => User, (user: User) => user.notifications,
-  {cascade: true})
+  @ManyToOne(() => User, (user: User) => user.notifications, { cascade: true })
   user!: Promise<User | undefined>;
 }

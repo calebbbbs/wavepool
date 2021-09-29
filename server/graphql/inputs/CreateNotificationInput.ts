@@ -1,5 +1,4 @@
-
-import {InputType, Field} from "type-graphql";
+import { InputType, Field } from 'type-graphql';
 
 @InputType()
 export class CreateNotificationInput {
@@ -16,7 +15,10 @@ export class CreateNotificationInput {
   message: string;
 
   @Field()
-  created_at: string;
+  timestampp: string;
+
+  @Field()
+  photo: string;
 
   @Field()
   viewed: boolean;

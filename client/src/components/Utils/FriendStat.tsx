@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import { Link, HStack } from "@chakra-ui/react";
-import { useMutation, gql } from "@apollo/client";
-import { UserContext } from "../../contexts/UserContext";
-import { CheckIcon, DeleteIcon } from "@chakra-ui/icons";
-import SocketContext from "../../contexts/SocketContext";
-
+import React, { useContext } from 'react';
+import { Link, HStack } from '@chakra-ui/react';
+import { useMutation, gql } from '@apollo/client';
+import { UserContext } from '../../contexts/UserContext';
+import { CheckIcon, DeleteIcon } from '@chakra-ui/icons';
+import SocketContext from '../../contexts/SocketContext';
 
 const CONFIRM_FRIEND = gql`
   mutation ConfirmFriendMutation($confirmFriendData: ConfirmFriendInput!) {
@@ -25,17 +24,20 @@ const DENY_FRIEND = gql`
 `;
 
 const CREATE_NOTIFICATION = gql`
-  mutation CreateNotificationMutation($createNotificationData: CreateNotificationInput!) {
+  mutation CreateNotificationMutation(
+    $createNotificationData: CreateNotificationInput!
+  ) {
     createNotification(data: $createNotificationData) {
-    user_id
-    friend_id
-    action
-    message
-    created_at
-    viewed
+      user_id
+      friend_id
+      action
+      message
+      timestampp
+      photo
+      viewed
     }
   }
-  `;
+`;
 
 const FriendStat = (props: any) => {
   const { friend_id } = props;
@@ -46,17 +48,17 @@ const FriendStat = (props: any) => {
   const { socket } = useContext(SocketContext);
 
   const friendConfirmed = (data: any) => {
-    socket.emit("notification", data);
+    socket.emit('notification', data);
   };
 
   const friendDenied = (data: any) => {
-    socket.emit("notification", data);
+    socket.emit('notification', data);
   };
 
   return (
     <HStack>
       <Link
-        colorScheme="green"
+        colorScheme='green'
         onClick={() => {
           confirmFriend({
             variables: {
@@ -69,33 +71,33 @@ const FriendStat = (props: any) => {
           const temp = {
             userId: userObj.user_name,
             friendId: friend_id,
-            action: "New Friend!",
+            action: 'New Friend!',
             message: `${userObj.user_name} accepted your friend request!`,
           };
-
-          setTimeout(() => {
-            refetch();
-          }, 1500);
           friendConfirmed(temp);
           createNotification({
             variables: {
               createNotificationData: {
                 user_id: userObj.user_name,
                 friend_id: friend_id,
-                action: "New Friend!",
+                action: 'New Friend!',
                 message: `${userObj.user_name} accepted your friend request!`,
-                created_at: new Date().toString(),
-                viewed: false
+                timestampp: new Date().toString(),
+                photo: `${userObj.photo}`,
+                viewed: false,
               },
             },
           });
+          setTimeout(() => {
+            refetch();
+          }, 1500);
         }}
       >
         <CheckIcon />
       </Link>
       <br />
       <Link
-        colorScheme="green"
+        colorScheme='green'
         onClick={() => {
           denyFriend({
             variables: {
@@ -108,27 +110,27 @@ const FriendStat = (props: any) => {
           const temp = {
             userId: userObj.user_name,
             friendId: friend_id,
-            status: "warning",
-            action: "Hate to be the one to tell you, but",
+            status: 'warning',
+            action: 'Hate to be the one to tell you, but',
             message: `${userObj.user_name} denied your friend request.`,
           };
-
-          setTimeout(() => {
-            refetch();
-          }, 1500);
           friendDenied(temp);
           createNotification({
             variables: {
               createNotificationData: {
                 user_id: userObj.user_name,
                 friend_id: friend_id,
-                action: "Denied Friend Request",
+                action: 'Denied Friend Request',
                 message: `${userObj.user_name} denied your friend request.`,
-                created_at: new Date().toString(),
-                viewed: false
+                timestampp: new Date().toString(),
+                photo: `${userObj.photo}`,
+                viewed: false,
               },
             },
           });
+          setTimeout(() => {
+            refetch();
+          }, 1500);
         }}
       >
         <DeleteIcon />

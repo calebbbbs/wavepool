@@ -1,4 +1,4 @@
-import {gql} from '@apollo/client'
+import { gql } from '@apollo/client';
 
 const CREATE_NOTIFICAITON = gql`
   mutation CreateNotificationMutation($createNotificationData: CreateNotificationInput!) {
@@ -7,10 +7,8 @@ const CREATE_NOTIFICAITON = gql`
     # friend_id
     # action
     # message
-    # created_at
     }
   }
   `;
 
-
-  export default CREATE_NOTIFICAITON;
+export default CREATE_NOTIFICAITON;

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { useMutation, gql } from "@apollo/client";
+import React, { useContext, useEffect } from 'react';
+import { useMutation, gql } from '@apollo/client';
 import {
   Button,
   Tooltip,
@@ -14,11 +14,10 @@ import {
   PopoverBody,
   chakra,
   useColorModeValue,
-} from "@chakra-ui/react";
-import { UserContext } from "../../../../contexts/UserContext";
-import { RiMailSendLine } from "react-icons/ri";
-import SocketContext from "../../../../contexts/SocketContext";
-// import moment from 'moment';
+} from '@chakra-ui/react';
+import { UserContext } from '../../../../contexts/UserContext';
+import { RiMailSendLine } from 'react-icons/ri';
+import SocketContext from '../../../../contexts/SocketContext';
 
 const RECOMMEND_TRACK = gql`
   mutation CreateRecommendedMutation(
@@ -31,20 +30,23 @@ const RECOMMEND_TRACK = gql`
 `;
 
 const CREATE_NOTIFICATION = gql`
-  mutation CreateNotificationMutation($createNotificationData: CreateNotificationInput!) {
+  mutation CreateNotificationMutation(
+    $createNotificationData: CreateNotificationInput!
+  ) {
     createNotification(data: $createNotificationData) {
-    user_id
-    friend_id
-    action
-    message
-    created_at
-    viewed
+      user_id
+      friend_id
+      action
+      message
+      timestampp
+      photo
+      viewed
     }
   }
-  `;
+`;
 
 const SendTrack = (props: any) => {
-  const bg = useColorModeValue("brand.50", "brand.900");
+  const bg = useColorModeValue('brand.50', 'brand.900');
   const { selectedFriend, userObj } = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [recommendTrack, { error, data }] = useMutation(RECOMMEND_TRACK);
@@ -59,25 +61,23 @@ const SendTrack = (props: any) => {
       const temp = {
         userId: userObj.user_name,
         friendId: selectedFriend[0],
-        action: "New Track!",
+        action: 'New Track!',
         message: `${userObj.user_name} sent you a track!`,
       };
       trackNotif(temp);
     }
   }, [JSON.stringify(data)]);
 
-
-
   const trackNotif = (data: any) => {
-    socket.emit("notification", data);
+    socket.emit('notification', data);
   };
 
   return (
-    <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose} placement="left">
+    <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose} placement='left'>
       <PopoverTrigger>
         {/* <Tooltip placement="right" label="Send Track"> */}
-        <Tooltip placement="right" label="Send Track">
-          <Button variant="ghost" onClick={onOpen}>
+        <Tooltip placement='right' label='Send Track'>
+          <Button variant='ghost' onClick={onOpen}>
             <RiMailSendLine />
           </Button>
         </Tooltip>
@@ -90,14 +90,14 @@ const SendTrack = (props: any) => {
           <PopoverBody>
             <chakra.span>Are you sure you want to send </chakra.span>
             <chakra.span>
-              <b>{props.track.track_title} </b>to{" "}
+              <b>{props.track.track_title} </b>to{' '}
             </chakra.span>
             <chakra.span>
               <b>{selectedFriend[1]}</b>?
             </chakra.span>
             <Button
-              colorScheme="green"
-              float="right"
+              colorScheme='green'
+              float='right'
               onClick={() => {
                 recommendTrack({
                   variables: {
@@ -119,9 +119,10 @@ const SendTrack = (props: any) => {
                     createNotificationData: {
                       user_id: userObj.user_name,
                       friend_id: selectedFriend[0],
-                      action: "New Track!",
-                      message: `${userObj.user_name} sent you a track!`,
-                      created_at: new Date().toString(),
+                      action: 'New Track!',
+                      message: `${userObj.user_name} sent you ${props.track.track_title} by ${props.track.artists}!`,
+                      timestampp: new Date().toString(),
+                      photo: `${userObj.photo}`,
                       viewed: false,
                     },
                   },
@@ -136,7 +137,7 @@ const SendTrack = (props: any) => {
       ) : (
         <PopoverContent bg={bg}>
           <PopoverBody>
-            <Text>{"Select somebody to send a track to!"}</Text>
+            <Text>{'Select somebody to send a track to!'}</Text>
           </PopoverBody>
           <PopoverCloseButton />
         </PopoverContent>
