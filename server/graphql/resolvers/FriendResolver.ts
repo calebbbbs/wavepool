@@ -22,6 +22,7 @@ export class FriendResolver {
     newFriend.friend_status = friend_status;
     newFriend.friend_name = userData.user_name;
     newFriend.friend_id = userData.user_id;
+    // newFriend.logged_in = friendData.logged_in;
     // if(userData.photo){
     // newFriend.friend_photo = userData.photo;
     // } else {
@@ -57,6 +58,7 @@ export class FriendResolver {
       newFriend.friend_status = true;
       newFriend.friend_name = friendData.user_name;
       newFriend.friend_id = friendData.user_id;
+      // newFriend.logged_in = friendData.logged_in;
       newFriend.friend_score = 0;
       newFriend.number_of_songs = 0;
       newFriend.number_of_likes = 0;

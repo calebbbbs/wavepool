@@ -32,6 +32,7 @@ import {
   UserResolver,
   FriendResolver,
   RecommendedResolver,
+  NotificationResolver,
 } from './graphql/resolvers';
 
 const options: cors.CorsOptions = {
@@ -41,7 +42,7 @@ const options: cors.CorsOptions = {
 async function startServer() {
   await createConnection(typeOrmConfig).catch((err) => console.log(err));
   const schema = await buildSchema({
-    resolvers: [UserResolver, FriendResolver, RecommendedResolver],
+    resolvers: [UserResolver, FriendResolver, RecommendedResolver, NotificationResolver],
   });
   const server = new ApolloServer({ schema });
   const { CLIENT_ID, CLIENT_SECRET, SESSION_SECRET } = process.env;
@@ -82,6 +83,7 @@ async function startServer() {
         user.user_email = profile._json.email;
         user.access_token = accessToken;
         user.refresh_token = refreshToken;
+        // user.logged_in = false;
         if(profile._json.images && profile._json.images[0] && profile._json.images[0].url){
         user.photo = profile._json.images[0].url
         } else {
@@ -160,6 +162,8 @@ async function startServer() {
   );
 
   app.get('/logout', function (req: Request, res: Response) {
+    // const user: any = {...req.user};
+    // user.logged_in = false;
     req.logout();
     res.redirect('/');
   });
@@ -168,6 +172,7 @@ async function startServer() {
     const user: any = { ...req.user };
     delete user.access_token;
     delete user.refresh_token;
+    // user.logged_in = true;
     return res.send(user);
   });
 

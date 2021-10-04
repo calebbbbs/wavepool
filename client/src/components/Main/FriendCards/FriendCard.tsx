@@ -30,12 +30,13 @@ const RecommendedTracks = () => {
         friendPhoto={friend.friend_photo}
         friendName={friend.friend_name}
         friendStatus={friend.friend_status}
+        // loggedIn={friend.logged_in}
       />
     );
   });
 
   return (
-    <Flex mt={2} alignItems="center" justifyContent="center"> 
+    <Flex mt={2} alignItems="center" justifyContent="center">
       <Box
         minW='340'
         rounded="lg"

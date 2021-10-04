@@ -47,6 +47,10 @@ export default class Friend extends BaseEntity {
   @Column()
   number_of_songs: number;
 
+  // @Field(() => Boolean)
+  // @Column({nullable: true})
+  // logged_in: boolean;
+
   @Field(() => [RecommendedGenre], {nullable: true})
   @OneToMany(() => RecommendedGenre, (recommendedGenre: RecommendedGenre) => recommendedGenre.friend)
   recommendedGenres!: Promise<RecommendedGenre[]>;

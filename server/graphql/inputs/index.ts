@@ -7,6 +7,7 @@ import { ConfirmFriendInput } from './ConfirmFriendInput';
 import { UpdateFriendshipInput } from './UpdateFriendshipInput';
 import { RecommendedGenreInput } from './RecommendedGenreInput';
 import { TrackRespondedInput } from './trackRespondedInput';
+import { RemoveNotificationInput } from './RemoveNotificationInput';
 export {
   CreateUserInput,
   TrackRespondedInput,
@@ -15,4 +16,6 @@ export {
   ConfirmFriendInput,
   RemoveRecommendedInput,
   UpdateFriendshipInput,
-  RecommendedGenreInput }
+  RecommendedGenreInput,
+  RemoveNotificationInput
+ }

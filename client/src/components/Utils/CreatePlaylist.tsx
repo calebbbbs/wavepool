@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
-import axios, {AxiosError} from "axios";
-import { UserContext } from "../../contexts/UserContext";
+import React, { useContext, useState } from 'react';
+import axios, { AxiosError } from 'axios';
+import { UserContext } from '../../contexts/UserContext';
 
 import {
-  Button,
+  MenuItem,
   Input,
   Textarea,
   Modal,
@@ -15,54 +15,53 @@ import {
   ModalCloseButton,
   useDisclosure,
   useColorModeValue,
-  chakra
-} from "@chakra-ui/react";
+  chakra,
+  Button,
+  Text,
+} from '@chakra-ui/react';
 
-import { MdPlaylistAdd } from "react-icons/md";
-
+import { MdPlaylistAdd } from 'react-icons/md';
 
 const CreatePlaylist = (props: any) => {
   const { userObj, getUserPlaylists } = useContext(UserContext);
   const bg = useColorModeValue('brand.100', 'brand.800');
-  const [playlistName, setPlaylistName] = useState("");
-  const [playlistDesc, setPlaylistDesc] = useState("");
+  const [playlistName, setPlaylistName] = useState('');
+  const [playlistDesc, setPlaylistDesc] = useState('');
   const { onOpen, isOpen, onClose } = useDisclosure();
-
 
   return (
     <>
-        <Button variant="ghost" onClick={onOpen}>
-        <MdPlaylistAdd size={25}/> Create New Playlist
-        </Button>
+      <MenuItem onClick={onOpen}>
+        <MdPlaylistAdd size={25} />
+        <Text ml={2}>Create New Playlist</Text>
+      </MenuItem>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent
-        bg={bg}>
+        <ModalContent bg={bg}>
           <ModalHeader>New Playlist</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <chakra.div
-            m={4}>
-            <Input
-            mb={4}
-            placeholder="Playlist Title"
-              value={playlistName}
-              onChange={(e) => {
-                setPlaylistName(e.target.value);
-              }}
-            ></Input>
-            <Textarea
-            placeholder="Playlist Description"
-              value={playlistDesc}
-              onChange={(e) => {
-                setPlaylistDesc(e.target.value);
-              }}
-            ></Textarea>
+            <chakra.div m={4}>
+              <Input
+                mb={4}
+                placeholder='Playlist Title'
+                value={playlistName}
+                onChange={(e) => {
+                  setPlaylistName(e.target.value);
+                }}
+              ></Input>
+              <Textarea
+                placeholder='Playlist Description'
+                value={playlistDesc}
+                onChange={(e) => {
+                  setPlaylistDesc(e.target.value);
+                }}
+              ></Textarea>
             </chakra.div>
           </ModalBody>
           <ModalFooter>
             <Button
-              variant="ghost"
+              variant='ghost'
               onClick={() => {
                 axios
                   .post(
@@ -71,9 +70,15 @@ const CreatePlaylist = (props: any) => {
                   )
                   .then((data: any) => {
                     getUserPlaylists();
-                    return data})
-                    .catch((error: AxiosError) => console.log('Error from axios.post/spotify/createPlaylist CreatePlaylist', error.response?.data))
-                    onClose();
+                    return data;
+                  })
+                  .catch((error: AxiosError) =>
+                    console.log(
+                      'Error from axios.post/spotify/createPlaylist CreatePlaylist',
+                      error.response?.data
+                    )
+                  );
+                onClose();
               }}
             >
               Create Playlist
