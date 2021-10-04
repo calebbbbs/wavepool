@@ -21,7 +21,7 @@ import {
 import moment from 'moment';
 import { UserContext } from '../../contexts/UserContext';
 import { gql, useMutation } from '@apollo/client';
-import { CloseIcon } from '@chakra-ui/icons';
+import { CloseIcon, CheckIcon } from '@chakra-ui/icons';
 import { BiBell } from 'react-icons/bi';
 import NotifModal from './NotifModal';
 
@@ -88,6 +88,7 @@ const NotifMenu = (props: any) => {
               {moment(new Date(e.timestampp)).fromNow()}
             </Text>
           </Stack>
+          <CheckIcon />
         </MenuItem>
       );
     });
@@ -128,7 +129,7 @@ const NotifMenu = (props: any) => {
             </Flex>
           </Flex>
           <MenuDivider />
-          {isLoggedIn && <chakra.div>{list.slice(0, 5)}</chakra.div>}
+          {isLoggedIn && <chakra.div>{list.slice(0, 7)}</chakra.div>}
 
           {isLoggedIn && userObj.notifications.length > 4 && (
             <NotifModal notifs={userObj.notifications} />

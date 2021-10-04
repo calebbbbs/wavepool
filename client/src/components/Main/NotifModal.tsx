@@ -15,6 +15,8 @@ import {
   Flex,
   useColorModeValue,
   Spacer,
+  // Badge,
+  Icon,
 } from '@chakra-ui/react';
 import moment from 'moment';
 
@@ -43,12 +45,51 @@ const NotifModal = (props: any) => {
               mr='12px'
             />
             <Text fontSize='lg' minWidth={'330px'}>
-              {e.message}
+              {e.message}{' '} {' '}
+              {e.viewed === false &&
+            // <Badge
+            //   // variant='solid'
+            //   // colorScheme='red'
+              // mb={8}
+              // ml={8}
+            // >
+              <Icon viewBox="0 0 200 200" color="white.500"
+              // mb={2}
+              ml={2}
+              >
+  <path
+    fill="currentColor"
+    d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
+  />
+</Icon>}
+            {/* </Badge>} */}
             </Text>
             <Spacer />
+
             <Text as='i' fontSize='xs' align='right'>
               {moment(new Date(e.timestampp)).fromNow()}
+
             </Text>
+            {/* {e.viewed === false &&
+            <Badge
+              variant='solid'
+              colorScheme='red'
+              position='absolute'
+              mb={8}
+              ml={8}
+            >
+              Unread
+            </Badge>} */}
+            {/* {e.viewed === true &&
+            <Badge
+              variant='solid'
+              colorScheme='red'
+              position='absolute'
+              mb={8}
+              ml={8}
+            >
+              read
+            </Badge>} */}
           </Flex>
         </Box>
       );
