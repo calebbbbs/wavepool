@@ -36,6 +36,7 @@ const REMOVE_NOTIFICATION = gql`
 const NotifMenu = (props: any) => {
   const { isLoggedIn, userObj, refetch }: any = useContext(UserContext);
   const [removeNotification] = useMutation(REMOVE_NOTIFICATION);
+  const bg = useColorModeValue('brand.100', 'brand.800');
   const { onOpen, onClose } = useDisclosure();
   const notifArray = [...userObj.notifications];
   const list = notifArray
@@ -85,7 +86,7 @@ const NotifMenu = (props: any) => {
               {moment(new Date(e.timestampp)).fromNow()}
             </Text>
           </Stack>
-          <CloseIcon boxSize="10px"/>
+          <CloseIcon boxSize="10px" _hover={{bg}}/>
         </MenuItem>
       );
     });
