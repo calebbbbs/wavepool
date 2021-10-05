@@ -9,14 +9,14 @@ import {
   ModalBody,
   Image,
   Button,
-  // ModalCloseButton,
+
   Text,
   Box,
   Flex,
   useColorModeValue,
   Spacer,
-  // Badge,
-  // Icon,
+  Badge,
+  Center,
 } from '@chakra-ui/react';
 import moment from 'moment';
 import { CloseIcon } from '@chakra-ui/icons';
@@ -38,31 +38,22 @@ const NotifModal = (props: any) => {
       return (
         <Box key={i} mt={4} mb={4} p={8} bg={bg2} borderRadius={'2vh'} >
           <Flex flexDirection={{base: "column", md: 'row'}}>
+            <Center>
             <Image
               boxSize='2rem'
               borderRadius='full'
               src={e.photo}
               alt='friend profile picture'
               mr='12px'
-            />
-            <Text fontSize='lg' minWidth={'330px'}>
-              {e.message}{' '} {' '}
-              {/* {e.viewed === false &&
-              <Icon viewBox="0 0 200 200" color="white.500"
-              mb={2}
-              ml={2}
-              >
-   <path
-     fill="currentColor"
-    d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
-  />
-</Icon>} */}
+            /></ Center>
+            <Text fontSize='lg'>
+              {e.message}
             </Text>
             <Spacer />
             <Flex flexDirection={{base: "column", md: 'row'}}>
             <Text as='i' fontSize='xs' align='right'>
               {moment(new Date(e.timestampp)).fromNow()}
-              {/* <Flex>
+              <Spacer/>
               {e.viewed === false &&
             <Badge
               variant='solid'
@@ -73,29 +64,18 @@ const NotifModal = (props: any) => {
             >
               Unread
             </Badge>}
-            </Flex> */}
+            {e.viewed === true &&
+            <Badge
+              variant='solid'
+              colorScheme='green'
+              position='relative'
+              mt={2}
+              ml={2}
+            >
+              Read
+            </Badge>}
             </Text>
             </Flex>
-            {/* {e.viewed === false &&
-            <Badge
-              variant='solid'
-              colorScheme='red'
-              position='absolute'
-              mb={8}
-              ml={8}
-            >
-              Unread
-            </Badge>} */}
-            {/* {e.viewed === true &&
-            <Badge
-              variant='solid'
-              colorScheme='red'
-              position='absolute'
-              mb={8}
-              ml={8}
-            >
-              read
-            </Badge>} */}
           </Flex>
         </Box>
       );

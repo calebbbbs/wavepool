@@ -21,7 +21,7 @@ import {
 import moment from 'moment';
 import { UserContext } from '../../contexts/UserContext';
 import { gql, useMutation } from '@apollo/client';
-import { CloseIcon, CheckIcon } from '@chakra-ui/icons';
+import { CloseIcon } from '@chakra-ui/icons';
 import { BiBell } from 'react-icons/bi';
 import NotifModal from './NotifModal';
 
@@ -89,7 +89,7 @@ const NotifMenu = (props: any) => {
               {moment(new Date(e.timestampp)).fromNow()}
             </Text>
           </Stack>
-          <CheckIcon />
+          <CloseIcon />
         </MenuItem>
       );
     });
@@ -117,9 +117,9 @@ const NotifMenu = (props: any) => {
         variant='ghost'
         onClick={onOpen}
       />
-      <MenuList bg={useColorModeValue('brand.50', 'brand.900')} zIndex={2} minWidth="300px">
-        <MenuGroup minWidth="300px">
-          <Flex justifyContent='space-between'  minWidth="300px">
+      <MenuList bg={useColorModeValue('brand.50', 'brand.900')} zIndex={2} maxW="350px">
+        <MenuGroup >
+          <Flex justifyContent='space-between'>
             <Link m={4} onClick={onClose}>
               Notifications
             </Link>
