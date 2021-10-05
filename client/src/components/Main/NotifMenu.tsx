@@ -76,8 +76,9 @@ const NotifMenu = (props: any) => {
             key={i}
             mt={4}
             mb={4}
-            p={4}
-            paddingRight={7}
+            // mr={6}
+            // p={4}
+            // paddingRight={7}
             borderRadius={'2vh'}
           >
             <Text fontSize='lg' maxW={{ base: '300px', md: '400px' }}>
@@ -88,6 +89,7 @@ const NotifMenu = (props: any) => {
               {moment(new Date(e.timestampp)).fromNow()}
             </Text>
           </Stack>
+          <CloseIcon />
         </MenuItem>
       );
     });
@@ -115,8 +117,8 @@ const NotifMenu = (props: any) => {
         variant='ghost'
         onClick={onOpen}
       />
-      <MenuList bg={useColorModeValue('brand.50', 'brand.900')} zIndex={2}>
-        <MenuGroup>
+      <MenuList bg={useColorModeValue('brand.50', 'brand.900')} zIndex={2} maxW="350px">
+        <MenuGroup >
           <Flex justifyContent='space-between'>
             <Link m={4} onClick={onClose}>
               Notifications
@@ -128,9 +130,9 @@ const NotifMenu = (props: any) => {
             </Flex>
           </Flex>
           <MenuDivider />
-          {isLoggedIn && <chakra.div>{list.slice(0, 5)}</chakra.div>}
+          {isLoggedIn && <chakra.div>{list.slice(0, 7)}</chakra.div>}
 
-          {isLoggedIn && userObj.notifications.length > 4 && (
+          {isLoggedIn && userObj.notifications.length > 0 && (
             <NotifModal notifs={userObj.notifications} />
           )}
         </MenuGroup>
