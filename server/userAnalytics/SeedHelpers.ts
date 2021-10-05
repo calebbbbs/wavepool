@@ -143,7 +143,7 @@ const createHistoryTrack = async (trackObj: PlayHistoryObject, user_id: string) 
       .relation(User, "historyTracks")
       .of(user_id)
       .add(newTrack);
-    return track; 
+    return track;
   }
   return;
 }
@@ -208,7 +208,7 @@ const createArtist = async(artistObj: any, user_id: string) => {
       .createQueryBuilder()
       .update(HistoryArtist)
       .set({
-        count: () => `count + ${count}`, 
+        count: () => `count + ${count}`,
         time_listened: () => `time_listened + ${time_listened}`
       })
       .where("user_id = :user_id AND artist_name = :artist_name", {user_id: user_id, artist_name: artist_name})

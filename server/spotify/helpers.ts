@@ -10,10 +10,9 @@ const spotifyApi = new SpotifyWebApi({
     `${process.env.HOST}/auth/spotify/callback`,
 });
 
-const refreshToken = async (user_id: string) =>{
-  return await spotifyApi.refreshAccessToken().then(
+const refreshToken = (user_id: string) =>{
+  return spotifyApi.refreshAccessToken().then(
    async (data) => {
-      console.log('The access token has been refreshed!', data);
       const user = await User.findOne({ where: { user_id: user_id } })
       if(user){
       user.access_token = data.body['access_token'];
@@ -42,9 +41,9 @@ const getRecentlyPlayed = async (access_token: string, user_id: string, refresh_
     })
     .catch((error) => {
       console.log("Error from getRecentlyPlayed");
-      if(error){
-        refreshToken(user_id)
-      }
+      // if(error){
+      //   refreshToken(user_id)
+      // }
     });
 };
 
@@ -65,9 +64,9 @@ const getUsersCurrentPlayback = async (access_token: string, refresh_token: stri
     })
     .catch((error) => {
       console.log("Error from getUsersCurrentPlayback");
-      if(error){
-        refreshToken(user_id)
-      }
+      // if(error){
+      //   refreshToken(user_id)
+      // }
     });
 };
 

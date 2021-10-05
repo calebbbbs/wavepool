@@ -23,7 +23,6 @@ import { ImRadioChecked, ImRadioUnchecked } from 'react-icons/im';
 import FriendScore from '../../Chartjs/FriendScore';
 
 const FCListItem = (props: any) => {
-  // console.log(props);
   const { totalSongs, numberOfLikes, friendId, friendName } = props;
 
   const list = props.userObj.recommendedTracks.filter((recTrack: any) => {

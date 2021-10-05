@@ -9,14 +9,17 @@ import {
   ModalBody,
   Image,
   Button,
-  ModalCloseButton,
+
   Text,
   Box,
   Flex,
   useColorModeValue,
   Spacer,
+  Badge,
+  Center,
 } from '@chakra-ui/react';
 import moment from 'moment';
+import { CloseIcon } from '@chakra-ui/icons';
 
 const NotifModal = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,22 +36,46 @@ const NotifModal = (props: any) => {
     })
     .map((e: any, i: number) => {
       return (
-        <Box key={i} mt={4} mb={4} p={8} bg={bg2} borderRadius={'2vh'}>
-          <Flex>
+        <Box key={i} mt={4} mb={4} p={8} bg={bg2} borderRadius={'2vh'} >
+          <Flex flexDirection={{base: "column", md: 'row'}}>
+            <Center>
             <Image
               boxSize='2rem'
               borderRadius='full'
               src={e.photo}
               alt='friend profile picture'
               mr='12px'
-            />
-            <Text fontSize='lg' minWidth={'330px'}>
+            /></ Center>
+            <Text fontSize='lg'>
               {e.message}
             </Text>
             <Spacer />
+            <Flex flexDirection={{base: "column", md: 'row'}}>
             <Text as='i' fontSize='xs' align='right'>
               {moment(new Date(e.timestampp)).fromNow()}
+              <Spacer/>
+              {e.viewed === false &&
+            <Badge
+              variant='solid'
+              colorScheme='red'
+              position='relative'
+              mt={2}
+              ml={2}
+            >
+              Unread
+            </Badge>}
+            {e.viewed === true &&
+            <Badge
+              variant='solid'
+              colorScheme='green'
+              position='relative'
+              mt={2}
+              ml={2}
+            >
+              Read
+            </Badge>}
             </Text>
+            </Flex>
           </Flex>
         </Box>
       );
@@ -92,8 +119,8 @@ const NotifModal = (props: any) => {
               onClick={() => {
                 onClose();
               }}
-            ></Button>
-            <ModalCloseButton />
+            ><CloseIcon /></Button>
+            {/* <ModalCloseButton /> */}
           </ModalFooter>
         </ModalContent>
       </Modal>
