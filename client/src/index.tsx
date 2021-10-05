@@ -1,77 +1,77 @@
-import React, { useReducer, useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useReducer, useState } from 'react';
+import ReactDOM from 'react-dom';
 import {
   ChakraProvider,
   ColorModeScript,
   extendTheme,
   ThemeConfig,
-} from "@chakra-ui/react";
-import App from "./App";
-import customTheme from "./overrides";
-import { BrowserRouter as Router } from "react-router-dom";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { UserContextProvider } from "./contexts/UserContext";
-import { mode } from "@chakra-ui/theme-tools";
+} from '@chakra-ui/react';
+import App from './App';
+import customTheme from './overrides';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { UserContextProvider } from './contexts/UserContext';
+import { mode } from '@chakra-ui/theme-tools';
 
 const client = new ApolloClient({
-  uri: "/graphql",
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 
 const Index = () => {
   const [fontSize, toggleFontSize] = useReducer((state) => !state, false);
   const [colorTheme, changeColorTheme] = useState<any>({
-    50: "#EFFBF1",
-    100: "#CCE0D1",
-    200: "#A6C9AE",
-    300: "#4FCF62",
-    400: "#30B043",
-    500: "#2F8122",
-    600: "#758173",
-    700: "#4E564D",
-    800: "#31493B",
-    900: "#020402",
+    50: '#EFFBF1',
+    100: '#CCE0D1',
+    200: '#A6C9AE',
+    300: '#4FCF62',
+    400: '#30B043',
+    500: '#2F8122',
+    600: '#758173',
+    700: '#4E564D',
+    800: '#31493B',
+    900: '#020402',
   });
 
   const config: ThemeConfig = {
-    initialColorMode: "dark",
+    initialColorMode: 'dark',
     useSystemColorMode: false,
   };
   const styles = {
     global: (props: any) => ({
       body: {
-        fontFamily: "body",
-        color: mode("gray.800", "whiteAlpha.900")(props),
-        bg: mode("brand.200", "brand.900")(props),
-        lineHeight: "tall",
+        fontFamily: 'body',
+        color: mode('gray.800', 'whiteAlpha.900')(props),
+        bg: mode('brand.200', 'brand.900')(props),
+        lineHeight: 'tall',
       },
-      "*::placeholder": {
-        color: mode("gray.400", "whiteAlpha.400")(props),
+      '*::placeholder': {
+        color: mode('gray.400', 'whiteAlpha.400')(props),
       },
-      "*, *::before, &::after": {
-        borderColor: mode("gray.200", "whiteAlpha.300")(props),
-        wordWrap: "break-word",
+      '*, *::before, &::after': {
+        borderColor: mode('gray.200', 'whiteAlpha.300')(props),
+        wordWrap: 'break-word',
       },
       a: {
-        color: mode("teal.300", "teal.500")(props),
+        color: mode('teal.300', 'teal.500')(props),
       },
       hr: {
-        backgroundColor: mode("white", "black"),
+        backgroundColor: mode('white', 'black'),
       },
       Link: {
-        fontSize: "xl",
+        fontSize: 'xl',
       },
       p: {
-        fontSize: "md",
+        fontSize: 'md',
       },
       div: {
-        fontSize: "md",
+        fontSize: 'md',
       },
       VStack: {
-        fontSize: "md",
+        fontSize: 'md',
       },
       Text: {
-        fontSize: "md",
+        fontSize: 'md',
       },
     }),
   };
@@ -83,8 +83,8 @@ const Index = () => {
   const fonts: any = {
     textStyles: {
       h1: {
-        xl: "1.25rem",
-        "2xl": "1.5rem",
+        xl: '1.25rem',
+        '2xl': '1.5rem',
       },
     },
   };
@@ -92,9 +92,9 @@ const Index = () => {
   const components = {
     Tooltip: {
       baseStyle: {
-        color: mode("gray.800", "whiteAlpha.900"),
-        bg: mode("brand.200", "brand.900"),
-        colorScheme: "brand",
+        // color: mode('gray.800', 'whiteAlpha.900'),
+        // bg: mode('brand.200', 'brand.900'),
+        // colorScheme: 'brand',
       },
     },
   };
@@ -108,6 +108,7 @@ const Index = () => {
           <Router>
             <ColorModeScript initialColorMode={theme.config.initialColorMode} />
             <App
+              maxW={{ base: '330px', sm: 'auto' }}
               toggleFont={toggleFontSize}
               changeColorTheme={changeColorTheme}
               cusTheme={theme}
@@ -119,4 +120,4 @@ const Index = () => {
   );
 };
 
-ReactDOM.render(<Index />, document.getElementById("root"));
+ReactDOM.render(<Index />, document.getElementById('root'));

@@ -59,7 +59,7 @@ const RecommendedTracksList = (props: any) => {
   const [updateFriendship, { data }] = useMutation(UPDATE_FRIENDSHIP);
   const [trackResponded, trackRespondedReturn] = useMutation(TRACK_RESPONDED);
   const [createNotification] = useMutation(CREATE_NOTIFICATION);
-  const bg = useColorModeValue('brand.50', 'brand.900');
+  // const bg = useColorModeValue('brand.50', 'brand.900');
   const { socket } = useContext(SocketContext);
   const [temp, setTemp] = useState<any>({});
 
@@ -82,7 +82,14 @@ const RecommendedTracksList = (props: any) => {
   };
   const list = props.recommendedTracks.map((e: any, i: number) => {
     return (
-      <chakra.div bg={bg} key={i} borderRadius='2vh'>
+      <chakra.div
+        bgGradient={useColorModeValue(
+          'linear(to-t,brand.100,brand.50)',
+          'linear(to-t,brand.800,brand.900)'
+        )}
+        key={i}
+        borderRadius='2vh'
+      >
         <Flex>
           <Button
             variant='ghost'
