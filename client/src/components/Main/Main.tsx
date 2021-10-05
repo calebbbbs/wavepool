@@ -42,8 +42,8 @@ export const Main = (props: any) => {
           changeColorTheme={props.changeColorTheme}
         />
         <SimpleGrid minChildWidth='350px' spacing='10px'>
-          <RecentlyPlayed />
-          <FriendCard />
+          <RecentlyPlayed cusTheme={props.cusTheme} />
+          <FriendCard cusTheme={props.cusTheme} />
         </SimpleGrid>
       </SocketContext.Provider>
     </GraphContextProvider>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Box } from '@chakra-ui/layout';
-
+import { useColorModeValue } from '@chakra-ui/color-mode';
 const GroupedBar = (props: any) => {
   const { graphData } = props;
   const data = {
@@ -10,39 +10,65 @@ const GroupedBar = (props: any) => {
       {
         label: '# of dislikes',
         data: graphData[1],
-        backgroundColor: 'rgba(255, 0, 0, 0.7)',
-        borderColor: 'rgba(255, 0, 0, 1)',
+        backgroundColor: 'red',
+        borderColor: 'red',
       },
       {
         label: '# of likes',
         data: graphData[2],
-        backgroundColor: 'rgba(33, 0, 255, 0.4)',
-        borderColor: 'rgba(33, 0, 255, 0.1)',
+        backgroundColor: 'green',
+        borderColor: 'green',
       },
     ],
   };
 
   const options = {
     responsive: true,
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
+    animation: false,
+    plugins: {
+      // 'legend' now within object 'plugins {}'
+      legend: {
+        labels: {
+          color: useColorModeValue('black', 'white'), // not 'fontColor:' anymore
+          // fontSize: 18  // not 'fontSize:' anymore
+          font: {
+            size: 18, // 'size' now within object 'font {}'
           },
         },
-      ],
+      },
     },
-    animation: {
-      duration: 0
-    }
+    scales: {
+      y: {
+        // not 'yAxes: [{' anymore (not an array anymore)
+        ticks: {
+          color: useColorModeValue('black', 'white'), // not 'fontColor:' anymore
+          font: {
+            size: 18, // 'size' now within object 'font {}'
+          },
+          stepSize: 1,
+          beginAtZero: true,
+        },
+      },
+      x: {
+        // not 'xAxes: [{' anymore (not an array anymore)
+        ticks: {
+          color: useColorModeValue('black', 'white'), // not 'fontColor:' anymore
+          //fontSize: 14,
+          font: {
+            size: 14, // 'size' now within object 'font {}'
+          },
+          stepSize: 1,
+          beginAtZero: true,
+        },
+      },
+    },
   };
-  
+
   return (
-  <Box>
-    <Bar data={data} options={options} />
-  </Box>
-)
+    <Box>
+      <Bar data={data} options={options} />
+    </Box>
+  );
 };
 
 export default GroupedBar;

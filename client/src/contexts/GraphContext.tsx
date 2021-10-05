@@ -1,6 +1,6 @@
-import * as React from "react";
-import { useState } from "react";
-import axios from "axios";
+import * as React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 
 const GraphContext = React.createContext(undefined as any);
 
@@ -15,14 +15,15 @@ const GraphContextProvider: React.FC = ({ children }) => {
   //if (error) console.warn(error);
 
   const getGraphData = async (user_id: String) => {
-    return await axios.get<any>(`/user/analytics/${user_id}`)
-      .then(({data}) => {
+    return await axios
+      .get<any>(`/user/analytics/${user_id}`)
+      .then(({ data }) => {
         setUserData(data);
         setUserGenres(data[0]);
         setUserArtists(data[1]);
         setUserFriends(data[2]);
-      })
-  }
+      });
+  };
 
   React.useEffect(() => {
     if (graphUserId) {
@@ -31,16 +32,16 @@ const GraphContextProvider: React.FC = ({ children }) => {
   }, [JSON.stringify(graphUserId)]);
 
   const graphProps = {
-    userData, 
+    userData,
     setUserData,
-    graphUserId, 
+    graphUserId,
     setGraphUserId,
-    userGenres, 
+    userGenres,
     setUserGenres,
-    userArtists, 
+    userArtists,
     setUserArtists,
-    userFriends, 
-    setUserFriends
+    userFriends,
+    setUserFriends,
   };
 
   return (

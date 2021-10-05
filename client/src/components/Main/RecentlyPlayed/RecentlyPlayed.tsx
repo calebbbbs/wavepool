@@ -14,7 +14,7 @@ import { UserContext } from '../../../contexts/UserContext';
 import RecentlyPlayedList from './RecentlyPlayedList';
 import StatsModal from '../../Utils/StatsModal';
 
-export const RecentlyPlayed = () => {
+export const RecentlyPlayed = (props: any) => {
   const { recentPlays, userObj, getRecentlyPlayed } = useContext(UserContext);
   const { user_name } = userObj;
 
@@ -45,8 +45,8 @@ export const RecentlyPlayed = () => {
     <Flex m={4} alignItems='center' justifyContent='center'>
       <Box
         py={4}
-        borderRadius='3vh'
-        // rounded='lg'
+        // borderRadius='2vh'
+        rounded='lg'
         shadow='lg'
         // bgGradient={useColorModeValue(
         //   'linear(to-t,brand.50, brand.100)',
@@ -99,7 +99,11 @@ export const RecentlyPlayed = () => {
           >
             {userObj.user_name}
           </Link>
-          <StatsModal user_id={userObj.user_id} userName={user_name} />
+          <StatsModal
+            cusTheme={props.cusTheme}
+            user_id={userObj.user_id}
+            userName={user_name}
+          />
         </Center>
       </Box>
     </Flex>

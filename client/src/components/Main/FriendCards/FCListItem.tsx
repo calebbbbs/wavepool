@@ -52,6 +52,7 @@ const FCListItem = (props: any) => {
     <Flex alignItems='center' flexDirection={{ base: 'column', md: 'row' }}>
       <Flex flexDirection={{ base: 'row', md: 'column' }}>
         <StatsModal
+          cusTheme={props.cusTheme}
           friendScore={score}
           user_id={friendId}
           userName={friendName}
@@ -88,12 +89,14 @@ const FCListItem = (props: any) => {
             >
               <Flex alignItems='center'>
                 <FriendScore
+                  cusTheme={props.cusTheme}
                   totalSongs={totalSongs}
                   numberOfLikes={numberOfLikes}
                 />
                 <chakra.div>{props.friendName}</chakra.div>
                 {props.friendStatus === false && (
                   <FriendStat
+                    cusTheme={props.cusTheme}
                     friend_name={props.friendName}
                     friend_id={props.friendId}
                     friend_status={props.friend_status}
@@ -110,6 +113,7 @@ const FCListItem = (props: any) => {
           </AccordionButton>
           {props.friendStatus === false && (
             <FriendStat
+              cusTheme={props.cusTheme}
               friend_name={props.friendName}
               friend_id={props.friendId}
               friend_status={props.friend_status}

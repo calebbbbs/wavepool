@@ -92,9 +92,9 @@ const Index = () => {
   const components = {
     Tooltip: {
       baseStyle: {
-        color: mode('gray.800', 'whiteAlpha.900'),
-        bg: mode('brand.200', 'brand.900'),
-        colorScheme: 'brand',
+        // color: mode('gray.800', 'whiteAlpha.900'),
+        // bg: mode('brand.200', 'brand.900'),
+        // colorScheme: 'brand',
       },
     },
   };
