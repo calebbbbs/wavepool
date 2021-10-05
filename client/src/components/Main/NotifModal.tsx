@@ -9,16 +9,17 @@ import {
   ModalBody,
   Image,
   Button,
-  ModalCloseButton,
+  // ModalCloseButton,
   Text,
   Box,
   Flex,
   useColorModeValue,
   Spacer,
   // Badge,
-  Icon,
+  // Icon,
 } from '@chakra-ui/react';
 import moment from 'moment';
+import { CloseIcon } from '@chakra-ui/icons';
 
 const NotifModal = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,8 +36,8 @@ const NotifModal = (props: any) => {
     })
     .map((e: any, i: number) => {
       return (
-        <Box key={i} mt={4} mb={4} p={8} bg={bg2} borderRadius={'2vh'}>
-          <Flex>
+        <Box key={i} mt={4} mb={4} p={8} bg={bg2} borderRadius={'2vh'} >
+          <Flex flexDirection={{base: "column", md: 'row'}}>
             <Image
               boxSize='2rem'
               borderRadius='full'
@@ -46,30 +47,35 @@ const NotifModal = (props: any) => {
             />
             <Text fontSize='lg' minWidth={'330px'}>
               {e.message}{' '} {' '}
-              {e.viewed === false &&
-            // <Badge
-            //   // variant='solid'
-            //   // colorScheme='red'
-              // mb={8}
-              // ml={8}
-            // >
+              {/* {e.viewed === false &&
               <Icon viewBox="0 0 200 200" color="white.500"
-              // mb={2}
+              mb={2}
               ml={2}
               >
-  <path
-    fill="currentColor"
+   <path
+     fill="currentColor"
     d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
   />
-</Icon>}
-            {/* </Badge>} */}
+</Icon>} */}
             </Text>
             <Spacer />
-
+            <Flex flexDirection={{base: "column", md: 'row'}}>
             <Text as='i' fontSize='xs' align='right'>
               {moment(new Date(e.timestampp)).fromNow()}
-
+              {/* <Flex>
+              {e.viewed === false &&
+            <Badge
+              variant='solid'
+              colorScheme='red'
+              position='relative'
+              mt={2}
+              ml={2}
+            >
+              Unread
+            </Badge>}
+            </Flex> */}
             </Text>
+            </Flex>
             {/* {e.viewed === false &&
             <Badge
               variant='solid'
@@ -133,8 +139,8 @@ const NotifModal = (props: any) => {
               onClick={() => {
                 onClose();
               }}
-            ></Button>
-            <ModalCloseButton />
+            ><CloseIcon /></Button>
+            {/* <ModalCloseButton /> */}
           </ModalFooter>
         </ModalContent>
       </Modal>

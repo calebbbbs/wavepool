@@ -39,6 +39,7 @@ const RecommendedTracks = () => {
     <Flex mt={2} alignItems="center" justifyContent="center">
       <Box
         minW='340'
+        // minW='315'
         rounded="lg"
         shadow="lg"
         bg={useColorModeValue("brand.100", "brand.800")}
