@@ -12,8 +12,6 @@ export class NotificationResolver {
     return Notification.find();
   }
 
-  // @Query(() => [Notification])
-
   @Mutation(() => Notification)
   async createNotification(@Arg('data') data: CreateNotificationInput) {
     const { user_id, friend_id, action, message, viewed, timestampp, photo } =
@@ -26,7 +24,6 @@ export class NotificationResolver {
     notification.timestampp = timestampp;
     notification.viewed = viewed;
     notification.photo = photo || undefined;
-    console.log(notification);
     await notification.save();
 
     await getConnection()

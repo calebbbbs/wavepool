@@ -234,12 +234,8 @@ spotifyRouter.get(
   '/refreshToken/:user_id',
   async (req: Request, res: Response) => {
     const { user_id } = req.params;
-    console.log(user_id);
     const user = await User.findOne({ where: { user_id: user_id } });
-    // const {refresh_token} = user;
-    // console.log(refresh_token);
     if (user) {
-      console.log(user.refresh_token);
       const { user_id } = user;
       refreshToken(user_id);
       return res.sendStatus(200);
@@ -249,5 +245,4 @@ spotifyRouter.get(
   }
 );
 
-// spotifyRouter.post('/refreshToken/:refresh_token');
 export default spotifyRouter;
