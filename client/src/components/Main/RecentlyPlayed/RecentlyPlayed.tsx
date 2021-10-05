@@ -1,13 +1,22 @@
-import React, { useContext, useState, useEffect } from "react";
-import Pagination from "../../Utils/Pagination";
-import { Flex, chakra, Box, Image, useColorModeValue, useBreakpointValue, Link, Center } from "@chakra-ui/react";
-import { UserContext } from "../../../contexts/UserContext";
-import RecentlyPlayedList from "./RecentlyPlayedList";
-import StatsModal from "../../Utils/StatsModal";
+import React, { useContext, useState, useEffect } from 'react';
+import Pagination from '../../Utils/Pagination';
+import {
+  Flex,
+  chakra,
+  Box,
+  Image,
+  useColorModeValue,
+  useBreakpointValue,
+  Link,
+  Center,
+} from '@chakra-ui/react';
+import { UserContext } from '../../../contexts/UserContext';
+import RecentlyPlayedList from './RecentlyPlayedList';
+import StatsModal from '../../Utils/StatsModal';
 
 export const RecentlyPlayed = () => {
   const { recentPlays, userObj, getRecentlyPlayed } = useContext(UserContext);
-  const {user_name} = userObj;
+  const { user_name } = userObj;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -15,7 +24,7 @@ export const RecentlyPlayed = () => {
     }, 60000);
     return () => clearInterval(interval);
   }, []);
-  const opts = { base: 2, sm: 3, md: 3, lg: 3, xl: 6 }
+  const opts = { base: 2, sm: 3, md: 3, lg: 3, xl: 6 };
   const tracksPerPage = useBreakpointValue(opts) || 2;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -33,21 +42,26 @@ export const RecentlyPlayed = () => {
   };
 
   return (
-    <Flex m={4} alignItems="center" justifyContent="center">
+    <Flex m={4} alignItems='center' justifyContent='center'>
       <Box
         py={4}
-        rounded="lg"
-        shadow="lg"
-        bg={useColorModeValue("brand.100", "brand.800")}
+        borderRadius='3vh'
+        // rounded='lg'
+        shadow='lg'
+        // bgGradient={useColorModeValue(
+        //   'linear(to-t,brand.50, brand.100)',
+        //   'linear(to-t,brand.800,brand.500)'
+        // )}
+        bg={useColorModeValue('brand.100', 'brand.800')}
       >
         <Box mt={2}>
           <Center>
             <Link
-              color={useColorModeValue("gray.700", "white")}
-              fontWeight="700"
+              color={useColorModeValue('gray.700', 'white')}
+              fontWeight='700'
               _hover={{
-                color: useColorModeValue("gray.600", "gray.200"),
-                textDecor: "underline",
+                color: useColorModeValue('gray.600', 'gray.200'),
+                textDecor: 'underline',
               }}
             >
               Recently Played
@@ -69,19 +83,19 @@ export const RecentlyPlayed = () => {
         </Box>
 
         <Center m={4}>
-          {userObj.photo !== "no photo" && (
+          {userObj.photo !== 'no photo' && (
             <Image
-              boxSize="2rem"
-              borderRadius="full"
+              boxSize='2rem'
+              borderRadius='full'
               src={userObj.photo}
-              alt="Profile Pic"
-              mr="12px"
+              alt='Profile Pic'
+              mr='12px'
             />
           )}
           <Link
-            color={useColorModeValue("gray.700", "gray.200")}
-            fontWeight="700"
-            cursor="pointer"
+            color={useColorModeValue('gray.700', 'gray.200')}
+            fontWeight='700'
+            cursor='pointer'
           >
             {userObj.user_name}
           </Link>

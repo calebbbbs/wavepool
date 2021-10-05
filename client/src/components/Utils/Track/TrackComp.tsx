@@ -1,7 +1,7 @@
-import React, { useContext, useState} from "react";
-import axios from "axios";
-import { UserContext } from "../../../contexts/UserContext";
-import SendTrack from "./buttons/SendTrack";
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import { UserContext } from '../../../contexts/UserContext';
+import SendTrack from './buttons/SendTrack';
 import {
   chakra,
   Center,
@@ -16,15 +16,15 @@ import {
   Tooltip,
   Skeleton,
   StackDivider,
-  useToast
-} from "@chakra-ui/react";
+  useToast,
+} from '@chakra-ui/react';
 
-import Marquee from "react-fast-marquee";
-import { BsPerson } from "react-icons/bs";
-import { BiHeadphone, BiAlbum } from "react-icons/bi";
-import { MdQueueMusic } from "react-icons/md";
-import AddToPlaylist from "./buttons/AddToPlaylist";
-import PlayNow from "./buttons/PlayNow";
+import Marquee from 'react-fast-marquee';
+import { BsPerson } from 'react-icons/bs';
+import { BiHeadphone, BiAlbum } from 'react-icons/bi';
+import { MdQueueMusic } from 'react-icons/md';
+import AddToPlaylist from './buttons/AddToPlaylist';
+import PlayNow from './buttons/PlayNow';
 
 const TrackComp = (props: any) => {
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -33,10 +33,10 @@ const TrackComp = (props: any) => {
     props.track;
   const toast = useToast();
 
-  const bg = useColorModeValue("brand.50", "brand.900");
-  const dividerColor = useColorModeValue("brand.900", "brand.50");
+  // const bg = useColorModeValue('brand.50', 'brand.900');
+  const dividerColor = useColorModeValue('brand.900', 'brand.50');
 
-  let str = "";
+  let str = '';
   artists.map((artist: any, i: number) => {
     if (i === artists.length - 1) {
       return (str += `  ${artist}  `);
@@ -46,38 +46,48 @@ const TrackComp = (props: any) => {
 
   const addToQueue = () => {
     axios
-    .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
-      .then((data) => { toast({
-        title: `Song added to queue!`,
-        position: "top-left",
-        status: "info",
-        isClosable: true,
+      .get(`/spotify/addToQueue/${userObj.user_id}/${track_uri}`)
+      .then((data) => {
+        toast({
+          title: `Song added to queue!`,
+          position: 'top-left',
+          status: 'info',
+          isClosable: true,
+        });
+        return data;
       })
-      return data;
-    })
-      .catch((error) => console.log('Error addToQueue in TrackComp.tsx', error));
-    };
+      .catch((error) =>
+        console.log('Error addToQueue in TrackComp.tsx', error)
+      );
+  };
 
   return (
-    <chakra.div bg={bg} h="auto" borderRadius="2vh"
-    m={2}>
-      <Flex p={4} flexDirection={{base: "column", md: 'row'}}>
+    <chakra.div
+      bgGradient={useColorModeValue(
+        'linear(to-t,brand.100,brand.50)',
+        'linear(to-t,brand.800,brand.900)'
+      )}
+      h='auto'
+      borderRadius='2vh'
+      m={2}
+    >
+      <Flex p={4} flexDirection={{ base: 'column', md: 'row' }}>
         <Center>
           <Box>
             <Skeleton isLoaded={imgLoaded}>
               <Image
                 aspect-ratio={1}
                 m={2}
-                minW={{base: '150px', md: '64px'}}
-                minH={{base: '150px', md: '64px'}}
-                boxSize={{base: '150px', md: '64px'}}
-                float="left"
-                fit="contain"
+                minW={{ base: '150px', md: '64px' }}
+                minH={{ base: '150px', md: '64px' }}
+                boxSize={{ base: '150px', md: '64px' }}
+                float='left'
+                fit='contain'
                 onLoad={() => {
                   setImgLoaded(true);
                 }}
                 src={album_art}
-                alt="Album Cover"
+                alt='Album Cover'
               />
             </Skeleton>
           </Box>
@@ -85,16 +95,16 @@ const TrackComp = (props: any) => {
         <Center>
           <Stack
             divider={<StackDivider borderColor={dividerColor} />}
-            borderRadius="15px"
+            borderRadius='15px'
           >
-            <Flex alignItems="center">
+            <Flex alignItems='center'>
               <BiHeadphone />
               <Text>{track_title}</Text>
             </Flex>
             <chakra.div>
-              <Flex alignItems="center">
-                <chakra.div minW="10px">
-                <BsPerson />
+              <Flex alignItems='center'>
+                <chakra.div minW='10px'>
+                  <BsPerson />
                 </chakra.div>
                 <chakra.div>
                   <Marquee
@@ -107,7 +117,7 @@ const TrackComp = (props: any) => {
                 </chakra.div>
               </Flex>
             </chakra.div>
-            <Flex alignItems="center">
+            <Flex alignItems='center'>
               <BiAlbum />
               <Text>{album_title}</Text>
             </Flex>
@@ -115,27 +125,28 @@ const TrackComp = (props: any) => {
         </Center>
         <Spacer />
         <Center>
-        <Flex
-        flexDirection={{base: "row", md: 'column'}}>
-         {currPlayback  && <Tooltip placement="left" label="Add to Queue">
-            <Button variant="ghost" onClick={addToQueue}>
-              <MdQueueMusic />
-            </Button>
-          </Tooltip>}
-          <SendTrack track={props.track} />
-          {userPlaylists && (
-            <AddToPlaylist
-              user_id={user_id}
-              playlists={userPlaylists}
-              trackUri={track_uri}
+          <Flex flexDirection={{ base: 'row', md: 'column' }}>
+            {currPlayback && (
+              <Tooltip placement='left' label='Add to Queue'>
+                <Button variant='ghost' onClick={addToQueue}>
+                  <MdQueueMusic />
+                </Button>
+              </Tooltip>
+            )}
+            <SendTrack track={props.track} />
+            {userPlaylists && (
+              <AddToPlaylist
+                user_id={user_id}
+                playlists={userPlaylists}
+                trackUri={track_uri}
+              />
+            )}
+            <PlayNow
+              user_id={userObj.user_id}
+              friend_id={user_id}
+              track_uri={track_uri}
             />
-          )}
-          <PlayNow
-            user_id={userObj.user_id}
-            friend_id={user_id}
-            track_uri={track_uri}
-          />
-        </Flex>
+          </Flex>
         </Center>
       </Flex>
     </chakra.div>
