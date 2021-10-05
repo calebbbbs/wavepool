@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Modal,
   useDisclosure,
@@ -9,7 +9,6 @@ import {
   ModalBody,
   Image,
   Button,
-
   Text,
   Box,
   Flex,
@@ -17,12 +16,25 @@ import {
   Spacer,
   Badge,
   Center,
+  Link,
 } from '@chakra-ui/react';
 import moment from 'moment';
 import { CloseIcon } from '@chakra-ui/icons';
+import { gql, useMutation } from '@apollo/client';
+import { UserContext } from '../../contexts/UserContext';
+
+const REMOVE_NOTIFICATION = gql`
+  mutation RemoveNotificationMutation(
+    $removeNotificationData: RemoveNotificationInput!
+  ) {
+    removeNotification(data: $removeNotificationData)
+  }
+`;
 
 const NotifModal = (props: any) => {
+  const { refetch }: any = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [removeNotification] = useMutation(REMOVE_NOTIFICATION);
   const bg = useColorModeValue('brand.100', 'brand.800');
   const bg2 = useColorModeValue('brand.50', 'brand.900');
 
@@ -36,45 +48,64 @@ const NotifModal = (props: any) => {
     })
     .map((e: any, i: number) => {
       return (
-        <Box key={i} mt={4} mb={4} p={8} bg={bg2} borderRadius={'2vh'} >
-          <Flex flexDirection={{base: "column", md: 'row'}}>
+        <Box key={i} mt={4} mb={4} p={8} bg={bg2} borderRadius={'2vh'}>
+          <Flex flexDirection={{ base: 'column', md: 'row' }}>
             <Center>
-            <Image
-              boxSize='2rem'
-              borderRadius='full'
-              src={e.photo}
-              alt='friend profile picture'
-              mr='12px'
-            /></ Center>
-            <Text fontSize='lg'>
-              {e.message}
-            </Text>
+              <Image
+                boxSize='2rem'
+                borderRadius='full'
+                src={e.photo}
+                alt='friend profile picture'
+                mr='12px'
+              />
+            </Center>
+            <Text fontSize='lg'>{e.message}</Text>
             <Spacer />
-            <Flex flexDirection={{base: "column", md: 'row'}}>
-            <Text as='i' fontSize='xs' align='right'>
-              {moment(new Date(e.timestampp)).fromNow()}
-              <Spacer/>
-              {e.viewed === false &&
-            <Badge
-              variant='solid'
-              colorScheme='red'
-              position='relative'
-              mt={2}
-              ml={2}
-            >
-              Unread
-            </Badge>}
-            {e.viewed === true &&
-            <Badge
-              variant='solid'
-              colorScheme='green'
-              position='relative'
-              mt={2}
-              ml={2}
-            >
-              Read
-            </Badge>}
-            </Text>
+            <Flex flexDirection={{ base: 'column', md: 'row' }}>
+              <Text as='i' fontSize='xs' align='right'>
+                {moment(new Date(e.timestampp)).fromNow()}
+                <Spacer />
+                {e.viewed === false && (
+                  <Link>
+                    <Badge
+                      variant='solid'
+                      colorScheme='red'
+                      position='relative'
+                      mt={2}
+                      ml={2}
+                      borderRadius='2vh'
+                      _hover={{
+                        variant: 'ghost',
+                        // color: "teal.500",
+                      }}
+                      onClick={() => {
+                        removeNotification({
+                          variables: {
+                            removeNotificationData: {
+                              timestampp: e.timestampp,
+                              user_id: e.user_id,
+                            },
+                          },
+                        });
+                        setTimeout(() => refetch(), 500);
+                      }}
+                    >
+                      Unread
+                    </Badge>
+                  </Link>
+                )}
+                {e.viewed === true && (
+                  <Badge
+                    variant='solid'
+                    colorScheme='green'
+                    position='relative'
+                    mt={2}
+                    ml={2}
+                  >
+                    Read
+                  </Badge>
+                )}
+              </Text>
             </Flex>
           </Flex>
         </Box>
@@ -119,7 +150,9 @@ const NotifModal = (props: any) => {
               onClick={() => {
                 onClose();
               }}
-            ><CloseIcon /></Button>
+            >
+              <CloseIcon />
+            </Button>
             {/* <ModalCloseButton /> */}
           </ModalFooter>
         </ModalContent>
