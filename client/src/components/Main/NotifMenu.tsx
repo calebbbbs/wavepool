@@ -37,7 +37,6 @@ const NotifMenu = (props: any) => {
   const { isLoggedIn, userObj, refetch }: any = useContext(UserContext);
   const [removeNotification] = useMutation(REMOVE_NOTIFICATION);
   const { onOpen, onClose } = useDisclosure();
-
   const notifArray = [...userObj.notifications];
   const list = notifArray
     .sort((a: any, b: any) => {
@@ -86,7 +85,7 @@ const NotifMenu = (props: any) => {
               {moment(new Date(e.timestampp)).fromNow()}
             </Text>
           </Stack>
-          <CloseIcon />
+          <CloseIcon boxSize="10px"/>
         </MenuItem>
       );
     });
@@ -126,14 +125,14 @@ const NotifMenu = (props: any) => {
             </Link>
             <Flex>
               <MenuItem onClick={onClose}>
-                <CloseIcon />
+                <CloseIcon boxSize="14px"/>
               </MenuItem>
             </Flex>
           </Flex>
           <MenuDivider />
           {isLoggedIn && <chakra.div>{list.slice(0, 5)}</chakra.div>}
 
-          {isLoggedIn && userObj.notifications.length > 0 && (
+          {isLoggedIn && userObj.notifications.length >= 0 && (
             <NotifModal notifs={userObj.notifications} />
           )}
         </MenuGroup>
