@@ -51,7 +51,7 @@ const NotifModal = (props: any) => {
         <Box key={i} mt={4} mb={4} p={8} bg={bg2} borderRadius={'2vh'}>
           <Flex flexDirection={{ base: 'column', md: 'row' }}>
             <Center>
-            {e.notifications && e.notifications !== undefined && <Image
+            {e.photo && e.photo !== undefined && <Image
                 boxSize='2rem'
                 borderRadius='full'
                 src={e.photo}
